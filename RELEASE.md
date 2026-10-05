@@ -1,0 +1,55 @@
+# 🚀 Prompt Engineer v1.0.0 — Release Notes
+
+**© 2026 Mahdi Kareem — جميع الحقوق محفوظة / All rights reserved.**
+
+أول إصدار رسمي لبرنامج **مهندس البرومبت** — أداة ثنائية اللغة لبناء برومبتات مثالية لأدوات الذكاء الاصطناعي.
+First official release of **Prompt Engineer** — a bilingual tool for building perfect AI prompts.
+
+---
+
+## ⬇ اختر نسختك / Choose your installer
+
+| الملف | النوع | الوصف |
+|---|---|---|
+| `Prompt-Engineer-Portable-v1.0.0.exe` | 🟢 **Portable** | بدون تثبيت — شغّلها مباشرة من أي مجلد أو USB |
+| `Prompt-Engineer-Setup-v1.0.0.exe` | 🟦 **Setup (NSIS)** | مثبّت ويندوز بمسار اختياري + اختصارات سطح المكتب وقائمة ابدأ |
+| `Prompt-Engineer-Setup-v1.0.0.msi` | 🟨 **MSI Installer** | مثبّت MSI رسمي مناسب للشركات وتثبيت عبر GPO |
+
+> ⚠️ الملفات غير موقّعة رقميًا (Self-signed) — قد يطلب منك Windows الضغط على **"مزيد من المعلومات" ← "تشغيل"**.
+
+---
+
+## ✨ ما الجديد في هذا الإصدار
+
+- 🎨 **3 ثيمات**: 🌙 ليلي · ☀️ نهاري · ⚡ نيون (تُحفظ تلقائيًا).
+- 🌍 **لغتان كاملتان**: عربية RTL + إنجليزية LTR بتبديل فوري.
+- 📐 **16 قالبًا جاهزًا** و **17 نبرة** و **14 صيغة تسليم**.
+- 🛠️ **10 مفاتيح تحسين** (CoT، سؤال توضيحي، مراجعة ذاتية، Few-Shot، مصادر، بدائل، موازنة، ELI5، خطة، إجابة مباشرة).
+- 🖼️ **وضع توليد الصور**: **25 أسلوبًا فنيًا** في 3 مجموعات + **13 نسبة عرض** + أبعاد مخصصة + Negative Prompt.
+- 📊 **تقييم جودة فوري** بـ 12 معيارًا مع تنقّل بالنقر إلى الحقل الناقص.
+- 🤖 **قسم البرامج الموصى بها**: 8 أدوات ذكاء اصطناعي مع **بديل مجاني مفتوح المصدر** لكل أداة.
+- 📤 نسخ برومبت واحد + تحميل `.txt` / `.md` + سجل تلقائي + زر "أكمل تلقائيًا".
+- 🖼️ أيقونة رسمية موحّدة لكل الواجهات وملفات EXE.
+
+---
+
+## 🌐 التشغيل بدون تثبيت / Run without installing
+
+- **الويب**: https://moopuu.github.io/prompt-engineer/
+- **المستودع**: https://github.com/MooPuu/prompt-engineer
+
+---
+
+## 🛠️ بناء النسخ من المصدر / Building from source
+
+```bash
+npm install
+npm run build:portable   # نسخة محمولة
+npm run build:nsis       # مثبّت Setup
+npm run build:msi        # مثبّت MSI
+npm run build            # الثلاثة معًا
+```
+
+---
+
+**MIT License** · © 2026 **Mahdi Kareem**
