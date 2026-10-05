@@ -1,0 +1,253 @@
+/* =========================================================================
+   Prompt Engineer — Themes & Modern UI layer
+   3 ثيمات: midnight (ليلي) / light (نهاري) / neon (نيون)
+   تُحمَّل بعد التنسيقات الأساسية ل_override الألوان الثابتة.
+   ========================================================================= */
+
+/* ---------------- 1) رموز الثيمات ---------------- */
+:root{
+  color-scheme: dark;
+  /* احتياطي (لون محايد إن لم يُحمّل الملف الأساسي) */
+  --bg:#0b0f1a; --bg2:#0f1524; --panel:#131a2b; --panel2:#182036;
+  --line:#253050; --line2:#2f3c63; --txt:#e8edf9; --muted:#93a0c0;
+
+  /* رموز إضافية تُستخدم في هذا الملف وفي السكربت */
+  --input:#0d1220;
+  --alt:#101728;
+  --tg-bg:#0f1526;
+  --track:#1d2740;
+  --switch:#2a3454;
+  --tick:#242e4d;
+  --scroll:#26314f;
+  --muted2:#6f7ca0;
+  --divider:#55618a;
+  --empty:#5f6b8c;
+  --head:#cdd7f0;
+  --code-bg:#0a0e19;
+  --code-txt:#cfe0ff;
+  --glow1:rgba(108,140,255,.16);
+  --glow2:rgba(155,108,255,.14);
+  --acc-soft:rgba(108,140,255,.18);
+  --acc-soft2:rgba(108,140,255,.22);
+  --focus:rgba(108,140,255,.16);
+  --shadow:0 18px 40px rgba(0,0,0,.45);
+  --ok-soft:rgba(61,220,151,.07);
+  --ok-line:rgba(61,220,151,.38);
+  --danger-soft:rgba(255,122,133,.12);
+  --accent-grad:linear-gradient(135deg,#6c8cff,#9b6cff);
+}
+
+/* ============ الثيم 2: نهاري (فاتح، عالي الوضوح) ============ */
+[data-theme="light"]{
+  color-scheme: light;
+  --bg:#eef1f8; --bg2:#ffffff; --panel:#ffffff; --panel2:#eef2fa;
+  --line:#e2e7f3; --line2:#c7d0e4;
+  --txt:#131a2c; --muted:#5b6684; --head:#1a2340;
+
+  --input:#f6f8fd;
+  --alt:#f4f7fd;
+  --tg-bg:#f7f9fe;
+  --track:#e3e8f5;
+  --switch:#cbd4e8;
+  --tick:#e6ebf7;
+  --scroll:#c3cbe0;
+  --muted2:#78829b;
+  --divider:#a8b1c7;
+  --empty:#8a93a9;
+  --code-bg:#f8faff;
+  --code-txt:#17223c;
+  --glow1:rgba(52,87,224,.14);
+  --glow2:rgba(123,63,228,.10);
+  --acc:#3457e0; --acc2:#7b3fe4;
+  --acc-soft:rgba(52,87,224,.10);
+  --acc-soft2:rgba(52,87,224,.16);
+  --focus:rgba(52,87,224,.16);
+  --green:#0f9d63; --amber:#b4740a; --red:#d9384b;
+  --shadow:0 16px 36px rgba(23,35,72,.10);
+  --ok-soft:rgba(15,157,99,.08);
+  --ok-line:rgba(15,157,99,.35);
+  --danger-soft:rgba(217,56,75,.09);
+  --accent-grad:linear-gradient(135deg,#3457e0,#7b3fe4);
+}
+
+/* ============ الثيم 3: نيون (سيبر/داكن عالي التباين) ============ */
+[data-theme="neon"]{
+  color-scheme: dark;
+  --bg:#04060d; --bg2:#070a14; --panel:#090d18; --panel2:#0d1324;
+  --line:#153347; --line2:#1e4f6b;
+  --txt:#e9fdff; --muted:#82bcd0; --head:#c6f8ff;
+
+  --input:#04070f;
+  --alt:#0a1020;
+  --tg-bg:#08111f;
+  --track:#0e2737;
+  --switch:#12455c;
+  --tick:#0f374a;
+  --scroll:#17536e;
+  --muted2:#6fa8bd;
+  --divider:#3f7d95;
+  --empty:#5d8ea3;
+  --code-bg:#03050b;
+  --code-txt:#aef5ff;
+  --glow1:rgba(37,229,255,.14);
+  --glow2:rgba(255,69,213,.12);
+  --acc:#25e5ff; --acc2:#ff45d5;
+  --acc-soft:rgba(37,229,255,.14);
+  --acc-soft2:rgba(37,229,255,.22);
+  --focus:rgba(37,229,255,.18);
+  --green:#3dffb0; --amber:#ffcc5c; --red:#ff6b8b;
+  --shadow:0 18px 44px rgba(0,0,0,.6);
+  --ok-soft:rgba(61,255,176,.07);
+  --ok-line:rgba(61,255,176,.35);
+  --danger-soft:rgba(255,107,139,.12);
+  --accent-grad:linear-gradient(135deg,#25e5ff,#ff45d5);
+}
+
+/* ---------------- 2) تطبيق الرموز على العناصر ---------------- */
+body{
+  background:
+    radial-gradient(1200px 600px at 90% -10%, var(--glow1), transparent 60%),
+    radial-gradient(900px 500px at 5% 0%, var(--glow2), transparent 55%),
+    var(--bg);
+  transition:background-color .35s ease, color .25s ease;
+}
+::selection{background:var(--acc-soft2)}
+a{color:var(--acc)}
+
+/* خلفيات كانت ثابتة */
+textarea,input[type=text],select{background:var(--input);transition:border-color .16s,box-shadow .16s,background-color .25s}
+.tg{background:var(--tg-bg);transition:border-color .16s,background-color .25s}
+.sw{background:var(--switch)}
+#fewBox,#imgBox{background:var(--input);transition:background-color .25s}
+pre.prompt{background:var(--code-bg);color:var(--code-txt);transition:background-color .25s,color .25s}
+pre.prompt::-webkit-scrollbar-thumb{background:var(--scroll)}
+.ring{background:conic-gradient(var(--green) calc(var(--p)*1%), var(--track) 0);transition:background .3s}
+.ring::after{background:var(--bg2)}
+.chk{background:var(--alt);transition:background-color .25s,border-color .16s,transform .16s}
+.chk .ic{background:var(--tick);color:var(--muted)}
+.chk.done{background:var(--ok-soft);border-color:var(--ok-line)}
+.chk.done .ic{background:var(--green);color:#04140d}
+[data-theme="light"] .chk.done .ic{color:#ffffff}
+.hitem{background:var(--alt);transition:background-color .25s,border-color .16s}
+.hitem:hover{border-color:var(--acc)}
+.empty{color:var(--empty)}
+.divider{color:var(--divider)}
+.divider::before,.divider::after{background:var(--line)}
+.fsec>h3{color:var(--head)}
+.fsec>h3 .n{background:var(--acc-soft);color:var(--acc)}
+.hint{color:var(--muted2)}
+label.lb{color:var(--muted)}
+.chips label,.chip{background:var(--panel2);transition:.16s}
+.card{transition:box-shadow .25s,transform .25s,border-color .25s}
+
+/* ---------------- 3) عناصر جديدة: مبدّل الثيم + التذييل ---------------- */
+
+/* مبدّل الثيم (شرائح) */
+.themes{display:flex;gap:4px;padding:4px;background:var(--panel2);
+  border:1px solid var(--line2);border-radius:13px}
+.tbtn{
+  border:0;background:transparent;color:var(--muted);cursor:pointer;
+  padding:6px 11px;border-radius:9px;font-size:13px;font-weight:700;
+  display:flex;align-items:center;gap:6px;transition:.18s;white-space:nowrap
+}
+.tbtn:hover{color:var(--txt);background:var(--focus)}
+.tbtn.active{background:var(--accent-grad);color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.28)}
+.tbtn .em{font-size:14px;line-height:1}
+@media(max-width:640px){.tbtn span.tx{display:none}.tbtn{padding:7px 9px}}
+
+/* شريط علوي أنعم */
+.topbar{box-shadow:0 6px 26px rgba(0,0,0,.18)}
+.top-actions{gap:8px;align-items:center}
+.top-actions .btn.primary{background:var(--accent-grad)}
+
+/* بطاقات بحواف مضيئة */
+.card{position:relative;overflow:hidden}
+.card::before{
+  content:"";position:absolute;top:0;right:0;left:0;height:3px;
+  background:var(--accent-grad);opacity:.85
+}
+.card-h{background:linear-gradient(180deg,var(--acc-soft),transparent)}
+.card-h .dot{background:var(--acc);box-shadow:0 0 10px var(--acc)}
+
+/* أزرار أنعم */
+.btn{transition:.18s;border-radius:11px}
+.btn:hover{box-shadow:0 8px 18px rgba(0,0,0,.18);border-color:var(--acc)}
+.btn.primary{background:var(--accent-grad);border-color:transparent;color:#fff}
+.btn.small{border-radius:9px}
+.btn.ghost{color:var(--muted)}
+.btn.ghost:hover{color:var(--txt)}
+
+/* شارات وضع التشغيل */
+.lang-tag{background:var(--acc-soft);color:var(--acc);border-color:transparent;font-weight:700}
+
+/* منطقة المعاينة */
+.pv-bar{background:linear-gradient(180deg,var(--acc-soft),transparent)}
+.stats{background:var(--panel2)}
+.stats b{color:var(--acc)}
+
+/* التقييم */
+.qwrap .ring .val span{color:var(--muted)}
+
+/* مفاتيح التفعيل */
+.tg.on{border-color:var(--green);background:var(--ok-soft)}
+.tg:hover{border-color:var(--acc)}
+.tg .tg-t{color:var(--head)}
+.tg .tg-d{color:var(--muted)}
+
+/* شريط تمرير أنيق */
+.hist::-webkit-scrollbar,.checks::-webkit-scrollbar{width:9px}
+.hist::-webkit-scrollbar-thumb,.checks::-webkit-scrollbar-thumb{background:var(--scroll);border-radius:9px}
+.hist::-webkit-scrollbar-track,.checks::-webkit-scrollbar-track{background:transparent}
+
+/* ============ قسم البرامج الموصى بها ============ */
+.airea{max-width:1500px;margin:0 auto;padding:6px 20px 14px}
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.ai-card{
+  background:var(--alt);border:1px solid var(--line);border-radius:14px;padding:13px 14px;
+  cursor:pointer;transition:.18s;display:flex;flex-direction:column;gap:11px
+}
+.ai-card:hover{border-color:var(--acc);transform:translateY(-3px);box-shadow:0 12px 26px rgba(0,0,0,.22)}
+.ai-card:active{transform:translateY(-1px)}
+.ai-head{display:flex;gap:10px;align-items:flex-start}
+.ai-em{font-size:22px;line-height:1.2;filter:drop-shadow(0 3px 8px rgba(0,0,0,.35))}
+.ai-txt{flex:1;min-width:0}
+.ai-name{font-weight:800;font-size:15px;color:var(--head)}
+.ai-desc{font-size:12.3px;color:var(--muted);margin-top:4px;line-height:1.6}
+.ai-badge{
+  font-size:10.5px;font-weight:700;background:var(--ok-soft);color:var(--green);
+  border:1px solid var(--ok-line);border-radius:999px;padding:3px 9px;
+  white-space:nowrap;align-self:flex-start
+}
+.ai-links{display:flex;gap:8px;flex-wrap:wrap}
+.ai-btn{
+  flex:1;min-width:135px;text-align:center;text-decoration:none;font-size:12.5px;font-weight:700;
+  padding:8px 10px;border-radius:10px;transition:.16s;border:1px solid transparent
+}
+.ai-btn.main{background:var(--accent-grad);color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.2)}
+.ai-btn.main:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.ai-btn.alt{background:transparent;border-color:var(--line2);color:var(--muted)}
+.ai-btn.alt:hover{color:var(--txt);border-color:var(--green);background:var(--ok-soft)}
+.ai-card:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+
+/* التذييل — حقوق المؤلف */
+.foot{
+  border-top:1px solid var(--line);
+  background:linear-gradient(180deg,transparent,var(--acc-soft));
+  backdrop-filter:blur(8px);
+  margin-top:8px
+}
+.foot-in{
+  max-width:1500px;margin:0 auto;padding:16px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:13.5px;color:var(--muted)
+}
+.foot-in .cr b{color:var(--txt);font-weight:800}
+.foot-in .cr .cc{color:var(--acc);font-weight:800}
+.foot-links{display:flex;gap:8px;flex-wrap:wrap}
+.foot-links a{
+  text-decoration:none;color:var(--muted);border:1px solid var(--line2);
+  background:var(--panel2);padding:6px 12px;border-radius:999px;font-weight:600;transition:.18s
+}
+.foot-links a:hover{color:var(--txt);border-color:var(--acc);transform:translateY(-2px)}
+.foot-note{width:100%;text-align:center;font-size:11.5px;color:var(--divider);padding-top:2px}
+body{padding-bottom:0}

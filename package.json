@@ -1,0 +1,82 @@
+{
+  "name": "prompt-engineer",
+  "version": "1.0.0",
+  "description": "Prompt Engineer — مهندس البرومبت: أداة ثنائية اللغة لبناء برومبتات مثالية لأدوات الذكاء الاصطناعي",
+  "author": "Mahdi Kareem",
+  "license": "MIT",
+  "homepage": "https://moopuu.github.io/prompt-engineer/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MooPuu/prompt-engineer.git"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable nsis msi",
+    "build:portable": "electron-builder --win portable",
+    "build:nsis": "electron-builder --win nsis",
+    "build:msi": "electron-builder --win msi"
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8",
+    "png-to-ico": "^3.0.2"
+  },
+  "build": {
+    "appId": "com.mahdikareem.promptengineer",
+    "productName": "Prompt Engineer",
+    "copyright": "© 2026 Mahdi Kareem — All rights reserved",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "index.html",
+      "themes.css",
+      "main.js",
+      "prompt engineer icon.png",
+      "package.json",
+      "!dist{,/**/*}",
+      "!build{,/**/*}",
+      "!README.md",
+      "!LICENSE",
+      "!.git{,/**/*}",
+      "!.github{,/**/*}"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        "portable",
+        "nsis",
+        "msi"
+      ],
+      "artifactName": "Prompt-Engineer-${version}-${os}-${arch}"
+    },
+    "portable": {
+      "artifactName": "Prompt-Engineer-Portable-v${version}.exe"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Prompt Engineer",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "artifactName": "Prompt-Engineer-Setup-v${version}.exe",
+      "unicode": true
+    },
+    "msi": {
+      "oneClick": false,
+      "perMachine": false,
+      "runAfterFinish": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Prompt Engineer",
+      "upgradeCode": "b7c4e2a1-3f5d-4a8e-9c21-6d0f4a7e5b13",
+      "artifactName": "Prompt-Engineer-Setup-v${version}.msi"
+    }
+  }
+}

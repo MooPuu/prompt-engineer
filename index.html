@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مهندس البرومبت — Prompt Engineer</title>
+
+<style>
+:root{
+  --bg:#0b0f1a;
+  --bg2:#0f1524;
+  --panel:#131a2b;
+  --panel2:#182036;
+  --line:#253050;
+  --line2:#2f3c63;
+  --txt:#e8edf9;
+  --muted:#93a0c0;
+  --acc:#6c8cff;
+  --acc2:#9b6cff;
+  --green:#3ddc97;
+  --amber:#ffc266;
+  --red:#ff7a85;
+  --radius:16px;
+  --shadow:0 18px 40px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:
+    radial-gradient(1200px 600px at 90% -10%, rgba(108,140,255,.16), transparent 60%),
+    radial-gradient(900px 500px at 5% 0%, rgba(155,108,255,.14), transparent 55%),
+    var(--bg);
+  color:var(--txt);
+  font-family:'Tajawal',system-ui,-apple-system,"Segoe UI",sans-serif;
+  min-height:100vh;
+  font-size:15px;
+}
+button,input,textarea,select{font-family:inherit;font-size:inherit;color:inherit}
+::selection{background:rgba(108,140,255,.35)}
+
+/* ===== Topbar ===== */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:12px 20px;
+  background:rgba(11,15,26,.82);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.logo{display:flex;align-items:center;gap:11px}
+.logo .ico{width:40px;height:40px;border-radius:11px;object-fit:contain;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.logo h1{font-size:18px;margin:0;font-weight:800;letter-spacing:-.2px}
+.logo p{margin:2px 0 0;font-size:12px;color:var(--muted);font-weight:400}
+.top-actions{margin-inline-start:auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* ===== Buttons ===== */
+.btn{
+  border:1px solid var(--line2);background:var(--panel2);
+  padding:9px 15px;border-radius:11px;cursor:pointer;
+  font-weight:600;font-size:14px;transition:.16s;display:inline-flex;align-items:center;gap:7px
+}
+.btn:hover{border-color:var(--acc);transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
+.btn.primary{
+  background:linear-gradient(135deg,var(--acc),var(--acc2));border-color:transparent;color:#fff;
+  box-shadow:0 8px 22px rgba(108,140,255,.3)
+}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent}
+.btn.small{padding:6px 11px;font-size:13px;border-radius:9px}
+.btn.ok{background:linear-gradient(135deg,#18b97b,#0e9e6a);border-color:transparent;color:#04140d}
+
+/* ===== Layout ===== */
+.wrap{max-width:1500px;margin:0 auto;padding:18px 20px 40px;
+  display:grid;grid-template-columns:minmax(360px,470px) 1fr;gap:18px;align-items:start}
+@media(max-width:1050px){.wrap{grid-template-columns:1fr}}
+.card{
+  background:linear-gradient(180deg,var(--panel),var(--bg2));
+  border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)
+}
+.card-h{
+  display:flex;align-items:center;gap:9px;padding:13px 16px;border-bottom:1px solid var(--line);
+  font-weight:700;font-size:15px
+}
+.card-h .dot{width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 10px var(--acc)}
+.card-b{padding:15px 16px}
+
+/* ===== Presets ===== */
+.presets{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  border:1px solid var(--line2);background:var(--panel2);border-radius:999px;
+  padding:7px 13px;font-size:13px;cursor:pointer;transition:.16s;font-weight:500
+}
+.chip:hover{border-color:var(--acc);color:#fff;transform:translateY(-1px)}
+.chip.active{background:linear-gradient(135deg,var(--acc),var(--acc2));border-color:transparent;color:#fff}
+
+/* ===== Form ===== */
+section.fsec{border-bottom:1px dashed var(--line);padding:14px 0}
+section.fsec:last-child{border-bottom:none}
+.fsec > h3{
+  margin:0 0 10px;font-size:14px;display:flex;align-items:center;gap:8px;font-weight:700;color:#cdd7f0
+}
+.fsec > h3 .n{
+  width:21px;height:21px;border-radius:7px;background:rgba(108,140,255,.18);color:var(--acc);
+  display:grid;place-items:center;font-size:12px;font-weight:800
+}
+label.lb{display:block;font-size:13px;color:var(--muted);margin:0 0 6px;font-weight:500}
+label.lb b{color:var(--acc);font-weight:700}
+textarea,input[type=text],select{
+  width:100%;background:#0d1220;border:1px solid var(--line2);border-radius:11px;
+  padding:10px 12px;color:var(--txt);transition:.15s;outline:none;resize:vertical
+}
+textarea{min-height:74px;line-height:1.7}
+textarea:focus,input:focus,select:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(108,140,255,.15)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.hint{font-size:12px;color:#6f7ca0;margin-top:5px;line-height:1.6}
+
+/* chips multi */
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{
+  border:1px solid var(--line2);background:var(--panel2);border-radius:9px;
+  padding:7px 12px;font-size:13px;cursor:pointer;transition:.15s;user-select:none
+}
+.chips label:hover{border-color:var(--acc)}
+.chips input:checked + label{background:rgba(108,140,255,.2);border-color:var(--acc);color:#dfe6ff}
+
+/* toggles */
+.tg{display:flex;align-items:flex-start;gap:11px;padding:10px 12px;border:1px solid var(--line2);
+  border-radius:12px;background:#0f1526;margin-bottom:9px;cursor:pointer;transition:.15s}
+.tg:hover{border-color:var(--acc)}
+.tg.on{border-color:var(--green);background:rgba(61,220,151,.07)}
+.sw{position:relative;flex:0 0 auto;width:38px;height:22px;background:#2a3454;border-radius:99px;transition:.2s;margin-top:2px}
+.sw::after{content:"";position:absolute;top:3px;right:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.2s}
+.tg.on .sw{background:var(--green)}
+.tg.on .sw::after{right:19px}
+.tg .tg-t{font-size:13.5px;font-weight:700;margin:0}
+.tg .tg-d{font-size:12px;color:var(--muted);margin:3px 0 0;line-height:1.55}
+html[dir="ltr"] .sw::after{right:auto;left:3px}
+html[dir="ltr"] .tg.on .sw::after{left:19px;right:auto}
+
+/* ===== Preview ===== */
+.pv-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line)}
+.pv-bar .spacer{flex:1}
+.lang-tag{font-size:12px;color:var(--muted);border:1px solid var(--line2);padding:4px 9px;border-radius:8px}
+pre.prompt{
+  margin:0;padding:18px 20px;white-space:pre-wrap;word-break:break-word;
+  font-family:'JetBrains Mono','Tajawal',monospace;font-size:13.5px;line-height:1.95;
+  min-height:420px;max-height:62vh;overflow:auto;background:#0a0e19;color:#cfe0ff;
+  border-radius:0 0 var(--radius) var(--radius)
+}
+pre.prompt::-webkit-scrollbar{width:10px}
+pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
+.stats{display:flex;gap:14px;flex-wrap:wrap;padding:10px 16px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--muted)}
+.stats b{color:var(--txt)}
+
+/* ===== Quality ===== */
+.qwrap{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center}
+@media(max-width:640px){.qwrap{grid-template-columns:1fr}}
+.ring{
+  --p:0;width:130px;height:130px;border-radius:50%;margin:0 auto;
+  background:conic-gradient(var(--green) calc(var(--p)*1%), #1d2740 0);
+  display:grid;place-items:center;position:relative
+}
+.ring::after{content:"";position:absolute;inset:9px;border-radius:50%;background:#0e1424}
+.ring .val{position:relative;z-index:2;text-align:center;font-weight:800;font-size:28px;line-height:1}
+.ring .val span{display:block;font-size:11px;font-weight:500;color:var(--muted);margin-top:5px}
+.checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
+.chk{
+  display:flex;gap:9px;align-items:flex-start;padding:9px 11px;border-radius:11px;
+  background:#101728;border:1px solid var(--line);font-size:13px;cursor:pointer;transition:.15s
+}
+.chk:hover{border-color:var(--acc)}
+.chk .ic{flex:0 0 auto;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;
+  font-size:11px;font-weight:800;background:#242e4d;color:var(--muted);margin-top:1px}
+.chk.done{border-color:rgba(61,220,151,.35);background:rgba(61,220,151,.06)}
+.chk.done .ic{background:var(--green);color:#04140d}
+.chk .t{font-weight:600}
+.chk .d{color:var(--muted);font-size:11.5px;margin-top:2px;line-height:1.5}
+
+/* ===== History ===== */
+.hist{display:flex;flex-direction:column;gap:7px;max-height:220px;overflow:auto}
+.hitem{display:flex;gap:10px;align-items:center;padding:9px 11px;background:#101728;
+  border:1px solid var(--line);border-radius:11px;font-size:13px}
+.hitem .ht{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hitem .hm{font-size:11px;color:var(--muted)}
+.empty{color:#5f6b8c;font-size:13px;text-align:center;padding:14px;border:1px dashed var(--line2);border-radius:11px}
+
+/* toast */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);
+  background:linear-gradient(135deg,#18b97b,#0e9e6a);color:#04140d;font-weight:700;
+  padding:12px 22px;border-radius:12px;box-shadow:0 14px 34px rgba(0,0,0,.5);
+  opacity:0;pointer-events:none;transition:.28s;z-index:99;font-size:14px;max-width:90vw;text-align:center
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.divider{display:flex;align-items:center;gap:10px;color:#55618a;font-size:11.5px;margin:6px 0 10px}
+.divider::before,.divider::after{content:"";height:1px;background:var(--line);flex:1}
+</style>
+
+<link rel="icon" type="image/png" href="prompt%20engineer%20icon.png">
+<link rel="stylesheet" href="themes.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0b0f1a">
+<meta name="description" content="مهندس البرومبت — أداة عربية/إنجليزية لبناء برومبتات مثالية لأدوات الذكاء الاصطناعي. © Mahdi Kareem">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="logo">
+    <img class="ico" src="prompt engineer icon.png" alt="Prompt Engineer" width="40" height="40">
+    <div>
+      <h1 data-i18n="app.title">مهندس البرومبت — Prompt Engineer</h1>
+      <p data-i18n="app.sub">ابنِ برومبتًا مثاليًا ومستوفى لأي أداة ذكاء اصطناعي</p>
+    </div>
+  </div>
+
+  <div class="top-actions">
+    <div class="themes" id="langs" role="group" aria-label="Language">
+      <button class="tbtn active" data-lang="ar" title="العربية"><span class="em">🇸🇦</span><span class="tx">عربي</span></button>
+      <button class="tbtn" data-lang="en" title="English"><span class="em">🌐</span><span class="tx">EN</span></button>
+    </div>
+
+    <div class="themes" id="themes" role="group" aria-label="Theme">
+      <button class="tbtn active" data-theme="midnight"><span class="em">🌙</span><span class="tx" data-i18n="theme.night">ليلي</span></button>
+      <button class="tbtn" data-theme="light"><span class="em">☀️</span><span class="tx" data-i18n="theme.light">نهاري</span></button>
+      <button class="tbtn" data-theme="neon"><span class="em">⚡</span><span class="tx" data-i18n="theme.neon">نيون</span></button>
+    </div>
+
+    <button class="btn ghost" id="btnAuto"><span>✨</span> <span data-i18n="act.auto">أكمل تلقائيًا</span></button>
+    <button class="btn ghost" id="btnReset"><span>↺</span> <span data-i18n="act.clear">مسح</span></button>
+    <button class="btn primary" id="btnCopyTop"><span>📋</span> <span data-i18n="act.copy">نسخ البرومبت</span></button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ FORM ============ -->
+  <div class="card">
+    <div class="card-h"><span class="dot"></span>
+      <span data-i18n="card.builder">لوحة البناء</span>
+      <span style="margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:500" data-i18n="card.presets">قوالب جاهزة</span>
+    </div>
+    <div class="card-b">
+      <div class="presets" id="presets"></div>
+
+      <div class="divider" data-i18n="div.info">معلومات المهمة</div>
+
+      <!-- 1 -->
+      <section class="fsec">
+        <h3><span class="n">1</span> <span data-i18n="sec.task">المهمة الأساسية</span> <b style="color:var(--red)">*</b></h3>
+        <label class="lb"><span data-i18n="lb.task">ماذا تريد من الذكاء الاصطناعي أن يفعل؟</span> <b data-i18n="lb.task2">اكتب بوضوح وبجملة محددة</b></label>
+        <textarea id="task" data-i18n-ph="ph.task" placeholder="مثال: اكتب لي مقالًا كاملًا عن فوائد المشي اليومي لصحة القلب، بعمق علمي مبسّط..."></textarea>
+        <div class="hint" data-i18n="hint.task">💡 كلما كانت المهمة أدق، كانت النتيجة أقرب لما تتوقعه. تجنب الجمل العامة مثل "ساعدني في هذا".</div>
+      </section>
+
+      <!-- 2 -->
+      <section class="fsec">
+        <h3><span class="n">2</span> <span data-i18n="sec.role">الدور (Role)</span></h3>
+        <label class="lb" data-i18n="lb.role">من تريد أن يتقمّص الشخصية؟</label>
+        <input type="text" id="role" data-i18n-ph="ph.role" placeholder="مثال: خبير تسويق رقمي، مهندس برمجيات، مدرّس، محرر لغوي">
+        <div class="hint" data-i18n="hint.role">منح النموذج هوية مهنية يجعل الإجابات أكثر عمقًا ودقة.</div>
+      </section>
+
+      <!-- 3 -->
+      <section class="fsec">
+        <h3><span class="n">3</span> <span data-i18n="sec.context">السياق والخلفية</span></h3>
+        <label class="lb" data-i18n="lb.context">معلومات إضافية تساعد على فهم الموقف (سطر لكل نقطة)</label>
+        <textarea id="context" data-i18n-ph="ph.context" placeholder="مثال:&#10;المشروع متجر إلكتروني للقهوة&#10;الجمهور أعماره 25-40&#10;لديّ 3 أيام فقط للتنفيذ"></textarea>
+      </section>
+
+      <!-- 4 -->
+      <section class="fsec">
+        <h3><span class="n">4</span> <span data-i18n="sec.audience">الجمهور المستهدف</span></h3>
+        <label class="lb" data-i18n="lb.audience">لمن المحتوى المطلوب؟</label>
+        <input type="text" id="audience" data-i18n-ph="ph.audience" placeholder="مثال: طلاب جامعيات، مديرو تسويق، مبتدئون في البرمجة، عملاء محتملون">
+      </section>
+
+      <div class="divider" data-i18n="div.shape">شكل المخرجات</div>
+
+      <!-- 5 -->
+      <section class="fsec">
+        <h3><span class="n">5</span> <span data-i18n="sec.tone">النبرة والأسلوب</span></h3>
+        <div class="chips" id="toneChips">
+          <input type="checkbox" id="t1" value="pro"><label for="t1" data-i18n="tone.pro">💼 احترافي</label>
+          <input type="checkbox" id="t2" value="friendly"><label for="t2" data-i18n="tone.friendly">😊 ودّي</label>
+          <input type="checkbox" id="t3" value="edu"><label for="t3" data-i18n="tone.edu">🎓 تعليمي</label>
+          <input type="checkbox" id="t4" value="creative"><label for="t4" data-i18n="tone.creative">🎨 إبداعي</label>
+          <input type="checkbox" id="t5" value="concise"><label for="t5" data-i18n="tone.concise">⚡ مختصر</label>
+          <input type="checkbox" id="t6" value="sales"><label for="t6" data-i18n="tone.sales">📢 مقنع</label>
+          <input type="checkbox" id="t7" value="sci"><label for="t7" data-i18n="tone.sci">🔬 علمي</label>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section class="fsec">
+        <h3><span class="n">6</span> <span data-i18n="sec.format">صيغة التسليم</span></h3>
+        <div class="chips" id="fmtChips">
+          <input type="checkbox" id="f1" value="md"><label for="f1">Markdown</label>
+          <input type="checkbox" id="f2" value="bullets"><label for="f2" data-i18n="fmt.bullets">نقاط</label>
+          <input type="checkbox" id="f3" value="table"><label for="f3" data-i18n="fmt.table">جدول</label>
+          <input type="checkbox" id="f4" value="json"><label for="f4">JSON</label>
+          <input type="checkbox" id="f5" value="code"><label for="f5" data-i18n="fmt.code">كود</label>
+          <input type="checkbox" id="f6" value="para"><label for="f6" data-i18n="fmt.para">فقرات</label>
+        </div>
+        <div class="row" style="margin-top:12px">
+          <div>
+            <label class="lb" data-i18n="lb.length">الطول المطلوب</label>
+            <select id="length">
+              <option value="" data-i18n="opt.select">— اختر —</option>
+              <option value="short" data-i18n="opt.short">قصير (100–150 كلمة)</option>
+              <option value="medium" data-i18n="opt.medium">متوسط (300–500 كلمة)</option>
+              <option value="long" data-i18n="opt.long">طويل (600–1000 كلمة)</option>
+              <option value="deep" data-i18n="opt.deep">مفصّل وشامل (دون حد أقصى)</option>
+            </select>
+          </div>
+          <div>
+            <label class="lb" data-i18n="lb.answerLang">لغة الإجابة</label>
+            <select id="lang">
+              <option value="ar" data-i18n="opt.ar">العربية</option>
+              <option value="en" data-i18n="opt.en">English</option>
+              <option value="same" data-i18n="opt.same">نفس لغة طلبي</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="fsec">
+        <h3><span class="n">7</span> <span data-i18n="sec.constraints">القيود والمتطلبات</span></h3>
+        <label class="lb"><span data-i18n="lb.constraints">شروط يجب احترامها</span> <b data-i18n="lb.lineEach">(سطر لكل متطلب)</b></label>
+        <textarea id="constraints" data-i18n-ph="ph.constraints" placeholder="مثال:&#10;استخدم مصادر موثوقة&#10;لا تتجاوز 5 عناوين فرعية&#10;أضف أمثلة واقعية&#10;ابدأ بجملة خطاف قوية"></textarea>
+        <label class="lb" style="margin-top:11px"><span data-i18n="lb.avoid">ما يجب</span> <b data-i18n="lb.avoid2">تجنّبه</b></label>
+        <textarea id="avoid" data-i18n-ph="ph.avoid" placeholder="مثال:&#10;لا تستخدم مصطلحات تقنية معقدة&#10;لا تختلق أرقامًا أو إحصاءات&#10;لا تكرر نفس الجملة"></textarea>
+      </section>
+
+      <div class="divider" data-i18n="div.tech">تقنيات هندسة البرومبت المتقدمة</div>
+
+      <!-- 8 -->
+      <section class="fsec">
+        <h3><span class="n">8</span> <span data-i18n="sec.toggles">مفاتيح التحسين</span></h3>
+
+        <div class="tg" data-tg="ask">
+          <span class="sw"></span>
+          <div><p class="tg-t" data-i18n="tg.ask">اسأل قبل البدء 🙋</p>
+          <p class="tg-d" data-i18n="tg.ask.d">إذا وجدت معلومة ناقصة، يطرح النموذج سؤالًا محددًا بدل التخمين.</p></div>
+        </div>
+
+        <div class="tg" data-tg="cot">
+          <span class="sw"></span>
+          <div><p class="tg-t" data-i18n="tg.cot">تفكير خطوة بخطوة 🧩</p>
+          <p class="tg-d" data-i18n="tg.cot.d">يحلّل المهمة في مراحل قبل الإجابة النهائية → نتائج أدق للمهام المعقدة.</p></div>
+        </div>
+
+        <div class="tg" data-tg="self">
+          <span class="sw"></span>
+          <div><p class="tg-t" data-i18n="tg.self">مراجعة ذاتية قبل التسليم ✅</p>
+          <p class="tg-d" data-i18n="tg.self.d">يتحقق أن كل المتطلبات مستوفاة ويصحح الأخطاء قبل أن يعطيك الناتج.</p></div>
+        </div>
+
+        <div class="tg" data-tg="few">
+          <span class="sw"></span>
+          <div><p class="tg-t" data-i18n="tg.few">أمثلة (Few-Shot) 🎯</p>
+          <p class="tg-d" data-i18n="tg.few.d">تعطي النموذج نموذجًا يقلّده — من أقوى التقنيات لضبط الأسلوب.</p></div>
+        </div>
+
+        <div id="fewBox" style="display:none;margin-top:10px;padding:12px;border:1px dashed var(--line2);border-radius:12px;background:#0d1220">
+          <div style="margin-bottom:10px">
+            <label class="lb" data-i18n="lb.in1">مثال 1 — المدخل</label>
+            <textarea id="in1" data-i18n-ph="ph.in1" placeholder="السلعة: قهوة مختصة"></textarea>
+            <label class="lb" style="margin-top:8px" data-i18n="lb.out1">مثال 1 — المخرجات المتوقعة</label>
+            <textarea id="out1" data-i18n-ph="ph.out1" placeholder="قهوة مختصة تُحمّص طازجة..."></textarea>
+          </div>
+          <div>
+            <label class="lb" data-i18n="lb.in2">مثال 2 — المدخل</label>
+            <textarea id="in2" data-i18n-ph="ph.in2" placeholder="السلعة: ساعة ذكية"></textarea>
+            <label class="lb" style="margin-top:8px" data-i18n="lb.out2">مثال 2 — المخرجات المتوقعة</label>
+            <textarea id="out2" data-i18n-ph="ph.out2" placeholder="ساعة ذكية تتابع صحتك على مدار الساعة..."></textarea>
+          </div>
+          <div class="hint" data-i18n="hint.few">لا تكتب كل الأمثلة — مثال أو اثنان كافيان لضبط الأسلوب.</div>
+        </div>
+      </section>
+
+      <!-- 9 -->
+      <section class="fsec">
+        <h3><span class="n">9</span> <span data-i18n="sec.img">وضع توليد الصور (اختياري)</span></h3>
+        <div class="tg" data-tg="img">
+          <span class="sw"></span>
+          <div><p class="tg-t" data-i18n="tg.img">تحويل الطلب إلى برومبت صور 🖼️</p>
+          <p class="tg-d" data-i18n="tg.img.d">ينشئ برومبت إنجليزي جاهزًا لـ Midjourney / DALL·E / Stable Diffusion.</p></div>
+        </div>
+        <div id="imgBox" style="display:none;margin-top:10px">
+          <div class="row">
+            <div>
+              <label class="lb" data-i18n="lb.imgStyle">الأسلوب الفني</label>
+              <select id="imgStyle">
+                <option value="photorealistic, ultra detailed, 8k, sharp focus" data-i18n="is.photo">واقعي فوتوغرافي</option>
+                <option value="digital illustration, vibrant colors" data-i18n="is.digit">رسم رقمي</option>
+                <option value="3D render, octane render, cinematic lighting" data-i18n="is.3d">ثلاثي الأبعاد</option>
+                <option value="watercolor painting, soft textures" data-i18n="is.water">ألوان مائية</option>
+                <option value="anime style, clean line art" data-i18n="is.anime">أنمي</option>
+                <option value="minimalist, flat design, vector" data-i18n="is.minimal">مينيمال فلات</option>
+              </select>
+            </div>
+            <div>
+              <label class="lb" data-i18n="lb.imgAr">أبعاد الصورة</label>
+              <select id="imgAr">
+                <option value="16:9" data-i18n="iar.wide">16:9 — عريض</option>
+                <option value="1:1" data-i18n="iar.square">1:1 — مربع</option>
+                <option value="4:5" data-i18n="iar.post">4:5 — بوست سوشيال</option>
+                <option value="9:16" data-i18n="iar.story">9:16 — ستوري/ريلز</option>
+                <option value="3:2" data-i18n="iar.classic">3:2 — صورة كلاسيكية</option>
+              </select>
+            </div>
+          </div>
+          <label class="lb" style="margin-top:11px" data-i18n="lb.imgNeg">عناصر يجب تجنّبها في الصورة</label>
+          <input type="text" id="imgNeg" data-i18n-ph="ph.imgNeg" placeholder="blurry, extra fingers, text, watermark, low quality">
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ============ RIGHT COLUMN ============ -->
+  <div style="display:flex;flex-direction:column;gap:18px">
+
+    <div class="card">
+      <div class="pv-bar">
+        <span style="font-weight:700" data-i18n="pv.title">📝 البرومبت الناتج</span>
+        <span class="lang-tag" id="modeTag">وضع نص عام</span>
+        <span class="spacer"></span>
+        <button class="btn small" id="btnTxt">⬇ <span data-i18n="pv.txt">تحميل .txt</span></button>
+        <button class="btn small" id="btnMd">⬇ <span data-i18n="pv.md">تحميل .md</span></button>
+        <button class="btn small primary" id="btnCopy">📋 <span data-i18n="pv.copy">نسخ</span></button>
+      </div>
+      <pre class="prompt" id="preview">ابدأ بكتابة المهمة في اللوحة… وسيظهر البرومبت الكامل هنا فورًا.</pre>
+      <div class="stats">
+        <span><span data-i18n="st.words">عدد الكلمات</span>: <b id="stWords">0</b></span>
+        <span><span data-i18n="st.chars">عدد الأحرف</span>: <b id="stChars">0</b></span>
+        <span><span data-i18n="st.secs">عدد الأقسام</span>: <b id="stSecs">0</b></span>
+        <span><span data-i18n="st.tech">مفاتيح تقنية</span>: <b id="stTech">0</b></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><span class="dot" style="background:var(--green);box-shadow:0 0 10px var(--green)"></span>
+        <span data-i18n="q.title">تقييم جودة البرومبت</span></div>
+      <div class="card-b">
+        <div class="qwrap">
+          <div class="ring" id="ring">
+            <div class="val"><span id="score">0</span><span data-i18n="q.label">جودة البرومبت</span></div>
+          </div>
+          <div class="checks" id="checks"></div>
+        </div>
+        <div class="hint" id="scoreTip" style="margin-top:12px;font-size:13px"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><span class="dot" style="background:var(--amber);box-shadow:0 0 10px var(--amber)"></span>
+        <span data-i18n="h.title">سجل البرومبتات</span>
+        <button class="btn small ghost" id="btnClearHist" style="margin-inline-start:auto" data-i18n="h.clear">حذف الكل</button>
+      </div>
+      <div class="card-b"><div class="hist" id="hist"></div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ البرامج المقترحة ============ -->
+<div class="airea">
+  <div class="card">
+    <div class="card-h"><span class="dot" style="background:var(--acc2);box-shadow:0 0 10px var(--acc2)"></span>
+      <span data-i18n="ai.title">🤖 برامج الذكاء الاصطناعي الموصى بها لاستخدام البرومبت</span>
+    </div>
+    <div class="card-b">
+      <p class="hint" style="margin-top:0;margin-bottom:12px;font-size:13px" data-i18n="ai.sub">
+        اضغط على أي بطاقة لفتح الموقع الرسمي + البديل المجاني مفتوح المصدر، أو استخدم الزر الخاص بكل رابط.
+      </p>
+      <div class="ai-grid" id="aiGrid"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✅ تم نسخ البرومبت</div>
+
+<footer class="foot">
+  <div class="foot-in">
+    <span class="cr"><span class="cc">©</span> 2026 <b>Mahdi Kareem</b> — <span data-i18n="ft.rights">جميع الحقوق محفوظة</span></span>
+    <span class="foot-links">
+      <a href="https://github.com/MooPuu/prompt-engineer" target="_blank" rel="noopener" data-i18n="ft.repo">📂 المستودع على GitHub</a>
+      <a href="https://moopuu.github.io/prompt-engineer/" target="_blank" rel="noopener" data-i18n="ft.web">🌐 النسخة الإلكترونية</a>
+      <a href="https://github.com/MooPuu/prompt-engineer/releases" target="_blank" rel="noopener" data-i18n="ft.exe">⬇ تحميل EXE</a>
+    </span>
+    <span class="foot-note" data-i18n="ft.note">صُنع بعناية — مهندس البرومبت | Prompt Engineer v1.0.0</span>
+  </div>
+</footer>
+
+<script>
+/* ================= i18n ================= */
+const I18N = {
+ar:{
+'app.title':'مهندس البرومبت — Prompt Engineer','app.sub':'ابنِ برومبتًا مثاليًا ومستوفى لأي أداة ذكاء اصطناعي',
+'theme.night':'ليلي','theme.light':'نهاري','theme.neon':'نيون',
+'act.auto':'أكمل تلقائيًا','act.clear':'مسح','act.copy':'نسخ البرومبت',
+'card.builder':'لوحة البناء','card.presets':'قوالب جاهزة',
+'div.info':'معلومات المهمة','div.shape':'شكل المخرجات','div.tech':'تقنيات هندسة البرومبت المتقدمة',
+'sec.task':'المهمة الأساسية','lb.task':'ماذا تريد من الذكاء الاصطناعي أن يفعل؟','lb.task2':'اكتب بوضوح وبجملة محددة',
+'ph.task':'مثال: اكتب لي مقالًا كاملًا عن فوائد المشي اليومي لصحة القلب، بعمق علمي مبسّط...',
+'hint.task':'💡 كلما كانت المهمة أدق، كانت النتيجة أقرب لما تتوقعه. تجنب الجمل العامة مثل "ساعدني في هذا".',
+'sec.role':'الدور (Role)','lb.role':'من تريد أن يتقمّص الشخصية؟','ph.role':'مثال: خبير تسويق رقمي، مهندس برمجيات، مدرّس، محرر لغوي',
+'hint.role':'منح النموذج هوية مهنية يجعل الإجابات أكثر عمقًا ودقة.',
+'sec.context':'السياق والخلفية','lb.context':'معلومات إضافية تساعد على فهم الموقف (سطر لكل نقطة)',
+'ph.context':'مثال:\nالمشروع متجر إلكتروني للقهوة\nالجمهور أعماره 25-40\nلديّ 3 أيام فقط للتنفيذ',
+'sec.audience':'الجمهور المستهدف','lb.audience':'لمن المحتوى المطلوب؟',
+'ph.audience':'مثال: طلاب جامعيات، مديرو تسويق، مبتدئون في البرمجة، عملاء محتملون',
+'sec.tone':'النبرة والأسلوب','sec.format':'صيغة التسليم',
+'tone.pro':'💼 احترافي','tone.friendly':'😊 ودّي','tone.edu':'🎓 تعليمي','tone.creative':'🎨 إبداعي',
+'tone.concise':'⚡ مختصر','tone.sales':'📢 مقنع','tone.sci':'🔬 علمي',
+'fmt.bullets':'نقاط','fmt.table':'جدول','fmt.code':'كود','fmt.para':'فقرات',
+'lb.length':'الطول المطلوب','opt.select':'— اختر —','opt.short':'قصير (100–150 كلمة)',
+'opt.medium':'متوسط (300–500 كلمة)','opt.long':'طويل (600–1000 كلمة)','opt.deep':'مفصّل وشامل (دون حد أقصى)',
+'lb.answerLang':'لغة الإجابة','opt.ar':'العربية','opt.en':'English','opt.same':'نفس لغة طلبي',
+'sec.constraints':'القيود والمتطلبات','lb.constraints':'شروط يجب احترامها','lb.lineEach':'(سطر لكل متطلب)',
+'ph.constraints':'مثال:\nاستخدم مصادر موثوقة\nلا تتجاوز 5 عناوين فرعية\nأضف أمثلة واقعية\nابدأ بجملة خطاف قوية',
+'lb.avoid':'ما يجب','lb.avoid2':'تجنّبه',
+'ph.avoid':'مثال:\nلا تستخدم مصطلحات تقنية معقدة\nلا تختلق أرقامًا أو إحصاءات\nلا تكرر نفس الجملة',
+'sec.toggles':'مفاتيح التحسين',
+'tg.ask':'اسأل قبل البدء 🙋','tg.ask.d':'إذا وجدت معلومة ناقصة، يطرح النموذج سؤالًا محددًا بدل التخمين.',
+'tg.cot':'تفكير خطوة بخطوة 🧩','tg.cot.d':'يحلّل المهمة في مراحل قبل الإجابة النهائية → نتائج أدق للمهام المعقدة.',
+'tg.self':'مراجعة ذاتية قبل التسليم ✅','tg.self.d':'يتحقق أن كل المتطلبات مستوفاة ويصحح الأخطاء قبل أن يعطيك الناتج.',
+'tg.few':'أمثلة (Few-Shot) 🎯','tg.few.d':'تعطي النموذج نموذجًا يقلّده — من أقوى التقنيات لضبط الأسلوب.',
+'lb.in1':'مثال 1 — المدخل','lb.out1':'مثال 1 — المخرجات المتوقعة',
+'lb.in2':'مثال 2 — المدخل','lb.out2':'مثال 2 — المخرجات المتوقعة',
+'ph.in1':'السلعة: قهوة مختصة','ph.out1':'قهوة مختصة تُحمّص طازجة...',
+'ph.in2':'السلعة: ساعة ذكية','ph.out2':'ساعة ذكية تتابع صحتك على مدار الساعة...',
+'hint.few':'لا تكتب كل الأمثلة — مثال أو اثنان كافيان لضبط الأسلوب.',
+'sec.img':'وضع توليد الصور (اختياري)','tg.img':'تحويل الطلب إلى برومبت صور 🖼️',
+'tg.img.d':'ينشئ برومبت إنجليزي جاهزًا لـ Midjourney / DALL·E / Stable Diffusion.',
+'lb.imgStyle':'الأسلوب الفني','is.photo':'واقعي فوتوغرافي','is.digit':'رسم رقمي','is.3d':'ثلاثي الأبعاد',
+'is.water':'ألوان مائية','is.anime':'أنمي','is.minimal':'مينيمال فلات',
+'lb.imgAr':'أبعاد الصورة','iar.wide':'16:9 — عريض','iar.square':'1:1 — مربع','iar.post':'4:5 — بوست سوشيال',
+'iar.story':'9:16 — ستوري/ريلز','iar.classic':'3:2 — صورة كلاسيكية',
+'lb.imgNeg':'عناصر يجب تجنّبها في الصورة','ph.imgNeg':'blurry, extra fingers, text, watermark, low quality',
+'pv.title':'📝 البرومبت الناتج','pv.txt':'تحميل .txt','pv.md':'تحميل .md','pv.copy':'نسخ',
+'mode.text':'وضع نص عام','mode.img':'وضع توليد الصور 🖼️',
+'st.words':'عدد الكلمات','st.chars':'عدد الأحرف','st.secs':'عدد الأقسام','st.tech':'مفاتيح تقنية',
+'q.title':'تقييم جودة البرومبت','q.label':'جودة البرومبت',
+'q.good':'🟢 <b>ممتاز!</b> برومبت مستوفٍ لجميع العناصر الأساسية — جاهز للنسخ إلى أي أداة ذكاء اصطناعي.',
+'q.mid':'🟡 <b>جيد.</b> ركّز على العناصر غير المكتملة أعلاه لرفع دقة الناتج.',
+'q.low':'🔴 <b>يحتاج عمل.</b> املأ المهمة والقيود والصيغة أولًا — النقر على أي عنصر ينقلك إليه.',
+'h.title':'سجل البرومبتات','h.clear':'حذف الكل',
+'h.empty':'لا توجد برومبتات محفوظة بعد — انسخ برومبتًا وسيُحفظ تلقائيًا هنا.',
+'ft.rights':'جميع الحقوق محفوظة','ft.repo':'📂 المستودع على GitHub','ft.web':'🌐 النسخة الإلكترونية',
+'ft.exe':'⬇ تحميل EXE','ft.note':'صُنع بعناية — مهندس البرومبت | Prompt Engineer v1.0.0',
+'msg.copy':'✅ تم نسخ البرومبت — الصقه في أي أداة ذكاء اصطناعي','msg.dl':'⬇ تم تحميل الملف',
+'msg.preset':'✅ تم تطبيق القالب: ','msg.auto':'✨ تم استكمال الحقول الناقصة بأفضل الممارسات',
+'msg.clear':'↺ تم المسح','msg.theme':'🎨 تم تطبيق الثيم','msg.noTitle':'بدون عنوان',
+'ask.reset':'مسح جميع الحقول والبرومبت الحالي؟',
+'preview.start':'ابدأ بكتابة المهمة في اللوحة… وسيظهر البرومبت الكامل هنا فورًا.',
+'pre.task':'⚠️ (اكتب المهمة الأساسية في اللوحة)',
+'phd.title':'حذف السجل',
+'ai.title':'🤖 برامج الذكاء الاصطناعي الموصى بها لاستخدام البرومبت',
+'ai.sub':'اضغط على أي بطاقة لفتح الموقع الرسمي + البديل المجاني مفتوح المصدر، أو استخدم زر كل رابط على حدة.',
+'ai.official':'🔗 الموقع الرسمي','ai.alt':'🔓 البديل المفتوح المصدر','ai.free':'مجاني · مفتوح المصدر',
+'ai.both':'فتح الاثنين'
+},
+en:{
+'app.title':'Prompt Engineer — AI Prompt Builder','app.sub':'Build the perfect, complete prompt for any AI tool',
+'theme.night':'Dark','theme.light':'Light','theme.neon':'Neon',
+'act.auto':'Auto-fill','act.clear':'Clear','act.copy':'Copy Prompt',
+'card.builder':'Builder Panel','card.presets':'Quick presets',
+'div.info':'Task details','div.shape':'Output shape','div.tech':'Advanced prompt techniques',
+'sec.task':'Main Task','lb.task':'What should the AI do?','lb.task2':'be specific and concrete',
+'ph.task':'e.g. Write a full article about the benefits of daily walking for heart health, in simplified scientific depth...',
+'hint.task':'💡 The more precise the task, the closer the result. Avoid vague lines like "help me with this".',
+'sec.role':'Role','lb.role':'Who should the AI act as?','ph.role':'e.g. digital marketing expert, software engineer, teacher, language editor',
+'hint.role':'Giving the model a professional identity makes answers deeper and more accurate.',
+'sec.context':'Context & Background','lb.context':'Extra information that clarifies the situation (one per line)',
+'ph.context':'Example:\nThe project is a coffee e-commerce store\nAudience aged 25-40\nOnly 3 days to deliver',
+'sec.audience':'Target Audience','lb.audience':'Who is this content for?',
+'ph.audience':'e.g. university students, marketing managers, coding beginners, potential clients',
+'sec.tone':'Tone & Style','sec.format':'Output Format',
+'tone.pro':'💼 Professional','tone.friendly':'😊 Friendly','tone.edu':'🎓 Educational','tone.creative':'🎨 Creative',
+'tone.concise':'⚡ Concise','tone.sales':'📢 Persuasive','tone.sci':'🔬 Scientific',
+'fmt.bullets':'Bullets','fmt.table':'Table','fmt.code':'Code','fmt.para':'Paragraphs',
+'lb.length':'Requested length','opt.select':'— Select —','opt.short':'Short (100–150 words)',
+'opt.medium':'Medium (300–500 words)','opt.long':'Long (600–1000 words)','opt.deep':'Detailed & unlimited',
+'lb.answerLang':'Answer language','opt.ar':'العربية','opt.en':'English','opt.same':'Same as my task',
+'sec.constraints':'Constraints & Requirements','lb.constraints':'Rules that must be respected','lb.lineEach':'(one per line)',
+'ph.constraints':'Example:\nUse reliable sources\nNo more than 5 subheadings\nAdd real examples\nStart with a strong hook',
+'lb.avoid':'What to','lb.avoid2':'avoid',
+'ph.avoid':'Example:\nAvoid complex technical terms\nDo not invent numbers or stats\nDo not repeat the same sentence',
+'sec.toggles':'Enhancement Toggles',
+'tg.ask':'Ask before starting 🙋','tg.ask.d':'If information is missing, the model asks one specific question instead of guessing.',
+'tg.cot':'Step-by-step reasoning 🧩','tg.cot.d':'It analyzes in stages before the final answer → better results on complex tasks.',
+'tg.self':'Self-review before delivery ✅','tg.self.d':'It verifies every requirement and fixes mistakes before handing you the output.',
+'tg.few':'Few-shot examples 🎯','tg.few.d':'Gives the model an example to imitate — one of the strongest style-control techniques.',
+'lb.in1':'Example 1 — Input','lb.out1':'Example 1 — Expected output',
+'lb.in2':'Example 2 — Input','lb.out2':'Example 2 — Expected output',
+'ph.in1':'Product: specialty coffee','ph.out1':'Freshly roasted specialty coffee...',
+'ph.in2':'Product: smart watch','ph.out2':'A smart watch that tracks your health 24/7...',
+'hint.few':'Do not write many examples — one or two are enough to lock the style.',
+'sec.img':'Image Generation Mode (optional)','tg.img':'Turn the request into an image prompt 🖼️',
+'tg.img.d':'Generates a ready-to-use English prompt for Midjourney / DALL·E / Stable Diffusion.',
+'lb.imgStyle':'Art style','is.photo':'Photorealistic','is.digit':'Digital illustration','is.3d':'3D render',
+'is.water':'Watercolor','is.anime':'Anime','is.minimal':'Minimal flat',
+'lb.imgAr':'Aspect ratio','iar.wide':'16:9 — Wide','iar.square':'1:1 — Square','iar.post':'4:5 — Social post',
+'iar.story':'9:16 — Story / Reels','iar.classic':'3:2 — Classic',
+'lb.imgNeg':'Elements to avoid in the image','ph.imgNeg':'blurry, extra fingers, text, watermark, low quality',
+'pv.title':'📝 Generated Prompt','pv.txt':'Download .txt','pv.md':'Download .md','pv.copy':'Copy',
+'mode.text':'General text mode','mode.img':'Image mode 🖼️',
+'st.words':'Words','st.chars':'Characters','st.secs':'Sections','st.tech':'Techniques used',
+'q.title':'Prompt Quality Score','q.label':'Prompt Score',
+'q.good':'🟢 <b>Excellent!</b> The prompt covers every core element — ready to paste into any AI tool.',
+'q.mid':'🟡 <b>Good.</b> Focus on the incomplete items above to raise accuracy.',
+'q.low':'🔴 <b>Needs work.</b> Fill in the task, constraints and format first — click any item to jump to it.',
+'h.title':'Prompt History','h.clear':'Clear all',
+'h.empty':'No saved prompts yet — copy one and it will be saved here automatically.',
+'ft.rights':'All rights reserved','ft.repo':'📂 GitHub Repository','ft.web':'🌐 Web App',
+'ft.exe':'⬇ Download EXE','ft.note':'Crafted with care — Prompt Engineer v1.0.0',
+'msg.copy':'✅ Prompt copied — paste it into any AI tool','msg.dl':'⬇ File downloaded',
+'msg.preset':'✅ Preset applied: ','msg.auto':'✨ Missing fields filled with best practices',
+'msg.clear':'↺ Cleared','msg.theme':'🎨 Theme applied','msg.noTitle':'No title',
+'ask.reset':'Clear all fields and the current prompt?',
+'preview.start':'Start writing your task on the left… the full prompt will appear here instantly.',
+'pre.task':'⚠️ (write your main task in the panel)',
+'phd.title':'Delete from history',
+'ai.title':'🤖 Recommended AI tools for this prompt',
+'ai.sub':'Click any card to open the official site + the free open-source alternative, or use each link button separately.',
+'ai.official':'🔗 Official site','ai.alt':'🔓 Open-source alternative','ai.free':'Free · Open source',
+'ai.both':'Open both'
+}};
+
+const $ = id => document.getElementById(id);
+let LANG = 'ar';
+const t = k => (I18N[LANG][k] !== undefined ? I18N[LANG][k] : (I18N.ar[k] || k));
+const L = () => (LANG === 'en' ? 1 : 0);          // picks [ar, en]
+const tx = x => (Array.isArray(x) ? x[L()] : x);
+
+function applyI18n(){
+  document.querySelectorAll('[data-i18n]').forEach(e=>{ e.textContent = t(e.dataset.i18n); });
+  document.querySelectorAll('[data-i18n-ph]').forEach(e=>{ e.placeholder = t(e.dataset.i18nPh); });
+  document.querySelectorAll('[data-i18n-title]').forEach(e=>{ e.title = t(e.dataset.i18nTitle); });
+  document.documentElement.lang = LANG;
+  document.documentElement.dir = (LANG === 'en' ? 'ltr' : 'rtl');
+  document.title = LANG === 'en' ? 'Prompt Engineer — AI Prompt Builder' : 'مهندس البرومبت — Prompt Engineer';
+}
+function setLang(lg, silent){
+  if(lg !== 'ar' && lg !== 'en') lg = 'ar';
+  LANG = lg;
+  try{ localStorage.setItem('pe_lang', lg); }catch(e){}
+  document.querySelectorAll('#langs .tbtn').forEach(b=>b.classList.toggle('active', b.dataset.lang===lg));
+  applyI18n();
+  const sel = $('lang'); if(sel) sel.value = (lg === 'en' ? 'en' : 'ar');
+  renderPresets(); render(); renderHistory(); renderAi();
+  if(!silent) toast(t('msg.theme'));
+}
+
+/* ================= Tonal / format maps ================= */
+const TONE = {
+  pro:['احترافي ورسمية','professional and formal'],
+  friendly:['ودّي وقريب','friendly and approachable'],
+  edu:['تعليمي مبسّط','educational and easy to understand'],
+  creative:['إبداعي وملهم','creative and inspiring'],
+  concise:['مختصر ومباشر','concise and direct'],
+  sales:['مقنع وتسويقي','persuasive and marketing-oriented'],
+  sci:['علمي دقيق','scientific and precise']
+};
+const FMT = {
+  md:['Markdown','Markdown'], bullets:['قائمة نقطية','bullet points'], table:['جدول','table'],
+  json:['JSON صالح فقط','valid JSON only'], code:['كود برمجي','code'], para:['فقرات نصية','paragraphs']
+};
+const LEN_AR={short:'100–150 كلمة (مختصر دون حشو)',medium:'300–500 كلمة',long:'600–1000 كلمة',deep:'مفصّل وشامل دون حد أقصى'};
+const LEN_EN={short:'100–150 words, concise with no filler',medium:'300–500 words',long:'600–1000 words',deep:'comprehensive and detailed with no length cap'};
+
+/* ================= Presets ================= */
+const PRESETS = [
+{name:['✍️ مقال/محتوى','✍️ Article / Content'], set:{
+  role:['كاتب محتوى خبير ومحرر لغوي','Expert content writer and copy editor'],
+  audience:['قراء مهتمون بموضوع المقال','Readers interested in this topic'],
+  tone:['pro'], fmt:['md'], length:'long',
+  constraints:['ابدأ بجملة خطاف قوية\nاستخدم عناوين فرعية واضحة\nأضف أمثلة واقعية من الحياة\nاختم بخلاصة عملية ودعوة لاتخاذ إجراء',
+               'Start with a strong hook\nUse clear subheadings\nAdd real-life examples\nEnd with an actionable takeaway'],
+  avoid:['لا تستخدم مقدمات مكررة مثل "في عالم اليوم"\nلا تختلق إحصاءات أو مصادر\nلا تطنب في المديح',
+         'No clichéd intros like "In today\'s world"\nNever invent statistics or sources\nNo empty praise'],
+  flags:{ask:true,self:true}}},
+{name:['💻 برمجة','💻 Coding'], set:{
+  role:['مهندس برمجيات خبير يكتب كودًا نظيفًا وموثوقًا','Senior software engineer writing clean, reliable code'],
+  audience:['مطوّرون يبقون الكود','Developers who will maintain the code'],
+  tone:['sci'], fmt:['code','md'], length:'medium',
+  constraints:['اشرح المفاجئات أولًا بإيجاز ثم قدّم الكود\nاكتب تعليقات توضيحية داخل الكود\nاذكر المكتبات المستخدمة\nاقترح اختبارات للدالة',
+               'Briefly explain the approach, then give the code\nAdd clarifying comments in the code\nList the libraries used\nSuggest tests for the function'],
+  avoid:['لا تعطِ كودًا غير مُختبَر نظريًا\nلا تتجاهل معالجة الأخطاء\nلا تستخدم مكتبات متوقفة عن الدعم',
+         'Do not return theoretically untested code\nDo not skip error handling\nNo deprecated libraries'],
+  flags:{ask:true,cot:true,self:true}}},
+{name:['📊 تحليل بيانات','📊 Data Analysis'], set:{
+  role:['محلل بيانات استشاري يستخرج الرؤى من الأرقام','Consulting data analyst who extracts insights from numbers'],
+  audience:['فريق الإدارة وصناع القرار','Leadership and decision makers'],
+  tone:['sci'], fmt:['md','table'], length:'medium',
+  constraints:['اعرض الأرقام في جدول تجميعي\nاستخرج 3 رؤى رئيسية مع تفسير كل منها\nميّز بين الارتباط والسببية\nاختم بتوصيات قابلة للتنفيذ',
+               'Present the numbers in a summary table\nExtract 3 key insights and explain each\nDistinguish correlation from causation\nEnd with actionable recommendations'],
+  avoid:['لا تخلط بين المتوسط والوسيط\nلا تقدم استنتاجات بلا دليل',
+         'Do not confuse mean with median\nNo conclusions without evidence'],
+  flags:{ask:true,cot:true,self:true}}},
+{name:['🎯 تسويق وإعلان','🎯 Marketing'], set:{
+  role:['مدير تسويق رقمي يكتب نصوصًا إعلانية فائقة الإقناع','Digital marketing manager writing highly persuasive ad copy'],
+  audience:['عملاء محتملون لا يعرفون المنتج','Potential customers who do not know the product'],
+  tone:['sales'], fmt:['bullets'], length:'medium',
+  constraints:['ابدأ بمشكلة العميل وليس بالمنتج\nاستخدم إثباتًا اجتماعيًا أو رقمًا داعمًا\nاكتب 3 نسخ إعلانية بطول مختلف\nأضف CTA واضحًا',
+               'Start with the customer problem, not the product\nUse social proof or a supporting number\nWrite 3 ad variants of different lengths\nAdd a clear CTA'],
+  avoid:['لا تستخدم وعودًا مبالغًا فيها\nلا تستخدم عبارات فارغة مثل "جودة عالية"',
+         'No exaggerated promises\nNo empty phrases like "high quality"'],
+  flags:{self:true,few:true}}},
+{name:['📚 تلخيص','📚 Summarize'], set:{
+  role:['محضر ملخصات دقيق يلتقط الأفكار الجوهرية فقط','Precise summarizer capturing only the core ideas'],
+  audience:['قارئ يريد الفكرة خلال دقيقة','A reader who wants the idea in one minute'],
+  tone:['concise'], fmt:['bullets','md'], length:'short',
+  constraints:['لخّص في 5 نقاط كحد أقصى\nحافظ على المصطلحات الأساسية\nأضف سطرًا واحدًا للخلاصة في الأعلى',
+               'Summarize in at most 5 bullet points\nKeep the key terms\nAdd a one-line takeaway at the top'],
+  avoid:['لا تضف آراءك الشخصية\nلا تكرر نفس الفكرة بصياغات مختلفة',
+         'Do not add personal opinions\nDo not repeat the same idea in different words'],
+  flags:{ask:true,self:true}}},
+{name:['🗺️ خطة ودراسة','🗺️ Study Plan'], set:{
+  role:['مدرّب وخبير في تخطيط المسارات والتعلم المُحكَم','Coach and expert in planning structured learning paths'],
+  audience:['مبتدئ يريد خطة واقعية قابلة للتنفيذ','A beginner wanting a realistic, doable plan'],
+  tone:['edu'], fmt:['table','md'], length:'long',
+  constraints:['قسّم الخطة إلى مراحل زمنية واضحة\nحدد مدة كل مرحلة ومخرجها\nأضف معيار نجاح لكل مرحلة\nأضف بديلًا في حال تعذر الالتزام',
+               'Split the plan into clear time phases\nSet the duration and output of each phase\nAdd a success criterion per phase\nAdd a fallback if the schedule slips'],
+  avoid:['لا تعطِ جدولًا غير واقعي\nلا تترك مرحلة بلا مخرج ملموس',
+         'No unrealistic schedule\nNo phase without a tangible output'],
+  flags:{ask:true,cot:true,self:true}}},
+{name:['🌐 ترجمة احترافية','🌐 Translation'], set:{
+  role:['مترجم محترف متمرس في الترجمة التحريرية لا الحرفية','Professional translator specialized in transcreation, not literal translation'],
+  audience:['قارئ أصلي في اللغة الهدف','A native reader of the target language'],
+  tone:['pro'], fmt:['para'], length:'medium',
+  constraints:['ترجم المعنى لا الكلمات\nحافظ على نبرة النص الأصلية\nوضّح أي تمثيل ثقافي غير مفهوم',
+               'Translate meaning, not words\nKeep the tone of the original\nClarify cultural references that do not carry over'],
+  avoid:['لا تترجم الأسماء والعلامات التجارية\nلا تضف معلومات غير موجودة',
+         'Do not translate proper names or brands\nDo not add missing information'],
+  flags:{ask:true,self:true}}},
+{name:['🖼️ توليد صورة','🖼️ Image Generation'], set:{
+  role:[''],audience:['',''],tone:[],fmt:[],length:'',constraints:['',''],avoid:['',''],
+  flags:{ask:false,cot:false,self:false,few:false}, img:true}}
+];
+
+function renderPresets(){
+  const box=$('presets'); box.innerHTML='';
+  PRESETS.forEach((p,i)=>{
+    const b=document.createElement('button');
+    b.className='chip'; b.textContent=tx(p.name); b.dataset.i=i;
+    b.onclick=()=>applyPreset(i);
+    box.appendChild(b);
+  });
+}
+function applyPreset(i){
+  const s=PRESETS[i].set;
+  document.querySelectorAll('#presets .chip').forEach((c,j)=>c.classList.toggle('active',j===i));
+  if(s.role!==undefined) $('role').value=tx(s.role);
+  if(s.audience!==undefined) $('audience').value=tx(s.audience);
+  if(s.tone!==undefined) setChips('toneChips',s.tone);
+  if(s.fmt!==undefined) setChips('fmtChips',s.fmt);
+  if(s.length!==undefined) $('length').value=s.length;
+  if(s.constraints!==undefined) $('constraints').value=tx(s.constraints);
+  if(s.avoid!==undefined) $('avoid').value=tx(s.avoid);
+  if(s.flags) Object.keys(s.flags).forEach(k=>setFlag(k,s.flags[k]));
+  if(s.img!==undefined){ setFlag('img',s.img); if(s.img) $('task').focus(); }
+  render();
+  toast(t('msg.preset')+tx(PRESETS[i].name));
+}
+function setChips(boxId,vals){
+  document.querySelectorAll('#'+boxId+' input').forEach(inp=>{ inp.checked = vals.indexOf(inp.value)>=0; });
+}
+function getChips(boxId){
+  return Array.prototype.map.call(document.querySelectorAll('#'+boxId+' input:checked'), i=>i.value);
+}
+function setFlag(k,v){
+  FLAGS[k]=v;
+  document.querySelectorAll('.tg[data-tg="'+k+'"]').forEach(el=>el.classList.toggle('on',v));
+  if(k==='few') $('fewBox').style.display = v?'block':'none';
+  if(k==='img') $('imgBox').style.display = v?'block':'none';
+}
+
+/* ================= State ================= */
+const FLAGS = {ask:false, cot:false, self:false, few:false, img:false};
+
+document.querySelectorAll('.tg').forEach(el=>{
+  el.addEventListener('click',()=>{ const k=el.dataset.tg; setFlag(k,!FLAGS[k]); render(); });
+});
+document.querySelectorAll('input,textarea,select').forEach(el=>{
+  el.addEventListener('input',render); el.addEventListener('change',render);
+});
+
+/* ================= Builder ================= */
+function lines(s){ return s.split('\n').map(x=>x.trim()).filter(Boolean); }
+function bullets(arr,mark){ return arr.map(x=>(mark||'- ')+x).join('\n'); }
+
+function readV(){
+  return {
+    task:$('task').value.trim(), role:$('role').value.trim(), context:$('context').value.trim(),
+    audience:$('audience').value.trim(), constraints:$('constraints').value.trim(), avoid:$('avoid').value.trim(),
+    length:$('length').value, lang:$('lang').value,
+    tone:getChips('toneChips'), fmt:getChips('fmtChips'),
+    in1:$('in1').value.trim(), out1:$('out1').value.trim(), in2:$('in2').value.trim(), out2:$('out2').value.trim()
+  };
+}
+
+function buildImage(v){
+  const s=[];
+  s.push('# AI IMAGE PROMPT');
+  if(v.role) s.push('Art direction level: '+v.role+'.');
+  s.push('\n## SUBJECT / وصف المشهد');
+  s.push(v.task||t('pre.task'));
+  if(v.context){ s.push('\n## CONTEXT / السياق'); s.push(bullets(lines(v.context))); }
+  if(v.audience){ s.push('\n## AUDIENCE / لمن تُعرض الصورة'); s.push(v.audience); }
+  s.push('\n## STYLE & TECHNICAL / الأسلوب والتقنيات');
+  s.push('- '+$('imgStyle').value);
+  s.push('- professional composition, balanced framing, high detail, coherent lighting');
+  if(v.tone.length) s.push('- mood/atmosphere: '+v.tone.map(k=>TONE[k]?TONE[k][0]:k).join(', '));
+  s.push('- aspect ratio: --ar '+$('imgAr').value);
+  s.push('\n## NEGATIVE PROMPT / ما يجب ألا يظهر في الصورة');
+  s.push($('imgNeg').value.trim() || 'blurry, extra limbs, distorted hands, text, watermark, low quality, jpeg artifacts');
+  if(v.avoid){ s.push('\n## EXCLUDE / ممنوع أن يظهر'); s.push(bullets(lines(v.avoid).map(x=>'✗ '+x))); }
+  s.push('\n## INSTRUCTIONS');
+  s.push('1. Generate a single image that matches SUBJECT and STYLE exactly.');
+  s.push('2. Keep one clear focal point and a clean, balanced composition.');
+  s.push('3. If any part of the description is written in Arabic, translate it into precise English visual terms first, then generate.');
+  s.push('4. Never render any text, letters or watermarks inside the image.');
+  return s.join('\n');
+}
+
+function buildText(v){
+  const en = v.lang==='en';
+  const H = (ar,x)=> '## '+(en?x:ar);
+  const i = en?1:0;
+  const s=[];
+
+  s.push(H('الدور','ROLE'));
+  s.push((v.role || (en?'You are a highly skilled expert assistant':'أنت مساعد ذكي وخبير محترف في مهمتك'))+'.');
+  s.push(en ? 'Approach every task with accuracy, structure and professional rigor.'
+            : 'تعامل مع كل مهمة بدقة، ومنهجية، ومهنية عالية.');
+
+  s.push('\n'+H('المهمة','TASK'));
+  s.push(v.task || t('pre.task'));
+
+  if(v.context){ s.push('\n'+H('السياق والخلفية','CONTEXT')); s.push(bullets(lines(v.context))); }
+
+  if(v.audience){
+    s.push('\n'+H('الجمهور المستهدف','AUDIENCE'));
+    s.push(en? 'Write for this audience: '+v.audience+'.' : 'قدّم الإجابة بهذا الجمهور في بالك: '+v.audience+'.');
+  }
+
+  const req=[];
+  if(v.fmt.length) req.push(en? 'Format: '+v.fmt.map(k=>FMT[k]?FMT[k][1]:k).join(' + ')
+                              : 'الصيغة: '+v.fmt.map(k=>FMT[k]?FMT[k][0]:k).join(' + '));
+  if(v.length) req.push(en? 'Length: '+LEN_EN[v.length] : 'الطول: '+LEN_AR[v.length]);
+  req.push(en? 'Language: English'
+            : (v.lang==='ar'?'لغة الإجابة: العربية الفصحى المبسّطة':'لغة الإجابة: نفس لغة المهمة المكتوبة'));
+  s.push('\n'+H('متطلبات الإخراج','OUTPUT REQUIREMENTS'));
+  s.push(bullets(req));
+
+  if(v.tone.length){
+    s.push('\n'+H('النبرة والأسلوب','TONE'));
+    s.push('- '+v.tone.map(k=>TONE[k]?TONE[k][i]:k).join('\n- '));
+  }
+
+  if(v.constraints){
+    s.push('\n'+H('القيود والمتطلبات','CONSTRAINTS'));
+    s.push(lines(v.constraints).map((x,n)=>(n+1)+'. '+x).join('\n'));
+  }
+
+  if(v.avoid){ s.push('\n'+H('ما يجب تجنّبه','DO NOT')); s.push(bullets(lines(v.avoid).map(x=>'✗ '+x))); }
+
+  const method=[];
+  if(FLAGS.cot){
+    method.push(en
+      ? 'Analyze the task step by step before writing the final answer: show a short analysis separated by a divider, then give the final answer separately.'
+      : 'حلّل المهمة خطوة بخطوة قبل كتابة الناتج النهائي: اعرض التحليل باختصار في فاصل، ثم قدّم الإجابة النهائية منفصلة عنه.');
+  }
+  if(FLAGS.ask){
+    method.push(en
+      ? 'If any necessary information is missing, ask one specific, clear question instead of guessing, then wait for my answer before continuing.'
+      : 'إذا كانت أي معلومة ضرورية ناقصة، اطرح سؤالًا واحدًا محددًا وواضحًا بدل التخمين، ثم انتظر الرد قبل المتابعة.');
+  }
+  if(v.in1||v.out1){
+    method.push(en ? 'Follow the style and level of detail shown in the examples below in every output.'
+                   : 'التزم بأسلوب الأمثلة المرفقة أدناه في كل ناتج تقدّمه.');
+  }
+  if(method.length){
+    s.push('\n'+H('طريقة العمل','METHOD'));
+    s.push(method.map((x,n)=>(n+1)+'. '+x).join('\n'));
+  }
+
+  if(FLAGS.few && (v.in1||v.out1||v.in2||v.out2)){
+    s.push('\n'+H('أمثلة مرجعية','FEW-SHOT EXAMPLES'));
+    let n=1;
+    if(v.in1||v.out1){ s.push('\n'+(en?'### Example ':'### المثال ')+n+'\n'+(en?'Input':'المدخل')+':\n'+(v.in1||'—')+'\n'+(en?'Expected output':'المخرجات المتوقعة')+':\n'+(v.out1||'—')); n++; }
+    if(v.in2||v.out2){ s.push('\n'+(en?'### Example ':'### المثال ')+n+'\n'+(en?'Input':'المدخل')+':\n'+(v.in2||'—')+'\n'+(en?'Expected output':'المخرجات المتوقعة')+':\n'+(v.out2||'—')); }
+  }
+
+  s.push('\n'+H('معايير النجاح','SUCCESS CRITERIA'));
+  s.push(bullets(en? [
+    '✅ The task is fully completed with nothing omitted.',
+    '✅ Accuracy: no invented facts, no unsupported claims.',
+    '✅ Every constraint and output requirement above is respected.',
+    '✅ Clarity: short sentences, logical structure, zero filler.',
+    '✅ Ready to use directly on the first attempt.'
+  ] : [
+    '✅ تحقيق المهمة المطلوبة بالكامل دون حذف جزء منها.',
+    '✅ الدقة: لا معلومات مخترعة ولا اجتهادات بلا أساس.',
+    '✅ الالتزام بكل القيود ومتطلبات الإخراج أعلاه.',
+    '✅ الوضوح: جمل قصيرة، تنظيم منطقي، بلا حشو أو كلام عام.',
+    '✅ جاهزية مباشرة للاستخدام من أول محاولة.'
+  ]));
+
+  const fin=[];
+  if(FLAGS.self){
+    fin.push(en
+      ? 'Before delivering the final result, review your own work and verify that every requirement above is met, fix any error or contradiction, then output only the final version.'
+      : 'قبل تقديم النتيجة النهائية: راجع عملك بنفسك وتأكد أن جميع متطلباتي مستوفاة، وصحّح أي خطأ أو تعارض، ثم قدّم النسخة النهائية فقط.');
+  }
+  fin.push(en ? 'Deliver the result in a single complete message, well organized and ready to use.'
+              : 'قدّم النتيجة في رسالة واحدة مكتملة، منظّمة، وجاهزة للاستخدام مباشرة.');
+  fin.push(en? 'Start now.' : 'ابدأ الآن.');
+  s.push('\n'+H('تعليمات أخيرة','FINAL INSTRUCTIONS'));
+  s.push(fin.map((x,n)=>(n+1)+'. '+x).join('\n'));
+
+  return s.join('\n');
+}
+
+let CURRENT='';
+function render(){
+  const v=readV();
+  CURRENT = FLAGS.img ? buildImage(v) : buildText(v);
+  const empty = !v.task && !v.role && !v.context && !v.audience && !v.constraints && !v.avoid &&
+                !v.tone.length && !v.fmt.length && !v.length && !FLAGS.few && !FLAGS.img;
+  $('preview').textContent = empty ? t('preview.start') : CURRENT;
+  $('preview').style.direction = (v.lang==='en' ? 'ltr' : 'rtl');
+  const words = CURRENT.split(/\s+/).filter(Boolean).length;
+  $('stWords').textContent = words;
+  $('stChars').textContent = CURRENT.length;
+  $('stSecs').textContent = (CURRENT.match(/^## /gm)||[]).length;
+  const tech = [FLAGS.cot,FLAGS.ask,FLAGS.self,FLAGS.few,v.tone.length>0,v.constraints!==''].filter(Boolean).length;
+  $('stTech').textContent = tech+' / 6';
+  $('modeTag').textContent = FLAGS.img ? t('mode.img') : t('mode.text');
+  score(v);
+}
+
+/* ================= Quality score ================= */
+const CHECKS=[
+  {w:20,t:['المهمة محددة وواضحة','Task is specific & clear'],d:['اكتب جملة تصف النتيجة المطلوبة بدقة','Describe the desired result in one precise sentence'],ok:v=>v.task.length>=20,f:'task'},
+  {w:12,t:['الدور مُعرَّف','Role defined'],d:['منح الشخصية يرفع عمق الإجابة','A persona makes the answer deeper'],ok:v=>v.role.length>3,f:'role'},
+  {w:10,t:['سياق وخلفية','Context & background'],d:['معلومات عن المشروع/الموقف','Details about the project / situation'],ok:v=>v.context.length>5,f:'context'},
+  {w:8,t:['جمهور مستهدف','Target audience'],d:['من سيقرأ الناتج؟','Who will read the output?'],ok:v=>v.audience.length>3,f:'audience'},
+  {w:10,t:['صيغة التسليم','Output format'],d:['نقاط، جدول، JSON، Markdown…','Bullets, table, JSON, Markdown…'],ok:v=>v.fmt.length>0,f:'fmtChips'},
+  {w:8,t:['الطول محدّد','Length defined'],d:['حدد حجم الإجابة المتوقع','Set the expected answer size'],ok:v=>v.length!=='',f:'length'},
+  {w:8,t:['النبرة والأسلوب','Tone & style'],d:['اختر نبرة واحدة على الأقل','Pick at least one tone'],ok:v=>v.tone.length>0,f:'toneChips'},
+  {w:10,t:['قيود ومتطلبات','Constraints'],d:['سطر لكل متطلب','One line per requirement'],ok:v=>v.constraints.length>5,f:'constraints'},
+  {w:5,t:['ما يجب تجنّبه','Things to avoid'],d:['حدّد الأخطاء التي لا تريدها','List the mistakes you do not want'],ok:v=>v.avoid.length>5,f:'avoid'},
+  {w:5,t:['تفكير خطوة بخطوة','Step-by-step reasoning'],d:['مفيد للمهام المعقدة','Helpful for complex tasks'],ok:()=>FLAGS.cot,f:'cot'},
+  {w:4,t:['مراجعة ذاتية','Self-review'],d:['يتحقق من الناتج قبل التسليم','Checks the output before delivery'],ok:()=>FLAGS.self,f:'self'},
+  {w:10,t:['أمثلة مرجعية','Few-shot examples'],d:['مثال واحد يضبط الأسلوب','One example locks the style'],ok:v=>FLAGS.few&&(v.in1||v.out1),f:'few'}
+];
+function score(v){
+  const box=$('checks'); box.innerHTML='';
+  let got=0,total=0;
+  CHECKS.forEach(c=>{
+    total+=c.w; const pass=c.ok(v); if(pass) got+=c.w;
+    const d=document.createElement('div');
+    d.className='chk'+(pass?' done':'');
+    d.innerHTML='<span class="ic">'+(pass?'✓':'○')+'</span><div><div class="t">'+tx(c.t)+'</div>'+(pass?'':'<div class="d">'+tx(c.d)+'</div>')+'</div>';
+    d.title = tx(c.d);
+    d.onclick=()=>focusField(c.f);
+    box.appendChild(d);
+  });
+  const p=Math.round(got/total*100);
+  $('ring').style.setProperty('--p',p);
+  $('score').textContent=p+'%';
+  const col = p>=80?'var(--green)':p>=50?'var(--amber)':'var(--red)';
+  $('ring').style.background='conic-gradient('+col+' '+p+'%, var(--track) 0)';
+  $('scoreTip').innerHTML = p>=80 ? t('q.good') : (p>=50 ? t('q.mid') : t('q.low'));
+}
+function focusField(f){
+  if(['cot','ask','self','few','img'].indexOf(f)>=0){
+    const el=document.querySelector('.tg[data-tg="'+f+'"]'); el.scrollIntoView({behavior:'smooth',block:'center'});
+    el.style.boxShadow='0 0 0 3px rgba(108,140,255,.5)'; setTimeout(()=>el.style.boxShadow='',1100); return;
+  }
+  let el=null;
+  if(f==='fmtChips'||f==='toneChips') el=document.querySelector('#'+f+' input');
+  else el=$(f);
+  if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); el.focus({preventScroll:true});
+    const box = el.closest('.fsec')||el.parentElement;
+    box.style.boxShadow='0 0 0 3px rgba(108,140,255,.5)'; setTimeout(()=>box.style.boxShadow='',1200);
+  }
+}
+
+/* ================= Actions ================= */
+function toast(msg){
+  const el=$('toast'); el.textContent=msg; el.classList.add('show');
+  clearTimeout(el._h); el._h=setTimeout(()=>el.classList.remove('show'),2300);
+}
+function copy(text){
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(doneCopy,()=>fallbackCopy(text));
+  } else fallbackCopy(text);
+}
+function fallbackCopy(text){
+  const ta=document.createElement('textarea'); ta.value=text;
+  ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta);
+  ta.select(); try{document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta); doneCopy();
+}
+function doneCopy(){ toast(t('msg.copy')); saveHistory(); }
+
+function download(name,content){
+  const blob=new Blob([content],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(a.href),1500);
+  toast(t('msg.dl'));
+}
+
+$('btnCopy').onclick=()=>copy(CURRENT);
+$('btnCopyTop').onclick=()=>copy(CURRENT);
+$('btnTxt').onclick=()=>download('prompt.txt',CURRENT);
+$('btnMd').onclick=()=>download('prompt.md',CURRENT);
+
+$('btnAuto').onclick=()=>{
+  const v=readV();
+  if(v.role.length<3) $('role').value = LANG==='en'
+    ? 'A highly skilled expert in the field of this task, precise, practical and organized'
+    : 'خبير محترف متخصص في المجال المطابق للمهمة، دقيق، عملي، ومنظم';
+  if(v.audience.length<3) $('audience').value = LANG==='en'
+    ? 'An interested reader looking for practical, direct content'
+    : 'قارئ مهتم يريد محتوى عمليًا ومباشرًا';
+  if(!v.tone.length) setChips('toneChips',['pro']);
+  if(!v.fmt.length) setChips('fmtChips',['md']);
+  if(!v.length) $('length').value='medium';
+  if(v.constraints.length<5) $('constraints').value = LANG==='en'
+    ? 'Stick to the provided information, no guessing\nOrganize the answer with clear headings\nAdd practical examples where needed'
+    : 'التزم بالمعلومات المتوفرة فقط دون إضافة تخمينات\nنظّم الإجابة بعناوين واضحة\nقدّم أمثلة عملية عند الحاجة';
+  if(v.avoid.length<5) $('avoid').value = LANG==='en'
+    ? 'Do not repeat the same idea in different words\nNo generic filler sentences'
+    : 'لا تكرر نفس الفكرة بصياغات مختلفة\nلا تستخدم جملًا عامّة بلا قيمة';
+  setFlag('ask',true); setFlag('self',true);
+  render(); toast(t('msg.auto'));
+};
+$('btnReset').onclick=()=>{
+  if(!confirm(t('ask.reset'))) return;
+  ['task','role','context','audience','constraints','avoid','in1','out1','in2','out2','imgNeg'].forEach(k=>$(k).value='');
+  $('length').value=''; $('lang').value = (LANG==='en'?'en':'ar');
+  setChips('toneChips',[]); setChips('fmtChips',[]);
+  ['ask','cot','self','few','img'].forEach(k=>setFlag(k,false));
+  document.querySelectorAll('#presets .chip').forEach(c=>c.classList.remove('active'));
+  render(); toast(t('msg.clear'));
+};
+$('btnClearHist').onclick=()=>{ try{localStorage.removeItem('pe_hist');}catch(e){} renderHistory(); };
+
+/* ================= Themes ================= */
+const THEME_META = {midnight:'#0b0f1a', light:'#eef1f8', neon:'#04060d'};
+function setTheme(name){
+  if(!THEME_META[name]) name='midnight';
+  document.documentElement.setAttribute('data-theme', name);
+  const m=document.querySelector('meta[name="theme-color"]'); if(m) m.content=THEME_META[name];
+  document.querySelectorAll('#themes .tbtn').forEach(b=>b.classList.toggle('active', b.dataset.theme===name));
+  try{ localStorage.setItem('pe_theme', name); }catch(e){}
+}
+document.querySelectorAll('#themes .tbtn').forEach(b=>{
+  b.addEventListener('click',()=>{ setTheme(b.dataset.theme); toast(t('msg.theme')); });
+});
+document.querySelectorAll('#langs .tbtn').forEach(b=>{
+  b.addEventListener('click',()=>setLang(b.dataset.lang));
+});
+
+/* ================= History ================= */
+function saveHistory(){
+  let h=[]; try{ h=JSON.parse(localStorage.getItem('pe_hist')||'[]'); }catch(e){}
+  const v=readV();
+  h.unshift({t:Date.now(), task:((v.task||t('msg.noTitle')).slice(0,80)), p:CURRENT});
+  h=h.slice(0,8); try{ localStorage.setItem('pe_hist',JSON.stringify(h)); }catch(e){}
+  renderHistory();
+}
+function renderHistory(){
+  const box=$('hist'); box.innerHTML='';
+  let h=[]; try{ h=JSON.parse(localStorage.getItem('pe_hist')||'[]'); }catch(e){}
+  if(!h.length){ box.innerHTML='<div class="empty">'+t('h.empty')+'</div>'; return; }
+  h.forEach((it,i)=>{
+    const d=new Date(it.t);
+    const el=document.createElement('div'); el.className='hitem';
+    const txt=document.createElement('div'); txt.className='ht'; txt.textContent=it.task;
+    const hm=document.createElement('span'); hm.className='hm';
+    hm.textContent=d.toLocaleDateString(LANG==='en'?'en-GB':'ar-EG')+' '+d.toLocaleTimeString(LANG==='en'?'en-GB':'ar-EG',{hour:'2-digit',minute:'2-digit'});
+    const b1=document.createElement('button'); b1.className='btn small'; b1.textContent='📋 '+(LANG==='en'?'Copy':'نسخ');
+    b1.onclick=()=>copy(it.p);
+    const b2=document.createElement('button'); b2.className='btn small ghost'; b2.textContent='✕'; b2.title=t('phd.title');
+    b2.onclick=()=>{ h.splice(i,1); try{localStorage.setItem('pe_hist',JSON.stringify(h));}catch(e){} renderHistory(); };
+    el.appendChild(txt); el.appendChild(hm); el.appendChild(b1); el.appendChild(b2); box.appendChild(el);
+  });
+}
+
+/* ================= Recommended AI tools ================= */
+const AI_TOOLS = [
+ {e:'💬', n:['ChatGPT','ChatGPT'],
+  d:['أشهر مساعد ذكي من OpenAI للنصوص والصور والتحليل.','The most popular AI assistant from OpenAI for text, images and analysis.'],
+  u:'https://chatgpt.com/',
+  an:['Open WebUI','Open WebUI'],
+  ad:['واجهة مفتوحة المصدر تشغّل النماذج محليًا أو عبر أي مزوّد.','Open-source UI that runs models locally or through any provider.'],
+  au:'https://github.com/open-webui/open-webui'},
+ {e:'✳️', n:['Claude','Claude'],
+  d:['نماذج Anthropic القوية للكتابة والبرمجة والمستندات الطويلة.','Powerful Anthropic models for writing, coding and long documents.'],
+  u:'https://claude.ai/',
+  an:['LibreChat','LibreChat'],
+  ad:['منصّة مفتوحة المصدر تجمع عدة نماذج في واجهة واحدة.','Open-source platform gathering several models in one interface.'],
+  au:'https://github.com/danny-avila/LibreChat'},
+ {e:'♊', n:['Gemini','Gemini'],
+  d:['نماذج Google متعددة الوسائط مدمجة مع خدماتها.','Google multimodal models integrated with its services.'],
+  u:'https://gemini.google.com/',
+  an:['Jan','Jan'],
+  ad:['مساعد مفتوح المصدر يعمل دون إنترنت على جهازك.','Open-source assistant that runs offline on your machine.'],
+  au:'https://github.com/janhq/jan'},
+ {e:'🎨', n:['Midjourney','Midjourney'],
+  d:['أشهر أداة لتوليد الصور الفنية من الوصف النصي.','The most famous tool for generating art from text.'],
+  u:'https://www.midjourney.com/',
+  an:['Stable Diffusion WebUI','Stable Diffusion WebUI'],
+  ad:['توليد صور مجاني مفتوح المصدر يعمل على كرت الشاشة لديك.','Free open-source image generation running on your GPU.'],
+  au:'https://github.com/AUTOMATIC1111/stable-diffusion-webui'},
+ {e:'💻', n:['GitHub Copilot','GitHub Copilot'],
+  d:['مساعد برمجة داخل المحرر يكمل الكود ويقترح الحلول.','An in-editor coding assistant that completes and suggests code.'],
+  u:'https://github.com/features/copilot',
+  an:['Aider','Aider'],
+  ad:['زميل برمجي مجاني مفتوح المصدر يعمل من الطرفية.','Free open-source AI pair programmer that runs in the terminal.'],
+  au:'https://github.com/Aider-AI/aider'},
+ {e:'🔎', n:['Perplexity','Perplexity'],
+  d:['محرك بحث يعطي إجابات مدعومة بالمصادر.','A search engine that answers with cited sources.'],
+  u:'https://www.perplexity.ai/',
+  an:['Khoj','Khoj'],
+  ad:['مساعد شخصي مفتوح المصدر يبحث ويجيب من مصادرك.','Open-source personal assistant that answers from your sources.'],
+  au:'https://github.com/khoj-ai/khoj'},
+ {e:'🎙️', n:['ElevenLabs','ElevenLabs'],
+  d:['تحويل النص إلى كلام واقعي بلهجات متعددة.','Realistic text-to-speech with many voices and accents.'],
+  u:'https://elevenlabs.io/',
+  an:['Coqui TTS','Coqui TTS'],
+  ad:['توليد صوت مجاني مفتوح المصدر يعمل محليًا.','Free open-source speech synthesis running locally.'],
+  au:'https://github.com/coqui-ai/TTS'},
+ {e:'🎬', n:['Sora','Sora'],
+  d:['توليد فيديو قصير من وصف نصي.','Short video generation from a text description.'],
+  u:'https://sora.com/',
+  an:['LTX-Video','LTX-Video'],
+  ad:['نموذج فيديو مفتوح المصدر سريع التوليد على كرت الشاشة.','Open-source video model that generates fast on your GPU.'],
+  au:'https://github.com/Lightricks/LTX-Video'}
+];
+function openLink(u){
+  const a=document.createElement('a'); a.href=u; a.target='_blank'; a.rel='noopener';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+function renderAi(){
+  const grid=$('aiGrid'); if(!grid) return;
+  grid.innerHTML='';
+  AI_TOOLS.forEach(tool=>{
+    const card=document.createElement('div');
+    card.className='ai-card';
+    card.innerHTML =
+      '<div class="ai-head">'+
+        '<span class="ai-em">'+tool.e+'</span>'+
+        '<div class="ai-txt"><div class="ai-name">'+tx(tool.n)+'</div>'+
+        '<div class="ai-desc">'+tx(tool.d)+'</div></div>'+
+        '<span class="ai-badge">'+t('ai.free')+'</span>'+
+      '</div>'+
+      '<div class="ai-links">'+
+        '<a class="ai-btn main" target="_blank" rel="noopener" href="'+tool.u+'">'+t('ai.official')+'</a>'+
+        '<a class="ai-btn alt" target="_blank" rel="noopener" href="'+tool.au+'">'+t('ai.alt')+'</a>'+
+      '</div>';
+    card.addEventListener('click', e=>{
+      if(e.target.closest('a')) return;      /* الزر يفتح رابطه فقط */
+      openLink(tool.u);                      /* البطاقة تفتح الاثنين */
+      openLink(tool.au);
+    });
+    grid.appendChild(card);
+  });
+}
+
+/* ================= Init ================= */
+(function init(){
+  let lg='ar'; try{ lg = localStorage.getItem('pe_lang') || 'ar'; }catch(e){}
+  let th='midnight'; try{ th = localStorage.getItem('pe_theme') || 'midnight'; }catch(e){}
+  setTheme(th);
+  setLang(lg, true);
+  $('preview').textContent = t('preview.start');
+  render();
+})();
+</script>
+</body>
+</html>
