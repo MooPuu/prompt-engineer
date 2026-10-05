@@ -20,13 +20,16 @@
   --tick:#242e4d;
   --scroll:#26314f;
   --muted2:#6f7ca0;
-  --divider:#55618a;
+  --divider:#7b88b0;
   --empty:#5f6b8c;
   --head:#cdd7f0;
   --code-bg:#0a0e19;
   --code-txt:#cfe0ff;
   --glow1:rgba(108,140,255,.16);
   --glow2:rgba(155,108,255,.14);
+  --topbar:rgba(11,15,26,.86);
+  --chip-on:#dfe6ff;
+  --on-grad:#ffffff;
   --acc-soft:rgba(108,140,255,.18);
   --acc-soft2:rgba(108,140,255,.22);
   --focus:rgba(108,140,255,.16);
@@ -34,7 +37,7 @@
   --ok-soft:rgba(61,220,151,.07);
   --ok-line:rgba(61,220,151,.38);
   --danger-soft:rgba(255,122,133,.12);
-  --accent-grad:linear-gradient(135deg,#6c8cff,#9b6cff);
+  --accent-grad:linear-gradient(135deg,#3f5fe0,#7b4fe0);
 }
 
 /* ============ الثيم 2: نهاري (فاتح، عالي الوضوح) ============ */
@@ -51,9 +54,12 @@
   --switch:#cbd4e8;
   --tick:#e6ebf7;
   --scroll:#c3cbe0;
-  --muted2:#78829b;
-  --divider:#a8b1c7;
-  --empty:#8a93a9;
+  --muted2:#5f6b85;
+  --divider:#626c85;
+  --empty:#707a92;
+  --topbar:rgba(255,255,255,.9);
+  --chip-on:#1f37c4;
+  --on-grad:#ffffff;
   --code-bg:#f8faff;
   --code-txt:#17223c;
   --glow1:rgba(52,87,224,.14);
@@ -85,12 +91,15 @@
   --tick:#0f374a;
   --scroll:#17536e;
   --muted2:#6fa8bd;
-  --divider:#3f7d95;
+  --divider:#5aa6bf;
   --empty:#5d8ea3;
   --code-bg:#03050b;
   --code-txt:#aef5ff;
   --glow1:rgba(37,229,255,.14);
   --glow2:rgba(255,69,213,.12);
+  --topbar:rgba(4,6,13,.88);
+  --chip-on:#c9fbff;
+  --on-grad:#04060d;
   --acc:#25e5ff; --acc2:#ff45d5;
   --acc-soft:rgba(37,229,255,.14);
   --acc-soft2:rgba(37,229,255,.22);
@@ -115,6 +124,8 @@ body{
 a{color:var(--acc)}
 
 /* خلفيات كانت ثابتة */
+.topbar{background:var(--topbar);transition:background-color .25s ease}
+.chips input:checked + label{background:var(--acc-soft2);border-color:var(--acc);color:var(--chip-on)}
 textarea,input[type=text],select{background:var(--input);transition:border-color .16s,box-shadow .16s,background-color .25s}
 .tg{background:var(--tg-bg);transition:border-color .16s,background-color .25s}
 .sw{background:var(--switch)}
@@ -151,7 +162,7 @@ label.lb{color:var(--muted)}
   display:flex;align-items:center;gap:6px;transition:.18s;white-space:nowrap
 }
 .tbtn:hover{color:var(--txt);background:var(--focus)}
-.tbtn.active{background:var(--accent-grad);color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.28)}
+.tbtn.active{background:var(--accent-grad);color:var(--on-grad,#fff);box-shadow:0 6px 16px rgba(0,0,0,.28)}
 .tbtn .em{font-size:14px;line-height:1}
 @media(max-width:640px){.tbtn span.tx{display:none}.tbtn{padding:7px 9px}}
 
@@ -172,7 +183,7 @@ label.lb{color:var(--muted)}
 /* أزرار أنعم */
 .btn{transition:.18s;border-radius:11px}
 .btn:hover{box-shadow:0 8px 18px rgba(0,0,0,.18);border-color:var(--acc)}
-.btn.primary{background:var(--accent-grad);border-color:transparent;color:#fff}
+.btn.primary{background:var(--accent-grad);border-color:transparent;color:var(--on-grad,#fff)}
 .btn.small{border-radius:9px}
 .btn.ghost{color:var(--muted)}
 .btn.ghost:hover{color:var(--txt)}
@@ -223,7 +234,7 @@ label.lb{color:var(--muted)}
   flex:1;min-width:135px;text-align:center;text-decoration:none;font-size:12.5px;font-weight:700;
   padding:8px 10px;border-radius:10px;transition:.16s;border:1px solid transparent
 }
-.ai-btn.main{background:var(--accent-grad);color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.2)}
+.ai-btn.main{background:var(--accent-grad);color:var(--on-grad,#fff);box-shadow:0 6px 16px rgba(0,0,0,.2)}
 .ai-btn.main:hover{filter:brightness(1.08);transform:translateY(-1px)}
 .ai-btn.alt{background:transparent;border-color:var(--line2);color:var(--muted)}
 .ai-btn.alt:hover{color:var(--txt);border-color:var(--green);background:var(--ok-soft)}

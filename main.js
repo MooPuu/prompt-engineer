@@ -21,7 +21,7 @@ function createWindow() {
     show: false,
     backgroundColor: '#0b0f1a',
     title: APP_NAME,
-    icon: path.join(__dirname, 'build', 'icon.png'),
+    icon: path.join(__dirname, 'prompt engineer icon.png'),
     autoHideMenuBar: true,
     webPreferences: {
       contextIsolation: true,
