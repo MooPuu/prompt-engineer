@@ -68,6 +68,20 @@
 ### 7) وضع توليد الصور 🖼️
 يحوّل طلبك إلى **برومبت إنجليزي جاهز** لـ Midjourney / DALL·E / Stable Diffusion، مع الأسلوب الفني، الأبعاد (`--ar`)، وNegative Prompt.
 
+### 8) قسم البرامج الموصى بها 🤖
+في أسفل الصفحة قسم يعرض **8 برامج ذكاء اصطناعي موصى بها** لاستخدام البرومبت، ولكل برنامج **بديل مجاني مفتوح المصدر**، والنقر على البطاقة يفتح الرابطين معًا:
+
+| البرنامج المقترح 🔗 | البديل المجاني مفتوح المصدر 🔓 |
+|---|---|
+| ChatGPT | [Open WebUI](https://github.com/open-webui/open-webui) |
+| Claude | [LibreChat](https://github.com/danny-avila/LibreChat) |
+| Gemini | [Jan](https://github.com/janhq/jan) |
+| Midjourney | [Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) |
+| GitHub Copilot | [Aider](https://github.com/Aider-AI/aider) |
+| Perplexity | [Khoj](https://github.com/khoj-ai/khoj) |
+| ElevenLabs | [Coqui TTS](https://github.com/coqui-ai/TTS) |
+| Sora | [LTX-Video](https://github.com/Lightricks/LTX-Video) |
+
 ---
 
 ## 🧩 بنية البرومبت الناتج
