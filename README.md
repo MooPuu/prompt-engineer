@@ -2,6 +2,8 @@
 
 # 🧠 مهندس البرومبت | Prompt Engineer
 
+![Prompt Engineer](./build/social-preview.png)
+
 > أداة عربية/إنجليزية تساعدك على بناء **برومبت (أمر) مثالي ومتكامل** بنقرات قليلة، ثم نسخه ولصقه في أي أداة ذكاء اصطناعي.
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-🟢_يعمل_على_الويب-6c8cff?style=for-the-badge&logo=githubpages&logoColor=white)](https://moopuu.github.io/prompt-engineer/)

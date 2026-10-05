@@ -995,7 +995,9 @@ function applyPreset(i){
   if(s.constraints!==undefined) $('constraints').value=tx(s.constraints);
   if(s.avoid!==undefined) $('avoid').value=tx(s.avoid);
   if(s.flags) Object.keys(s.flags).forEach(k=>setFlag(k,s.flags[k]));
-  if(s.img!==undefined){ setFlag('img',s.img); if(s.img) $('task').focus(); }
+  /* القالب النصي يعيد الوضع إلى النص، وقالب الصور يفعّل وضع الصور */
+  if(s.img===undefined) setFlag('img', false);
+  else { setFlag('img',s.img); if(s.img) $('task').focus(); }
   render();
   toast(t('msg.preset')+tx(PRESETS[i].name));
 }
