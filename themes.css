@@ -123,6 +123,25 @@ body{
 ::selection{background:var(--acc-soft2)}
 a{color:var(--acc)}
 
+/* ---------------- 2.1) شريط تمرير عصري (يُطبّق على الصفحة كلها) ---------------- */
+*{scrollbar-width:thin;scrollbar-color:var(--scroll) transparent}
+::-webkit-scrollbar{width:13px;height:13px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{
+  background-color:var(--scroll);border-radius:99px;
+  border:4px solid transparent;background-clip:content-box;min-height:44px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);
+  transition:background-color .18s ease, box-shadow .18s ease;
+}
+::-webkit-scrollbar-thumb:hover{background-color:var(--acc);box-shadow:0 0 10px var(--focus)}
+::-webkit-scrollbar-thumb:active{background-color:var(--acc2)}
+::-webkit-scrollbar-corner{background:transparent}
+pre.prompt::-webkit-scrollbar{width:12px;height:12px}
+pre.prompt::-webkit-scrollbar-track{background:transparent}
+pre.prompt::-webkit-scrollbar-thumb{background-color:var(--scroll);border:4px solid transparent;
+  background-clip:content-box;border-radius:99px;box-shadow:none}
+pre.prompt::-webkit-scrollbar-thumb:hover{background-color:var(--acc)}
+
 /* خلفيات كانت ثابتة */
 .topbar{background:var(--topbar);transition:background-color .25s ease}
 .chips input:checked + label{background:var(--acc-soft2);border-color:var(--acc);color:var(--chip-on)}
