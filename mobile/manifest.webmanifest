@@ -1,0 +1,19 @@
+{
+  "name": "Prompt Engineer — مهندس البرومبت",
+  "short_name": "Prompt Engineer",
+  "description": "ابنِ برومبتًا مثاليًا لأي أداة ذكاء اصطناعي من جوالك — سحبة واحدة، لغتان. © Mahdi Kareem",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EFF1F9",
+  "theme_color": "#3d63f5",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

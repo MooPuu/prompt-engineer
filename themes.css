@@ -195,6 +195,13 @@ label.lb{color:var(--muted)}
 .tbtn:hover{color:var(--txt);background:var(--focus)}
 .tbtn.active{background:var(--accent-grad);color:var(--on-grad,#fff);box-shadow:0 6px 16px rgba(0,0,0,.28)}
 .tbtn .em{font-size:14px;line-height:1}
+/* أيقونة اللغة العربية: حرف "ع" داخل مربع أبيض بحدود سوداء */
+.tbtn .em.ar-box{
+  width:19px;height:19px;display:inline-flex;align-items:center;justify-content:center;
+  background:#ffffff;color:#0a0a0a;border:1.6px solid #000000;border-radius:5px;
+  font-size:12px;font-weight:800;line-height:1;
+}
+.tbtn:active .em.ar-box{background:#f0f0f0}
 @media(max-width:640px){.tbtn span.tx{display:none}.tbtn{padding:7px 9px}}
 
 /* شريط علوي أنعم */
