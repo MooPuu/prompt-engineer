@@ -19,7 +19,7 @@
   --switch:#2a3454;
   --tick:#242e4d;
   --scroll:#26314f;
-  --muted2:#6f7ca0;
+  --muted2:#7c89ad;
   --divider:#7b88b0;
   --empty:#5f6b8c;
   --head:#cdd7f0;
@@ -38,6 +38,10 @@
   --ok-line:rgba(61,220,151,.38);
   --danger-soft:rgba(255,122,133,.12);
   --accent-grad:linear-gradient(135deg,#3f5fe0,#7b4fe0);
+
+  /* ألواح الداشبورد */
+  --surface:#141a2d; --surface2:#111627; --hover:#1b2340;
+  --stroke:rgba(255,255,255,.075); --glow-card:rgba(0,0,0,.30);
 }
 
 /* ============ الثيم 2: نهاري (فاتح، عالي الوضوح) ============ */
@@ -45,7 +49,7 @@
   color-scheme: light;
   --bg:#eef1f8; --bg2:#ffffff; --panel:#ffffff; --panel2:#eef2fa;
   --line:#e2e7f3; --line2:#c7d0e4;
-  --txt:#131a2c; --muted:#5b6684; --head:#1a2340;
+  --txt:#131a2c; --muted:#4e5a77; --head:#1a2340;
 
   --input:#f6f8fd;
   --alt:#f4f7fd;
@@ -74,6 +78,10 @@
   --ok-line:rgba(15,157,99,.35);
   --danger-soft:rgba(217,56,75,.09);
   --accent-grad:linear-gradient(135deg,#3457e0,#7b3fe4);
+
+  /* ألواح الداشبورد */
+  --surface:#ffffff; --surface2:#f7f9fd; --hover:#eef2fb;
+  --stroke:rgba(23,35,72,.10); --glow-card:rgba(23,35,72,.12);
 }
 
 /* ============ الثيم 3: نيون (سيبر/داكن عالي التباين) ============ */
@@ -110,6 +118,10 @@
   --ok-line:rgba(61,255,176,.35);
   --danger-soft:rgba(255,107,139,.12);
   --accent-grad:linear-gradient(135deg,#25e5ff,#ff45d5);
+
+  /* ألواح الداشبورد */
+  --surface:#070c17; --surface2:#060a12; --hover:#0b1526;
+  --stroke:rgba(37,229,255,.14); --glow-card:rgba(0,0,0,.55);
 }
 
 /* ---------------- 2) تطبيق الرموز على العناصر ---------------- */
@@ -281,3 +293,188 @@ label.lb{color:var(--muted)}
 .foot-links a:hover{color:var(--txt);border-color:var(--acc);transform:translateY(-2px)}
 .foot-note{width:100%;text-align:center;font-size:11.5px;color:var(--divider);padding-top:2px}
 body{padding-bottom:0}
+
+/* =========================================================================
+   5) واجهة الداشبورد الحديثة (على طراز اللوحة المرجعية)
+   ========================================================================= */
+[hidden]{display:none !important}
+html{scroll-behavior:smooth}
+section.fsec,#presets,#preview,#ring,#aiGrid,.divider{scroll-margin-top:96px}
+
+/* ---------- 5.1) الشريط العلوي + البحث ---------- */
+.topbar{gap:14px;padding:12px 22px;align-items:center}
+.logo{flex:0 0 auto}
+.search{
+  flex:1 1 220px;min-width:150px;max-width:520px;
+  display:flex;align-items:center;gap:8px;
+  background:var(--surface2);border:1px solid var(--stroke);
+  border-radius:999px;padding:7px 14px;
+  transition:border-color .18s,box-shadow .18s,background-color .25s
+}
+.search:focus-within{border-color:var(--acc);box-shadow:0 0 0 4px var(--focus)}
+.search .si{font-size:13px;opacity:.75;line-height:1}
+.search input[type=search]{
+  flex:1;min-width:0;background:transparent;border:0;outline:none;padding:0;
+  font-size:13.5px;color:var(--txt);-webkit-appearance:none;appearance:none
+}
+.search input::placeholder{color:var(--muted)}
+.search input::-webkit-search-cancel-button{display:none}
+.search .qres{font-size:10.5px;font-weight:800;color:var(--on-grad,#fff);
+  background:var(--accent-grad);border:1px solid transparent;border-radius:999px;
+  padding:2px 8px;white-space:nowrap;box-shadow:0 4px 10px rgba(0,0,0,.22)}
+.search .sx{border:0;background:var(--hover);color:var(--muted);width:22px;height:22px;
+  border-radius:50%;cursor:pointer;font-size:11px;line-height:1;flex:0 0 auto;transition:.16s}
+.search .sx:hover{background:var(--accent-grad);color:var(--on-grad,#fff)}
+@media(max-width:860px){.search{order:3;max-width:none;flex-basis:100%}}
+
+/* ---------- 5.2) التخطيط ثلاثي ---------- */
+.wrap{
+  max-width:1600px;gap:16px;padding-top:20px;
+  grid-template-columns:238px minmax(360px,1fr) minmax(330px,.95fr)
+}
+@media(max-width:1320px){.wrap{grid-template-columns:214px minmax(320px,1fr) minmax(310px,.95fr)}}
+
+/* ---------- 5.3) القائمة الجانبية ---------- */
+.side{
+  position:sticky;top:86px;align-self:start;
+  background:var(--surface);border:1px solid var(--stroke);border-radius:20px;
+  padding:14px 12px;display:flex;flex-direction:column;gap:7px;
+  box-shadow:0 16px 40px var(--glow-card)
+}
+.side-h{font-size:10.5px;font-weight:800;letter-spacing:.6px;color:var(--muted2);
+  text-transform:uppercase;padding:8px 8px 2px}
+[dir="rtl"] .side-h{letter-spacing:0}
+.menu{display:flex;flex-direction:column;gap:4px}
+.mi{
+  display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:12px;
+  color:var(--muted);text-decoration:none;font-size:13.2px;font-weight:700;
+  border:1px solid transparent;transition:.16s
+}
+.mi:hover{background:var(--hover);color:var(--txt);padding-inline-start:13px}
+.mi.active{background:var(--accent-grad);color:var(--on-grad,#fff);border-color:transparent;
+  box-shadow:0 10px 22px rgba(0,0,0,.30)}
+.mi.active:hover{padding-inline-start:9px}
+.mi-ic{width:26px;height:26px;flex:0 0 26px;border-radius:9px;background:var(--c);
+  display:grid;place-items:center;font-size:13px;box-shadow:0 4px 10px rgba(0,0,0,.25)}
+.mi-t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mi-n{font-size:10.5px;font-weight:800;background:var(--hover);border-radius:999px;
+  padding:1px 7px;color:var(--muted)}
+.mi.active .mi-n{background:rgba(255,255,255,.22);color:inherit}
+[dir="rtl"] .mi.active .mi-n{background:rgba(0,0,0,.18)}
+
+.ministat{display:flex;flex-direction:column;gap:7px}
+.ms{display:flex;align-items:center;gap:9px;background:var(--surface2);
+  border:1px solid var(--stroke);border-radius:13px;padding:8px 9px}
+.ms-ic{width:26px;height:26px;flex:0 0 26px;border-radius:9px;background:var(--c);
+  display:grid;place-items:center;font-size:13px;box-shadow:0 4px 10px rgba(0,0,0,.25)}
+.ms-t{flex:1;min-width:0;font-size:12.2px;color:var(--muted);font-weight:600;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ms-b{font-size:12.5px;font-weight:800;color:var(--txt);background:var(--hover);
+  padding:2px 9px;border-radius:999px;white-space:nowrap}
+.side-cta{
+  display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;
+  background:var(--accent-grad);color:var(--on-grad,#fff);font-weight:800;font-size:12.5px;
+  padding:10px;border-radius:13px;margin-top:2px;box-shadow:0 10px 22px rgba(0,0,0,.28);transition:.18s
+}
+.side-cta:hover{filter:brightness(1.08);transform:translateY(-2px)}
+
+/* ---------- 5.4) بطاقة الترحيب + بطاقات الإجراءات ---------- */
+.welcome{margin-bottom:14px}
+.welcome h2{margin:0;font-size:20px;font-weight:800;letter-spacing:-.3px;color:var(--head)}
+.welcome p{margin:6px 0 0;font-size:13.2px;color:var(--muted);line-height:1.65}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-bottom:16px}
+.tile{
+  display:flex;align-items:center;gap:10px;text-align:start;cursor:pointer;
+  background:var(--surface2);border:1px solid var(--stroke);border-radius:16px;
+  padding:12px;font-weight:700;font-size:13.3px;color:var(--txt);
+  box-shadow:0 6px 16px var(--glow-card);transition:.18s
+}
+.tile:hover{transform:translateY(-3px);border-color:var(--acc);box-shadow:0 14px 28px var(--glow-card)}
+.tile:active{transform:translateY(-1px)}
+.ti{width:36px;height:36px;flex:0 0 36px;border-radius:13px;background:var(--c);
+  display:grid;place-items:center;font-size:16px;color:#fff;box-shadow:0 6px 14px rgba(0,0,0,.28)}
+
+/* ---------- 5.5) ألواح: البطاقات والأقسام والحقول ---------- */
+.card{background:var(--surface);border-color:var(--stroke);border-radius:20px;
+  box-shadow:0 16px 40px var(--glow-card)}
+.card-h{padding:14px 18px;font-size:14.5px;font-weight:800;border-bottom-color:var(--stroke)}
+.card-b{padding:16px 18px}
+section.fsec{
+  background:var(--surface2);border:1px solid var(--stroke);border-radius:16px;
+  padding:14px;margin-bottom:12px;transition:border-color .18s,box-shadow .18s
+}
+section.fsec:hover{border-color:var(--acc);box-shadow:0 10px 24px var(--glow-card)}
+section.fsec:last-child{margin-bottom:0}
+.fsec > h3{gap:9px;font-size:14.5px;font-weight:800;color:var(--head)}
+.fsec > h3 .n{
+  width:24px;height:24px;border-radius:9px;background:var(--hover);
+  color:var(--muted2);font-size:12px;font-weight:800;order:2;margin-inline-start:4px
+}
+.fi{width:27px;height:27px;flex:0 0 27px;border-radius:10px;background:var(--c);
+  display:grid;place-items:center;font-size:13.5px;
+  box-shadow:0 5px 12px rgba(0,0,0,.28)}
+.divider{font-weight:800;color:var(--muted);font-size:11.5px;letter-spacing:.2px;margin:18px 0 10px}
+textarea,input[type=text],select{
+  background:var(--input);border:1px solid var(--stroke);border-radius:13px;padding:11px 13px
+}
+textarea:focus,input[type=text]:focus,select:focus{
+  border-color:var(--acc);box-shadow:0 0 0 4px var(--focus)
+}
+label.lb{font-weight:700;color:var(--muted)}
+.chips label,.chip{background:var(--surface2);border-color:var(--stroke);border-radius:999px}
+.chips input:checked + label{
+  background:var(--accent-grad);border-color:transparent;
+  color:var(--on-grad,#fff);box-shadow:0 8px 18px rgba(0,0,0,.22)
+}
+.presets .chip:hover{background:var(--hover);color:var(--txt);border-color:var(--acc)}
+.presets .chip.active{color:var(--on-grad,#fff);border-color:transparent}
+.tg{background:var(--surface2);border-color:var(--stroke);border-radius:15px}
+.tg.on{border-color:var(--green);background:var(--ok-soft)}
+.tg:hover{border-color:var(--acc);box-shadow:0 6px 16px var(--glow-card)}
+#fewBox,#imgBox{background:var(--surface2);border-color:var(--stroke);border-radius:14px}
+.hint{background:var(--surface);border:1px solid var(--stroke);border-radius:11px;padding:8px 11px}
+
+/* ---------- 5.6) لوحة المعاينة (بطاقة الترويسة المتدرجة) ---------- */
+.pv-bar{
+  background:var(--accent-grad);border-bottom:0;border-radius:18px 18px 0 0;
+  color:var(--on-grad,#fff);padding:12px 16px
+}
+.pv-bar .lang-tag{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.32);color:inherit}
+.pv-bar .btn{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.30);color:inherit}
+.pv-bar .btn:hover{background:rgba(255,255,255,.30);border-color:rgba(255,255,255,.6);transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,0,0,.22)}
+.pv-bar .btn.primary{background:#ffffff;border-color:#ffffff;color:#1e2a66;box-shadow:0 8px 18px rgba(0,0,0,.25)}
+.pv-bar .btn.primary:hover{filter:brightness(.96);background:#ffffff}
+[data-theme="neon"] .pv-bar .btn.primary{color:#08222b}
+.stats{background:var(--surface2);border-top:1px solid var(--stroke)}
+.qwrap .ring::after{background:var(--surface2)}
+.chk{background:var(--surface2);border-color:var(--stroke);border-radius:13px}
+.chk:hover{border-color:var(--acc)}
+.hitem{background:var(--surface2);border-color:var(--stroke);border-radius:13px}
+.empty{color:var(--muted2)}
+
+/* ---------- 5.7) الأقسام الجانبية: الجودة/السجل/الأدوات ---------- */
+.ai-card{background:var(--surface);border-color:var(--stroke);border-radius:16px}
+.airea .card{box-shadow:0 16px 40px var(--glow-card)}
+.hist{max-height:320px}
+
+/* ---------- 5.8) الاستجابية (توضع بعد كل القواعد أعلاه) ---------- */
+textarea::placeholder,input::placeholder,select::placeholder{color:var(--muted2) !important}
+@media(max-width:1080px){
+  .wrap{grid-template-columns:1fr}
+  .side{position:static;flex-direction:row;align-items:center;padding:8px;gap:8px;overflow:hidden}
+  .side .side-h,.side .ministat,.side .side-cta{display:none}
+  .menu{flex-direction:row;overflow-x:auto;width:100%;gap:6px;padding-bottom:2px}
+  .menu .mi{flex:0 0 auto;white-space:nowrap}
+  .menu .mi:hover{padding-inline-start:9px}
+  .menu .mi-n{display:none}
+}
+@media(max-width:760px){
+  .topbar{padding:10px 14px}
+  .search{order:3;max-width:none;flex-basis:100%}
+}
+@media(max-width:640px){
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .welcome h2{font-size:17.5px}
+  .card-b{padding:14px}
+}
+

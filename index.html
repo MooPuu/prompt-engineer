@@ -218,6 +218,13 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
     </div>
   </div>
 
+  <div class="search" id="searchBox">
+    <span class="si">🔍</span>
+    <input type="search" id="qSearch" autocomplete="off" data-i18n-ph="ph.search" placeholder="ابحث عن قسم أو حقل أو قالب…">
+    <b class="qres" id="qRes" hidden></b>
+    <button class="sx" id="qClear" type="button" title="✕" aria-label="clear">✕</button>
+  </div>
+
   <div class="top-actions">
     <div class="themes" id="langs" role="group" aria-label="Language">
       <button class="tbtn active" data-lang="ar" title="العربية"><span class="em">🇸🇦</span><span class="tx">عربي</span></button>
@@ -238,6 +245,22 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
 
 <div class="wrap">
 
+  <!-- ============ SIDEBAR (داشبورد) ============ -->
+  <aside class="side">
+    <div class="side-h" data-i18n="side.menu">القائمة</div>
+    <nav class="menu" id="sideMenu" aria-label="Sections"></nav>
+
+    <div class="side-h" data-i18n="side.stats">حالة البرومبت</div>
+    <div class="ministat">
+      <div class="ms"><span class="ms-ic" style="--c:#16a34a">📊</span><span class="ms-t" data-i18n="q.title">تقييم جودة البرومبت</span><b class="ms-b" id="msScore">0%</b></div>
+      <div class="ms"><span class="ms-ic" style="--c:#2f6bff">🔤</span><span class="ms-t" data-i18n="st.words">عدد الكلمات</span><b class="ms-b" id="msWords">0</b></div>
+      <div class="ms"><span class="ms-ic" style="--c:#e8590c">🛠️</span><span class="ms-t" data-i18n="st.tech">مفاتيح تقنية</span><b class="ms-b" id="msTech">0/12</b></div>
+      <div class="ms"><span class="ms-ic" style="--c:#7b5cff">🗂️</span><span class="ms-t" data-i18n="st.secs">عدد الأقسام</span><b class="ms-b" id="msSecsM">0</b></div>
+    </div>
+
+    <a class="side-cta" href="https://github.com/MooPuu/prompt-engineer" target="_blank" rel="noopener">⭐ <span data-i18n="side.star">نجمة على GitHub</span></a>
+  </aside>
+
   <!-- ============ FORM ============ -->
   <div class="card">
     <div class="card-h"><span class="dot"></span>
@@ -245,13 +268,27 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
       <span style="margin-inline-start:auto;font-size:12px;color:var(--muted);font-weight:500" data-i18n="card.presets">قوالب جاهزة</span>
     </div>
     <div class="card-b">
+      <div class="welcome">
+        <div class="wl">
+          <h2 data-i18n="wl.title">مرحبًا بك في مهندس البرومبت 👋</h2>
+          <p data-i18n="wl.sub">اختر قالبًا جاهزًا أو املأ الحقول — واحصل على برومبت مثالي جاهز للنسخ فورًا.</p>
+        </div>
+      </div>
+
+      <div class="tiles">
+        <button class="tile" id="tileAuto" type="button"><span class="ti" style="--c:#7b5cff">✨</span><span class="tt" data-i18n="act.auto">أكمل تلقائيًا</span></button>
+        <button class="tile" id="tileCopy" type="button"><span class="ti" style="--c:#2f6bff">📋</span><span class="tt" data-i18n="act.copy">نسخ البرومبت</span></button>
+        <button class="tile" id="tileTxt" type="button"><span class="ti" style="--c:#e8590c">⬇️</span><span class="tt" data-i18n="pv.txt">تحميل .txt</span></button>
+        <button class="tile" id="tileReset" type="button"><span class="ti" style="--c:#e11d48">↺</span><span class="tt" data-i18n="act.clear">مسح</span></button>
+      </div>
+
       <div class="presets" id="presets"></div>
 
       <div class="divider" data-i18n="div.info">معلومات المهمة</div>
 
       <!-- 1 -->
       <section class="fsec">
-        <h3><span class="n">1</span> <span data-i18n="sec.task">المهمة الأساسية</span> <b style="color:var(--red)">*</b></h3>
+        <h3><span class="n">1</span><span class="fi" style="--c:#2f6bff">🎯</span> <span data-i18n="sec.task">المهمة الأساسية</span> <b style="color:var(--red)">*</b></h3>
         <label class="lb"><span data-i18n="lb.task">ماذا تريد من الذكاء الاصطناعي أن يفعل؟</span> <b data-i18n="lb.task2">اكتب بوضوح وبجملة محددة</b></label>
         <textarea id="task" data-i18n-ph="ph.task" placeholder="مثال: اكتب لي مقالًا كاملًا عن فوائد المشي اليومي لصحة القلب، بعمق علمي مبسّط..."></textarea>
         <div class="hint" data-i18n="hint.task">💡 كلما كانت المهمة أدق، كانت النتيجة أقرب لما تتوقعه. تجنب الجمل العامة مثل "ساعدني في هذا".</div>
@@ -259,7 +296,7 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
 
       <!-- 2 -->
       <section class="fsec">
-        <h3><span class="n">2</span> <span data-i18n="sec.role">الدور (Role)</span></h3>
+        <h3><span class="n">2</span><span class="fi" style="--c:#7b5cff">👤</span> <span data-i18n="sec.role">الدور (Role)</span></h3>
         <label class="lb" data-i18n="lb.role">من تريد أن يتقمّص الشخصية؟</label>
         <input type="text" id="role" data-i18n-ph="ph.role" placeholder="مثال: خبير تسويق رقمي، مهندس برمجيات، مدرّس، محرر لغوي">
         <div class="hint" data-i18n="hint.role">منح النموذج هوية مهنية يجعل الإجابات أكثر عمقًا ودقة.</div>
@@ -267,14 +304,14 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
 
       <!-- 3 -->
       <section class="fsec">
-        <h3><span class="n">3</span> <span data-i18n="sec.context">السياق والخلفية</span></h3>
+        <h3><span class="n">3</span><span class="fi" style="--c:#0d9488">🗂️</span> <span data-i18n="sec.context">السياق والخلفية</span></h3>
         <label class="lb" data-i18n="lb.context">معلومات إضافية تساعد على فهم الموقف (سطر لكل نقطة)</label>
         <textarea id="context" data-i18n-ph="ph.context" placeholder="مثال:&#10;المشروع متجر إلكتروني للقهوة&#10;الجمهور أعماره 25-40&#10;لديّ 3 أيام فقط للتنفيذ"></textarea>
       </section>
 
       <!-- 4 -->
       <section class="fsec">
-        <h3><span class="n">4</span> <span data-i18n="sec.audience">الجمهور المستهدف</span></h3>
+        <h3><span class="n">4</span><span class="fi" style="--c:#0891b2">👥</span> <span data-i18n="sec.audience">الجمهور المستهدف</span></h3>
         <label class="lb" data-i18n="lb.audience">لمن المحتوى المطلوب؟</label>
         <input type="text" id="audience" data-i18n-ph="ph.audience" placeholder="مثال: طلاب جامعيات، مديرو تسويق، مبتدئون في البرمجة، عملاء محتملون">
       </section>
@@ -283,7 +320,7 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
 
       <!-- 5 -->
       <section class="fsec">
-        <h3><span class="n">5</span> <span data-i18n="sec.tone">النبرة والأسلوب</span></h3>
+        <h3><span class="n">5</span><span class="fi" style="--c:#e11d48">🎨</span> <span data-i18n="sec.tone">النبرة والأسلوب</span></h3>
         <div class="chips" id="toneChips">
           <input type="checkbox" id="t1" value="pro"><label for="t1" data-i18n="tone.pro">💼 احترافي</label>
           <input type="checkbox" id="t2" value="friendly"><label for="t2" data-i18n="tone.friendly">😊 ودّي</label>
@@ -307,7 +344,7 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
 
       <!-- 6 -->
       <section class="fsec">
-        <h3><span class="n">6</span> <span data-i18n="sec.format">صيغة التسليم</span></h3>
+        <h3><span class="n">6</span><span class="fi" style="--c:#e8590c">📐</span> <span data-i18n="sec.format">صيغة التسليم</span></h3>
         <div class="chips" id="fmtChips">
           <input type="checkbox" id="f1" value="md"><label for="f1">Markdown</label>
           <input type="checkbox" id="f2" value="bullets"><label for="f2" data-i18n="fmt.bullets">نقاط</label>
@@ -348,7 +385,7 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
 
       <!-- 7 -->
       <section class="fsec">
-        <h3><span class="n">7</span> <span data-i18n="sec.constraints">القيود والمتطلبات</span></h3>
+        <h3><span class="n">7</span><span class="fi" style="--c:#d97706">📏</span> <span data-i18n="sec.constraints">القيود والمتطلبات</span></h3>
         <label class="lb"><span data-i18n="lb.constraints">شروط يجب احترامها</span> <b data-i18n="lb.lineEach">(سطر لكل متطلب)</b></label>
         <textarea id="constraints" data-i18n-ph="ph.constraints" placeholder="مثال:&#10;استخدم مصادر موثوقة&#10;لا تتجاوز 5 عناوين فرعية&#10;أضف أمثلة واقعية&#10;ابدأ بجملة خطاف قوية"></textarea>
         <label class="lb" style="margin-top:11px"><span data-i18n="lb.avoid">ما يجب</span> <b data-i18n="lb.avoid2">تجنّبه</b></label>
@@ -359,7 +396,7 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
 
       <!-- 8 -->
       <section class="fsec">
-        <h3><span class="n">8</span> <span data-i18n="sec.toggles">مفاتيح التحسين</span></h3>
+        <h3><span class="n">8</span><span class="fi" style="--c:#16a34a">🛠️</span> <span data-i18n="sec.toggles">مفاتيح التحسين</span></h3>
 
         <div class="tg" data-tg="ask">
           <span class="sw"></span>
@@ -440,7 +477,7 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
 
       <!-- 9 -->
       <section class="fsec">
-        <h3><span class="n">9</span> <span data-i18n="sec.img">وضع توليد الصور (اختياري)</span></h3>
+        <h3><span class="n">9</span><span class="fi" style="--c:#c026d3">🖼️</span> <span data-i18n="sec.img">وضع توليد الصور (اختياري)</span></h3>
         <div class="tg" data-tg="img">
           <span class="sw"></span>
           <div><p class="tg-t" data-i18n="tg.img">تحويل الطلب إلى برومبت صور 🖼️</p>
@@ -639,6 +676,12 @@ ar:{
 'theme.night':'ليلي','theme.light':'نهاري','theme.neon':'نيون',
 'act.auto':'أكمل تلقائيًا','act.clear':'مسح','act.copy':'نسخ البرومبت',
 'card.builder':'لوحة البناء','card.presets':'قوالب جاهزة',
+'ph.search':'ابحث عن قسم أو حقل أو قالب…',
+'side.menu':'القائمة','side.stats':'حالة البرومبت','side.star':'نجمة على GitHub',
+'side.presets':'القوالب الجاهزة','side.preview':'البرومبت الناتج','side.quality':'تقييم الجودة','side.tools':'برامج مقترحة',
+'side.results':'نتيجة','side.noresult':'لا توجد نتائج مطابقة',
+'wl.title':'مرحبًا بك في مهندس البرومبت 👋',
+'wl.sub':'اختر قالبًا جاهزًا أو املأ الحقول — واحصل على برومبت مثالي جاهز للنسخ فورًا.',
 'div.info':'معلومات المهمة','div.shape':'شكل المخرجات','div.tech':'تقنيات هندسة البرومبت المتقدمة',
 'sec.task':'المهمة الأساسية','lb.task':'ماذا تريد من الذكاء الاصطناعي أن يفعل؟','lb.task2':'اكتب بوضوح وبجملة محددة',
 'ph.task':'مثال: اكتب لي مقالًا كاملًا عن فوائد المشي اليومي لصحة القلب، بعمق علمي مبسّط...',
@@ -747,6 +790,12 @@ en:{
 'theme.night':'Dark','theme.light':'Light','theme.neon':'Neon',
 'act.auto':'Auto-fill','act.clear':'Clear','act.copy':'Copy Prompt',
 'card.builder':'Builder Panel','card.presets':'Quick presets',
+'ph.search':'Search sections, fields or presets…',
+'side.menu':'Menu','side.stats':'Prompt status','side.star':'Star on GitHub',
+'side.presets':'Ready presets','side.preview':'Generated prompt','side.quality':'Quality score','side.tools':'AI tools',
+'side.results':'results','side.noresult':'No matching results',
+'wl.title':'Welcome to Prompt Engineer 👋',
+'wl.sub':'Pick a ready preset or fill the fields — get a perfect prompt ready to copy instantly.',
 'div.info':'Task details','div.shape':'Output shape','div.tech':'Advanced prompt techniques',
 'sec.task':'Main Task','lb.task':'What should the AI do?','lb.task2':'be specific and concrete',
 'ph.task':'e.g. Write a full article about the benefits of daily walking for heart health, in simplified scientific depth...',
@@ -874,6 +923,8 @@ function setLang(lg, silent){
   applyI18n();
   const sel = $('lang'); if(sel) sel.value = (lg === 'en' ? 'en' : 'ar');
   renderPresets(); render(); renderHistory(); renderAi();
+  if(qEl && qEl.value) filterUI(qEl.value);
+  markActive();
   if(!silent) toast(t('msg.theme'));
 }
 
@@ -1324,6 +1375,7 @@ function score(v){
   const col = p>=80?'var(--green)':p>=50?'var(--amber)':'var(--red)';
   $('ring').style.background='conic-gradient('+col+' '+p+'%, var(--track) 0)';
   $('scoreTip').innerHTML = p>=80 ? t('q.good') : (p>=50 ? t('q.mid') : t('q.low'));
+  syncMini();
 }
 function focusField(f){
   const tgEl = document.querySelector('.tg[data-tg="'+f+'"]');
@@ -1525,14 +1577,102 @@ function renderAi(){
   });
 }
 
+/* ================= Dashboard: قائمة جانبية + بحث فوري + إجراءات ================= */
+const SIDE_ANCHORS=[
+  {k:'side.presets', i:'📑', c:'#16a34a', h:'#presets'},
+  {k:'side.preview', i:'📝', c:'#0891b2', h:'#preview'},
+  {k:'side.quality', i:'📊', c:'#d97706', h:'#ring'},
+  {k:'side.tools',   i:'🤖', c:'#e11d48', h:'#aiGrid'}
+];
+function buildSideMenu(){
+  const nav=$('sideMenu'); if(!nav) return;
+  nav.innerHTML='';
+  document.querySelectorAll('section.fsec').forEach((sec,i)=>{
+    if(!sec.id) sec.id='fsec-'+i;
+    const lab=sec.querySelector('h3 [data-i18n]');
+    const fi=sec.querySelector('.fi');
+    const a=document.createElement('a');
+    a.className='mi'; a.href='#'+sec.id; a.dataset.sec=i;
+    a.innerHTML='<span class="mi-ic" style="--c:'+(fi?fi.style.getPropertyValue('--c'):'#6c8cff')+'">'+(fi?fi.textContent:'•')+'</span>'+
+                '<span class="mi-t"'+(lab?' data-i18n="'+lab.dataset.i18n+'"':'')+'>'+(lab?lab.textContent:'')+'</span>'+
+                '<span class="mi-n">'+(i+1)+'</span>';
+    nav.appendChild(a);
+  });
+  SIDE_ANCHORS.forEach(x=>{
+    const a=document.createElement('a');
+    a.className='mi'; a.href=x.h; a.dataset.anchor='1';
+    a.innerHTML='<span class="mi-ic" style="--c:'+x.c+'">'+x.i+'</span>'+
+                '<span class="mi-t" data-i18n="'+x.k+'">'+t(x.k)+'</span>';
+    nav.appendChild(a);
+  });
+}
+function markActive(){
+  const items=document.querySelectorAll('#sideMenu .mi[data-sec]');
+  if(!items.length) return;
+  let cur=-1;
+  document.querySelectorAll('section.fsec').forEach((s,i)=>{ if(!s.hidden && s.getBoundingClientRect().top<220) cur=i; });
+  items.forEach((it,i)=>it.classList.toggle('active', i===cur));
+}
+window.addEventListener('scroll',()=>{
+  if(window.__mact) cancelAnimationFrame(window.__mact);
+  window.__mact=requestAnimationFrame(markActive);
+},{passive:true});
+
+/* بحث فوري يفلتر الأقسام والقوالب والأدوات والقائمة */
+function filterUI(raw){
+  const s=(raw||'').trim().toLowerCase();
+  let hits=0;
+  document.querySelectorAll('section.fsec').forEach(sec=>{
+    const ok=!s || sec.textContent.toLowerCase().indexOf(s)>=0;
+    sec.hidden=!ok; if(ok) hits++;
+  });
+  document.querySelectorAll('.divider').forEach(d=>{ d.hidden=!!s; });
+  document.querySelectorAll('#presets .chip').forEach(c=>{ c.hidden=!!s && c.textContent.toLowerCase().indexOf(s)<0; });
+  document.querySelectorAll('.ai-card').forEach(c=>{ c.hidden=!!s && c.textContent.toLowerCase().indexOf(s)<0; });
+  document.querySelectorAll('#sideMenu .mi').forEach(m=>{ m.hidden=!!s && m.textContent.toLowerCase().indexOf(s)<0; });
+  const badge=$('qRes');
+  if(badge){ badge.hidden=!s; badge.textContent = s ? (hits+' '+t('side.results')) : ''; }
+  markActive();
+}
+const qEl=$('qSearch');
+if(qEl){
+  qEl.addEventListener('input',()=>filterUI(qEl.value));
+  qEl.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){ qEl.value=''; filterUI(''); }
+    if(e.key==='Enter'){
+      e.preventDefault();
+      const first=document.querySelector('section.fsec:not([hidden])');
+      if(first) first.scrollIntoView({behavior:'smooth',block:'start'});
+      else toast(t('side.noresult'));
+    }
+  });
+  $('qClear').onclick=()=>{ qEl.value=''; filterUI(''); qEl.focus(); };
+}
+
+/* بطاقات الإجراءات السريعة تعيد استخدام أزرار الشريط العلوي */
+[['tileAuto','btnAuto'],['tileCopy','btnCopyTop'],['tileTxt','btnTxt'],['tileReset','btnReset']].forEach(p=>{
+  const a=$(p[0]), b=$(p[1]); if(a&&b) a.onclick=()=>b.click();
+});
+
+/* إحصاءات القائمة الجانبية (تتحدّث مع كل تقييم) */
+function syncMini(){
+  if(!$('msScore')) return;
+  $('msScore').textContent = $('score').textContent;
+  $('msWords').textContent = $('stWords').textContent;
+  $('msTech').textContent  = $('stTech').textContent;
+  $('msSecsM').textContent = $('stSecs').textContent;
+}
+
 /* ================= Init ================= */
 (function init(){
   let lg='ar'; try{ lg = localStorage.getItem('pe_lang') || 'ar'; }catch(e){}
   let th='midnight'; try{ th = localStorage.getItem('pe_theme') || 'midnight'; }catch(e){}
+  buildSideMenu();
   setTheme(th);
   setLang(lg, true);
   $('preview').textContent = t('preview.start');
   render();
+  markActive();
 })();
 </script>
 </body>
