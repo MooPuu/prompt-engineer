@@ -1,93 +1,94 @@
-<div dir="rtl">
-
-# 🧠 مهندس البرومبت | Prompt Engineer
+# 🧠 Prompt Engineer
 
 ![Prompt Engineer](./build/social-preview.png)
 
-> أداة عربية/إنجليزية تساعدك على بناء **برومبت (أمر) مثالي ومتكامل** بنقرات قليلة، ثم نسخه ولصقه في أي أداة ذكاء اصطناعي.
+> A bilingual (Arabic / English) app that helps you build a **perfect, complete AI prompt** in a few clicks, then copy it into any AI tool.
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-🟢_يعمل_على_الويب-6c8cff?style=for-the-badge&logo=githubpages&logoColor=white)](https://moopuu.github.io/prompt-engineer/)
-[![Download EXE](https://img.shields.io/badge/⬇_تحميل_EXE-3_نسخات-3ddc97?style=for-the-badge&logo=windows&logoColor=black)](https://github.com/MooPuu/prompt-engineer/releases)
+[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-🟢_Live_on_the_web-6c8cff?style=for-the-badge&logo=githubpages&logoColor=white)](https://moopuu.github.io/prompt-engineer/)
+[![Download](https://img.shields.io/badge/⬇_Download-EXE_%2B_APK-3ddc97?style=for-the-badge&logo=windows&logoColor=black)](https://github.com/MooPuu/prompt-engineer/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-9b6cff?style=for-the-badge)](./LICENSE)
-[![Made by](https://img.shields.io/badge/©_Mahdi_Kareem-Made%20with%20❤️-ff7a85?style=for-the-badge)](#-الحقوق)
+[![Made by](https://img.shields.io/badge/©_Mahdi_Kareem-Made%20with%20❤️-ff7a85?style=for-the-badge)](#-copyright)
 
 ---
 
-## 🌐 روابط سريعة
+## 🔗 Quick links
 
-| الوصف | الرابط |
+| Description | Link |
 |---|---|
-| 🌐 التشغيل على الويب (GitHub Pages) | **https://moopuu.github.io/prompt-engineer/** |
-| 📂 المستودع | **https://github.com/MooPuu/prompt-engineer** |
-| ⬇ تنزيل ملفات EXE الجاهزة | **https://github.com/MooPuu/prompt-engineer/releases** |
+| 🌐 Run it on the web (GitHub Pages) | **https://moopuu.github.io/prompt-engineer/** |
+| 📱 **Second site — mobile phone UI** | **https://moopuu.github.io/prompt-engineer/mobile/** |
+| 📂 Repository | **https://github.com/MooPuu/prompt-engineer** |
+| ⬇ Ready-made installers (EXE / MSI) | **https://github.com/MooPuu/prompt-engineer/releases** |
+| 📦 **Android APK** | **https://github.com/MooPuu/prompt-engineer/releases/tag/v1.5.0** |
 
 ---
 
-## ✨ المميزات
+## ✨ Features
 
-### 1) لوحة بناء من 9 أقسام
-- **المهمة الأساسية** — ماذا تريد بالضبط من الذكاء الاصطناعي.
-- **الدور (Role)** — من يتقمّص الشخصية (مهندس، محرر، محلل بيانات…).
-- **السياق والخلفية** — معلومات المشروع/الموقف (سطر لكل نقطة).
-- **الجمهور المستهدف** — لمن المحتوى.
-- **النبرة والأسلوب** — **17 نبرة**: احترافي، ودّي، تعليمي، إبداعي، مختصر، مقنع، علمي، أكاديمي، ساخر ذكي، تحفيزي، أدبي شاعري، حواري، توثيقي، متفائل، مرح، متعاطف، جريء.
-- **صيغة التسليم** — **14 صيغة**: Markdown، نقاط، جدول، JSON، كود، فقرات، **صورة**، HTML، CSV، SQL، إيميل، سكربت، عرض تقديمي، تقرير رسمي + الطول + لغة الإجابة.
-- **القيود والمتطلبات** + **ما يجب تجنّبه**.
-- **مفاتيح التحسين** و**وضع توليد الصور** (أدناه).
+### 1) A 9-section prompt builder
+- **Task** — exactly what you want the AI to do.
+- **Role** — the persona it should adopt (engineer, editor, data analyst…).
+- **Context & background** — project/situation details (one bullet per point).
+- **Audience** — who the output is for.
+- **Tone & style** — **17 tones**: professional, friendly, educational, creative, concise, persuasive, scientific, academic, witty, motivational, literary/poetic, conversational, documentary, optimistic, playful, empathetic, bold.
+- **Delivery format** — **14 formats**: Markdown, bullet points, table, JSON, code, paragraphs, **image**, HTML, CSV, SQL, email, script, presentation, formal report + length + answer language.
+- **Constraints & requirements** + **Do-not patterns**.
+- **Enhancement toggles** and **image generation mode** (below).
 
-### 2) ثيمات ثلاث 🎨
-| الثيم | الوصف |
+### 2) Three themes 🎨
+| Theme | Description |
 |---|---|
-| 🌙 **ليلي (Midnight)** | داكن هادئ بألوان أزرق/بنفسجي — الافتراضي. |
-| ☀️ **نهاري (Light)** | فاتح عالي التباين وسهل القراءة بالكامل. |
-| ⚡ **نيون (Neon)** | أسود عميق بلمسات سماوية/وردية عالية التباين. |
+| 🌙 **Midnight** | Calm dark blue/violet — the default. |
+| ☀️ **Light** | Bright, high contrast, fully readable. |
+| ⚡ **Neon** | Deep black with high-contrast cyan/pink accents. |
 
-يُحفظ اختيارك تلقائيًا في المتصفح.
+Your choice is saved automatically in the browser.
 
-- **واجهة داشبورد حديثة** على طراز اللوحات الاحترافية: **قائمة جانبية** (تسريع التنقّل بين الأقسام + اختصارات + مؤشر قسم نشط يتتبّع التمرير + إحصاءات حيّة للجودة والكلمات والمفاتيح + زر نجمة المستودع)، **شريط بحث فوري** أعلى الصفحة (يفلتر الأقسام والقوالب والأدوات مع عدّاد نتائج، Enter للانتقال)، **بطاقة ترحيب** و**4 بطاقات إجراءات** بأيقونات ملوّنة (أكمل تلقائيًا · نسخ · تحميل · مسح)، **ألواح أقسام بحواف دائرية** مع أيقونة ملوّنة لكل قسم، وترويسة معاينة بتدرّج لوني — تصميم متجاوب يتحوّل إلى شريط أفقي على الشاشات الصغيرة، إضافة إلى **الشريط العلوي القابل للطيّ**: اضغط على **شعار التطبيق** لطيّه (إخفاء البحث والأزرار) وتوسيعه مجددًا مع تأثير حركي وحفظ لحالتك ودعم للوحة المفاتيح.
-- **واجهة عصرية** مصقولة: بطاقات بظلال ناعمة، تأثيرات hover، و**شريط تمرير (Scrollbar) عصري مخصّص** — سكة شفافة + مقبض دائري `pill` يتغيّر لونه حسب الثيم ويتوهج عند المرور، على كامل الصفحة ومعاينة البرومبت، ويحترم اتجاه RTL/LTR (يدعم Firefox وChromium).
-- **تباين معتمد على WCAG** — فُحصت **35 عنصرًا × 3 ثيمات** (نصوص، حقول، شارات، قائمة جانبية، تذييل) وتجاوزت جميعها حدّ **4.5:1**.
+- **Modern dashboard UI** modeled on professional panels: a **sidebar** (fast navigation between sections + shortcuts + an active section indicator that follows the scroll + live quality/word/technique stats + a star button), an **instant search bar** at the top (filters sections, presets and tools with a result counter, Enter jumps to a match), a **welcome card** and **4 action tiles** with colored icons (Auto-fill · Copy · Download · Clear), **rounded section panels** with a colored icon each and a **gradient preview header** — responsive, collapsing into a horizontal bar on small screens, plus a **collapsible top bar**: click the **app logo** to collapse it (search, actions and tagline hide) and click again to expand, with a smooth animation, a rotating chevron, a persisted state and full keyboard support.
+- **Polished modern styling**: soft-shadow cards, hover effects and a **custom themed scrollbar** — a translucent track with a round `pill` thumb that changes color per theme and glows on hover, across the whole page and the prompt preview, respecting RTL/LTR (works in Firefox and Chromium).
+- **WCAG-checked contrast** — **35 elements × 3 themes** verified (text, fields, badges, sidebar, footer), all at or above **4.5:1**.
 
-### 3) لغتان كاملتان 🌍🇸🇦
-- واجهة **عربية RTL** وواجهة **إنجليزية LTR** بتبديل فوري من الشريط العلوي.
-- تُترجم: العناوين، التسميات، الإرشادات، النصوص المساعدة، القوالب، معايير التقييم، الرسائل، السجل والتذييل.
-- **برومبت الإخراج** نفسه يُبنى بالعربية أو الإنجليزية حسب اختيارك في "لغة الإجابة".
+### 3) Two full languages 🌍
+- **Arabic (RTL)** and **English (LTR)** UI with one click from the top bar.
+- Translated: headings, labels, hints, tooltips, presets, scoring criteria, messages, history and footer.
+- The **generated prompt itself** is built in Arabic or English according to your “Answer language” choice.
 
-### 4) تقنيات هندسة البرومبت المتقدمة 🛠️
-**10 مفاتيح تحسين** (قسم 8 في اللوحة) تضيف تقنيات هندسة برومبت حقيقية:
-| المفتاح | الأثر |
+### 4) Advanced prompt-engineering techniques 🛠️
+**10 enhancement toggles** (section 8 of the panel) add real prompt-engineering techniques:
+
+| Toggle | Effect |
 |---|---|
-| 🙋 **اسأل قبل البدء** | يمنع التخمين: النموذج يسأل سؤالًا محددًا إذا نقصت معلومة. |
-| 🧩 **تفكير خطوة بخطوة** | Chain-of-Thought: تحليل قبل الإجابة → دقة أعلى في المهام المعقدة. |
-| ✅ **مراجعة ذاتية** | يتحقق من استيفاء المتطلبات قبل التسليم النهائي. |
-| 🎯 **أمثلة (Few-Shot)** | أمثلة مدخل/مخرج تضبط الأسلوب بدقة. |
-| 🎯 **إجابة مباشرة بلا مقدمات** | يحذف "بالتأكيد!" ويبدأ بالقيمة فورًا. |
-| 📎 **ذكر المصادر والمراجع** | روابط ومراجع للمعلومات غير الشائعة + تمييز الافتراضات. |
-| 🧪 **2–3 بدائل ومقارنة** | جدول مزايا/عيوب لكل خيار مع توصية نهائية. |
-| ⚖️ **وجهات نظر متوازنة** | الرأي المؤيد والمعارض قبل استنتاج محايد. |
-| 🧒 **بسّط اللغة (ELI5)** | شرح مفهوم للمبتدئ بلا مصطلحات معقدة. |
-| 🗓️ **خطة تنفيذ قابلة للقياس** | خطوات مرقّمة بمواعيد ومعايير نجاح واضحة. |
+| 🙋 **Ask before starting** | Stops guessing: the model asks one specific question when information is missing. |
+| 🧩 **Step-by-step thinking** | Chain-of-Thought: reason before answering → higher accuracy on complex tasks. |
+| ✅ **Self review** | Verifies the requirements were met before the final answer. |
+| 🎯 **Few-shot examples** | Input/output examples pin down the style precisely. |
+| 🎯 **Direct answer, no fluff** | Drops “Sure!” and leads with the value. |
+| 📎 **Cite sources** | Links and references for uncommon facts + assumptions are flagged. |
+| 🧪 **2–3 alternatives & comparison** | Pros/cons table per option with a final recommendation. |
+| ⚖️ **Balanced viewpoints** | For and against arguments before a neutral conclusion. |
+| 🧒 **Simplify (ELI5)** | Beginner-friendly explanation without jargon. |
+| 🗓️ **Measurable action plan** | Numbered steps with deadlines and clear success criteria. |
 
-### 5) تقييم جودة مباشر 📈
-دائرة نسبة مئوية + **12 معيارًا** (المهمة، الدور، السياق، الجمهور، الصيغة، الطول، النبرة، القيود، التجنّب، CoT، المراجعة الذاتية، الأمثلة).
-**النقر على أي عنصر غير مكتمل ينقلك مباشرة إلى الحقل الناقص.**
+### 5) Live quality score 📈
+A percentage ring plus **12 checks** (task, role, context, audience, format, length, tone, constraints, do-not, CoT, self-review, examples).
+**Clicking any incomplete item jumps straight to the missing field.**
 
-### 6) أدوات الإخراج 📤
-- نسخ البرومبت بزر واحد (مع حفظ تلقائي في السجل — آخر 8 برومبتات).
-- تحميل كملف `.txt` أو `.md`.
-- زر **✨ أكمل تلقائيًا** يملأ الحقول الناقصة بأفضل الممارسات.
-- **16 قالبًا جاهزًا**: مقال/محتوى، برمجة، تحليل بيانات، تسويق، تلخيص، خطة ودراسة، ترجمة، توليد صور، إيميل، منشور سوشيال، سكربت فيديو، توليد أفكار، تحليل منافسين، أوصاف منتجات، شرح مفهوم، رد على عميل.
+### 6) Output tools 📤
+- One-click copy (auto-saved to history — the last 8 prompts).
+- Download as `.txt` or `.md`.
+- **✨ Auto-fill** button that fills the missing fields with best practices.
+- **16 ready-made presets**: article/content, coding, data analysis, marketing, summarizing, plan & study, translation, image generation, email, social post, video script, ideation, competitor analysis, product descriptions, concept explainer, customer reply.
 
-### 7) وضع توليد الصور 🖼️
-يحوّل طلبك إلى **برومبت إنجليزي جاهز** لـ Midjourney / DALL·E / Stable Diffusion، مع:
-- **46 أسلوبًا فنيًا** موزّعة على 4 مجموعات (📷 تصوير · 🖌️ فنون · 💻 رقمي و3D · 🎨 رسوميات وتصميم).
-- **28 مقاسًا** في 3 مجموعات (أفقي · مربع/عمودي · 📐 مقاسات بكسل شائعة مثل `1920x1080` و`A4`) **+ حقل أبعاد مخصّص** يتجاوز الاختيار — والمقاسات البكسلية تُحوَّل تلقائيًا إلى `resolution` + نسبة `--ar` محسوبة.
-- سطر **Negative Prompt** قابل للتحرير + سطر جودة + الوضع المزاجي المأخوذ من النبرة.
+### 7) Image generation mode 🖼️
+Turns your request into a **ready-to-use English image prompt** for Midjourney / DALL·E / Stable Diffusion, with:
+- **46 art styles** in 4 groups (📷 Photography · 🖌️ Fine art · 💻 Digital & 3D · 🎨 Graphics & design).
+- **28 sizes** in 3 groups (landscape · square/portrait · 📐 common pixel sizes like `1920x1080` and `A4`) **plus a custom size field** that overrides the selection — pixel sizes are converted automatically into a `resolution` line and a computed `--ar` ratio.
+- An editable **Negative Prompt** line + a quality line + the mood taken from the chosen tone.
 
-### 8) قسم البرامج الموصى بها 🤖
-في أسفل الصفحة قسم يعرض **8 برامج ذكاء اصطناعي موصى بها** لاستخدام البرومبت، ولكل برنامج **بديل مجاني مفتوح المصدر**، والنقر على البطاقة يفتح الرابطين معًا:
+### 8) Recommended tools section 🤖
+A section at the bottom of the page lists **8 recommended AI tools** to use your prompt with, each with a **free open-source alternative**. Clicking a card opens **both** links:
 
-| البرنامج المقترح 🔗 | البديل المجاني مفتوح المصدر 🔓 |
+| Recommended tool 🔗 | Free open-source alternative 🔓 |
 |---|---|
 | ChatGPT | [Open WebUI](https://github.com/open-webui/open-webui) |
 | Claude | [LibreChat](https://github.com/danny-avila/LibreChat) |
@@ -98,75 +99,106 @@
 | ElevenLabs | [Coqui TTS](https://github.com/coqui-ai/TTS) |
 | Sora | [LTX-Video](https://github.com/Lightricks/LTX-Video) |
 
----
+### 9) Mobile version 📱 (second site + Android APK)
+A standalone **mobile phone UI** with a **light indigo dashboard** design: greeting header, gradient quality card, 4 quick-action buttons, collapsible section cards with colored icons, a circular quality ring, presets, image mode, tool cards and a 5-tab bottom navigation bar.
 
-## 🧩 بنية البرومبت الناتج
-
-كل برومبت يخرج من التطبيق منظّمًا في أقسام `##` يفهمها النموذج أفضل:
-
-```
-## الدور (ROLE)
-## المهمة (TASK)
-## السياق والخلفية (CONTEXT)
-## الجمهور المستهدف (AUDIENCE)
-## متطلبات الإخراج (OUTPUT REQUIREMENTS)
-## النبرة والأسلوب (TONE)
-## القيود والمتطلبات (CONSTRAINTS)
-## ما يجب تجنّبه (DO NOT)
-## طريقة العمل (METHOD)            ← عند تفعيل CoT / Ask
-## أمثلة مرجعية (FEW-SHOT)         ← عند تفعيل الأمثلة
-## معايير النجاح (SUCCESS CRITERIA)
-## تعليمات أخيرة (FINAL INSTRUCTIONS)
-```
+- 🔗 **Second site (mobile UI):** https://moopuu.github.io/prompt-engineer/mobile/
+- 📦 **Android app:** `Prompt-Engineer-v1.5.0.apk` on the [v1.5.0 release page](https://github.com/MooPuu/prompt-engineer/releases/tag/v1.5.0)
+- 🌍 Arabic/English in one tap · installable PWA · works offline (Service Worker) · exactly the same prompt engine and output as the desktop version.
+- The Arabic language button in the UI is the **letter ع inside a white square with black borders** (instead of the 🇸🇦 flag).
 
 ---
 
-## 🚀 طرق التشغيل
+## 🧩 Structure of the generated prompt
 
-### 1) الويب (بدون تثبيت)
-افتح: **https://moopuu.github.io/prompt-engineer/**
+Every prompt leaves the app organized into `##` sections that models handle well:
 
-### 2) محليًا من الملفات
-افتح `index.html` مباشرة في أي متصفح (يعمل بدون إنترنت ما عدا خطوط Google).
+```
+## ROLE
+## TASK
+## CONTEXT
+## AUDIENCE
+## OUTPUT REQUIREMENTS
+## TONE
+## CONSTRAINTS
+## DO NOT
+## METHOD              ← when CoT / Ask is enabled
+## FEW-SHOT            ← when examples are enabled
+## SUCCESS CRITERIA
+## FINAL INSTRUCTIONS
+```
+
+> With Arabic selected as the answer language, the same sections are emitted with Arabic headings (الدور · المهمة · السياق …).
+
+---
+
+## 🚀 How to run it
+
+### 1) Web (no install)
+Open: **https://moopuu.github.io/prompt-engineer/**
+
+### 2) Mobile version — Android APK 📱
+
+| Option | Link / steps |
+|---|---|
+| 🌐 Mobile site | **https://moopuu.github.io/prompt-engineer/mobile/** |
+| 📦 Direct APK download | **https://github.com/MooPuu/prompt-engineer/releases/tag/v1.5.0** ← `Prompt-Engineer-v1.5.0.apk` |
+
+1. Download `Prompt-Engineer-v1.5.0.apk` from the release page.
+2. Open it on your phone — if you see an “Unknown sources” warning, allow your browser or file manager.
+3. Install the app; it appears with the same icon as the desktop version.
+
+> The mobile UI is also a **PWA**: from the phone browser use “Add to Home screen” to run it full-screen as a standalone, offline-capable app.
+
+### 3) Locally from the files
+Open `index.html` directly in any browser (works offline except for Google Fonts). For the mobile UI, open `mobile/index.html`.
 
 ```bash
-# أو عبر خادم محلي
+# or through a local server
 npx serve .
 ```
 
-### 3) نسخة سطح المكتب (Electron)
+### 4) Desktop version (Electron)
 
 ```bash
-npm install          # تثبيت الحزم
-npm start            # تشغيل التطوير
-npm run build        # بناء النسخ الثلاث معًا 🔄
+npm install          # install dependencies
+npm start            # run in development
+npm run build        # build all three installers 🔄
 ```
 
-| الأمر | الناتج |
+| Command | Output |
 |---|---|
-| `npm run build:portable` | **نسخة محمولة** — `Prompt-Engineer-Portable-v1.5.0.exe` (بدون تثبيت، تعمل من أي مكان/ USB) |
-| `npm run build:nsis` | **مثبّت Setup** — `Prompt-Engineer-Setup-v1.5.0.exe` (تثبيت بمسار اختياري + اختصارات) |
-| `npm run build:msi` | **مثبّت MSI** — `Prompt-Engineer-Setup-v1.5.0.msi` (مثبّت ويندوز رسمي/شركات) |
-| `npm run build` | بناء الثلاثة معًا |
+| `npm run build:portable` | **Portable build** — `Prompt-Engineer-Portable-v1.5.0.exe` (no install, runs from anywhere / USB) |
+| `npm run build:nsis` | **Setup installer** — `Prompt-Engineer-Setup-v1.5.0.exe` (custom path + shortcuts) |
+| `npm run build:msi` | **MSI installer** — `Prompt-Engineer-Setup-v1.5.0.msi` (official/company Windows installs) |
+| `npm run build` | All three at once |
 
-> ملفات البناء تُحفظ في مجلد `dist/`.
-> المثبّتات موقّعة ذاتيًا (Self-signed) — قد يطلب منك Windows تأكيد التشغيل.
+> Artifacts are written to the `dist/` folder.
+> The installers are self-signed — Windows may ask you to confirm the run.
 
 ---
 
-## 📁 بنية المشروع
+## 📁 Project structure
 
 ```
 prompt-engineer/
-├── index.html                  # التطبيق كاملًا (HTML + CSS + JS)
-├── themes.css                  # طبقة الثيمات الثلاث + الواجهة العصرية
-├── prompt engineer icon.png    # أيقونة التطبيق الأصلية
+├── index.html                  # the whole web/desktop app (HTML + CSS + JS)
+├── themes.css                  # three-theme layer + modern UI
+├── mobile/                     # 📱 mobile phone site (PWA + APK source)
+│   ├── index.html              # mobile UI (light dashboard)
+│   ├── mobile.css              # mobile design system
+│   ├── app.js                  # logic + AR/EN translations + prompt engine
+│   ├── data.js                 # data (presets, tones, tools) — extracted from index.html
+│   ├── manifest.webmanifest    # PWA manifest (installable from the home screen)
+│   ├── sw.js                   # Service Worker for offline use
+│   └── icon-192/512.png        # app icons (192 / 512 / maskable)
+├── prompt engineer icon.png    # official app icon
 ├── main.js                     # Electron main process
-├── package.json                # بيانات الحزمة + إعدادات البناء
+├── package.json                # package metadata + build configuration
 ├── build/
-│   ├── icon.png                # أيقونة 256×256 (مربّعة)
-│   └── icon.ico                # أيقونة ويندوز (Multi-size)
-├── dist/                       # ناتج البناء (غير مُرفع)
+│   ├── icon.png                # 256×256 (square) icon
+│   └── icon.ico                # Windows icon (multi-size)
+├── dist/                       # build output (not committed)
 ├── README.md
 ├── LICENSE                     # MIT
 └── .gitignore
@@ -174,74 +206,37 @@ prompt-engineer/
 
 ---
 
-## 🛠️ التقنيات
+## 🛠️ Tech stack
 
-- **HTML5 / CSS3 / Vanilla JavaScript** — بدون أي إطار عمل، سهل التعديل والتطوير.
-- **CSS Custom Properties** — نظام ثيمات كامل عبر متغيرات.
-- **localStorage** — حفظ الثيم واللغة والسجل.
-- **Electron + electron-builder** — نسخة سطح مكتب وبناء EXE/MSI.
-
----
-
-## 📌 خارطة طريق مقترحة
-
-- [ ] حفظ البرومبتات في ملفات (تصدير/استيراد JSON).
-- [ ] وضع مقارنة بين مخرجات عدة نماذج.
-- [ ] اختصارات لوحة مفاتيح (Ctrl+C للنسخ، Ctrl+1..3 للثيمات).
-- [ ] إضافة قوالب جديدة (SEO، سير عمل، تحليل منافسين).
-- [ ] نسخة محمولة باللغتين افتراضيًا حسب لغة النظام.
+- **HTML5 / CSS3 / Vanilla JavaScript** — no framework, easy to read and extend.
+- **CSS Custom Properties** — a full theming system built on variables.
+- **localStorage** — saves theme, language and history.
+- **Electron + electron-builder** — desktop version and EXE/MSI builds.
+- **Bubblewrap (Trusted Web Activity)** — the Android APK wraps the live mobile site.
 
 ---
 
-## 📄 الرخصة
+## 📌 Suggested roadmap
 
-هذه المشروع مرخّص برخصة **MIT** — انظر [LICENSE](./LICENSE).
-
----
-
-## © الحقوق
-
-**© 2026 Mahdi Kareem — جميع الحقوق محفوظة.**
-صُنع بعناية ❤️
+- [ ] Save prompts to files (JSON export/import).
+- [ ] A comparison mode for outputs from several models.
+- [ ] Keyboard shortcuts (Ctrl+C to copy, Ctrl+1..3 for themes).
+- [ ] More presets (SEO, workflows, competitor analysis).
+- [ ] Start in the system language (Arabic ⇄ English) by default.
 
 ---
 
-</div>
+## 📄 License
+
+This project is licensed under the **MIT** license — see [LICENSE](./LICENSE).
 
 ---
 
-<div dir="ltr">
+## © Copyright
 
-## 🇬🇧 English Summary
+**© 2026 Mahdi Kareem — All rights reserved.**
+Crafted with care ❤️
 
-**Prompt Engineer** is a bilingual (Arabic/English) web + desktop app that helps you build a **perfect, complete AI prompt** in a few clicks, then copy it into ChatGPT, Claude, Gemini, Midjourney, or any other tool.
+---
 
-**Highlights**
-- 9-section prompt builder (task, role, context, audience, tone, format, length, language, constraints, anti-patterns)
-- **Modern dashboard UI**: side navigation menu with a live-active section + live stats, instant search that filters sections/presets/tools with a result counter, welcome card & 4 action tiles, rounded colored section panels and a gradient preview header
-- **Collapsible top bar**: click the **app logo** to collapse the bar (search, actions, tagline) and click again to expand — smooth animation, rotated chevron, state saved across restarts, full keyboard & screen-reader support
-- **3 themes**: 🌙 Midnight · ☀️ Light · ⚡ Neon
-- **Full bilingual UI**: Arabic (RTL) / English (LTR) with one click
-- Advanced techniques: ask-before-answering, chain-of-thought, self-review, few-shot examples
-- Live **quality score** with 12 checks — click an item to jump to the missing field
-- 8 ready-made presets, copy / export `.txt` / `.md`, built-in history
-- **Image mode** that outputs a ready-to-use English image prompt with negative prompt & aspect ratio
-- Runs on the **web** (GitHub Pages) or as a **Windows app**
-
-**Build the installers**
-
-```bash
-npm install
-npm run build          # portable exe + NSIS setup exe + MSI
-```
-
-| Artifact | Description |
-|---|---|
-| `Prompt-Engineer-Portable-v1.5.0.exe` | Portable — no installation, run from anywhere |
-| `Prompt-Engineer-Setup-v1.5.0.exe` | NSIS installer with custom path & shortcuts |
-| `Prompt-Engineer-Setup-v1.5.0.msi` | Windows MSI installer |
-
-**Web app:** https://moopuu.github.io/prompt-engineer/
-
-**License:** MIT · **© 2026 Mahdi Kareem — All rights reserved.**
-</div>
+> 🇸🇦 **Note:** the application itself remains fully bilingual — Arabic (RTL) and English (LTR) — switchable from the top bar with one click.

@@ -1,57 +1,64 @@
 # 🚀 Prompt Engineer v1.5.0 (v1.5) — Release Notes
 
-**© 2026 Mahdi Kareem — جميع الحقوق محفوظة / All rights reserved.**
+**© 2026 Mahdi Kareem — All rights reserved.**
 
-إصدار **v1.5** من **مهندس البرومبت** — أداة ثنائية اللغة لبناء برومبتات مثالية لأدوات الذكاء الاصطناعي، بواجهة داشبورد حديثة وشريط علوي قابل للطيّ.
-**v1.5** of **Prompt Engineer** — a bilingual tool for building perfect AI prompts, with a modern dashboard UI and a collapsible top bar.
+**v1.5** of **Prompt Engineer** — a bilingual (Arabic/English) tool for building perfect AI prompts, with a modern dashboard UI, a collapsible top bar and a brand-new mobile phone version.
 
 ---
 
-## ⬇ اختر نسختك / Choose your installer
+## ⬇ Choose your installer
 
-| الملف | النوع | الوصف |
+| File | Type | Description |
 |---|---|---|
-| `Prompt-Engineer-Portable-v1.5.0.exe` | 🟢 **Portable** | بدون تثبيت — شغّلها مباشرة من أي مجلد أو USB |
-| `Prompt-Engineer-Setup-v1.5.0.exe` | 🟦 **Setup (NSIS)** | مثبّت ويندوز بمسار اختياري + اختصارات سطح المكتب وقائمة ابدأ |
-| `Prompt-Engineer-Setup-v1.5.0.msi` | 🟨 **MSI Installer** | مثبّت MSI رسمي مناسب للشركات وتثبيت عبر GPO |
+| `Prompt-Engineer-Portable-v1.5.0.exe` | 🟢 **Portable** | No installation — run it from any folder or USB drive |
+| `Prompt-Engineer-Setup-v1.5.0.exe` | 🟦 **Setup (NSIS)** | Windows installer with a custom path + desktop and Start-menu shortcuts |
+| `Prompt-Engineer-Setup-v1.5.0.msi` | 🟨 **MSI Installer** | Official Windows MSI, suitable for companies and GPO deployment |
+| `Prompt-Engineer-v1.5.0.apk` | 📱 **Android APK** | Android app for the mobile UI (loads the site online) |
 
-> ⚠️ الملفات غير موقّعة رقميًا (Self-signed) — قد يطلب منك Windows الضغط على **"مزيد من المعلومات" ← "تشغيل"**.
-
----
-
-## ✨ ما الجديد في الإصدار v1.5 / What's new in v1.5
-
-- 🗂️ **واجهة داشبورد حديثة**: قائمة جانبية للتنقّل بين الأقسام مع قسم نشط وإحصاءات حيّة، شريط بحث فوري يفلتر الأقسام والقوالب والأدوات مع عدّاد نتائج مُحسَّن لغويًا، بطاقة ترحيب + 4 بطاقات إجراءات بأيقونات ملوّنة، ألواح أقسام بحواف دائرية، وترويسة معاينة بتدرّج لوني — تصميم متجاوب وفائز بفحص التباين WCAG في الثيمات الثلاث.
-- 📌 **الشريط العلوي قابل للطيّ**: اضغط على **شعار التطبيق** لطيّ الشريط (يختفي البحث والأزرار والوصف) وضغط عليه مجددًا لتوسيعه — مع تأثير حركي ناعم، وأيقونة سهم تدور، وحفظ تلقائيًا لحالتك بعد إعادة الفتح، ودعم كامل للوحة المفاتيح (Enter/Space) وقارئ الشاشة.
-- 🎨 **3 ثيمات**: 🌙 ليلي · ☀️ نهاري · ⚡ نيون (تُحفظ تلقائيًا).
-- 🌍 **لغتان كاملتان**: عربية RTL + إنجليزية LTR بتبديل فوري.
-- 📐 **16 قالبًا جاهزًا** و **17 نبرة** و **14 صيغة تسليم**.
-- 🛠️ **10 مفاتيح تحسين** (CoT، سؤال توضيحي، مراجعة ذاتية، Few-Shot، مصادر، بدائل، موازنة، ELI5، خطة، إجابة مباشرة).
-- 🖼️ **وضع توليد الصور**: **46 أسلوبًا فنيًا** في 4 مجموعات + **28 مقاسًا** في 3 مجموعات (تشمل مقاسات بكسل دقيقة مثل `1920x1080` وA4) تُحوَّل تلقائيًا إلى `resolution` + نسبة `--ar` محسوبة + حقل أبعاد مخصّص + Negative Prompt.
-- 🧭 **شريط تمرير عصري مخصّص**: مقبض دائري يتلوّن حسب الثيم، على كامل الصفحة ومعاينة البرومبت (Chromium + Firefox).
-- 📊 **تقييم جودة فوري** بـ 12 معيارًا مع تنقّل بالنقر إلى الحقل الناقص.
-- 🤖 **قسم البرامج الموصى بها**: 8 أدوات ذكاء اصطناعي مع **بديل مجاني مفتوح المصدر** لكل أداة.
-- 📤 نسخ برومبت واحد + تحميل `.txt` / `.md` + سجل تلقائي + زر "أكمل تلقائيًا".
-- 🖼️ أيقونة رسمية موحّدة لكل الواجهات وملفات EXE/MSI.
+> ⚠️ The EXE/MSI files are self-signed — Windows may ask you to click **“More info” → “Run”**.
+> 📱 The APK is signed with a self-signed key (`CN=Prompt Engineer`) — enable **“Unknown sources”** before installing it on your phone.
 
 ---
 
-## 🌐 التشغيل بدون تثبيت / Run without installing
+## ✨ What's new in v1.5
 
-- **الويب (GitHub Pages)**: https://moopuu.github.io/prompt-engineer/
-- **المستودع**: https://github.com/MooPuu/prompt-engineer
-- **الإصدارات**: https://github.com/MooPuu/prompt-engineer/releases
+- 🗂️ **Modern dashboard UI**: a sidebar for jumping between sections with an active-section indicator and live stats, an instant search bar that filters sections, presets and tools with a linguistically-stemmed result counter, a welcome card + 4 action tiles with colored icons, rounded section panels and a gradient preview header — responsive and passing WCAG contrast checks in all three themes.
+- 📌 **Collapsible top bar**: click the **app logo** to collapse the bar (search, buttons and tagline disappear) and click it again to expand — smooth animation, rotating chevron, state saved across restarts, full keyboard (Enter/Space) and screen-reader support.
+- 🎨 **3 themes**: 🌙 Midnight · ☀️ Light · ⚡ Neon (saved automatically).
+- 🌍 **Two full languages**: Arabic (RTL) + English (LTR) with instant switching.
+- 📐 **16 presets**, **17 tones** and **14 delivery formats**.
+- 🛠️ **10 enhancement toggles** (Chain-of-Thought, ask first, self-review, Few-Shot, sources, alternatives, balance, ELI5, action plan, direct answer).
+- 🖼️ **Image generation mode**: **46 art styles** in 4 groups + **28 sizes** in 3 groups (including precise pixel sizes like `1920x1080` and A4) converted automatically into a `resolution` line + a computed `--ar` ratio, plus a custom size field and a Negative Prompt.
+- 🧭 **Custom modern scrollbar**: a round thumb that colors itself per theme, across the page and the prompt preview (Chromium + Firefox).
+- 📊 **Live quality score** with 12 checks, clicking jumps to the missing field.
+- 🤖 **Recommended tools section**: 8 AI tools, each with a **free open-source alternative** — clicking a card opens both links.
+- 📤 One-click copy + `.txt` / `.md` download + automatic history + “Auto-fill” button.
+- 🖼️ One official app icon used across every UI, the EXE and the MSI.
+- 📱 **Mobile UI (second site)**: https://moopuu.github.io/prompt-engineer/mobile/ — a light phone-style dashboard (gradient quality card, 4 quick-action buttons, collapsible section cards, a circular 12-check quality ring, presets, image mode, tool cards and a 5-tab bottom navigation bar) — Arabic/English, installable PWA, works offline.
+- 📦 **Android APK**: `Prompt-Engineer-v1.5.0.apk` (Trusted Web Activity over the mobile site, same icon, brand color `#3d63f5`, app version `1.5.0`).
+- 🔤 **Arabic language icon**: the 🇸🇦 flag was replaced with the **letter ع inside a white square with black borders** in the language switcher (desktop + mobile).
+- 🔗 **Cross-linked builds**: the desktop footer links to the mobile UI, and the mobile drawer links back to the desktop version and the APK.
 
 ---
 
-## 🛠️ بناء النسخ من المصدر / Building from source
+## 🌐 Run without installing
+
+- **Web (GitHub Pages)**: https://moopuu.github.io/prompt-engineer/
+- **Mobile UI (second site)**: https://moopuu.github.io/prompt-engineer/mobile/
+- **Android app**: `Prompt-Engineer-v1.5.0.apk` from the release page
+- **Repository**: https://github.com/MooPuu/prompt-engineer
+- **Releases**: https://github.com/MooPuu/prompt-engineer/releases
+
+---
+
+## 🛠️ Building from source
 
 ```bash
 npm install
-npm run build:portable   # نسخة محمولة
-npm run build:nsis       # مثبّت Setup
-npm run build:msi        # مثبّت MSI
-npm run build            # الثلاثة معًا
+npm run build:portable   # portable build
+npm run build:nsis       # setup installer
+npm run build:msi        # MSI installer
+npm run build            # all three
 ```
 
 ---
