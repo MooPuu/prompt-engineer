@@ -209,15 +209,18 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
 </head>
 <body>
 
-<header class="topbar">
-  <div class="logo">
+<header class="topbar" id="topbar">
+  <div class="logo" id="logoBtn" role="button" tabindex="0" aria-expanded="true" aria-controls="tbMain"
+       data-i18n-title="tb.collapse" title="طيّ الشريط العلوي">
     <img class="ico" src="prompt engineer icon.png" alt="Prompt Engineer" width="40" height="40">
-    <div>
+    <div class="logo-t">
       <h1 data-i18n="app.title">مهندس البرومبت — Prompt Engineer</h1>
       <p data-i18n="app.sub">ابنِ برومبتًا مثاليًا ومستوفى لأي أداة ذكاء اصطناعي</p>
     </div>
+    <span class="tb-chev" aria-hidden="true">▲</span>
   </div>
 
+  <div class="tb-main" id="tbMain">
   <div class="search" id="searchBox">
     <span class="si">🔍</span>
     <input type="search" id="qSearch" autocomplete="off" data-i18n-ph="ph.search" placeholder="ابحث عن قسم أو حقل أو قالب…">
@@ -241,6 +244,7 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
     <button class="btn ghost" id="btnReset"><span>↺</span> <span data-i18n="act.clear">مسح</span></button>
     <button class="btn primary" id="btnCopyTop"><span>📋</span> <span data-i18n="act.copy">نسخ البرومبت</span></button>
   </div>
+  </div><!-- /.tb-main -->
 </header>
 
 <div class="wrap">
@@ -679,7 +683,9 @@ ar:{
 'ph.search':'ابحث عن قسم أو حقل أو قالب…',
 'side.menu':'القائمة','side.stats':'حالة البرومبت','side.star':'نجمة على GitHub',
 'side.presets':'القوالب الجاهزة','side.preview':'البرومبت الناتج','side.quality':'تقييم الجودة','side.tools':'برامج مقترحة',
-'side.results':'نتيجة','side.noresult':'لا توجد نتائج مطابقة',
+'side.results':'نتيجة','side.res0':'لا نتائج','side.res1':'نتيجة واحدة','side.res2':'نتيجتان','side.resFew':'نتائج','side.res11':'نتيجة','side.resMany':'نتائج',
+'side.noresult':'لا توجد نتائج مطابقة',
+'tb.collapse':'طيّ الشريط العلوي (اضغط على الشعار)','tb.expand':'توسيع الشريط العلوي (اضغط على الشعار)',
 'wl.title':'مرحبًا بك في مهندس البرومبت 👋',
 'wl.sub':'اختر قالبًا جاهزًا أو املأ الحقول — واحصل على برومبت مثالي جاهز للنسخ فورًا.',
 'div.info':'معلومات المهمة','div.shape':'شكل المخرجات','div.tech':'تقنيات هندسة البرومبت المتقدمة',
@@ -793,7 +799,9 @@ en:{
 'ph.search':'Search sections, fields or presets…',
 'side.menu':'Menu','side.stats':'Prompt status','side.star':'Star on GitHub',
 'side.presets':'Ready presets','side.preview':'Generated prompt','side.quality':'Quality score','side.tools':'AI tools',
-'side.results':'results','side.noresult':'No matching results',
+'side.results':'results','side.res0':'no results','side.res1':'result','side.res2':'2 results','side.resFew':'results','side.res11':'results','side.resMany':'results',
+'side.noresult':'No matching results',
+'tb.collapse':'Collapse the top bar (click the logo)','tb.expand':'Expand the top bar (click the logo)',
 'wl.title':'Welcome to Prompt Engineer 👋',
 'wl.sub':'Pick a ready preset or fill the fields — get a perfect prompt ready to copy instantly.',
 'div.info':'Task details','div.shape':'Output shape','div.tech':'Advanced prompt techniques',
@@ -1619,6 +1627,14 @@ window.addEventListener('scroll',()=>{
 },{passive:true});
 
 /* بحث فوري يفلتر الأقسام والقوالب والأدوات والقائمة */
+function resText(n){
+  if(n === 0) return t('side.res0');
+  if(LANG === 'en') return n + ' ' + (n === 1 ? t('side.res1') : t('side.resMany'));
+  if(n === 1) return t('side.res1');
+  if(n === 2) return t('side.res2');
+  if(n >= 3 && n <= 10) return n + ' ' + t('side.resFew');
+  return n + ' ' + t('side.res11');
+}
 function filterUI(raw){
   const s=(raw||'').trim().toLowerCase();
   let hits=0;
@@ -1631,7 +1647,7 @@ function filterUI(raw){
   document.querySelectorAll('.ai-card').forEach(c=>{ c.hidden=!!s && c.textContent.toLowerCase().indexOf(s)<0; });
   document.querySelectorAll('#sideMenu .mi').forEach(m=>{ m.hidden=!!s && m.textContent.toLowerCase().indexOf(s)<0; });
   const badge=$('qRes');
-  if(badge){ badge.hidden=!s; badge.textContent = s ? (hits+' '+t('side.results')) : ''; }
+  if(badge){ badge.hidden=!s; badge.textContent = s ? resText(hits) : ''; }
   markActive();
 }
 const qEl=$('qSearch');
@@ -1663,13 +1679,54 @@ function syncMini(){
   $('msSecsM').textContent = $('stSecs').textContent;
 }
 
+/* ================= Topbar: طيّ/توسيع عبر الشعار ================= */
+function setTopbar(min){
+  const tb=$('topbar'), main=$('tbMain'), lg=$('logoBtn');
+  if(!tb||!main||!lg) return;
+  const h = main.scrollHeight;                  /* ارتفاع المحتوى الحالي */
+  clearTimeout(window.__tbT);
+  lg.setAttribute('aria-expanded', String(!min));
+  lg.dataset.i18nTitle = min ? 'tb.expand' : 'tb.collapse';
+  lg.title = t(lg.dataset.i18nTitle);
+  main.style.overflow = 'hidden';               /* يمنع تجاوز المحتوى أثناء الانتقال */
+  if(min){
+    main.style.maxHeight = h + 'px';
+    void main.offsetHeight;                     /* reflow لتفعيل الانتقال */
+    tb.classList.add('min');
+    main.style.maxHeight = '0px';
+    main.style.opacity = '0';
+  }else{
+    tb.classList.remove('min');
+    main.style.maxHeight = h + 'px';
+    main.style.opacity = '1';
+    window.__tbT = setTimeout(()=>{
+      if(!tb.classList.contains('min')){ main.style.maxHeight='none'; main.style.overflow=''; }
+    }, 340);
+  }
+  try{ localStorage.setItem('pe_topbar', min ? 'min' : 'full'); }catch(e){}
+}
+function toggleTopbar(){ setTopbar(!$('topbar').classList.contains('min')); }
+(function wireTopbar(){
+  const lg=$('logoBtn');
+  if(!lg) return;
+  lg.addEventListener('click', toggleTopbar);
+  lg.addEventListener('keydown', e=>{
+    if(e.key==='Enter' || e.key===' ' || e.key==='Spacebar'){ e.preventDefault(); toggleTopbar(); }
+  });
+})();
+
 /* ================= Init ================= */
 (function init(){
   let lg='ar'; try{ lg = localStorage.getItem('pe_lang') || 'ar'; }catch(e){}
   let th='midnight'; try{ th = localStorage.getItem('pe_theme') || 'midnight'; }catch(e){}
+  let tb='full'; try{ tb = localStorage.getItem('pe_topbar') || 'full'; }catch(e){}
   buildSideMenu();
   setTheme(th);
   setLang(lg, true);
+  if(tb==='min'){ const m=$('tbMain'); if(m){ m.style.maxHeight='0px'; m.style.opacity='0'; m.style.overflow='hidden'; }
+    $('topbar').classList.add('min');
+    const l=$('logoBtn'); if(l){ l.setAttribute('aria-expanded','false'); l.dataset.i18nTitle='tb.expand'; l.title=t('tb.expand'); }
+  }
   $('preview').textContent = t('preview.start');
   render();
   markActive();

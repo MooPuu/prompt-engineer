@@ -327,6 +327,35 @@ section.fsec,#presets,#preview,#ring,#aiGrid,.divider{scroll-margin-top:96px}
 .search .sx:hover{background:var(--accent-grad);color:var(--on-grad,#fff)}
 @media(max-width:860px){.search{order:3;max-width:none;flex-basis:100%}}
 
+/* ---------- 5.1b) الشريط العلوي القابل للطيّ (الشعار هو المفتاح) ---------- */
+.logo{cursor:pointer;user-select:none;border-radius:12px;padding:4px;margin:-4px;
+  transition:background-color .18s}
+.logo:hover{background:var(--hover)}
+.logo:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.logo .ico{transition:width .28s ease,height .28s ease}
+.logo-t p{
+  max-height:44px;overflow:hidden;opacity:1;margin:2px 0 0;
+  transition:max-height .3s ease,opacity .2s ease,margin .3s ease
+}
+.tb-chev{flex:0 0 auto;font-size:10px;line-height:1;color:var(--muted);
+  transition:transform .3s cubic-bezier(.4,0,.2,1),color .18s}
+.logo:hover .tb-chev{color:var(--txt)}
+
+.tb-main{
+  display:flex;align-items:center;gap:14px;flex:1 1 auto;min-width:0;flex-wrap:wrap;
+  transition:max-height .32s cubic-bezier(.4,0,.2,1),opacity .22s ease .04s,visibility 0s
+}
+.topbar{transition:background-color .25s ease,padding .3s ease}
+.topbar.min{padding-top:9px;padding-bottom:9px}
+.topbar.min .logo:hover{background:transparent}
+.topbar.min .logo-t p{max-height:0;opacity:0;margin-top:0}
+.topbar.min .logo .ico{width:32px;height:32px}
+.topbar.min .tb-chev{transform:rotate(180deg);color:var(--acc)}
+.topbar.min .tb-main{
+  max-height:0;opacity:0;visibility:hidden;pointer-events:none;overflow:hidden;
+  transition:max-height .32s cubic-bezier(.4,0,.2,1),opacity .2s ease,visibility 0s .32s
+}
+
 /* ---------- 5.2) التخطيط ثلاثي ---------- */
 .wrap{
   max-width:1600px;gap:16px;padding-top:20px;
@@ -470,6 +499,7 @@ textarea::placeholder,input::placeholder,select::placeholder{color:var(--muted2)
 }
 @media(max-width:760px){
   .topbar{padding:10px 14px}
+  .topbar.min{padding-top:7px;padding-bottom:7px}
   .search{order:3;max-width:none;flex-basis:100%}
 }
 @media(max-width:640px){

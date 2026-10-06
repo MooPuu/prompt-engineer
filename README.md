@@ -44,7 +44,7 @@
 
 يُحفظ اختيارك تلقائيًا في المتصفح.
 
-- **واجهة داشبورد حديثة** على طراز اللوحات الاحترافية: **قائمة جانبية** (تسريع التنقّل بين الأقسام + اختصارات + مؤشر قسم نشط يتتبّع التمرير + إحصاءات حيّة للجودة والكلمات والمفاتيح + زر نجمة المستودع)، **شريط بحث فوري** أعلى الصفحة (يفلتر الأقسام والقوالب والأدوات مع عدّاد نتائج، Enter للانتقال)، **بطاقة ترحيب** و**4 بطاقات إجراءات** بأيقونات ملوّنة (أكمل تلقائيًا · نسخ · تحميل · مسح)، **ألواح أقسام بحواف دائرية** مع أيقونة ملوّنة لكل قسم، وترويسة معاينة بتدرّج لوني — تصميم متجاوب يتحوّل إلى شريط أفقي على الشاشات الصغيرة.
+- **واجهة داشبورد حديثة** على طراز اللوحات الاحترافية: **قائمة جانبية** (تسريع التنقّل بين الأقسام + اختصارات + مؤشر قسم نشط يتتبّع التمرير + إحصاءات حيّة للجودة والكلمات والمفاتيح + زر نجمة المستودع)، **شريط بحث فوري** أعلى الصفحة (يفلتر الأقسام والقوالب والأدوات مع عدّاد نتائج، Enter للانتقال)، **بطاقة ترحيب** و**4 بطاقات إجراءات** بأيقونات ملوّنة (أكمل تلقائيًا · نسخ · تحميل · مسح)، **ألواح أقسام بحواف دائرية** مع أيقونة ملوّنة لكل قسم، وترويسة معاينة بتدرّج لوني — تصميم متجاوب يتحوّل إلى شريط أفقي على الشاشات الصغيرة، إضافة إلى **الشريط العلوي القابل للطيّ**: اضغط على **شعار التطبيق** لطيّه (إخفاء البحث والأزرار) وتوسيعه مجددًا مع تأثير حركي وحفظ لحالتك ودعم للوحة المفاتيح.
 - **واجهة عصرية** مصقولة: بطاقات بظلال ناعمة، تأثيرات hover، و**شريط تمرير (Scrollbar) عصري مخصّص** — سكة شفافة + مقبض دائري `pill` يتغيّر لونه حسب الثيم ويتوهج عند المرور، على كامل الصفحة ومعاينة البرومبت، ويحترم اتجاه RTL/LTR (يدعم Firefox وChromium).
 - **تباين معتمد على WCAG** — فُحصت **35 عنصرًا × 3 ثيمات** (نصوص، حقول، شارات، قائمة جانبية، تذييل) وتجاوزت جميعها حدّ **4.5:1**.
 
@@ -144,9 +144,9 @@ npm run build        # بناء النسخ الثلاث معًا 🔄
 
 | الأمر | الناتج |
 |---|---|
-| `npm run build:portable` | **نسخة محمولة** — `Prompt-Engineer-Portable-v1.0.0.exe` (بدون تثبيت، تعمل من أي مكان/ USB) |
-| `npm run build:nsis` | **مثبّت Setup** — `Prompt-Engineer-Setup-v1.0.0.exe` (تثبيت بمسار اختياري + اختصارات) |
-| `npm run build:msi` | **مثبّت MSI** — `Prompt-Engineer-Setup-v1.0.0.msi` (مثبّت ويندوز رسمي/شركات) |
+| `npm run build:portable` | **نسخة محمولة** — `Prompt-Engineer-Portable-v1.5.0.exe` (بدون تثبيت، تعمل من أي مكان/ USB) |
+| `npm run build:nsis` | **مثبّت Setup** — `Prompt-Engineer-Setup-v1.5.0.exe` (تثبيت بمسار اختياري + اختصارات) |
+| `npm run build:msi` | **مثبّت MSI** — `Prompt-Engineer-Setup-v1.5.0.msi` (مثبّت ويندوز رسمي/شركات) |
 | `npm run build` | بناء الثلاثة معًا |
 
 > ملفات البناء تُحفظ في مجلد `dist/`.
@@ -218,6 +218,8 @@ prompt-engineer/
 
 **Highlights**
 - 9-section prompt builder (task, role, context, audience, tone, format, length, language, constraints, anti-patterns)
+- **Modern dashboard UI**: side navigation menu with a live-active section + live stats, instant search that filters sections/presets/tools with a result counter, welcome card & 4 action tiles, rounded colored section panels and a gradient preview header
+- **Collapsible top bar**: click the **app logo** to collapse the bar (search, actions, tagline) and click again to expand — smooth animation, rotated chevron, state saved across restarts, full keyboard & screen-reader support
 - **3 themes**: 🌙 Midnight · ☀️ Light · ⚡ Neon
 - **Full bilingual UI**: Arabic (RTL) / English (LTR) with one click
 - Advanced techniques: ask-before-answering, chain-of-thought, self-review, few-shot examples
@@ -235,9 +237,9 @@ npm run build          # portable exe + NSIS setup exe + MSI
 
 | Artifact | Description |
 |---|---|
-| `Prompt-Engineer-Portable-v1.0.0.exe` | Portable — no installation, run from anywhere |
-| `Prompt-Engineer-Setup-v1.0.0.exe` | NSIS installer with custom path & shortcuts |
-| `Prompt-Engineer-Setup-v1.0.0.msi` | Windows MSI installer |
+| `Prompt-Engineer-Portable-v1.5.0.exe` | Portable — no installation, run from anywhere |
+| `Prompt-Engineer-Setup-v1.5.0.exe` | NSIS installer with custom path & shortcuts |
+| `Prompt-Engineer-Setup-v1.5.0.msi` | Windows MSI installer |
 
 **Web app:** https://moopuu.github.io/prompt-engineer/
 
