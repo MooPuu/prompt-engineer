@@ -105,6 +105,7 @@ A standalone **mobile phone UI** with a **light indigo dashboard** design: greet
 - 🔗 **Second site (mobile UI):** https://moopuu.github.io/prompt-engineer/mobile/
 - 📦 **Android app:** `Prompt-Engineer-v1.5.0.apk` on the [v1.5.0 release page](https://github.com/MooPuu/prompt-engineer/releases/tag/v1.5.0)
 - 🌍 Arabic/English in one tap · installable PWA · works offline (Service Worker) · exactly the same prompt engine and output as the desktop version.
+- ✅ Opens **fullscreen as a real app** (Trusted Web Activity — no browser address bar): the verification statement lives at `https://moopuu.github.io/.well-known/assetlinks.json`, served by the [MooPuu.github.io](https://github.com/MooPuu/MooPuu.github.io) root site. If you rotate the APK signing key, update that file.
 - The Arabic language button in the UI is the **letter ع inside a white square with black borders** (instead of the 🇸🇦 flag).
 
 ---

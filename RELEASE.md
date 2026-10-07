@@ -36,6 +36,7 @@
 - 🖼️ One official app icon used across every UI, the EXE and the MSI.
 - 📱 **Mobile UI (second site)**: https://moopuu.github.io/prompt-engineer/mobile/ — a light phone-style dashboard (gradient quality card, 4 quick-action buttons, collapsible section cards, a circular 12-check quality ring, presets, image mode, tool cards and a 5-tab bottom navigation bar) — Arabic/English, installable PWA, works offline.
 - 📦 **Android APK**: `Prompt-Engineer-v1.5.0.apk` (Trusted Web Activity over the mobile site, same icon, brand color `#3d63f5`, app version `1.5.0`).
+- ✅ **Opens fullscreen like a native app** — no browser address bar: Digital Asset Links are published at `https://moopuu.github.io/.well-known/assetlinks.json` (hosted by the [MooPuu.github.io](https://github.com/MooPuu/MooPuu.github.io) root site), so Chrome verifies the app on launch.
 - 🔤 **Arabic language icon**: the 🇸🇦 flag was replaced with the **letter ع inside a white square with black borders** in the language switcher (desktop + mobile).
 - 🔗 **Cross-linked builds**: the desktop footer links to the mobile UI, and the mobile drawer links back to the desktop version and the APK.
 
