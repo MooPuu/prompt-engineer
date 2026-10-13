@@ -1,4 +1,4 @@
-﻿/* Prompt Engineer â€” mobile service worker (offline support) */
+/* Prompt Engineer â€” mobile service worker (offline support) */
 const CACHE = 'pe-mobile-v1.5.3';
 const ASSETS = [
   './',
