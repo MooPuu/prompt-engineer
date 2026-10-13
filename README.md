@@ -26,7 +26,7 @@
 ## ✨ Features
 
 ### 1) A 9-section prompt builder
-- **Task** — exactly what you want the AI to do.
+- **Task** — exactly what you want the AI to do, with a **📚 Ready tasks** button that opens 25 starter tasks generated from the presets below. Picking one fills the task field **and** applies its matching preset; the textarea stays free for any custom task.
 - **Role** — the persona it should adopt (engineer, editor, data analyst…).
 - **Context & background** — project/situation details (one bullet per point).
 - **Audience** — who the output is for.
@@ -78,6 +78,7 @@ A percentage ring plus **12 checks** (task, role, context, audience, format, len
 - Download as `.txt` or `.md`.
 - **✨ Auto-fill** button that fills the missing fields with best practices.
 - **25 ready-made presets**: article/content, **article writing**, coding, data analysis, marketing, summarizing, plan & study, **plan preparation**, translation, image generation, email, social post, video script, ideation, competitor analysis, product descriptions, concept explainer, customer reply, **postgraduate & academic research**, **classical/general poetry**, **mass crowd management plans**, **language auditor**, **spell checker**, **positive analysis**, **negative analysis**.
+- Every preset also ships a **starter task** with bracketed placeholders (`[topic]`, `[audience]`, `[duration]`…) in both languages, so it can be reused from the **Ready tasks** picker inside the Task field.
 
 ### 7) Image generation mode 🖼️
 Turns your request into a **ready-to-use English image prompt** for Midjourney / DALL·E / Stable Diffusion, with:
