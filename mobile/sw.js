@@ -1,5 +1,5 @@
 /* Prompt Engineer — mobile service worker (offline support) */
-const CACHE = 'pe-mobile-v1.5.1';
+const CACHE = 'pe-mobile-v1.5.2';
 const ASSETS = [
   './',
   './index.html',
@@ -34,8 +34,24 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  /* app shell: cache first (ignoring the ?v= cache-buster), refresh in background */
+  /* the page shell is always fetched fresh, cache is only the offline fallback */
   if (url.origin === location.origin) {
+    const isShell = req.mode === 'navigate' ||
+      (req.headers.get('accept') || '').includes('text/html');
+    if (isShell) {
+      e.respondWith(
+        fetch(req).then(res => {
+          if (res && res.status === 200 && res.type === 'basic') {
+            const copy = res.clone();
+            caches.open(CACHE).then(c => c.put(req, copy)).catch(() => {});
+          }
+          return res;
+        }).catch(() => caches.match(req, { ignoreSearch: true }))
+      );
+      return;
+    }
+
+    /* assets: cache first (ignoring the ?v= cache-buster), refresh in background */
     e.respondWith(
       caches.match(req, { ignoreSearch: true }).then(hit => {
         const net = fetch(req).then(res => {
