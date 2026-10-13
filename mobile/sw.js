@@ -1,5 +1,5 @@
-/* Prompt Engineer — mobile service worker (offline support) */
-const CACHE = 'pe-mobile-v1.5.2';
+﻿/* Prompt Engineer â€” mobile service worker (offline support) */
+const CACHE = 'pe-mobile-v1.5.3';
 const ASSETS = [
   './',
   './index.html',
@@ -16,7 +16,8 @@ const ASSETS = [
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE).then(c =>
-      Promise.all(ASSETS.map(a => c.add(a).catch(() => null)))
+      /* cache:'reload' bypasses the HTTP cache so the shell is never precached stale */
+      Promise.all(ASSETS.map(a => c.add(new Request(a, { cache: 'reload' })).catch(() => null)))
     ).then(() => self.skipWaiting())
   );
 });
@@ -51,10 +52,10 @@ self.addEventListener('fetch', e => {
       return;
     }
 
-    /* assets: cache first (ignoring the ?v= cache-buster), refresh in background */
+    /* assets: cache first (ignoring the ?v= cache-buster), revalidate in background */
     e.respondWith(
       caches.match(req, { ignoreSearch: true }).then(hit => {
-        const net = fetch(req).then(res => {
+        const net = fetch(new Request(req, { cache: 'no-cache' })).then(res => {
           if (res && res.status === 200 && res.type === 'basic') {
             const copy = res.clone();
             caches.open(CACHE).then(c => c.put(req, copy)).catch(() => {});
