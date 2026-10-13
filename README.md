@@ -26,8 +26,8 @@
 ## ✨ Features
 
 ### 1) A 9-section prompt builder
-- **Task** — exactly what you want the AI to do, with a **📚 Ready tasks** button that opens 25 starter tasks generated from the presets below. Picking one fills the task field **and** applies its matching preset; the textarea stays free for any custom task.
-- **Role** — the persona it should adopt (engineer, editor, data analyst…), with a **🧑‍💼 Ready roles** button that lists the 25 personas from the presets. Picking one fills the role **and** auto-completes audience, tone, format, length and constraints — without touching the task you already wrote.
+- **Task** — exactly what you want the AI to do, with a **📚 Ready tasks** button that opens 27 starter tasks generated from the presets below. Picking one fills the task field **and** applies its matching preset; the textarea stays free for any custom task.
+- **Role** — the persona it should adopt (engineer, editor, data analyst…), with a **🧑‍💼 Ready roles** button that lists the 27 personas from the presets. Picking one fills the role **and** auto-completes audience, tone, format, length and constraints — without touching the task you already wrote.
 - **Context & background** — project/situation details (one bullet per point).
 - **Audience** — who the output is for.
 - **Tone & style** — **21 tones**: professional, friendly, educational, creative, concise, persuasive, scientific, academic, witty, motivational, literary/poetic, conversational, documentary, optimistic, playful, empathetic, bold, **supportive**, **firm refusal**, **objecting**, **endorsing**.
@@ -77,7 +77,7 @@ A percentage ring plus **12 checks** (task, role, context, audience, format, len
 - One-click copy (auto-saved to history — the last 8 prompts).
 - Download as `.txt` or `.md`.
 - **✨ Auto-fill** button that fills the missing fields with best practices.
-- **25 ready-made presets**: article/content, **article writing**, coding, data analysis, marketing, summarizing, plan & study, **plan preparation**, translation, image generation, email, social post, video script, ideation, competitor analysis, product descriptions, concept explainer, customer reply, **postgraduate & academic research**, **classical/general poetry**, **mass crowd management plans**, **language auditor**, **spell checker**, **positive analysis**, **negative analysis**.
+- **27 ready-made presets**: article/content, **article writing**, coding, data analysis, marketing, summarizing, plan & study, **plan preparation**, translation, image generation, email, social post, video script, ideation, competitor analysis, product descriptions, concept explainer, customer reply, **postgraduate & academic research**, **classical/general poetry**, **mass crowd management plans**, **language auditor**, **spell checker**, **positive analysis**, **negative analysis**, **crisis management plans**, **event management plans**.
 - Every preset also ships a **starter task** with bracketed placeholders (`[topic]`, `[audience]`, `[duration]`…) in both languages, so it can be reused from the **Ready tasks** picker inside the Task field.
 
 ### 7) Image generation mode 🖼️
