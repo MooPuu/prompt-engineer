@@ -714,7 +714,7 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
       <a href="https://github.com/MooPuu/prompt-engineer/releases" target="_blank" rel="noopener" data-i18n="ft.exe">⬇ تحميل EXE</a>
       <a href="https://moopuu.github.io/prompt-engineer/mobile/" target="_blank" rel="noopener" data-i18n="ft.mobile">📱 نسخة الهاتف</a>
     </span>
-    <span class="foot-note" data-i18n="ft.note">صُنع بعناية — مهندس البرومبت | Prompt Engineer v1.5.0</span>
+    <span class="foot-note" data-i18n="ft.note">صُنع بعناية — مهندس البرومبت | Prompt Engineer v2.0.0</span>
   </div>
 </footer>
 
@@ -827,7 +827,7 @@ ar:{
 'h.title':'سجل البرومبتات','h.clear':'حذف الكل',
 'h.empty':'لا توجد برومبتات محفوظة بعد — انسخ برومبتًا وسيُحفظ تلقائيًا هنا.',
 'ft.rights':'جميع الحقوق محفوظة','ft.repo':'📂 المستودع على GitHub','ft.web':'🌐 النسخة الإلكترونية',
-'ft.exe':'⬇ تحميل EXE','ft.mobile':'📱 نسخة الهاتف (APK)','ft.note':'صُنع بعناية — مهندس البرومبت | Prompt Engineer v1.5.0',
+'ft.exe':'⬇ تحميل EXE','ft.mobile':'📱 نسخة الهاتف (APK)','ft.note':'صُنع بعناية — مهندس البرومبت | Prompt Engineer v2.0.0',
 'msg.copy':'✅ تم نسخ البرومبت — الصقه في أي أداة ذكاء اصطناعي','msg.dl':'⬇ تم تحميل الملف',
 'msg.preset':'✅ تم تطبيق القالب: ','msg.tasktpl':'📚 تم اختيار مهمة جاهزة: ','msg.roletpl':'🧑‍💼 تم اختيار دور جاهز: ','msg.auto':'✨ تم استكمال الحقول الناقصة بأفضل الممارسات',
 'msg.clear':'↺ تم المسح','msg.theme':'🎨 تم تطبيق الثيم','msg.noTitle':'بدون عنوان',
@@ -946,7 +946,7 @@ en:{
 'h.title':'Prompt History','h.clear':'Clear all',
 'h.empty':'No saved prompts yet — copy one and it will be saved here automatically.',
 'ft.rights':'All rights reserved','ft.repo':'📂 GitHub Repository','ft.web':'🌐 Web App',
-'ft.exe':'⬇ Download EXE','ft.mobile':'📱 Mobile version (APK)','ft.note':'Crafted with care — Prompt Engineer v1.5.0',
+'ft.exe':'⬇ Download EXE','ft.mobile':'📱 Mobile version (APK)','ft.note':'Crafted with care — Prompt Engineer v2.0.0',
 'msg.copy':'✅ Prompt copied — paste it into any AI tool','msg.dl':'⬇ File downloaded',
 'msg.preset':'✅ Preset applied: ','msg.tasktpl':'📚 Ready task picked: ','msg.roletpl':'🧑‍💼 Ready role picked: ','msg.auto':'✨ Missing fields filled with best practices',
 'msg.clear':'↺ Cleared','msg.theme':'🎨 Theme applied','msg.noTitle':'No title',
@@ -1282,6 +1282,36 @@ const PRESETS = [
   avoid:['لا تترك مهمة بلا مسؤول أو وقت\nلا تتجاهل خطة الطوارئ\nلا تهمل مرحلة ما بعد المناسبة',
          'No task without an owner or a time\nNever skip the contingency plan\nDo not forget the post-event phase'],
   flags:{ask:true,plan:true,self:true}}},
+{name:['🛡️ خطط إدارة المخاطر','🛡️ Risk management plans'], set:{
+  task:['اكتب سجل مخاطر وخطة إدارة ل[المشروع] مع تقدير الاحتمال والأثر','Write a risk register and management plan for [project] with likelihood and impact ratings'],
+  role:['محلل مخاطر يقيّم التهديدات ويضع ضوابط الوقاية والتخفيف','Risk analyst assessing threats and defining prevention and mitigation controls'],
+  audience:['لجنة الإدارة والجهات الممولة','The steering committee and the funding bodies'],
+  tone:['sci','doc'], fmt:['table','md'], length:'long',
+  constraints:['ابدأ بسجل مخاطر في جدول: الخطر، الاحتمال، الأثر، الأولوية\nقدّر الاحتمال والأثر على مقياس من 1 إلى 5\nاقترح ضوابط وقائية أو مبطّنة لكل خطر\nحدّد مالك كل مخاطرة وتاريخ المراجعة القادمة\nاختم بخطة مراقبة ومؤشرات إنذار مبكر',
+               'Start with a risk register table: risk, likelihood, impact, priority\nRate likelihood and impact on a scale from 1 to 5\nPropose preventive or mitigating controls for every risk\nAssign an owner per risk and a next review date\nClose with a monitoring plan and early-warning indicators'],
+  avoid:['لا تخفّض تصنيف المخاطر الحرجة\nلا تذكر خطرًا دون إجراء مقابل\nلا تتجاهل المخاطر المتبقية بعد التخفيف',
+         'Never rate down critical risks\nNever list a risk without a countermeasure\nDo not ignore residual risk after mitigation'],
+  flags:{ask:true,plan:true,sources:true,self:true}}},
+{name:['🚒 خطط الطوارئ والإخلاء','🚒 Emergency & evacuation plans'], set:{
+  task:['اكتب خطة طوارئ وإخلاء لـ[المبنى] وسعة [العدد] مع مسارات بديلة','Write an emergency and evacuation plan for [building] with [capacity] occupants and alternative routes'],
+  role:['مسؤول السلامة المهنية الذي يصمّم خطط الطوارئ والإخلاء','Safety officer who designs emergency and evacuation plans'],
+  audience:['العاملون والزوار ولجنة السلامة','Staff, visitors and the safety committee'],
+  tone:['pro','doc'], fmt:['table','md','bullets'], length:'deep',
+  constraints:['حدّد الطوارئ المشمولة: حريق، فيضان، زلزال، انفجار، انسداد\nصف المخارج ومسارات الإخلاء البديلة لكل طابق\nحدّد نقاط التجمع وكيف يُساعد ذوو الإعاقة\nاكتب الأدوار: من يقرر الإخلاء ومن ينادي الإسعاف\nاذكر أرقام الطوارئ وموقع أقرب مركز إسعاف\nضع زمن إخلاء مستهدف لكل منطقة وتمرينًا موثقًا مرتين في السنة',
+               'Cover the emergency types: fire, flood, earthquake, explosion, blockage\nDescribe the exits and alternative evacuation routes for every floor\nSet the assembly points and how people with reduced mobility are assisted\nWrite the roles: who calls the evacuation and who calls the ambulance\nList emergency numbers and the nearest hospital location\nSet a target evacuation time per zone and a documented drill twice a year'],
+  avoid:['لا تترك مخرجًا واحدًا للإخلاء\nلا تهمل ذوي الإعاقة أو الأطفال\nلا تتجاهل مخاطر الكهرباء ومخارج الحريق',
+         'Never leave a single evacuation route\nDo not forget people with reduced mobility or children\nNever ignore electrical risks and blocked fire exits'],
+  flags:{ask:true,plan:true,sources:true,self:true}}},
+{name:['📋 تقارير تقييم الأزمات بعد حدوثها','📋 Post-incident assessment reports'], set:{
+  task:['اكتب تقرير تقييم لما حدث في [الأزمة] مع تحليل الأسباب والدروس المستفادة','Write an after-action report on the [incident] with root-cause analysis and lessons learned'],
+  role:['محلل أزمات يكتب تقارير ما بعد الحدث بأمانة وحياد','Crisis analyst writing unbiased after-action reports'],
+  audience:['الإدارة العليا ولجنة التدقيق','Senior management and the audit committee'],
+  tone:['sci','doc'], fmt:['table','md'], length:'deep',
+  constraints:['ابدأ بخط زمني للأحداث ودور كل طرف\nاعرض جدولًا: ما حدث | السبب الجذري | الإجراء التصحيحي\nميّز بين السبب الجذري والسبب المباشر\nقيّم الاستجابة: سرعة القرار ووضوح التواصل\nحوّل الدروس المستفادة إلى إجراءات بمسؤول وموعد\nاختم بتوصيات مقترحة لتعديل السياسات',
+               'Start with a timeline of the events and each party role\nPresent a table: what happened | root cause | corrective action\nSeparate the root cause from the immediate trigger\nRate the response: decision speed and clarity of communication\nTurn lessons learned into corrective actions with an owner and a date\nClose with policy recommendations'],
+  avoid:['لا تلوم أفرادًا علنًا\nلا تخفّف حجم الخسائر\nلا تقدّم توصية بلا مسؤول وموعد',
+         'Never blame individuals publicly\nDo not downplay the damage\nNo recommendation without an owner and a date'],
+  flags:{ask:true,sources:true,self:true}}},
 {name:['🖼️ توليد صورة','🖼️ Image Generation'], set:{
   task:['صورة لـ[الموضوع] بأسلوب [الأسلوب] وإضاءة [الإضاءة] وتكوين [التكوين]','A photo of [subject] in [style] style with [lighting] lighting and [composition] composition'],
   role:[''],audience:['',''],tone:[],fmt:[],length:'',constraints:['',''],avoid:['',''],

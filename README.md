@@ -19,15 +19,15 @@
 | 📱 **Second site — mobile phone UI** | **https://moopuu.github.io/prompt-engineer/mobile/** |
 | 📂 Repository | **https://github.com/MooPuu/prompt-engineer** |
 | ⬇ Ready-made installers (EXE / MSI) | **https://github.com/MooPuu/prompt-engineer/releases** |
-| 📦 **Android APK** | **https://github.com/MooPuu/prompt-engineer/releases/tag/v1.5.0** |
+| 📦 **Android APK** | **https://github.com/MooPuu/prompt-engineer/releases/tag/v2.0** |
 
 ---
 
 ## ✨ Features
 
 ### 1) A 9-section prompt builder
-- **Task** — exactly what you want the AI to do, with a **📚 Ready tasks** button that opens 27 starter tasks generated from the presets below. Picking one fills the task field **and** applies its matching preset; the textarea stays free for any custom task.
-- **Role** — the persona it should adopt (engineer, editor, data analyst…), with a **🧑‍💼 Ready roles** button that lists the 27 personas from the presets. Picking one fills the role **and** auto-completes audience, tone, format, length and constraints — without touching the task you already wrote.
+- **Task** — exactly what you want the AI to do, with a **📚 Ready tasks** button that opens 30 starter tasks generated from the presets below. Picking one fills the task field **and** applies its matching preset; the textarea stays free for any custom task.
+- **Role** — the persona it should adopt (engineer, editor, data analyst…), with a **🧑‍💼 Ready roles** button that lists the 30 personas from the presets. Picking one fills the role **and** auto-completes audience, tone, format, length and constraints — without touching the task you already wrote.
 - **Context & background** — project/situation details (one bullet per point).
 - **Audience** — who the output is for.
 - **Tone & style** — **21 tones**: professional, friendly, educational, creative, concise, persuasive, scientific, academic, witty, motivational, literary/poetic, conversational, documentary, optimistic, playful, empathetic, bold, **supportive**, **firm refusal**, **objecting**, **endorsing**.
@@ -77,7 +77,7 @@ A percentage ring plus **12 checks** (task, role, context, audience, format, len
 - One-click copy (auto-saved to history — the last 8 prompts).
 - Download as `.txt` or `.md`.
 - **✨ Auto-fill** button that fills the missing fields with best practices.
-- **27 ready-made presets**: article/content, **article writing**, coding, data analysis, marketing, summarizing, plan & study, **plan preparation**, translation, image generation, email, social post, video script, ideation, competitor analysis, product descriptions, concept explainer, customer reply, **postgraduate & academic research**, **classical/general poetry**, **mass crowd management plans**, **language auditor**, **spell checker**, **positive analysis**, **negative analysis**, **crisis management plans**, **event management plans**.
+- **30 ready-made presets**: article/content, **article writing**, coding, data analysis, marketing, summarizing, plan & study, **plan preparation**, translation, image generation, email, social post, video script, ideation, competitor analysis, product descriptions, concept explainer, customer reply, **postgraduate & academic research**, **classical/general poetry**, **mass crowd management plans**, **language auditor**, **spell checker**, **positive analysis**, **negative analysis**, **crisis management plans**, **event management plans**, **risk management plans**, **emergency & evacuation plans**, **post-incident assessment reports**.
 - Every preset also ships a **starter task** with bracketed placeholders (`[topic]`, `[audience]`, `[duration]`…) in both languages, so it can be reused from the **Ready tasks** picker inside the Task field.
 
 ### 7) Image generation mode 🖼️
@@ -104,7 +104,7 @@ A section at the bottom of the page lists **8 recommended AI tools** to use your
 A standalone **mobile phone UI** with a **light indigo dashboard** design: greeting header, gradient quality card, 4 quick-action buttons, collapsible section cards with colored icons, a circular quality ring, presets, image mode, tool cards and a 5-tab bottom navigation bar.
 
 - 🔗 **Second site (mobile UI):** https://moopuu.github.io/prompt-engineer/mobile/
-- 📦 **Android app:** `Prompt-Engineer-v1.5.0.apk` on the [v1.5.0 release page](https://github.com/MooPuu/prompt-engineer/releases/tag/v1.5.0)
+- 📦 **Android app:** `Prompt-Engineer-v2.0.0.apk` on the [v2.0 release page](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.0)
 - 🌍 Arabic/English in one tap · installable PWA · works offline (Service Worker) · exactly the same prompt engine and output as the desktop version.
 - ✅ Opens **fullscreen as a real app** (Trusted Web Activity — no browser address bar): the verification statement lives at `https://moopuu.github.io/.well-known/assetlinks.json`, served by the [MooPuu.github.io](https://github.com/MooPuu/MooPuu.github.io) root site. If you rotate the APK signing key, update that file.
 - The Arabic language button in the UI is the **letter ع inside a white square with black borders** (instead of the 🇸🇦 flag).
@@ -144,9 +144,9 @@ Open: **https://moopuu.github.io/prompt-engineer/**
 | Option | Link / steps |
 |---|---|
 | 🌐 Mobile site | **https://moopuu.github.io/prompt-engineer/mobile/** |
-| 📦 Direct APK download | **https://github.com/MooPuu/prompt-engineer/releases/tag/v1.5.0** ← `Prompt-Engineer-v1.5.0.apk` |
+| 📦 Direct APK download | **https://github.com/MooPuu/prompt-engineer/releases/tag/v2.0** ← `Prompt-Engineer-v2.0.0.apk` |
 
-1. Download `Prompt-Engineer-v1.5.0.apk` from the release page.
+1. Download `Prompt-Engineer-v2.0.0.apk` from the release page.
 2. Open it on your phone — if you see an “Unknown sources” warning, allow your browser or file manager.
 3. Install the app; it appears with the same icon as the desktop version.
 
@@ -170,9 +170,9 @@ npm run build        # build all three installers 🔄
 
 | Command | Output |
 |---|---|
-| `npm run build:portable` | **Portable build** — `Prompt-Engineer-Portable-v1.5.0.exe` (no install, runs from anywhere / USB) |
-| `npm run build:nsis` | **Setup installer** — `Prompt-Engineer-Setup-v1.5.0.exe` (custom path + shortcuts) |
-| `npm run build:msi` | **MSI installer** — `Prompt-Engineer-Setup-v1.5.0.msi` (official/company Windows installs) |
+| `npm run build:portable` | **Portable build** — `Prompt-Engineer-Portable-v2.0.0.exe` (no install, runs from anywhere / USB) |
+| `npm run build:nsis` | **Setup installer** — `Prompt-Engineer-Setup-v2.0.0.exe` (custom path + shortcuts) |
+| `npm run build:msi` | **MSI installer** — `Prompt-Engineer-Setup-v2.0.0.msi` (official/company Windows installs) |
 | `npm run build` | All three at once |
 
 > Artifacts are written to the `dist/` folder.
