@@ -333,10 +333,18 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
 
       <!-- 2 -->
       <section class="fsec">
-        <h3><span class="n">2</span><span class="fi" style="--c:#7b5cff">👤</span> <span data-i18n="sec.role">الدور (Role)</span></h3>
+        <h3><span class="n">2</span><span class="fi" style="--c:#7b5cff">👤</span> <span data-i18n="sec.role">الدور (Role)</span>
+          <button class="tpl-btn" id="roleTplBtn" type="button" aria-expanded="false" aria-controls="roleTplPanel">
+            <span class="tpl-ic">🧑‍💼</span><span data-i18n="role.tpl">أدوار جاهزة</span><span class="tpl-cnt" id="roleTplCnt">0</span>
+          </button>
+        </h3>
         <label class="lb" data-i18n="lb.role">من تريد أن يتقمّص الشخصية؟</label>
         <input type="text" id="role" data-i18n-ph="ph.role" placeholder="مثال: خبير تسويق رقمي، مهندس برمجيات، مدرّس، محرر لغوي">
         <div class="hint" data-i18n="hint.role">منح النموذج هوية مهنية يجعل الإجابات أكثر عمقًا ودقة.</div>
+        <div class="tpl-panel" id="roleTplPanel" hidden>
+          <div class="tpl-head" data-i18n="role.tpl.sub">اختر شخصية جاهزة، وسيتم تعبئة بقية الحقول تلقائيًا — ثم عدّل أي حقل أو اكتب دورك المخصص:</div>
+          <div class="tpl-list" id="roleTplList"></div>
+        </div>
       </section>
 
       <!-- 3 -->
@@ -731,7 +739,8 @@ ar:{
 'task.tpl':'قوالب جاهزة','task.tpl.sub':'اختر مهمة جاهزة كبداية، ثم عدّلها أو اكتب مهمتك الخاصة في الحقل أعلاه:',
 'ph.task':'مثال: اكتب لي مقالًا كاملًا عن فوائد المشي اليومي لصحة القلب، بعمق علمي مبسّط...',
 'hint.task':'💡 كلما كانت المهمة أدق، كانت النتيجة أقرب لما تتوقعه. تجنب الجمل العامة مثل "ساعدني في هذا".',
-'sec.role':'الدور (Role)','lb.role':'من تريد أن يتقمّص الشخصية؟','ph.role':'مثال: خبير تسويق رقمي، مهندس برمجيات، مدرّس، محرر لغوي',
+'sec.role':'الدور (Role)','lb.role':'من تريد أن يتقمّص الشخصية؟',
+'role.tpl':'أدوار جاهزة','role.tpl.sub':'اختر شخصية جاهزة، وستُملأ بقية الحقول تلقائيًا — ثم عدّل أي حقل أو اكتب دورك المخصص في الحقل أعلاه:','ph.role':'مثال: خبير تسويق رقمي، مهندس برمجيات، مدرّس، محرر لغوي',
 'hint.role':'منح النموذج هوية مهنية يجعل الإجابات أكثر عمقًا ودقة.',
 'sec.context':'السياق والخلفية','lb.context':'معلومات إضافية تساعد على فهم الموقف (سطر لكل نقطة)',
 'ph.context':'مثال:\nالمشروع متجر إلكتروني للقهوة\nالجمهور أعماره 25-40\nلديّ 3 أيام فقط للتنفيذ',
@@ -820,7 +829,7 @@ ar:{
 'ft.rights':'جميع الحقوق محفوظة','ft.repo':'📂 المستودع على GitHub','ft.web':'🌐 النسخة الإلكترونية',
 'ft.exe':'⬇ تحميل EXE','ft.mobile':'📱 نسخة الهاتف (APK)','ft.note':'صُنع بعناية — مهندس البرومبت | Prompt Engineer v1.5.0',
 'msg.copy':'✅ تم نسخ البرومبت — الصقه في أي أداة ذكاء اصطناعي','msg.dl':'⬇ تم تحميل الملف',
-'msg.preset':'✅ تم تطبيق القالب: ','msg.tasktpl':'📚 تم اختيار مهمة جاهزة: ','msg.auto':'✨ تم استكمال الحقول الناقصة بأفضل الممارسات',
+'msg.preset':'✅ تم تطبيق القالب: ','msg.tasktpl':'📚 تم اختيار مهمة جاهزة: ','msg.roletpl':'🧑‍💼 تم اختيار دور جاهز: ','msg.auto':'✨ تم استكمال الحقول الناقصة بأفضل الممارسات',
 'msg.clear':'↺ تم المسح','msg.theme':'🎨 تم تطبيق الثيم','msg.noTitle':'بدون عنوان',
 'ask.reset':'مسح جميع الحقول والبرومبت الحالي؟',
 'preview.start':'ابدأ بكتابة المهمة في اللوحة… وسيظهر البرومبت الكامل هنا فورًا.',
@@ -849,7 +858,8 @@ en:{
 'task.tpl':'Ready tasks','task.tpl.sub':'Pick a ready task as a starting point, then edit it or write your own in the field above:',
 'ph.task':'e.g. Write a full article about the benefits of daily walking for heart health, in simplified scientific depth...',
 'hint.task':'💡 The more precise the task, the closer the result. Avoid vague lines like "help me with this".',
-'sec.role':'Role','lb.role':'Who should the AI act as?','ph.role':'e.g. digital marketing expert, software engineer, teacher, language editor',
+'sec.role':'Role','lb.role':'Who should the AI act as?',
+'role.tpl':'Ready roles','role.tpl.sub':'Pick a ready persona and the other fields fill in automatically — then edit any field or write your own role in the box above:','ph.role':'e.g. digital marketing expert, software engineer, teacher, language editor',
 'hint.role':'Giving the model a professional identity makes answers deeper and more accurate.',
 'sec.context':'Context & Background','lb.context':'Extra information that clarifies the situation (one per line)',
 'ph.context':'Example:\nThe project is a coffee e-commerce store\nAudience aged 25-40\nOnly 3 days to deliver',
@@ -938,7 +948,7 @@ en:{
 'ft.rights':'All rights reserved','ft.repo':'📂 GitHub Repository','ft.web':'🌐 Web App',
 'ft.exe':'⬇ Download EXE','ft.mobile':'📱 Mobile version (APK)','ft.note':'Crafted with care — Prompt Engineer v1.5.0',
 'msg.copy':'✅ Prompt copied — paste it into any AI tool','msg.dl':'⬇ File downloaded',
-'msg.preset':'✅ Preset applied: ','msg.tasktpl':'📚 Ready task picked: ','msg.auto':'✨ Missing fields filled with best practices',
+'msg.preset':'✅ Preset applied: ','msg.tasktpl':'📚 Ready task picked: ','msg.roletpl':'🧑‍💼 Ready role picked: ','msg.auto':'✨ Missing fields filled with best practices',
 'msg.clear':'↺ Cleared','msg.theme':'🎨 Theme applied','msg.noTitle':'No title',
 'ask.reset':'Clear all fields and the current prompt?',
 'preview.start':'Start writing your task on the left… the full prompt will appear here instantly.',
@@ -1267,40 +1277,51 @@ function renderPresets(){
     box.appendChild(b);
   });
 }
-/* ===== Ready task templates — built from the presets, editable afterwards ===== */
+/* ===== Ready templates for the task and role fields — built from the presets ===== */
+const TPL_FIELDS = {
+  task:{field:'task', btn:'tplBtn', panel:'tplPanel', list:'tplList', cnt:'tplCnt', msg:'msg.tasktpl'},
+  role:{field:'role', btn:'roleTplBtn', panel:'roleTplPanel', list:'roleTplList', cnt:'roleTplCnt', msg:'msg.roletpl'}
+};
+function tplValue(p,kind){ return kind==='task' ? p.set.task : p.set.role; }
+function tplTitle(p,kind){ return kind==='task' ? tx(p.name) : tx(p.set.role); }
 function renderTaskTemplates(){
-  const box=$('tplList'); if(!box) return;
-  box.innerHTML='';
-  PRESETS.forEach((p,i)=>{
-    if(!p.set.task) return;
-    const b=document.createElement('button');
-    b.type='button'; b.className='tpl-item'; b.dataset.i=i;
-    b.innerHTML='<b></b><span></span>';
-    b.querySelector('b').textContent=tx(p.name);
-    b.querySelector('span').textContent=tx(p.set.task);
-    b.onclick=()=>useTaskTemplate(i);
-    box.appendChild(b);
+  Object.keys(TPL_FIELDS).forEach(kind=>{
+    const cfg=TPL_FIELDS[kind], box=$(cfg.list); if(!box) return;
+    box.innerHTML='';
+    PRESETS.forEach((p,i)=>{
+      const txt=tplValue(p,kind); if(!txt) return;
+      const b=document.createElement('button');
+      b.type='button'; b.className='tpl-item'; b.dataset.i=i; b.dataset.kind=kind;
+      b.innerHTML='<b></b><span></span>';
+      b.querySelector('b').textContent=tplTitle(p,kind);
+      b.querySelector('span').textContent= kind==='task' ? tx(txt) : tx(p.name);
+      b.onclick=()=>useTemplate(kind,i);
+      box.appendChild(b);
+    });
+    const cnt=$(cfg.cnt); if(cnt) cnt.textContent=box.children.length;
   });
-  const cnt=$('tplCnt'); if(cnt) cnt.textContent=box.children.length;
 }
-function useTaskTemplate(i){
-  applyPreset(i);
-  const ta=$('task');
-  ta.value=tx(PRESETS[i].set.task);
-  ta.dispatchEvent(new Event('input',{bubbles:true}));
-  ta.dispatchEvent(new Event('change',{bubbles:true}));
-  document.querySelectorAll('.tpl-item').forEach(x=>x.classList.toggle('active',Number(x.dataset.i)===i));
-  toggleTaskPanel(false);
-  ta.focus();
-  ta.setSelectionRange(0,0);
-  toast(t('msg.tasktpl')+tx(PRESETS[i].name));
+function useTemplate(kind,i){
+  const cfg=TPL_FIELDS[kind];
+  applyPreset(i);                              /* fills role, audience, tones, format, length, constraints… */
+  const el=$(cfg.field);
+  el.value=tx(tplValue(PRESETS[i],kind));
+  el.dispatchEvent(new Event('input',{bubbles:true}));
+  el.dispatchEvent(new Event('change',{bubbles:true}));
+  document.querySelectorAll('.tpl-item[data-kind="'+kind+'"]')
+          .forEach(x=>x.classList.toggle('active',Number(x.dataset.i)===i));
+  toggleTemplatePanel(kind,false);
+  el.focus();
+  if(el.setSelectionRange) el.setSelectionRange(0,0);
+  toast(t(cfg.msg)+(kind==='task' ? tx(PRESETS[i].name) : tx(PRESETS[i].set.role)));
 }
-function toggleTaskPanel(force){
-  const p=$('tplPanel'), b=$('tplBtn'); if(!p) return;
+function toggleTemplatePanel(kind,force){
+  const cfg=TPL_FIELDS[kind], p=$(cfg.panel), b=$(cfg.btn); if(!p) return;
   const open = force===undefined ? p.hidden : !!force;
   p.hidden=!open;
   if(b) b.setAttribute('aria-expanded',String(open));
 }
+function toggleTaskPanel(force){ toggleTemplatePanel('task',force); }
 function applyPreset(i){
   const s=PRESETS[i].set;
   document.querySelectorAll('#presets .chip').forEach((c,j)=>c.classList.toggle('active',j===i));
@@ -1901,10 +1922,12 @@ function toggleTopbar(){ setTopbar(!$('topbar').classList.contains('min')); }
   });
 })();
 
-/* زر القوالب الجاهزة داخل حقل المهمة */
+/* أزرار القوالب الجاهزة داخل حقلي المهمة والدور */
 (function wireTaskTemplates(){
-  const b=$('tplBtn'); if(!b) return;
-  b.addEventListener('click', ()=>toggleTaskPanel());
+  Object.keys(TPL_FIELDS).forEach(kind=>{
+    const b=$(TPL_FIELDS[kind].btn); if(!b) return;
+    b.addEventListener('click', ()=>toggleTemplatePanel(kind));
+  });
 })();
 
 /* ================= Init ================= */

@@ -92,8 +92,17 @@
         </button>
         <div class="s-body">
           <div class="f">
-            <label class="lb" for="role" data-i18n="lb.role">الشخصية المهنية</label>
+            <div class="lb-row">
+              <label class="lb" for="role" data-i18n="lb.role">الشخصية المهنية</label>
+              <button class="tpl-btn" id="roleTplBtn" type="button" aria-expanded="false" aria-controls="roleTplPanel">
+                <span class="tpl-ic">🧑‍💼</span><span data-i18n="role.tpl">أدوار جاهزة</span><span class="tpl-cnt" id="roleTplCnt">0</span>
+              </button>
+            </div>
             <input type="text" id="role" data-i18n-ph="ph.role" placeholder="مثال: خبير تسويق رقمي، مهندس برمجيات…">
+          </div>
+          <div class="tpl-panel" id="roleTplPanel" hidden>
+            <div class="tpl-head" data-i18n="role.tpl.sub">اختر شخصية جاهزة، وستُملأ بقية الحقول تلقائيًا — ثم عدّل أي حقل أو اكتب دورك المخصص:</div>
+            <div class="tpl-list" id="roleTplList"></div>
           </div>
         </div>
       </div>

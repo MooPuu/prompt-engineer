@@ -20,6 +20,7 @@ ar:{
 'sec.task':'المهمة الأساسية','sec.task.d':'ماذا تريد من الذكاء الاصطناعي أن يفعل؟',
 'task.tpl':'قوالب جاهزة','task.tpl.sub':'اختر مهمة جاهزة كبداية، ثم عدّلها أو اكتب مهمتك الخاصة في الحقل أعلاه:',
 'sec.role':'الدور (Role)','sec.role.d':'من يتقمّص الشخصية؟',
+'role.tpl':'أدوار جاهزة','role.tpl.sub':'اختر شخصية جاهزة، وستُملأ بقية الحقول تلقائيًا — ثم عدّل أي حقل أو اكتب دورك المخصص:',
 'sec.context':'السياق والخلفية','sec.context.d':'معلومات تساعد على فهم الموقف',
 'sec.audience':'الجمهور المستهدف','sec.audience.d':'من سيقرأ الناتج؟',
 'sec.style':'النبرة والصيغة','sec.style.d':'أسلوب الإجابة وشكلها',
@@ -74,7 +75,7 @@ ar:{
 'd.lang':'اللغة','d.links':'روابط','d.desktop':'نسخة الحاسوب','d.apk':'تحميل APK للأندرويد','d.star':'نجمة على GitHub',
 'ft.note':'© Mahdi Kareem — جميع الحقوق محفوظة','ft.web':'الويب: moopuu.github.io/prompt-engineer',
 'msg.copy':'تم نسخ البرومبت ✅','msg.dl':'تم تحميل الملف ⬇️','msg.clear':'تم مسح كل الحقول ↺',
-'msg.auto':'تمت التعبئة التلقائية ✨','msg.preset':'تم تطبيق القالب: ','msg.tasktpl':'تم اختيار مهمة جاهزة: 📚 ','msg.lang':'تم تغيير اللغة 🌍',
+'msg.auto':'تمت التعبئة التلقائية ✨','msg.preset':'تم تطبيق القالب: ','msg.tasktpl':'تم اختيار مهمة جاهزة: 📚 ','msg.roletpl':'تم اختيار دور جاهز: 🧑‍💼 ','msg.lang':'تم تغيير اللغة 🌍',
 'ask.reset':'مسح كل الحقول والبرومبت الحالي؟',
 'tone.pro':'💼 احترافي','tone.friendly':'😊 ودّي','tone.edu':'🎓 تعليمي','tone.creative':'🎨 إبداعي',
 'tone.concise':'⚡ مختصر','tone.sales':'📢 مقنع','tone.sci':'🔬 علمي','tone.academic':'🎓 أكاديمي',
@@ -96,6 +97,7 @@ en:{
 'sec.task':'Main task','sec.task.d':'What should the AI actually do?',
 'task.tpl':'Ready tasks','task.tpl.sub':'Pick a ready task as a starting point, then edit it or write your own in the field above:',
 'sec.role':'Role','sec.role.d':'Who plays the persona?',
+'role.tpl':'Ready roles','role.tpl.sub':'Pick a ready persona and the other fields fill in automatically — then edit any field or write your own role:',
 'sec.context':'Context & background','sec.context.d':'Details that frame the situation',
 'sec.audience':'Target audience','sec.audience.d':'Who will read the output?',
 'sec.style':'Tone & format','sec.style.d':'How the answer sounds and looks',
@@ -150,7 +152,7 @@ en:{
 'd.lang':'Language','d.links':'Links','d.desktop':'Desktop version','d.apk':'Download Android APK','d.star':'Star on GitHub',
 'ft.note':'© Mahdi Kareem — All rights reserved','ft.web':'Web: moopuu.github.io/prompt-engineer',
 'msg.copy':'Prompt copied ✅','msg.dl':'File downloaded ⬇️','msg.clear':'All fields cleared ↺',
-'msg.auto':'Auto-filled ✨','msg.preset':'Preset applied: ','msg.tasktpl':'Ready task picked: 📚 ','msg.lang':'Language changed 🌍',
+'msg.auto':'Auto-filled ✨','msg.preset':'Preset applied: ','msg.tasktpl':'Ready task picked: 📚 ','msg.roletpl':'Ready role picked: 🧑‍💼 ','msg.lang':'Language changed 🌍',
 'ask.reset':'Clear all fields and the current prompt?',
 'tone.pro':'💼 Professional','tone.friendly':'😊 Friendly','tone.edu':'🎓 Educational','tone.creative':'🎨 Creative',
 'tone.concise':'⚡ Concise','tone.sales':'📢 Persuasive','tone.sci':'🔬 Scientific','tone.academic':'🎓 Academic',
@@ -583,38 +585,49 @@ function applyPreset(i){
   goTab('m-home');
 }
 
-/* ================= Ready task templates (built from the presets) ================= */
+/* ================= Ready templates for task & role (built from the presets) ================= */
+const TPL_FIELDS = {
+  task:{field:'task', btn:'tplBtn', panel:'tplPanel', list:'tplList', cnt:'tplCnt', msg:'msg.tasktpl'},
+  role:{field:'role', btn:'roleTplBtn', panel:'roleTplPanel', list:'roleTplList', cnt:'roleTplCnt', msg:'msg.roletpl'}
+};
+function tplValue(p,kind){ return kind==='task' ? p.set.task : p.set.role; }
+function tplTitle(p,kind){ return kind==='task' ? tx(p.name) : tx(p.set.role); }
 function renderTaskTemplates(){
-  const box=$('tplList'); if(!box) return;
-  box.innerHTML='';
-  PRESETS.forEach((p,i)=>{
-    if(!p.set.task) return;
-    const b=document.createElement('button');
-    b.className='tpl-item'; b.type='button'; b.dataset.i=i;
-    b.innerHTML='<b></b><span></span>';
-    b.querySelector('b').textContent=tx(p.name);
-    b.querySelector('span').textContent=tx(p.set.task);
-    b.onclick=()=>useTaskTemplate(i);
-    box.appendChild(b);
+  Object.keys(TPL_FIELDS).forEach(kind=>{
+    const cfg=TPL_FIELDS[kind], box=$id(cfg.list); if(!box) return;
+    box.innerHTML='';
+    PRESETS.forEach((p,i)=>{
+      const txt=tplValue(p,kind); if(!txt) return;
+      const b=document.createElement('button');
+      b.className='tpl-item'; b.type='button'; b.dataset.i=i; b.dataset.kind=kind;
+      b.innerHTML='<b></b><span></span>';
+      b.querySelector('b').textContent=tplTitle(p,kind);
+      b.querySelector('span').textContent= kind==='task' ? tx(txt) : tx(p.name);
+      b.onclick=()=>useTemplate(kind,i);
+      box.appendChild(b);
+    });
+    const cnt=$id(cfg.cnt); if(cnt) cnt.textContent=box.children.length;
   });
-  const cnt=$('tplCnt'); if(cnt) cnt.textContent=box.children.length;
 }
-function useTaskTemplate(i){
-  applyPreset(i);
-  const ta=$('task');
-  ta.value=tx(PRESETS[i].set.task);
-  ta.dispatchEvent(new Event('input',{bubbles:true}));
-  ta.dispatchEvent(new Event('change',{bubbles:true}));
-  document.querySelectorAll('.tpl-item').forEach(x=>x.classList.toggle('active',Number(x.dataset.i)===i));
-  toggleTaskPanel(false);
-  toast(t('msg.tasktpl')+tx(PRESETS[i].name));
+function useTemplate(kind,i){
+  const cfg=TPL_FIELDS[kind];
+  applyPreset(i);                        /* fills role, audience, tones, format, length, constraints… */
+  const el=$id(cfg.field);
+  el.value=tx(tplValue(PRESETS[i],kind));
+  el.dispatchEvent(new Event('input',{bubbles:true}));
+  el.dispatchEvent(new Event('change',{bubbles:true}));
+  document.querySelectorAll('.tpl-item[data-kind="'+kind+'"]')
+          .forEach(x=>x.classList.toggle('active',Number(x.dataset.i)===i));
+  toggleTemplatePanel(kind,false);
+  toast(t(cfg.msg)+(kind==='task' ? tx(PRESETS[i].name) : tx(PRESETS[i].set.role)));
 }
-function toggleTaskPanel(force){
-  const p=$('tplPanel'), b=$('tplBtn'); if(!p) return;
+function toggleTemplatePanel(kind,force){
+  const cfg=TPL_FIELDS[kind], p=$id(cfg.panel), b=$id(cfg.btn); if(!p) return;
   const open = force===undefined ? p.hidden : !!force;
   p.hidden=!open;
   if(b) b.setAttribute('aria-expanded',String(open));
 }
+function toggleTaskPanel(force){ toggleTemplatePanel('task',force); }
 
 /* ================= AI tools ================= */
 function renderAi(){
@@ -683,6 +696,8 @@ function setLang(lg, silent){
 function wire(){
   const tplBtn=$('tplBtn');
   if(tplBtn) tplBtn.addEventListener('click',()=>toggleTaskPanel());
+  const roleBtn=$('roleTplBtn');
+  if(roleBtn) roleBtn.addEventListener('click',()=>toggleTemplatePanel('role'));
   document.querySelectorAll('.tg').forEach(el=>{
     el.addEventListener('click',()=>{ const k=el.dataset.tg; setFlag(k,!FLAGS[k]); render(); });
   });
