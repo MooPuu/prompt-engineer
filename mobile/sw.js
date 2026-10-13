@@ -1,4 +1,4 @@
-/* Prompt Engineer â€” mobile service worker (offline support) */
+/* Prompt Engineer — mobile service worker (offline support) */
 const CACHE = 'pe-mobile-v1.5.3';
 const ASSETS = [
   './',
@@ -16,7 +16,6 @@ const ASSETS = [
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE).then(c =>
-      /* cache:'reload' bypasses the HTTP cache so the shell is never precached stale */
       Promise.all(ASSETS.map(a => c.add(new Request(a, { cache: 'reload' })).catch(() => null)))
     ).then(() => self.skipWaiting())
   );
