@@ -594,7 +594,7 @@ function tplValue(p,kind){ return kind==='task' ? p.set.task : p.set.role; }
 function tplTitle(p,kind){ return kind==='task' ? tx(p.name) : tx(p.set.role); }
 function renderTaskTemplates(){
   Object.keys(TPL_FIELDS).forEach(kind=>{
-    const cfg=TPL_FIELDS[kind], box=$id(cfg.list); if(!box) return;
+    const cfg=TPL_FIELDS[kind], box=$(cfg.list); if(!box) return;
     box.innerHTML='';
     PRESETS.forEach((p,i)=>{
       const txt=tplValue(p,kind); if(!txt) return;
@@ -606,13 +606,13 @@ function renderTaskTemplates(){
       b.onclick=()=>useTemplate(kind,i);
       box.appendChild(b);
     });
-    const cnt=$id(cfg.cnt); if(cnt) cnt.textContent=box.children.length;
+    const cnt=$(cfg.cnt); if(cnt) cnt.textContent=box.children.length;
   });
 }
 function useTemplate(kind,i){
   const cfg=TPL_FIELDS[kind];
   applyPreset(i);                        /* fills role, audience, tones, format, length, constraints… */
-  const el=$id(cfg.field);
+  const el=$(cfg.field);
   el.value=tx(tplValue(PRESETS[i],kind));
   el.dispatchEvent(new Event('input',{bubbles:true}));
   el.dispatchEvent(new Event('change',{bubbles:true}));
@@ -622,7 +622,7 @@ function useTemplate(kind,i){
   toast(t(cfg.msg)+(kind==='task' ? tx(PRESETS[i].name) : tx(PRESETS[i].set.role)));
 }
 function toggleTemplatePanel(kind,force){
-  const cfg=TPL_FIELDS[kind], p=$id(cfg.panel), b=$id(cfg.btn); if(!p) return;
+  const cfg=TPL_FIELDS[kind], p=$(cfg.panel), b=$(cfg.btn); if(!p) return;
   const open = force===undefined ? p.hidden : !!force;
   p.hidden=!open;
   if(b) b.setAttribute('aria-expanded',String(open));
