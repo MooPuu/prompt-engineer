@@ -27,7 +27,7 @@
 
 ### 1) A 9-section prompt builder
 - **Task** — exactly what you want the AI to do, with a **📚 Ready tasks** button that opens 25 starter tasks generated from the presets below. Picking one fills the task field **and** applies its matching preset; the textarea stays free for any custom task.
-- **Role** — the persona it should adopt (engineer, editor, data analyst…).
+- **Role** — the persona it should adopt (engineer, editor, data analyst…), with a **🧑‍💼 Ready roles** button that lists the 25 personas from the presets. Picking one fills the role **and** auto-completes audience, tone, format, length and constraints — without touching the task you already wrote.
 - **Context & background** — project/situation details (one bullet per point).
 - **Audience** — who the output is for.
 - **Tone & style** — **21 tones**: professional, friendly, educational, creative, concise, persuasive, scientific, academic, witty, motivational, literary/poetic, conversational, documentary, optimistic, playful, empathetic, bold, **supportive**, **firm refusal**, **objecting**, **endorsing**.
