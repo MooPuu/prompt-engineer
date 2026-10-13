@@ -18,6 +18,7 @@ ar:{
 'act.auto':'أكمل تلقائيًا','act.copy':'نسخ','act.download':'تحميل','act.clear':'مسح',
 'sec.h':'حقول البرومبت',
 'sec.task':'المهمة الأساسية','sec.task.d':'ماذا تريد من الذكاء الاصطناعي أن يفعل؟',
+'task.tpl':'قوالب جاهزة','task.tpl.sub':'اختر مهمة جاهزة كبداية، ثم عدّلها أو اكتب مهمتك الخاصة في الحقل أعلاه:',
 'sec.role':'الدور (Role)','sec.role.d':'من يتقمّص الشخصية؟',
 'sec.context':'السياق والخلفية','sec.context.d':'معلومات تساعد على فهم الموقف',
 'sec.audience':'الجمهور المستهدف','sec.audience.d':'من سيقرأ الناتج؟',
@@ -73,7 +74,7 @@ ar:{
 'd.lang':'اللغة','d.links':'روابط','d.desktop':'نسخة الحاسوب','d.apk':'تحميل APK للأندرويد','d.star':'نجمة على GitHub',
 'ft.note':'© Mahdi Kareem — جميع الحقوق محفوظة','ft.web':'الويب: moopuu.github.io/prompt-engineer',
 'msg.copy':'تم نسخ البرومبت ✅','msg.dl':'تم تحميل الملف ⬇️','msg.clear':'تم مسح كل الحقول ↺',
-'msg.auto':'تمت التعبئة التلقائية ✨','msg.preset':'تم تطبيق القالب: ','msg.lang':'تم تغيير اللغة 🌍',
+'msg.auto':'تمت التعبئة التلقائية ✨','msg.preset':'تم تطبيق القالب: ','msg.tasktpl':'تم اختيار مهمة جاهزة: 📚 ','msg.lang':'تم تغيير اللغة 🌍',
 'ask.reset':'مسح كل الحقول والبرومبت الحالي؟',
 'tone.pro':'💼 احترافي','tone.friendly':'😊 ودّي','tone.edu':'🎓 تعليمي','tone.creative':'🎨 إبداعي',
 'tone.concise':'⚡ مختصر','tone.sales':'📢 مقنع','tone.sci':'🔬 علمي','tone.academic':'🎓 أكاديمي',
@@ -93,6 +94,7 @@ en:{
 'act.auto':'Auto-fill','act.copy':'Copy','act.download':'Download','act.clear':'Clear',
 'sec.h':'Prompt fields',
 'sec.task':'Main task','sec.task.d':'What should the AI actually do?',
+'task.tpl':'Ready tasks','task.tpl.sub':'Pick a ready task as a starting point, then edit it or write your own in the field above:',
 'sec.role':'Role','sec.role.d':'Who plays the persona?',
 'sec.context':'Context & background','sec.context.d':'Details that frame the situation',
 'sec.audience':'Target audience','sec.audience.d':'Who will read the output?',
@@ -148,7 +150,7 @@ en:{
 'd.lang':'Language','d.links':'Links','d.desktop':'Desktop version','d.apk':'Download Android APK','d.star':'Star on GitHub',
 'ft.note':'© Mahdi Kareem — All rights reserved','ft.web':'Web: moopuu.github.io/prompt-engineer',
 'msg.copy':'Prompt copied ✅','msg.dl':'File downloaded ⬇️','msg.clear':'All fields cleared ↺',
-'msg.auto':'Auto-filled ✨','msg.preset':'Preset applied: ','msg.lang':'Language changed 🌍',
+'msg.auto':'Auto-filled ✨','msg.preset':'Preset applied: ','msg.tasktpl':'Ready task picked: 📚 ','msg.lang':'Language changed 🌍',
 'ask.reset':'Clear all fields and the current prompt?',
 'tone.pro':'💼 Professional','tone.friendly':'😊 Friendly','tone.edu':'🎓 Educational','tone.creative':'🎨 Creative',
 'tone.concise':'⚡ Concise','tone.sales':'📢 Persuasive','tone.sci':'🔬 Scientific','tone.academic':'🎓 Academic',
@@ -581,6 +583,39 @@ function applyPreset(i){
   goTab('m-home');
 }
 
+/* ================= Ready task templates (built from the presets) ================= */
+function renderTaskTemplates(){
+  const box=$('tplList'); if(!box) return;
+  box.innerHTML='';
+  PRESETS.forEach((p,i)=>{
+    if(!p.set.task) return;
+    const b=document.createElement('button');
+    b.className='tpl-item'; b.type='button'; b.dataset.i=i;
+    b.innerHTML='<b></b><span></span>';
+    b.querySelector('b').textContent=tx(p.name);
+    b.querySelector('span').textContent=tx(p.set.task);
+    b.onclick=()=>useTaskTemplate(i);
+    box.appendChild(b);
+  });
+  const cnt=$('tplCnt'); if(cnt) cnt.textContent=box.children.length;
+}
+function useTaskTemplate(i){
+  applyPreset(i);
+  const ta=$('task');
+  ta.value=tx(PRESETS[i].set.task);
+  ta.dispatchEvent(new Event('input',{bubbles:true}));
+  ta.dispatchEvent(new Event('change',{bubbles:true}));
+  document.querySelectorAll('.tpl-item').forEach(x=>x.classList.toggle('active',Number(x.dataset.i)===i));
+  toggleTaskPanel(false);
+  toast(t('msg.tasktpl')+tx(PRESETS[i].name));
+}
+function toggleTaskPanel(force){
+  const p=$('tplPanel'), b=$('tplBtn'); if(!p) return;
+  const open = force===undefined ? p.hidden : !!force;
+  p.hidden=!open;
+  if(b) b.setAttribute('aria-expanded',String(open));
+}
+
 /* ================= AI tools ================= */
 function renderAi(){
   const grid=$('aiGrid'); grid.innerHTML='';
@@ -640,12 +675,14 @@ function setLang(lg, silent){
   document.querySelectorAll('.lang-seg button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lg));
   applyI18n();
   buildImgSelects();
-  renderPresets(); renderAi(); render();
+  renderPresets(); renderTaskTemplates(); renderAi(); render();
   if(!silent) toast(t('msg.lang'));
 }
 
 /* ================= Actions ================= */
 function wire(){
+  const tplBtn=$('tplBtn');
+  if(tplBtn) tplBtn.addEventListener('click',()=>toggleTaskPanel());
   document.querySelectorAll('.tg').forEach(el=>{
     el.addEventListener('click',()=>{ const k=el.dataset.tg; setFlag(k,!FLAGS[k]); render(); });
   });

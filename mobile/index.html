@@ -67,10 +67,19 @@
         </button>
         <div class="s-body">
           <div class="f">
-            <label class="lb" for="task" data-i18n="lb.task">اكتب مهمتك بوضوح</label>
+            <div class="lb-row">
+              <label class="lb" for="task" data-i18n="lb.task">اكتب مهمتك بوضوح</label>
+              <button class="tpl-btn" id="tplBtn" type="button" aria-expanded="false" aria-controls="tplPanel">
+                <span class="tpl-ic">📚</span><span data-i18n="task.tpl">قوالب جاهزة</span><span class="tpl-cnt" id="tplCnt">0</span>
+              </button>
+            </div>
             <textarea id="task" data-i18n-ph="ph.task" placeholder="مثال: اكتب لي مقالًا كاملًا عن فوائد المشي اليومي…"></textarea>
           </div>
           <div class="hint" data-i18n="hint.task">💡 كلما كانت المهمة أدق، كانت النتيجة أقرب لما تتوقعه. تجنب «ساعدني في هذا».</div>
+          <div class="tpl-panel" id="tplPanel" hidden>
+            <div class="tpl-head" data-i18n="task.tpl.sub">اختر مهمة جاهزة كبداية، ثم عدّلها أو اكتب مهمتك الخاصة في الحقل أعلاه:</div>
+            <div class="tpl-list" id="tplList"></div>
+          </div>
         </div>
       </div>
 

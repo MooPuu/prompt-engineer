@@ -43,6 +43,7 @@ const LEN_EN={short:'100–150 words, concise with no filler',medium:'300–500 
 
 const PRESETS = [
 {name:['✍️ مقال/محتوى','✍️ Article / Content'], set:{
+  task:['اكتب لي محتوى [الموضوع] وجعل القارئ لا يستطيع التوقف قبل النهاية','Write me content about [topic] that the reader cannot stop before the end'],
   role:['كاتب محتوى خبير ومحرر لغوي','Expert content writer and copy editor'],
   audience:['قراء مهتمون بموضوع المقال','Readers interested in this topic'],
   tone:['pro'], fmt:['md'], length:'long',
@@ -52,6 +53,7 @@ const PRESETS = [
          'No clichéd intros like "In today\'s world"\nNever invent statistics or sources\nNo empty praise'],
   flags:{ask:true,self:true}}},
 {name:['💻 برمجة','💻 Coding'], set:{
+  task:['اكتب دالة [المهمة] في [اللغة] مع معالجة الأخطاء والاختبارات','Write a function for [task] in [language] with error handling and tests'],
   role:['مهندس برمجيات خبير يكتب كودًا نظيفًا وموثوقًا','Senior software engineer writing clean, reliable code'],
   audience:['مطوّرون يبقون الكود','Developers who will maintain the code'],
   tone:['sci'], fmt:['code','md'], length:'medium',
@@ -61,6 +63,7 @@ const PRESETS = [
          'Do not return theoretically untested code\nDo not skip error handling\nNo deprecated libraries'],
   flags:{ask:true,cot:true,self:true}}},
 {name:['📊 تحليل بيانات','📊 Data Analysis'], set:{
+  task:['حلّل هذه البيانات [الوصف] واستخرج أهم ثلاث رؤى مع توصيات','Analyze this dataset [description] and extract the top three insights with recommendations'],
   role:['محلل بيانات استشاري يستخرج الرؤى من الأرقام','Consulting data analyst who extracts insights from numbers'],
   audience:['فريق الإدارة وصناع القرار','Leadership and decision makers'],
   tone:['sci'], fmt:['md','table'], length:'medium',
@@ -70,6 +73,7 @@ const PRESETS = [
          'Do not confuse mean with median\nNo conclusions without evidence'],
   flags:{ask:true,cot:true,self:true}}},
 {name:['🎯 تسويق وإعلان','🎯 Marketing'], set:{
+  task:['اكتب نصًا إعلانيًا لمنتج [المنتج] يخاطب [الجمهور] من نقطة ألمه الحقيقية','Write ad copy for [product] targeting [audience] starting from their real pain point'],
   role:['مدير تسويق رقمي يكتب نصوصًا إعلانية فائقة الإقناع','Digital marketing manager writing highly persuasive ad copy'],
   audience:['عملاء محتملون لا يعرفون المنتج','Potential customers who do not know the product'],
   tone:['sales'], fmt:['bullets'], length:'medium',
@@ -79,6 +83,7 @@ const PRESETS = [
          'No exaggerated promises\nNo empty phrases like "high quality"'],
   flags:{self:true,few:true}}},
 {name:['📚 تلخيص','📚 Summarize'], set:{
+  task:['لخّص النص التالي في خمس نقاط واضحة مع سطر خلاصة واحد في الأعلى','Summarize the following text into five clear bullets plus a one-line takeaway at the top'],
   role:['محضر ملخصات دقيق يلتقط الأفكار الجوهرية فقط','Precise summarizer capturing only the core ideas'],
   audience:['قارئ يريد الفكرة خلال دقيقة','A reader who wants the idea in one minute'],
   tone:['concise'], fmt:['bullets','md'], length:'short',
@@ -88,6 +93,7 @@ const PRESETS = [
          'Do not add personal opinions\nDo not repeat the same idea in different words'],
   flags:{ask:true,self:true}}},
 {name:['🗺️ خطة ودراسة','🗺️ Study Plan'], set:{
+  task:['صمّم خطة تعلّم [المهارة] لمبتدئ خلال [المدة] مع مخرج واضح لكل مرحلة','Design a learning plan for [skill] for a beginner over [duration] with a clear output per phase'],
   role:['مدرّب وخبير في تخطيط المسارات والتعلم المُحكَم','Coach and expert in planning structured learning paths'],
   audience:['مبتدئ يريد خطة واقعية قابلة للتنفيذ','A beginner wanting a realistic, doable plan'],
   tone:['edu'], fmt:['table','md'], length:'long',
@@ -97,6 +103,7 @@ const PRESETS = [
          'No unrealistic schedule\nNo phase without a tangible output'],
   flags:{ask:true,cot:true,self:true}}},
 {name:['🌐 ترجمة احترافية','🌐 Translation'], set:{
+  task:['ترجم النص التالي ترجمة تحريرية تحافظ على المعنى والنبرة لا الحرفية','Translate the following text as transcreation: meaning and tone first, not literal words'],
   role:['مترجم محترف متمرس في الترجمة التحريرية لا الحرفية','Professional translator specialized in transcreation, not literal translation'],
   audience:['قارئ أصلي في اللغة الهدف','A native reader of the target language'],
   tone:['pro'], fmt:['para'], length:'medium',
@@ -106,6 +113,7 @@ const PRESETS = [
          'Do not translate proper names or brands\nDo not add missing information'],
   flags:{ask:true,self:true}}},
 {name:['📧 كتابة إيميل', '📧 Email writing'], set:{
+  task:['اكتب إيميلًا إلى [الجهة] بخصوص [الموضوع] يوضّح المطلوب وخطوة تالية واضحة','Write an email to [recipient] about [subject] stating the ask and one clear next step'],
   role:['خبير تواصل أعمال يكتب رسائل واضحة وموجزة','Business communication expert writing clear, concise messages'],
   audience:['زميل أو عميل مشغول يريد الخلاصة أولًا','A busy colleague or client who wants the point first'],
   tone:['pro','concise'], fmt:['email','para'], length:'short',
@@ -114,6 +122,7 @@ const PRESETS = [
   avoid:['لا تطبل بلا داعٍ\nلا تكتب فقرات طويلة','No flattery without reason\nNo long paragraphs'],
   flags:{ask:true,self:true,direct:true}}},
 {name:['📱 منشور سوشيال ميديا','📱 Social media post'], set:{
+  task:['اكتب منشورًا لمنصة [المنصة] عن [الموضوع] بخطاف قوي وهاشتاقات مناسبة','Write a post for [platform] about [topic] with a strong hook and relevant hashtags'],
   role:['صانع محتوى سوشيال يعرف خوارزميات المنصات','Social content creator who knows platform algorithms'],
   audience:['متابعون يمرّون بسرعة في الخلاصة','Followers scrolling fast in the feed'],
   tone:['creative','friendly'], fmt:['bullets'], length:'short',
@@ -122,6 +131,7 @@ const PRESETS = [
   avoid:['لا تستخدم أكثر من 8 هاشتاقات\nلا تشتّت الرسالة','No more than 8 hashtags\nNo mixed message'],
   flags:{self:true,alts:true}}},
 {name:['🎬 سكربت فيديو','🎬 Video script'], set:{
+  task:['اكتب سكربت فيديو مدته [المدة] عن [الموضوع] بصيغة خطاف ثم محتوى ثم دعوة لإجراء','Write a [duration] video script about [topic] structured as hook, content, call to action'],
   role:['كاتب سكربيبات فيديو يحفظ المشاهد من التشتّت','Video scriptwriter who keeps viewers hooked'],
   audience:['مشاهد لا يتجاوز الثواني الأولى','A viewer who does not survive the first seconds'],
   tone:['creative','playful'], fmt:['script'], length:'medium',
@@ -130,6 +140,7 @@ const PRESETS = [
   avoid:['لا تبدأ بمقدمة طويلة\nلا تكتب نصًا يصعب نطقه','No long intro\nNo tongue-twisting lines'],
   flags:{ask:true,cot:false,self:true}}},
 {name:['💡 توليد أفكار','💡 Brainstorm'], set:{
+  task:['ولّد عشر أفكار لـ[الموضوع] مع تقييم جدوى لكل فكرة واختيار الأفضل منها','Generate ten ideas for [topic], rate each one for feasibility and pick the best three'],
   role:['ميسّر ورش تفكير ينتج أفكارًا غير مكرّرة','Workshop facilitator producing non-repetitive ideas'],
   audience:['فريق يحتاج قرارات لا قوائم طويلة','A team that needs decisions, not long lists'],
   tone:['creative','optimistic'], fmt:['bullets','table'], length:'medium',
@@ -138,6 +149,7 @@ const PRESETS = [
   avoid:['لا تكرر الفكرة نفسها بصياغات\nلا تبالغ في التقييم','No rephrased duplicates\nNo inflated ratings'],
   flags:{cot:true,balanced:true,self:true}}},
 {name:['🔍 تحليل منافسين','🔍 Competitor analysis'], set:{
+  task:['قارن بين [المنتج] و[المنافس] من حيث السعر والمزايا والجمهور واستخرج الفجوات','Compare [product] with [competitor] on price, features and audience, then extract the gaps'],
   role:['محلل استراتيجي يقارن بإنصاف ويستخلص الفرص','Strategy analyst comparing fairly and extracting opportunities'],
   audience:['صاحب عمل يريد قرارًا لا تقريرًا','A business owner who wants a decision, not a report'],
   tone:['sci','doc'], fmt:['table','md'], length:'long',
@@ -146,6 +158,7 @@ const PRESETS = [
   avoid:['لا تفترض أرقامًا غير مؤكدة\nلا تتحيز لطرف','No unverified numbers\nNo bias toward one side'],
   flags:{ask:true,sources:true,alts:true}}},
 {name:['🛍️ أوصاف منتجات SEO','🛍️ Product descriptions'], set:{
+  task:['اكتب وصفًا لمنتج [المنتج] يبرز الفائدة الأساسية ويحسّن الظهور في البحث','Write a product description for [product] that highlights its core benefit and is search friendly'],
   role:['كاتب أوصاف تجارة إلكترونية يبيع بأسلوب نظيف','E-commerce copywriter who sells without sounding spammy'],
   audience:['متسوّق متردد يقارن قبل الشراء','A hesitant shopper comparing before buying'],
   tone:['sales','friendly'], fmt:['para','bullets'], length:'medium',
@@ -154,6 +167,7 @@ const PRESETS = [
   avoid:['لا تبالغ في الوعود\nلا تكرر الكلمة المفتاحية','No exaggerated promises\nNo keyword stuffing'],
   flags:{self:true,direct:true}}},
 {name:['👨‍🏫 شرح مفهوم معقد','👨‍🏫 Explain a concept'], set:{
+  task:['اشرح لي مفهوم [المفهوم] بأمثلة من الحياة اليومية وبأبسط طريقة ممكنة','Explain the concept of [concept] to me with everyday examples in the simplest possible way'],
   role:['مدرّب يشفّر المفاهيم الصعبة إلى صور بسيطة','Teacher who decodes hard concepts into simple pictures'],
   audience:['مبتدئ بلا خلفية في الموضوع','A beginner with no background in the topic'],
   tone:['edu','empathy'], fmt:['para','bullets'], length:'medium',
@@ -162,6 +176,7 @@ const PRESETS = [
   avoid:['لا تقفز فوق الأساسيات\nلا تستخدم مصطلحات بلا شرح','No skipping the basics\nNo unexplained terms'],
   flags:{simple:true,cot:true,self:true}}},
 {name:['💬 رد على عميل','💬 Customer reply'], set:{
+  task:['اكتب ردًا مهذبًا على عميل [المشكلة] اعترف فيها ثم اقترح حلًا وخطوة تالية','Write a polite reply to a customer about [issue]: acknowledge it, then propose a fix and a next step'],
   role:['أخصائي دعم يحول الشكوى إلى ولاء','Support agent turning complaints into loyalty'],
   audience:['عميق غاضب يريد حلًا لا أعذارًا','An upset customer who wants a fix, not excuses'],
   tone:['empathy','support'], fmt:['para'], length:'short',
@@ -171,6 +186,7 @@ const PRESETS = [
   flags:{ask:true,self:true,direct:true}}}
 ,
 {name:['📰 كتابة مقالات','📰 Article writing'], set:{
+  task:['اكتب مقالًا عن [الموضوع] بعناوين فرعية وأمثلة واقعية ودعوة واضحة لاتخاذ إجراء','Write an article about [topic] with subheadings, real examples and a clear call to action'],
   role:['صحفي وكاتب مقالات يحوّل الفكرة إلى نص مقروء ومقنع','Journalist who turns an idea into a readable, persuasive piece'],
   audience:['قارئ عادي يتصفح بسرعة ولا يملك وقتًا طويلًا','A casual reader who skims fast and has little time'],
   tone:['pro','friendly'], fmt:['md'], length:'deep',
@@ -180,6 +196,7 @@ const PRESETS = [
          'No generic repeated intro\nNever invent statistics or sources\nNo long stretches without new information'],
   flags:{ask:true,self:true}}},
 {name:['🎓 دراسات عليا / بحوث أكاديمية','🎓 Postgraduate / academic research'], set:{
+  task:['اقترح عنوانًا بحثيًا حول [الموضوع] مع إشكالية وفجوة بحثية ومنهج مناسب','Suggest a research title on [topic] with a problem statement, research gap and suitable methodology'],
   role:['باحث دراسات عليا يتقن صياغة الإشكالية والمنهج والتوثيق','Postgraduate researcher skilled in problem statement, methodology and citation'],
   audience:['لجنة مناقشة ومشرف أكاديمي','A defence committee and an academic supervisor'],
   tone:['academic','pro'], fmt:['md','para'], length:'deep',
@@ -189,6 +206,7 @@ const PRESETS = [
          'No references without a publication year\nDo not generalise exploratory findings to the whole population\nNever invent field data'],
   flags:{ask:true,sources:true,cot:true,self:true}}},
 {name:['🖋️ شعر فصيح / عام','🖋️ Classical / general poetry'], set:{
+  task:['اكتب قصيدة على الوزن [الوزن] عن [الموضوع] بقافية [القافية]','Write a poem on the [meter] metre about [topic] with a [rhyme] rhyme'],
   role:['شاعر متمكن من الموسيقى والوزن والتصوير','Poet with a strong command of rhythm, meter and imagery'],
   audience:['قارئ شعر يبحث عن معنى يشبه حاله','A poetry reader looking for lines that mirror their own state'],
   tone:['literary','creative'], fmt:['para'], length:'medium',
@@ -198,6 +216,7 @@ const PRESETS = [
          'Do not break the meter mid-line\nNo explanation after the poem\nNo forced or overblown phrasing'],
   flags:{ask:true,cot:false,self:true}}},
 {name:['🗂️ إعداد خطط','🗂️ Plan preparation'], set:{
+  task:['حوّل الهدف [الهدف] إلى خطة تنفيذية بمراحل ومسؤوليات ومؤشر نجاح','Turn the goal [goal] into an execution plan with phases, owners and a success metric'],
   role:['مخطّط تنفيذ يحوّل هدفًا واحدًا إلى خطوات قابلة للتنفيذ','Planner who turns one goal into executable steps'],
   audience:['فريق أو فرد يريد خطة واضحة بمالك لكل خطوة','A team or individual who needs a clear plan with an owner per step'],
   tone:['pro','doc'], fmt:['table','md'], length:'long',
@@ -207,6 +226,7 @@ const PRESETS = [
          'No phase without a deliverable\nNo task without a named owner\nDo not skip the required resources'],
   flags:{ask:true,plan:true,self:true}}},
 {name:['🏟️ خطط إدارة الحشود بالملايين','🏟️ Mass crowd management plans'], set:{
+  task:['صمّم خطة إدارة حشد يقدّر بـ[العدد] شخصًا في موقع [الموقع] مع مناطق سعة ومسارات إخلاء','Design a crowd management plan for [count] people at [venue] with zones, capacities and evacuation routes'],
   role:['خبير عمليات وأمن يخطّط لتدفّق آمن لعشرات الآلاف','Operations and crowd-safety expert planning safe flow for tens of thousands'],
   audience:['منظّم فعالية يواجه حضورًا هائلًا','An event organizer facing a huge turnout'],
   tone:['doc','pro'], fmt:['table','md'], length:'deep',
@@ -216,6 +236,7 @@ const PRESETS = [
          'Do not assume an even crowd distribution\nDo not rely on a single estimate with no safety margin\nNever leave a single evacuation route'],
   flags:{ask:true,plan:true,cot:true,sources:true,self:true}}},
 {name:['🔤 مدقق لغوي','🔤 Language auditor'], set:{
+  task:['دقّق النص التالي إملائيًا ونحويًا واذكر سبب كل تصحيح في جدول','Proofread the following text for spelling and grammar and explain every correction in a table'],
   role:['مدقّق لغوي يفحص النص إملائيًا ونحويًا ومعجميًا','Language auditor checking spelling, grammar and diction'],
   audience:['كاتب يحتاج نصًا خاليًا من الأخطاء قبل النشر','A writer who needs error-free copy before publishing'],
   tone:['pro','concise'], fmt:['table'], length:'long',
@@ -225,6 +246,7 @@ const PRESETS = [
          'Do not change the meaning while proofreading\nDo not impose your own style\nDo not ignore punctuation'],
   flags:{ask:true,self:true}}},
 {name:['✅ مصحح إملائي','✅ Spell checker'], set:{
+  task:['صحّح الأخطاء الإملائية في النص التالي كلمة بكلمة واشرح سبب كل خطأ','Fix the spelling mistakes in the following text word by word and explain each mistake'],
   role:['مصحح إملائي يكتشف الخطأ ويشرح تصحيحه','Spell checker that finds the mistake and explains the fix'],
   audience:['طالب أو موظف يكتب نصًا يحتاج دقة لغوية','A student or employee who needs accurate writing'],
   tone:['concise','pro'], fmt:['table'], length:'short',
@@ -234,6 +256,7 @@ const PRESETS = [
          'Do not correct what is not wrong\nDo not skip repeated mistakes\nNo grammar lecture'],
   flags:{ask:true,direct:true}}},
 {name:['📗 تحليل إيجابي','📗 Positive analysis'], set:{
+  task:['حلّل [الموضوع] من كل النواحي الإيجابية مع أدلة ومؤشر لقياس النجاح','Analyze [topic] from every positive angle with evidence and a metric to measure success'],
   role:['محلل يبرز الجوانب الإيجابية بأدلة قابلة للقياس','Analyst who highlights strengths with measurable evidence'],
   audience:['صاحب قرار يبحث عن فرص لا عن مخاوف','A decision maker looking for opportunities, not fears'],
   tone:['endorse','support'], fmt:['md','bullets'], length:'long',
@@ -243,6 +266,7 @@ const PRESETS = [
          'Do not hide risks just to praise\nNo invented numbers to support your case\nDo not stop at description without data'],
   flags:{ask:true,sources:true,self:true}}},
 {name:['📕 تحليل سلبي','📕 Negative analysis'], set:{
+  task:['حلّل [الموضوع] من كل النواحي السلبية ورتّب المخاطر حسب الشدة مع إجراءات تصحيحية','Analyze [topic] from every negative angle, rank the risks by severity and propose corrective actions'],
   role:['محلل نقدي يكشف نقاط الضعف والمخاطر بصراحة','Critical analyst who exposes weaknesses and risks plainly'],
   audience:['صاحب قرار يريد رؤية المخاطر قبل الالتزام','A decision maker who wants risks before committing'],
   tone:['object','sci'], fmt:['md','table'], length:'long',
@@ -252,6 +276,7 @@ const PRESETS = [
          'Do not stay surface-level in the critique\nDo not soften the findings\nAttack ideas, not people'],
   flags:{ask:true,balanced:true,alts:true,self:true}}},
 {name:['🖼️ توليد صورة','🖼️ Image Generation'], set:{
+  task:['صورة لـ[الموضوع] بأسلوب [الأسلوب] وإضاءة [الإضاءة] وتكوين [التكوين]','A photo of [subject] in [style] style with [lighting] lighting and [composition] composition'],
   role:[''],audience:['',''],tone:[],fmt:[],length:'',constraints:['',''],avoid:['',''],
   flags:{ask:false,cot:false,self:false,few:false}, img:true}}
 ];

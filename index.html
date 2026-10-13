@@ -94,6 +94,31 @@ button,input,textarea,select{font-family:inherit;font-size:inherit;color:inherit
 .chip:hover{border-color:var(--acc);color:var(--acc);transform:translateY(-1px)}
 .chip.active{background:var(--accent-grad,linear-gradient(135deg,var(--acc),var(--acc2)));border-color:transparent;color:var(--on-grad,#fff)}
 
+/* ===== Ready task templates (built from the presets) ===== */
+.tpl-btn{
+  margin-inline-start:auto;display:inline-flex;align-items:center;gap:6px;
+  border:1px solid var(--line2);background:var(--panel2);color:var(--muted);
+  border-radius:999px;padding:5px 11px;font-size:12px;font-weight:700;cursor:pointer;transition:.16s
+}
+.tpl-btn:hover{border-color:var(--acc);color:var(--acc)}
+.tpl-btn[aria-expanded="true"]{
+  background:var(--accent-grad,linear-gradient(135deg,var(--acc),var(--acc2)));
+  border-color:transparent;color:var(--on-grad,#fff)
+}
+.tpl-cnt{background:rgba(108,140,255,.22);color:inherit;border-radius:999px;padding:1px 7px;font-size:11px;font-weight:800}
+.tpl-btn[aria-expanded="true"] .tpl-cnt{background:rgba(255,255,255,.24)}
+.tpl-panel{margin-top:11px;border:1px solid var(--line2);border-radius:14px;padding:12px;background:var(--panel2)}
+.tpl-head{font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.6}
+.tpl-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;max-height:340px;overflow:auto}
+.tpl-item{
+  text-align:start;border:1px solid var(--line2);background:var(--panel);border-radius:12px;
+  padding:9px 11px;cursor:pointer;transition:.16s;display:block;width:100%
+}
+.tpl-item:hover{border-color:var(--acc);transform:translateY(-1px)}
+.tpl-item.active{border-color:var(--acc);box-shadow:0 0 0 2px rgba(108,140,255,.2)}
+.tpl-item b{display:block;font-size:12.5px;font-weight:700;color:var(--txt);margin-bottom:3px}
+.tpl-item span{display:block;font-size:11.5px;color:var(--muted);line-height:1.6}
+
 /* ===== Form ===== */
 section.fsec{border-bottom:1px dashed var(--line);padding:14px 0}
 section.fsec:last-child{border-bottom:none}
@@ -292,10 +317,18 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
 
       <!-- 1 -->
       <section class="fsec">
-        <h3><span class="n">1</span><span class="fi" style="--c:#2f6bff">🎯</span> <span data-i18n="sec.task">المهمة الأساسية</span> <b style="color:var(--red)">*</b></h3>
+        <h3><span class="n">1</span><span class="fi" style="--c:#2f6bff">🎯</span> <span data-i18n="sec.task">المهمة الأساسية</span> <b style="color:var(--red)">*</b>
+          <button class="tpl-btn" id="tplBtn" type="button" aria-expanded="false" aria-controls="tplPanel">
+            <span class="tpl-ic">📚</span><span data-i18n="task.tpl">قوالب جاهزة</span><span class="tpl-cnt" id="tplCnt">0</span>
+          </button>
+        </h3>
         <label class="lb"><span data-i18n="lb.task">ماذا تريد من الذكاء الاصطناعي أن يفعل؟</span> <b data-i18n="lb.task2">اكتب بوضوح وبجملة محددة</b></label>
         <textarea id="task" data-i18n-ph="ph.task" placeholder="مثال: اكتب لي مقالًا كاملًا عن فوائد المشي اليومي لصحة القلب، بعمق علمي مبسّط..."></textarea>
         <div class="hint" data-i18n="hint.task">💡 كلما كانت المهمة أدق، كانت النتيجة أقرب لما تتوقعه. تجنب الجمل العامة مثل "ساعدني في هذا".</div>
+        <div class="tpl-panel" id="tplPanel" hidden>
+          <div class="tpl-head" data-i18n="task.tpl.sub">اختر مهمة جاهزة كبداية، ثم عدّلها أو اكتب مهمتك الخاصة في الحقل أعلاه:</div>
+          <div class="tpl-list" id="tplList"></div>
+        </div>
       </section>
 
       <!-- 2 -->
@@ -695,6 +728,7 @@ ar:{
 'wl.sub':'اختر قالبًا جاهزًا أو املأ الحقول — واحصل على برومبت مثالي جاهز للنسخ فورًا.',
 'div.info':'معلومات المهمة','div.shape':'شكل المخرجات','div.tech':'تقنيات هندسة البرومبت المتقدمة',
 'sec.task':'المهمة الأساسية','lb.task':'ماذا تريد من الذكاء الاصطناعي أن يفعل؟','lb.task2':'اكتب بوضوح وبجملة محددة',
+'task.tpl':'قوالب جاهزة','task.tpl.sub':'اختر مهمة جاهزة كبداية، ثم عدّلها أو اكتب مهمتك الخاصة في الحقل أعلاه:',
 'ph.task':'مثال: اكتب لي مقالًا كاملًا عن فوائد المشي اليومي لصحة القلب، بعمق علمي مبسّط...',
 'hint.task':'💡 كلما كانت المهمة أدق، كانت النتيجة أقرب لما تتوقعه. تجنب الجمل العامة مثل "ساعدني في هذا".',
 'sec.role':'الدور (Role)','lb.role':'من تريد أن يتقمّص الشخصية؟','ph.role':'مثال: خبير تسويق رقمي، مهندس برمجيات، مدرّس، محرر لغوي',
@@ -786,7 +820,7 @@ ar:{
 'ft.rights':'جميع الحقوق محفوظة','ft.repo':'📂 المستودع على GitHub','ft.web':'🌐 النسخة الإلكترونية',
 'ft.exe':'⬇ تحميل EXE','ft.mobile':'📱 نسخة الهاتف (APK)','ft.note':'صُنع بعناية — مهندس البرومبت | Prompt Engineer v1.5.0',
 'msg.copy':'✅ تم نسخ البرومبت — الصقه في أي أداة ذكاء اصطناعي','msg.dl':'⬇ تم تحميل الملف',
-'msg.preset':'✅ تم تطبيق القالب: ','msg.auto':'✨ تم استكمال الحقول الناقصة بأفضل الممارسات',
+'msg.preset':'✅ تم تطبيق القالب: ','msg.tasktpl':'📚 تم اختيار مهمة جاهزة: ','msg.auto':'✨ تم استكمال الحقول الناقصة بأفضل الممارسات',
 'msg.clear':'↺ تم المسح','msg.theme':'🎨 تم تطبيق الثيم','msg.noTitle':'بدون عنوان',
 'ask.reset':'مسح جميع الحقول والبرومبت الحالي؟',
 'preview.start':'ابدأ بكتابة المهمة في اللوحة… وسيظهر البرومبت الكامل هنا فورًا.',
@@ -812,6 +846,7 @@ en:{
 'wl.sub':'Pick a ready preset or fill the fields — get a perfect prompt ready to copy instantly.',
 'div.info':'Task details','div.shape':'Output shape','div.tech':'Advanced prompt techniques',
 'sec.task':'Main Task','lb.task':'What should the AI do?','lb.task2':'be specific and concrete',
+'task.tpl':'Ready tasks','task.tpl.sub':'Pick a ready task as a starting point, then edit it or write your own in the field above:',
 'ph.task':'e.g. Write a full article about the benefits of daily walking for heart health, in simplified scientific depth...',
 'hint.task':'💡 The more precise the task, the closer the result. Avoid vague lines like "help me with this".',
 'sec.role':'Role','lb.role':'Who should the AI act as?','ph.role':'e.g. digital marketing expert, software engineer, teacher, language editor',
@@ -903,7 +938,7 @@ en:{
 'ft.rights':'All rights reserved','ft.repo':'📂 GitHub Repository','ft.web':'🌐 Web App',
 'ft.exe':'⬇ Download EXE','ft.mobile':'📱 Mobile version (APK)','ft.note':'Crafted with care — Prompt Engineer v1.5.0',
 'msg.copy':'✅ Prompt copied — paste it into any AI tool','msg.dl':'⬇ File downloaded',
-'msg.preset':'✅ Preset applied: ','msg.auto':'✨ Missing fields filled with best practices',
+'msg.preset':'✅ Preset applied: ','msg.tasktpl':'📚 Ready task picked: ','msg.auto':'✨ Missing fields filled with best practices',
 'msg.clear':'↺ Cleared','msg.theme':'🎨 Theme applied','msg.noTitle':'No title',
 'ask.reset':'Clear all fields and the current prompt?',
 'preview.start':'Start writing your task on the left… the full prompt will appear here instantly.',
@@ -937,7 +972,7 @@ function setLang(lg, silent){
   document.querySelectorAll('#langs .tbtn').forEach(b=>b.classList.toggle('active', b.dataset.lang===lg));
   applyI18n();
   const sel = $('lang'); if(sel) sel.value = (lg === 'en' ? 'en' : 'ar');
-  renderPresets(); render(); renderHistory(); renderAi();
+  renderPresets(); renderTaskTemplates(); render(); renderHistory(); renderAi();
   if(qEl && qEl.value) filterUI(qEl.value);
   markActive();
   if(!silent) toast(t('msg.theme'));
@@ -985,6 +1020,7 @@ const LEN_EN={short:'100–150 words, concise with no filler',medium:'300–500 
 /* ================= Presets ================= */
 const PRESETS = [
 {name:['✍️ مقال/محتوى','✍️ Article / Content'], set:{
+  task:['اكتب لي محتوى [الموضوع] وجعل القارئ لا يستطيع التوقف قبل النهاية','Write me content about [topic] that the reader cannot stop before the end'],
   role:['كاتب محتوى خبير ومحرر لغوي','Expert content writer and copy editor'],
   audience:['قراء مهتمون بموضوع المقال','Readers interested in this topic'],
   tone:['pro'], fmt:['md'], length:'long',
@@ -994,6 +1030,7 @@ const PRESETS = [
          'No clichéd intros like "In today\'s world"\nNever invent statistics or sources\nNo empty praise'],
   flags:{ask:true,self:true}}},
 {name:['💻 برمجة','💻 Coding'], set:{
+  task:['اكتب دالة [المهمة] في [اللغة] مع معالجة الأخطاء والاختبارات','Write a function for [task] in [language] with error handling and tests'],
   role:['مهندس برمجيات خبير يكتب كودًا نظيفًا وموثوقًا','Senior software engineer writing clean, reliable code'],
   audience:['مطوّرون يبقون الكود','Developers who will maintain the code'],
   tone:['sci'], fmt:['code','md'], length:'medium',
@@ -1003,6 +1040,7 @@ const PRESETS = [
          'Do not return theoretically untested code\nDo not skip error handling\nNo deprecated libraries'],
   flags:{ask:true,cot:true,self:true}}},
 {name:['📊 تحليل بيانات','📊 Data Analysis'], set:{
+  task:['حلّل هذه البيانات [الوصف] واستخرج أهم ثلاث رؤى مع توصيات','Analyze this dataset [description] and extract the top three insights with recommendations'],
   role:['محلل بيانات استشاري يستخرج الرؤى من الأرقام','Consulting data analyst who extracts insights from numbers'],
   audience:['فريق الإدارة وصناع القرار','Leadership and decision makers'],
   tone:['sci'], fmt:['md','table'], length:'medium',
@@ -1012,6 +1050,7 @@ const PRESETS = [
          'Do not confuse mean with median\nNo conclusions without evidence'],
   flags:{ask:true,cot:true,self:true}}},
 {name:['🎯 تسويق وإعلان','🎯 Marketing'], set:{
+  task:['اكتب نصًا إعلانيًا لمنتج [المنتج] يخاطب [الجمهور] من نقطة ألمه الحقيقية','Write ad copy for [product] targeting [audience] starting from their real pain point'],
   role:['مدير تسويق رقمي يكتب نصوصًا إعلانية فائقة الإقناع','Digital marketing manager writing highly persuasive ad copy'],
   audience:['عملاء محتملون لا يعرفون المنتج','Potential customers who do not know the product'],
   tone:['sales'], fmt:['bullets'], length:'medium',
@@ -1021,6 +1060,7 @@ const PRESETS = [
          'No exaggerated promises\nNo empty phrases like "high quality"'],
   flags:{self:true,few:true}}},
 {name:['📚 تلخيص','📚 Summarize'], set:{
+  task:['لخّص النص التالي في خمس نقاط واضحة مع سطر خلاصة واحد في الأعلى','Summarize the following text into five clear bullets plus a one-line takeaway at the top'],
   role:['محضر ملخصات دقيق يلتقط الأفكار الجوهرية فقط','Precise summarizer capturing only the core ideas'],
   audience:['قارئ يريد الفكرة خلال دقيقة','A reader who wants the idea in one minute'],
   tone:['concise'], fmt:['bullets','md'], length:'short',
@@ -1030,6 +1070,7 @@ const PRESETS = [
          'Do not add personal opinions\nDo not repeat the same idea in different words'],
   flags:{ask:true,self:true}}},
 {name:['🗺️ خطة ودراسة','🗺️ Study Plan'], set:{
+  task:['صمّم خطة تعلّم [المهارة] لمبتدئ خلال [المدة] مع مخرج واضح لكل مرحلة','Design a learning plan for [skill] for a beginner over [duration] with a clear output per phase'],
   role:['مدرّب وخبير في تخطيط المسارات والتعلم المُحكَم','Coach and expert in planning structured learning paths'],
   audience:['مبتدئ يريد خطة واقعية قابلة للتنفيذ','A beginner wanting a realistic, doable plan'],
   tone:['edu'], fmt:['table','md'], length:'long',
@@ -1039,6 +1080,7 @@ const PRESETS = [
          'No unrealistic schedule\nNo phase without a tangible output'],
   flags:{ask:true,cot:true,self:true}}},
 {name:['🌐 ترجمة احترافية','🌐 Translation'], set:{
+  task:['ترجم النص التالي ترجمة تحريرية تحافظ على المعنى والنبرة لا الحرفية','Translate the following text as transcreation: meaning and tone first, not literal words'],
   role:['مترجم محترف متمرس في الترجمة التحريرية لا الحرفية','Professional translator specialized in transcreation, not literal translation'],
   audience:['قارئ أصلي في اللغة الهدف','A native reader of the target language'],
   tone:['pro'], fmt:['para'], length:'medium',
@@ -1048,6 +1090,7 @@ const PRESETS = [
          'Do not translate proper names or brands\nDo not add missing information'],
   flags:{ask:true,self:true}}},
 {name:['📧 كتابة إيميل', '📧 Email writing'], set:{
+  task:['اكتب إيميلًا إلى [الجهة] بخصوص [الموضوع] يوضّح المطلوب وخطوة تالية واضحة','Write an email to [recipient] about [subject] stating the ask and one clear next step'],
   role:['خبير تواصل أعمال يكتب رسائل واضحة وموجزة','Business communication expert writing clear, concise messages'],
   audience:['زميل أو عميل مشغول يريد الخلاصة أولًا','A busy colleague or client who wants the point first'],
   tone:['pro','concise'], fmt:['email','para'], length:'short',
@@ -1056,6 +1099,7 @@ const PRESETS = [
   avoid:['لا تطبل بلا داعٍ\nلا تكتب فقرات طويلة','No flattery without reason\nNo long paragraphs'],
   flags:{ask:true,self:true,direct:true}}},
 {name:['📱 منشور سوشيال ميديا','📱 Social media post'], set:{
+  task:['اكتب منشورًا لمنصة [المنصة] عن [الموضوع] بخطاف قوي وهاشتاقات مناسبة','Write a post for [platform] about [topic] with a strong hook and relevant hashtags'],
   role:['صانع محتوى سوشيال يعرف خوارزميات المنصات','Social content creator who knows platform algorithms'],
   audience:['متابعون يمرّون بسرعة في الخلاصة','Followers scrolling fast in the feed'],
   tone:['creative','friendly'], fmt:['bullets'], length:'short',
@@ -1064,6 +1108,7 @@ const PRESETS = [
   avoid:['لا تستخدم أكثر من 8 هاشتاقات\nلا تشتّت الرسالة','No more than 8 hashtags\nNo mixed message'],
   flags:{self:true,alts:true}}},
 {name:['🎬 سكربت فيديو','🎬 Video script'], set:{
+  task:['اكتب سكربت فيديو مدته [المدة] عن [الموضوع] بصيغة خطاف ثم محتوى ثم دعوة لإجراء','Write a [duration] video script about [topic] structured as hook, content, call to action'],
   role:['كاتب سكربيبات فيديو يحفظ المشاهد من التشتّت','Video scriptwriter who keeps viewers hooked'],
   audience:['مشاهد لا يتجاوز الثواني الأولى','A viewer who does not survive the first seconds'],
   tone:['creative','playful'], fmt:['script'], length:'medium',
@@ -1072,6 +1117,7 @@ const PRESETS = [
   avoid:['لا تبدأ بمقدمة طويلة\nلا تكتب نصًا يصعب نطقه','No long intro\nNo tongue-twisting lines'],
   flags:{ask:true,cot:false,self:true}}},
 {name:['💡 توليد أفكار','💡 Brainstorm'], set:{
+  task:['ولّد عشر أفكار لـ[الموضوع] مع تقييم جدوى لكل فكرة واختيار الأفضل منها','Generate ten ideas for [topic], rate each one for feasibility and pick the best three'],
   role:['ميسّر ورش تفكير ينتج أفكارًا غير مكرّرة','Workshop facilitator producing non-repetitive ideas'],
   audience:['فريق يحتاج قرارات لا قوائم طويلة','A team that needs decisions, not long lists'],
   tone:['creative','optimistic'], fmt:['bullets','table'], length:'medium',
@@ -1080,6 +1126,7 @@ const PRESETS = [
   avoid:['لا تكرر الفكرة نفسها بصياغات\nلا تبالغ في التقييم','No rephrased duplicates\nNo inflated ratings'],
   flags:{cot:true,balanced:true,self:true}}},
 {name:['🔍 تحليل منافسين','🔍 Competitor analysis'], set:{
+  task:['قارن بين [المنتج] و[المنافس] من حيث السعر والمزايا والجمهور واستخرج الفجوات','Compare [product] with [competitor] on price, features and audience, then extract the gaps'],
   role:['محلل استراتيجي يقارن بإنصاف ويستخلص الفرص','Strategy analyst comparing fairly and extracting opportunities'],
   audience:['صاحب عمل يريد قرارًا لا تقريرًا','A business owner who wants a decision, not a report'],
   tone:['sci','doc'], fmt:['table','md'], length:'long',
@@ -1088,6 +1135,7 @@ const PRESETS = [
   avoid:['لا تفترض أرقامًا غير مؤكدة\nلا تتحيز لطرف','No unverified numbers\nNo bias toward one side'],
   flags:{ask:true,sources:true,alts:true}}},
 {name:['🛍️ أوصاف منتجات SEO','🛍️ Product descriptions'], set:{
+  task:['اكتب وصفًا لمنتج [المنتج] يبرز الفائدة الأساسية ويحسّن الظهور في البحث','Write a product description for [product] that highlights its core benefit and is search friendly'],
   role:['كاتب أوصاف تجارة إلكترونية يبيع بأسلوب نظيف','E-commerce copywriter who sells without sounding spammy'],
   audience:['متسوّق متردد يقارن قبل الشراء','A hesitant shopper comparing before buying'],
   tone:['sales','friendly'], fmt:['para','bullets'], length:'medium',
@@ -1096,6 +1144,7 @@ const PRESETS = [
   avoid:['لا تبالغ في الوعود\nلا تكرر الكلمة المفتاحية','No exaggerated promises\nNo keyword stuffing'],
   flags:{self:true,direct:true}}},
 {name:['👨‍🏫 شرح مفهوم معقد','👨‍🏫 Explain a concept'], set:{
+  task:['اشرح لي مفهوم [المفهوم] بأمثلة من الحياة اليومية وبأبسط طريقة ممكنة','Explain the concept of [concept] to me with everyday examples in the simplest possible way'],
   role:['مدرّب يشفّر المفاهيم الصعبة إلى صور بسيطة','Teacher who decodes hard concepts into simple pictures'],
   audience:['مبتدئ بلا خلفية في الموضوع','A beginner with no background in the topic'],
   tone:['edu','empathy'], fmt:['para','bullets'], length:'medium',
@@ -1104,6 +1153,7 @@ const PRESETS = [
   avoid:['لا تقفز فوق الأساسيات\nلا تستخدم مصطلحات بلا شرح','No skipping the basics\nNo unexplained terms'],
   flags:{simple:true,cot:true,self:true}}},
 {name:['💬 رد على عميل','💬 Customer reply'], set:{
+  task:['اكتب ردًا مهذبًا على عميل [المشكلة] اعترف فيها ثم اقترح حلًا وخطوة تالية','Write a polite reply to a customer about [issue]: acknowledge it, then propose a fix and a next step'],
   role:['أخصائي دعم يحول الشكوى إلى ولاء','Support agent turning complaints into loyalty'],
   audience:['عميق غاضب يريد حلًا لا أعذارًا','An upset customer who wants a fix, not excuses'],
   tone:['empathy','support'], fmt:['para'], length:'short',
@@ -1113,6 +1163,7 @@ const PRESETS = [
   flags:{ask:true,self:true,direct:true}}}
 ,
 {name:['📰 كتابة مقالات','📰 Article writing'], set:{
+  task:['اكتب مقالًا عن [الموضوع] بعناوين فرعية وأمثلة واقعية ودعوة واضحة لاتخاذ إجراء','Write an article about [topic] with subheadings, real examples and a clear call to action'],
   role:['صحفي وكاتب مقالات يحوّل الفكرة إلى نص مقروء ومقنع','Journalist who turns an idea into a readable, persuasive piece'],
   audience:['قارئ عادي يتصفح بسرعة ولا يملك وقتًا طويلًا','A casual reader who skims fast and has little time'],
   tone:['pro','friendly'], fmt:['md'], length:'deep',
@@ -1122,6 +1173,7 @@ const PRESETS = [
          'No generic repeated intro\nNever invent statistics or sources\nNo long stretches without new information'],
   flags:{ask:true,self:true}}},
 {name:['🎓 دراسات عليا / بحوث أكاديمية','🎓 Postgraduate / academic research'], set:{
+  task:['اقترح عنوانًا بحثيًا حول [الموضوع] مع إشكالية وفجوة بحثية ومنهج مناسب','Suggest a research title on [topic] with a problem statement, research gap and suitable methodology'],
   role:['باحث دراسات عليا يتقن صياغة الإشكالية والمنهج والتوثيق','Postgraduate researcher skilled in problem statement, methodology and citation'],
   audience:['لجنة مناقشة ومشرف أكاديمي','A defence committee and an academic supervisor'],
   tone:['academic','pro'], fmt:['md','para'], length:'deep',
@@ -1131,6 +1183,7 @@ const PRESETS = [
          'No references without a publication year\nDo not generalise exploratory findings to the whole population\nNever invent field data'],
   flags:{ask:true,sources:true,cot:true,self:true}}},
 {name:['🖋️ شعر فصيح / عام','🖋️ Classical / general poetry'], set:{
+  task:['اكتب قصيدة على الوزن [الوزن] عن [الموضوع] بقافية [القافية]','Write a poem on the [meter] metre about [topic] with a [rhyme] rhyme'],
   role:['شاعر متمكن من الموسيقى والوزن والتصوير','Poet with a strong command of rhythm, meter and imagery'],
   audience:['قارئ شعر يبحث عن معنى يشبه حاله','A poetry reader looking for lines that mirror their own state'],
   tone:['literary','creative'], fmt:['para'], length:'medium',
@@ -1140,6 +1193,7 @@ const PRESETS = [
          'Do not break the meter mid-line\nNo explanation after the poem\nNo forced or overblown phrasing'],
   flags:{ask:true,cot:false,self:true}}},
 {name:['🗂️ إعداد خطط','🗂️ Plan preparation'], set:{
+  task:['حوّل الهدف [الهدف] إلى خطة تنفيذية بمراحل ومسؤوليات ومؤشر نجاح','Turn the goal [goal] into an execution plan with phases, owners and a success metric'],
   role:['مخطّط تنفيذ يحوّل هدفًا واحدًا إلى خطوات قابلة للتنفيذ','Planner who turns one goal into executable steps'],
   audience:['فريق أو فرد يريد خطة واضحة بمالك لكل خطوة','A team or individual who needs a clear plan with an owner per step'],
   tone:['pro','doc'], fmt:['table','md'], length:'long',
@@ -1149,6 +1203,7 @@ const PRESETS = [
          'No phase without a deliverable\nNo task without a named owner\nDo not skip the required resources'],
   flags:{ask:true,plan:true,self:true}}},
 {name:['🏟️ خطط إدارة الحشود بالملايين','🏟️ Mass crowd management plans'], set:{
+  task:['صمّم خطة إدارة حشد يقدّر بـ[العدد] شخصًا في موقع [الموقع] مع مناطق سعة ومسارات إخلاء','Design a crowd management plan for [count] people at [venue] with zones, capacities and evacuation routes'],
   role:['خبير عمليات وأمن يخطّط لتدفّق آمن لعشرات الآلاف','Operations and crowd-safety expert planning safe flow for tens of thousands'],
   audience:['منظّم فعالية يواجه حضورًا هائلًا','An event organizer facing a huge turnout'],
   tone:['doc','pro'], fmt:['table','md'], length:'deep',
@@ -1158,6 +1213,7 @@ const PRESETS = [
          'Do not assume an even crowd distribution\nDo not rely on a single estimate with no safety margin\nNever leave a single evacuation route'],
   flags:{ask:true,plan:true,cot:true,sources:true,self:true}}},
 {name:['🔤 مدقق لغوي','🔤 Language auditor'], set:{
+  task:['دقّق النص التالي إملائيًا ونحويًا واذكر سبب كل تصحيح في جدول','Proofread the following text for spelling and grammar and explain every correction in a table'],
   role:['مدقّق لغوي يفحص النص إملائيًا ونحويًا ومعجميًا','Language auditor checking spelling, grammar and diction'],
   audience:['كاتب يحتاج نصًا خاليًا من الأخطاء قبل النشر','A writer who needs error-free copy before publishing'],
   tone:['pro','concise'], fmt:['table'], length:'long',
@@ -1167,6 +1223,7 @@ const PRESETS = [
          'Do not change the meaning while proofreading\nDo not impose your own style\nDo not ignore punctuation'],
   flags:{ask:true,self:true}}},
 {name:['✅ مصحح إملائي','✅ Spell checker'], set:{
+  task:['صحّح الأخطاء الإملائية في النص التالي كلمة بكلمة واشرح سبب كل خطأ','Fix the spelling mistakes in the following text word by word and explain each mistake'],
   role:['مصحح إملائي يكتشف الخطأ ويشرح تصحيحه','Spell checker that finds the mistake and explains the fix'],
   audience:['طالب أو موظف يكتب نصًا يحتاج دقة لغوية','A student or employee who needs accurate writing'],
   tone:['concise','pro'], fmt:['table'], length:'short',
@@ -1176,6 +1233,7 @@ const PRESETS = [
          'Do not correct what is not wrong\nDo not skip repeated mistakes\nNo grammar lecture'],
   flags:{ask:true,direct:true}}},
 {name:['📗 تحليل إيجابي','📗 Positive analysis'], set:{
+  task:['حلّل [الموضوع] من كل النواحي الإيجابية مع أدلة ومؤشر لقياس النجاح','Analyze [topic] from every positive angle with evidence and a metric to measure success'],
   role:['محلل يبرز الجوانب الإيجابية بأدلة قابلة للقياس','Analyst who highlights strengths with measurable evidence'],
   audience:['صاحب قرار يبحث عن فرص لا عن مخاوف','A decision maker looking for opportunities, not fears'],
   tone:['endorse','support'], fmt:['md','bullets'], length:'long',
@@ -1185,6 +1243,7 @@ const PRESETS = [
          'Do not hide risks just to praise\nNo invented numbers to support your case\nDo not stop at description without data'],
   flags:{ask:true,sources:true,self:true}}},
 {name:['📕 تحليل سلبي','📕 Negative analysis'], set:{
+  task:['حلّل [الموضوع] من كل النواحي السلبية ورتّب المخاطر حسب الشدة مع إجراءات تصحيحية','Analyze [topic] from every negative angle, rank the risks by severity and propose corrective actions'],
   role:['محلل نقدي يكشف نقاط الضعف والمخاطر بصراحة','Critical analyst who exposes weaknesses and risks plainly'],
   audience:['صاحب قرار يريد رؤية المخاطر قبل الالتزام','A decision maker who wants risks before committing'],
   tone:['object','sci'], fmt:['md','table'], length:'long',
@@ -1194,6 +1253,7 @@ const PRESETS = [
          'Do not stay surface-level in the critique\nDo not soften the findings\nAttack ideas, not people'],
   flags:{ask:true,balanced:true,alts:true,self:true}}},
 {name:['🖼️ توليد صورة','🖼️ Image Generation'], set:{
+  task:['صورة لـ[الموضوع] بأسلوب [الأسلوب] وإضاءة [الإضاءة] وتكوين [التكوين]','A photo of [subject] in [style] style with [lighting] lighting and [composition] composition'],
   role:[''],audience:['',''],tone:[],fmt:[],length:'',constraints:['',''],avoid:['',''],
   flags:{ask:false,cot:false,self:false,few:false}, img:true}}
 ];
@@ -1206,6 +1266,40 @@ function renderPresets(){
     b.onclick=()=>applyPreset(i);
     box.appendChild(b);
   });
+}
+/* ===== Ready task templates — built from the presets, editable afterwards ===== */
+function renderTaskTemplates(){
+  const box=$('tplList'); if(!box) return;
+  box.innerHTML='';
+  PRESETS.forEach((p,i)=>{
+    if(!p.set.task) return;
+    const b=document.createElement('button');
+    b.type='button'; b.className='tpl-item'; b.dataset.i=i;
+    b.innerHTML='<b></b><span></span>';
+    b.querySelector('b').textContent=tx(p.name);
+    b.querySelector('span').textContent=tx(p.set.task);
+    b.onclick=()=>useTaskTemplate(i);
+    box.appendChild(b);
+  });
+  const cnt=$('tplCnt'); if(cnt) cnt.textContent=box.children.length;
+}
+function useTaskTemplate(i){
+  applyPreset(i);
+  const ta=$('task');
+  ta.value=tx(PRESETS[i].set.task);
+  ta.dispatchEvent(new Event('input',{bubbles:true}));
+  ta.dispatchEvent(new Event('change',{bubbles:true}));
+  document.querySelectorAll('.tpl-item').forEach(x=>x.classList.toggle('active',Number(x.dataset.i)===i));
+  toggleTaskPanel(false);
+  ta.focus();
+  ta.setSelectionRange(0,0);
+  toast(t('msg.tasktpl')+tx(PRESETS[i].name));
+}
+function toggleTaskPanel(force){
+  const p=$('tplPanel'), b=$('tplBtn'); if(!p) return;
+  const open = force===undefined ? p.hidden : !!force;
+  p.hidden=!open;
+  if(b) b.setAttribute('aria-expanded',String(open));
 }
 function applyPreset(i){
   const s=PRESETS[i].set;
@@ -1805,6 +1899,12 @@ function toggleTopbar(){ setTopbar(!$('topbar').classList.contains('min')); }
   lg.addEventListener('keydown', e=>{
     if(e.key==='Enter' || e.key===' ' || e.key==='Spacebar'){ e.preventDefault(); toggleTopbar(); }
   });
+})();
+
+/* زر القوالب الجاهزة داخل حقل المهمة */
+(function wireTaskTemplates(){
+  const b=$('tplBtn'); if(!b) return;
+  b.addEventListener('click', ()=>toggleTaskPanel());
 })();
 
 /* ================= Init ================= */
