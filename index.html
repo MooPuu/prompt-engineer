@@ -343,6 +343,10 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
           <input type="checkbox" id="t15" value="playful"><label for="t15" data-i18n="tone.playful">🎲 مرح وخفيف</label>
           <input type="checkbox" id="t16" value="empathy"><label for="t16" data-i18n="tone.empathy">💗 متعاطف</label>
           <input type="checkbox" id="t17" value="bold"><label for="t17" data-i18n="tone.bold">🦁 جريء وحاسم</label>
+          <input type="checkbox" id="t18" value="support"><label for="t18" data-i18n="tone.support">💗 داعم ومشجّع</label>
+          <input type="checkbox" id="t19" value="refuse"><label for="t19" data-i18n="tone.refuse">🚫 رافض حازم</label>
+          <input type="checkbox" id="t20" value="object"><label for="t20" data-i18n="tone.object">⚖️ معترض مبرّر</label>
+          <input type="checkbox" id="t21" value="endorse"><label for="t21" data-i18n="tone.endorse">✅ مؤيّد ومدافع</label>
         </div>
       </section>
 
@@ -705,6 +709,7 @@ ar:{
 'tone.academic':'🎓 أكاديمي','tone.witty':'🤣 ساخر ذكي','tone.motivate':'🔥 تحفيزي',
 'tone.literary':'📖 أدبي شاعري','tone.convo':'💬 حواري مهذّب','tone.doc':'📋 توثيقي تقريري',
 'tone.optimistic':'☀️ متفائل','tone.playful':'🎲 مرح وخفيف','tone.empathy':'💗 متعاطف','tone.bold':'🦁 جريء وحاسم',
+ 'tone.support':'💗 داعم ومشجّع','tone.refuse':'🚫 رافض حازم','tone.object':'⚖️ معترض مبرّر','tone.endorse':'✅ مؤيّد ومدافع',
 'fmt.bullets':'نقاط','fmt.table':'جدول','fmt.code':'كود','fmt.para':'فقرات',
 'fmt.img':'🖼️ صورة','fmt.html':'🌐 HTML','fmt.csv':'📄 CSV','fmt.sql':'🗃️ SQL',
 'fmt.email':'✉️ إيميل','fmt.script':'🎬 سكربت','fmt.slides':'📽️ عرض تقديمي','fmt.pdf':'📕 تقرير رسمي',
@@ -821,6 +826,7 @@ en:{
 'tone.academic':'🎓 Academic','tone.witty':'🤣 Witty & humorous','tone.motivate':'🔥 Motivational',
 'tone.literary':'📖 Literary & poetic','tone.convo':'💬 Conversational','tone.doc':'📋 Documentary / report',
 'tone.optimistic':'☀️ Optimistic','tone.playful':'🎲 Playful & light','tone.empathy':'💗 Empathetic','tone.bold':'🦁 Bold & decisive',
+ 'tone.support':'💗 Supportive','tone.refuse':'🚫 Firm refusal','tone.object':'⚖️ Objecting','tone.endorse':'✅ Endorsing',
 'fmt.bullets':'Bullets','fmt.table':'Table','fmt.code':'Code','fmt.para':'Paragraphs',
 'fmt.img':'🖼️ Image','fmt.html':'🌐 HTML','fmt.csv':'📄 CSV','fmt.sql':'🗃️ SQL',
 'fmt.email':'✉️ Email','fmt.script':'🎬 Script','fmt.slides':'📽️ Slides','fmt.pdf':'📕 Formal report',
@@ -955,7 +961,11 @@ const TONE = {
   optimistic:['متفائل','optimistic'],
   playful:['مرح وخفيف','playful and light'],
   empathy:['متعاطف ودود','empathetic and supportive'],
-  bold:['جريء وحاسم','bold and decisive']
+  bold:['جريء وحاسم','bold and decisive'],
+  support:['داعم ومشجّع وبناء','supportive, encouraging and constructive'],
+  refuse:['رافض حازم مع تقدير السبب','firmly refusing while acknowledging the reason'],
+  object:['معترض يطرح حجّة ويصمد على رأيه','objecting with a reasoned argument and holding the position'],
+  endorse:['مؤيّد يدافع عن رأيه بأدلّة','endorsing and defending the view with supporting reasons']
 };
 const FMT = {
   md:['Markdown','Markdown'], bullets:['قائمة نقطية','bullet points'], table:['جدول','table'],
@@ -1096,12 +1106,93 @@ const PRESETS = [
 {name:['💬 رد على عميل','💬 Customer reply'], set:{
   role:['أخصائي دعم يحول الشكوى إلى ولاء','Support agent turning complaints into loyalty'],
   audience:['عميق غاضب يريد حلًا لا أعذارًا','An upset customer who wants a fix, not excuses'],
-  tone:['empathy','pro'], fmt:['para'], length:'short',
+  tone:['empathy','support'], fmt:['para'], length:'short',
   constraints:['اعترف بالمشكلة أولًا ثم الحل والجدول الزمني\nاعرض خطوتين واضحتين\nاختم بتعويض مناسب إن لزم',
                'Acknowledge first, then the fix and timeline\nOffer two clear steps\nClose with a fair remedy if needed'],
   avoid:['لا تلقِ اللوم على العميل\nلا تعتذر أكثر من مرة واحدة','Do not blame the customer\nDo not apologize more than once'],
   flags:{ask:true,self:true,direct:true}}}
 ,
+{name:['📰 كتابة مقالات','📰 Article writing'], set:{
+  role:['صحفي وكاتب مقالات يحوّل الفكرة إلى نص مقروء ومقنع','Journalist who turns an idea into a readable, persuasive piece'],
+  audience:['قارئ عادي يتصفح بسرعة ولا يملك وقتًا طويلًا','A casual reader who skims fast and has little time'],
+  tone:['pro','friendly'], fmt:['md'], length:'deep',
+  constraints:['اكتب عنوانًا رئيسيًا وأربعة عناوين فرعية على الأقل\nابدأ بمقدمة تجذب الانتباه في سطرين\nادعم كل رأي بمثال واقعي أو رقم موثّق\nاختم بخلاصة عملية ودعوة لإجراء واضح',
+               'Write a main title plus at least four subheadings\nOpen with a two-line attention-grabbing intro\nSupport every claim with a real example or a cited number\nEnd with a practical summary and a clear call to action'],
+  avoid:['لا تبدأ بمقدمة عامة مكرّرة\nلا تخترع إحصاءات أو مصادر\nلا تطلّ بلا معلومة جديدة',
+         'No generic repeated intro\nNever invent statistics or sources\nNo long stretches without new information'],
+  flags:{ask:true,self:true}}},
+{name:['🎓 دراسات عليا / بحوث أكاديمية','🎓 Postgraduate / academic research'], set:{
+  role:['باحث دراسات عليا يتقن صياغة الإشكالية والمنهج والتوثيق','Postgraduate researcher skilled in problem statement, methodology and citation'],
+  audience:['لجنة مناقشة ومشرف أكاديمي','A defence committee and an academic supervisor'],
+  tone:['academic','pro'], fmt:['md','para'], length:'deep',
+  constraints:['اقترح عنوانًا بحثيًا دقيقًا وأربع صياغات بديلة\nصُغ الإشكالية في سؤال بحثي واحد واضح\nحدّد الفجوة البحثية ومنهجية البحث (كمّي/نوعي/مختلط)\nاكتب هيكلًا تفصيليًا بفصول ومباحث\nاذكر المنهج في جدول: الأداة، العينة، أسلوب التحليل',
+               'Propose a precise research title plus four alternative wordings\nPhrase the problem statement as one clear research question\nDefine the research gap and the methodology (quantitative / qualitative / mixed)\nWrite a detailed outline with chapters and sections\nMap the methodology in a table: instrument, sample, analysis method'],
+  avoid:['لا تعتمد على مراجع بلا سنة نشر\nلا تعمّم نتائج استكشافية على كل المجتمع\nلا تخترع بيانات ميدانية',
+         'No references without a publication year\nDo not generalise exploratory findings to the whole population\nNever invent field data'],
+  flags:{ask:true,sources:true,cot:true,self:true}}},
+{name:['🖋️ شعر فصيح / عام','🖋️ Classical / general poetry'], set:{
+  role:['شاعر متمكن من الموسيقى والوزن والتصوير','Poet with a strong command of rhythm, meter and imagery'],
+  audience:['قارئ شعر يبحث عن معنى يشبه حاله','A poetry reader looking for lines that mirror their own state'],
+  tone:['literary','creative'], fmt:['para'], length:'medium',
+  constraints:['اكتب 3–5 أبيات أو أبياتًا على الوزن المطلوب\nحافظ على وحدة القافية والوزن إن طلبت ذلك\nاجعل كل بيت يرفع المعنى ولا يكرر ما قبله\nقدّم القصيدة كاملة دون شروح',
+               'Write 3–5 lines, or couplets on the requested meter\nKeep the rhyme and meter consistent if asked\nMake every line advance the meaning without repeating the previous one\nDeliver the full poem with no commentary'],
+  avoid:['لا تكسر الوزن في وسط البيت\nلا تشرح القصيدة بعد كتابتها\nلا تستخدم مبالغات لغوية متكلفة',
+         'Do not break the meter mid-line\nNo explanation after the poem\nNo forced or overblown phrasing'],
+  flags:{ask:true,cot:false,self:true}}},
+{name:['🗂️ إعداد خطط','🗂️ Plan preparation'], set:{
+  role:['مخطّط تنفيذ يحوّل هدفًا واحدًا إلى خطوات قابلة للتنفيذ','Planner who turns one goal into executable steps'],
+  audience:['فريق أو فرد يريد خطة واضحة بمالك لكل خطوة','A team or individual who needs a clear plan with an owner per step'],
+  tone:['pro','doc'], fmt:['table','md'], length:'long',
+  constraints:['حدّد الهدف النهائي ومؤشر النجاح الخاص به\nقسّم الخطة إلى مراحل زمنية لكل مرحلة مخرج واضح\nحدد المسؤول والموارد والمدة لكل مرحلة\nأضف خطوة أولى تبدأ بها اليوم',
+               'Define the final goal and its success metric\nSplit the plan into time phases, each with a clear deliverable\nSet the owner, resources and duration per phase\nAdd the very first step to start today'],
+  avoid:['لا تضع مراحل بلا مخرج\nلا تترك مهمة بلا مسؤول محدد\nلا تهمل الموارد المطلوبة',
+         'No phase without a deliverable\nNo task without a named owner\nDo not skip the required resources'],
+  flags:{ask:true,plan:true,self:true}}},
+{name:['🏟️ خطط إدارة الحشود بالملايين','🏟️ Mass crowd management plans'], set:{
+  role:['خبير عمليات وأمن يخطّط لتدفّق آمن لعشرات الآلاف','Operations and crowd-safety expert planning safe flow for tens of thousands'],
+  audience:['منظّم فعالية يواجه حضورًا هائلًا','An event organizer facing a huge turnout'],
+  tone:['doc','pro'], fmt:['table','md'], length:'deep',
+  constraints:['احسب كثافة التدفق تقديريًا: المساحة ÷ عدد الحضور\nقسّم الموقع إلى قطاعات وحدّد سعة كل قطاع\nضع مسارات تدفّق ومخارج طوارئ ومناطق تجميع\nحدّد نقاط الاختناق وموقع فريق الاستجابة\nاكتب سيناريو الإخلاء وزمنه التقريبي',
+               'Estimate crowd density: area ÷ attendance\nDivide the site into zones and set each zone capacity\nDefine flow routes, emergency exits and assembly areas\nMark choke points and position the response team\nWrite the evacuation scenario with its approximate timing'],
+  avoid:['لا تفترض توزيعًا متساويًا للحضور\nلا تعتمد على تقدير واحد بلا هامش أمان\nلا تترك مسارًا واحدًا للإخلاء',
+         'Do not assume an even crowd distribution\nDo not rely on a single estimate with no safety margin\nNever leave a single evacuation route'],
+  flags:{ask:true,plan:true,cot:true,sources:true,self:true}}},
+{name:['🔤 مدقق لغوي','🔤 Language auditor'], set:{
+  role:['مدقّق لغوي يفحص النص إملائيًا ونحويًا ومعجميًا','Language auditor checking spelling, grammar and diction'],
+  audience:['كاتب يحتاج نصًا خاليًا من الأخطاء قبل النشر','A writer who needs error-free copy before publishing'],
+  tone:['pro','concise'], fmt:['table'], length:'long',
+  constraints:['اعرض كل خطأ في جدول: النص الأصلي | الصواب | سبب التصحيح\nفرّق بين الخطأ الإملائي والنحوي والأسلوبي\nاقترح صياغة أفضل عند الحاجة لا التصحيح فقط\nاختم بقائمة الأخطاء المتكررة في النص',
+               'Show every error in a table: original | corrected | why\nSeparate spelling, grammar and style errors\nSuggest better phrasing where needed, not just a fix\nClose with a list of the errors repeated in the text'],
+  avoid:['لا تغيّر المعنى أثناء التدقيق\nلا تفرض أسلوبًا خاصًا بك\nلا تتجاهل علامات الترقيم',
+         'Do not change the meaning while proofreading\nDo not impose your own style\nDo not ignore punctuation'],
+  flags:{ask:true,self:true}}},
+{name:['✅ مصحح إملائي','✅ Spell checker'], set:{
+  role:['مصحح إملائي يكتشف الخطأ ويشرح تصحيحه','Spell checker that finds the mistake and explains the fix'],
+  audience:['طالب أو موظف يكتب نصًا يحتاج دقة لغوية','A student or employee who needs accurate writing'],
+  tone:['concise','pro'], fmt:['table'], length:'short',
+  constraints:['راجع النص كلمة كلمة\nاذكر الكلمة الخاطئة والكلمة الصحيحة\nاشرح سبب الخطأ في جملة قصيرة\nاكتب النص مصححًا في النهاية',
+               'Proofread the text word by word\nList the wrong word next to the correct one\nExplain the mistake in one short sentence\nOutput the corrected text at the end'],
+  avoid:['لا تصحّح ما ليس خطأً\nلا تتجاهل الأخطاء المتكررة\nلا تشرح القواعد',
+         'Do not correct what is not wrong\nDo not skip repeated mistakes\nNo grammar lecture'],
+  flags:{ask:true,direct:true}}},
+{name:['📗 تحليل إيجابي','📗 Positive analysis'], set:{
+  role:['محلل يبرز الجوانب الإيجابية بأدلة قابلة للقياس','Analyst who highlights strengths with measurable evidence'],
+  audience:['صاحب قرار يبحث عن فرص لا عن مخاوف','A decision maker looking for opportunities, not fears'],
+  tone:['endorse','support'], fmt:['md','bullets'], length:'long',
+  constraints:['ابدأ بأقوى ثلاث نقاط إيجابية مع دليل لكل منها\nفسّر لماذا كل نقطة تفيد صاحب القرار\nاقترح كيف يمكن تحويل النقطة إلى ميزة تنافسية\nاذكر مؤشرًا واحدًا لقياس النجاح',
+               'Start with the three strongest positives, each with evidence\nExplain why each point matters to the decision maker\nSuggest how each point becomes a competitive advantage\nName one metric that measures success'],
+  avoid:['لا تخفي المخاطر مقابل المديح\nلا تختلق أرقامًا تدعم موقفك\nلا تكتفِ بالوصف دون بيانات',
+         'Do not hide risks just to praise\nNo invented numbers to support your case\nDo not stop at description without data'],
+  flags:{ask:true,sources:true,self:true}}},
+{name:['📕 تحليل سلبي','📕 Negative analysis'], set:{
+  role:['محلل نقدي يكشف نقاط الضعف والمخاطر بصراحة','Critical analyst who exposes weaknesses and risks plainly'],
+  audience:['صاحب قرار يريد رؤية المخاطر قبل الالتزام','A decision maker who wants risks before committing'],
+  tone:['object','sci'], fmt:['md','table'], length:'long',
+  constraints:['ابدأ بأخطر ثلاث نقاط ضعف مرتبة حسب الشدة\nاذكر الأثر المحتمل خلف كل نقطة\nاقترح إجراء تصحيحي لكل نقطة ضعف\nقدّم حكمًا نهائيًا: المخاطرة تستحق المخاطرة أم لا',
+               'Start with the three most severe weaknesses, ranked by severity\nState the potential impact behind each one\nPropose a corrective action per weakness\nGive a final verdict: is the risk worth taking or not'],
+  avoid:['لا تكن سطحيًا في النقد\nلا تخفّف الوقائع\nلا تهاجم الأشخاص بل الأفكار',
+         'Do not stay surface-level in the critique\nDo not soften the findings\nAttack ideas, not people'],
+  flags:{ask:true,balanced:true,alts:true,self:true}}},
 {name:['🖼️ توليد صورة','🖼️ Image Generation'], set:{
   role:[''],audience:['',''],tone:[],fmt:[],length:'',constraints:['',''],avoid:['',''],
   flags:{ask:false,cot:false,self:false,few:false}, img:true}}

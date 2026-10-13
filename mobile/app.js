@@ -12,7 +12,7 @@ const tx = x => (Array.isArray(x) ? x[(LANG === 'en' ? 1 : 0)] : x);
 const M = {
 ar:{
 'app.title':'مهندس البرومبت','app.sub':'برومبت مثالي في ثوانٍ',
-'home.hello':'مرحبًا بك 👋','home.greet':'لنصنع برومبتًا مثاليًا',
+'home.greet':'لنصنع برومبتًا مثاليًا',
 'hero.quality':'تقييم جودة البرومبت',
 'st.words':'كلمات','st.chars':'الأحرف','st.secs':'أقسام','st.tech':'مفاتيح تقنية',
 'act.auto':'أكمل تلقائيًا','act.copy':'نسخ','act.download':'تحميل','act.clear':'مسح',
@@ -80,13 +80,14 @@ ar:{
 'tone.witty':'🤣 ساخر ذكي','tone.motivate':'🔥 تحفيزي','tone.literary':'📖 أدبي شاعري','tone.convo':'💬 حواري مهذّب',
 'tone.doc':'📋 توثيقي تقريري','tone.optimistic':'☀️ متفائل','tone.playful':'🎲 مرح وخفيف',
 'tone.empathy':'💗 متعاطف','tone.bold':'🦁 جريء وحاسم',
+ 'tone.support':'💗 داعم ومشجّع','tone.refuse':'🚫 رافض حازم','tone.object':'⚖️ معترض مبرّر','tone.endorse':'✅ مؤيّد ومدافع',
 'fmt.bullets':'نقاط','fmt.table':'جدول','fmt.code':'كود','fmt.para':'فقرات','fmt.img':'🖼️ صورة',
 'fmt.html':'🌐 HTML','fmt.csv':'📄 CSV','fmt.sql':'🗃️ SQL','fmt.email':'✉️ إيميل','fmt.script':'🎬 سكربت',
 'fmt.slides':'📽️ عرض تقديمي','fmt.pdf':'📕 تقرير PDF'
 },
 en:{
 'app.title':'Prompt Engineer','app.sub':'A perfect prompt in seconds',
-'home.hello':'Hello 👋','home.greet':"Let's craft a perfect prompt",
+'home.greet':"Let's craft a perfect prompt",
 'hero.quality':'Prompt quality score',
 'st.words':'Words','st.chars':'Chars','st.secs':'Sections','st.tech':'Tech keys',
 'act.auto':'Auto-fill','act.copy':'Copy','act.download':'Download','act.clear':'Clear',
@@ -154,6 +155,7 @@ en:{
 'tone.witty':'🤣 Witty','tone.motivate':'🔥 Motivational','tone.literary':'📖 Literary','tone.convo':'💬 Conversational',
 'tone.doc':'📄 Documentary','tone.optimistic':'☀️ Optimistic','tone.playful':'🎲 Playful',
 'tone.empathy':'💗 Empathetic','tone.bold':'🦁 Bold',
+ 'tone.support':'💗 Supportive','tone.refuse':'🚫 Firm refusal','tone.object':'⚖️ Objecting','tone.endorse':'✅ Endorsing',
 'fmt.bullets':'Bullets','fmt.table':'Table','fmt.code':'Code','fmt.para':'Paragraphs','fmt.img':'🖼️ Image',
 'fmt.html':'🌐 HTML','fmt.csv':'📄 CSV','fmt.sql':'🗃️ SQL','fmt.email':'✉️ Email','fmt.script':'🎬 Script',
 'fmt.slides':'📽️ Slides','fmt.pdf':'📕 PDF report'

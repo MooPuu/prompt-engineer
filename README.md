@@ -30,7 +30,7 @@
 - **Role** — the persona it should adopt (engineer, editor, data analyst…).
 - **Context & background** — project/situation details (one bullet per point).
 - **Audience** — who the output is for.
-- **Tone & style** — **17 tones**: professional, friendly, educational, creative, concise, persuasive, scientific, academic, witty, motivational, literary/poetic, conversational, documentary, optimistic, playful, empathetic, bold.
+- **Tone & style** — **21 tones**: professional, friendly, educational, creative, concise, persuasive, scientific, academic, witty, motivational, literary/poetic, conversational, documentary, optimistic, playful, empathetic, bold, **supportive**, **firm refusal**, **objecting**, **endorsing**.
 - **Delivery format** — **14 formats**: Markdown, bullet points, table, JSON, code, paragraphs, **image**, HTML, CSV, SQL, email, script, presentation, formal report + length + answer language.
 - **Constraints & requirements** + **Do-not patterns**.
 - **Enhancement toggles** and **image generation mode** (below).
@@ -77,7 +77,7 @@ A percentage ring plus **12 checks** (task, role, context, audience, format, len
 - One-click copy (auto-saved to history — the last 8 prompts).
 - Download as `.txt` or `.md`.
 - **✨ Auto-fill** button that fills the missing fields with best practices.
-- **16 ready-made presets**: article/content, coding, data analysis, marketing, summarizing, plan & study, translation, image generation, email, social post, video script, ideation, competitor analysis, product descriptions, concept explainer, customer reply.
+- **25 ready-made presets**: article/content, **article writing**, coding, data analysis, marketing, summarizing, plan & study, **plan preparation**, translation, image generation, email, social post, video script, ideation, competitor analysis, product descriptions, concept explainer, customer reply, **postgraduate & academic research**, **classical/general poetry**, **mass crowd management plans**, **language auditor**, **spell checker**, **positive analysis**, **negative analysis**.
 
 ### 7) Image generation mode 🖼️
 Turns your request into a **ready-to-use English image prompt** for Midjourney / DALL·E / Stable Diffusion, with:
