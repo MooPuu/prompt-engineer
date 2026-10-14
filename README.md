@@ -1,244 +1,71 @@
 # 🧠 Prompt Engineer
 
+Build a complete, professional AI prompt in a few clicks — **Arabic + English**, on desktop, web or phone.
+
 ![Prompt Engineer](./build/social-preview.png)
 
-> A bilingual (Arabic / English) app that helps you build a **perfect, complete AI prompt** in a few clicks, then copy it into any AI tool.
+[![Live](https://img.shields.io/badge/Live-🟢-6c8cff?style=flat-square)](https://moopuu.github.io/prompt-engineer/)
+[![v2.0](https://img.shields.io/badge/release-v2.0-3ddc97?style=flat-square)](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.0)
+[![MIT](https://img.shields.io/badge/license-MIT-9b6cff?style=flat-square)](./LICENSE)
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-🟢_Live_on_the_web-6c8cff?style=for-the-badge&logo=githubpages&logoColor=white)](https://moopuu.github.io/prompt-engineer/)
-[![Download](https://img.shields.io/badge/⬇_Download-EXE_%2B_APK-3ddc97?style=for-the-badge&logo=windows&logoColor=black)](https://github.com/MooPuu/prompt-engineer/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-9b6cff?style=for-the-badge)](./LICENSE)
-[![Made by](https://img.shields.io/badge/©_Mahdi_Kareem-Made%20with%20❤️-ff7a85?style=for-the-badge)](#-copyright)
+## 🔗 Links
 
----
-
-## 🔗 Quick links
-
-| Description | Link |
+| | |
 |---|---|
-| 🌐 Run it on the web (GitHub Pages) | **https://moopuu.github.io/prompt-engineer/** |
-| 📱 **Second site — mobile phone UI** | **https://moopuu.github.io/prompt-engineer/mobile/** |
-| 📂 Repository | **https://github.com/MooPuu/prompt-engineer** |
-| ⬇ Ready-made installers (EXE / MSI) | **https://github.com/MooPuu/prompt-engineer/releases** |
-| 📦 **Android APK** | **https://github.com/MooPuu/prompt-engineer/releases/tag/v2.0** |
+| 🌐 Web app | **moopuu.github.io/prompt-engineer/** |
+| 📱 Mobile UI | **moopuu.github.io/prompt-engineer/mobile/** |
+| ⬇ Installers + APK | **releases/tag/v2.0** |
+| 📖 What's new in v2.0 | **[release notes](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.0)** |
 
----
+## ✨ What it does
 
-## ✨ Features
+- **9-field builder** — task · role · context · audience · tone · format · constraints · do-not.
+- **📚 30 presets** · **🧑‍💼 21 tones** · **14 formats** · **11 toggles**.
+- **Two one-click pickers** — ready **tasks** and ready **roles** fill the builder; both fields stay editable.
+- **3 themes** 🌙 ☀️ ⚡ · **2 languages** AR/EN · contrast checked (WCAG ≥ 4.5:1).
+- **Live quality score** (12 checks) · **image mode** (46 styles × 28 sizes).
+- **16 AI tool cards** — official tools and open-source alternatives.
+- **Mobile PWA** that works offline, plus a **fullscreen Android app**.
 
-### 1) A 9-section prompt builder
-- **Task** — exactly what you want the AI to do, with a **📚 Ready tasks** button that opens 30 starter tasks generated from the presets below. Picking one fills the task field **and** applies its matching preset; the textarea stays free for any custom task.
-- **Role** — the persona it should adopt (engineer, editor, data analyst…), with a **🧑‍💼 Ready roles** button that lists the 30 personas from the presets. Picking one fills the role **and** auto-completes audience, tone, format, length and constraints — without touching the task you already wrote.
-- **Context & background** — project/situation details (one bullet per point).
-- **Audience** — who the output is for.
-- **Tone & style** — **21 tones**: professional, friendly, educational, creative, concise, persuasive, scientific, academic, witty, motivational, literary/poetic, conversational, documentary, optimistic, playful, empathetic, bold, **supportive**, **firm refusal**, **objecting**, **endorsing**.
-- **Delivery format** — **14 formats**: Markdown, bullet points, table, JSON, code, paragraphs, **image**, HTML, CSV, SQL, email, script, presentation, formal report + length + answer language.
-- **Constraints & requirements** + **Do-not patterns**.
-- **Enhancement toggles** and **image generation mode** (below).
+## ⬇ Install
 
-### 2) Three themes 🎨
-| Theme | Description |
+| File | Use it when |
 |---|---|
-| 🌙 **Midnight** | Calm dark blue/violet — the default. |
-| ☀️ **Light** | Bright, high contrast, fully readable. |
-| ⚡ **Neon** | Deep black with high-contrast cyan/pink accents. |
+| `Prompt-Engineer-Portable-v2.0.0.exe` | no install — run from a USB stick |
+| `Prompt-Engineer-Setup-v2.0.0.exe` | standard Windows install (custom path, shortcuts) |
+| `Prompt-Engineer-Setup-v2.0.0.msi` | managed / company Windows install |
+| `Prompt-Engineer-v2.0.0.apk` | Android — installs over v1.5 |
 
-Your choice is saved automatically in the browser.
+> Windows: the files are self-signed → **More info → Run**.
+> Android: allow *Unknown sources* once; the app then opens fullscreen.
 
-- **Modern dashboard UI** modeled on professional panels: a **sidebar** (fast navigation between sections + shortcuts + an active section indicator that follows the scroll + live quality/word/technique stats + a star button), an **instant search bar** at the top (filters sections, presets and tools with a result counter, Enter jumps to a match), a **welcome card** and **4 action tiles** with colored icons (Auto-fill · Copy · Download · Clear), **rounded section panels** with a colored icon each and a **gradient preview header** — responsive, collapsing into a horizontal bar on small screens, plus a **collapsible top bar**: click the **app logo** to collapse it (search, actions and tagline hide) and click again to expand, with a smooth animation, a rotating chevron, a persisted state and full keyboard support.
-- **Polished modern styling**: soft-shadow cards, hover effects and a **custom themed scrollbar** — a translucent track with a round `pill` thumb that changes color per theme and glows on hover, across the whole page and the prompt preview, respecting RTL/LTR (works in Firefox and Chromium).
-- **WCAG-checked contrast** — **35 elements × 3 themes** verified (text, fields, badges, sidebar, footer), all at or above **4.5:1**.
-
-### 3) Two full languages 🌍
-- **Arabic (RTL)** and **English (LTR)** UI with one click from the top bar.
-- Translated: headings, labels, hints, tooltips, presets, scoring criteria, messages, history and footer.
-- The **generated prompt itself** is built in Arabic or English according to your “Answer language” choice.
-
-### 4) Advanced prompt-engineering techniques 🛠️
-**10 enhancement toggles** (section 8 of the panel) add real prompt-engineering techniques:
-
-| Toggle | Effect |
-|---|---|
-| 🙋 **Ask before starting** | Stops guessing: the model asks one specific question when information is missing. |
-| 🧩 **Step-by-step thinking** | Chain-of-Thought: reason before answering → higher accuracy on complex tasks. |
-| ✅ **Self review** | Verifies the requirements were met before the final answer. |
-| 🎯 **Few-shot examples** | Input/output examples pin down the style precisely. |
-| 🎯 **Direct answer, no fluff** | Drops “Sure!” and leads with the value. |
-| 📎 **Cite sources** | Links and references for uncommon facts + assumptions are flagged. |
-| 🧪 **2–3 alternatives & comparison** | Pros/cons table per option with a final recommendation. |
-| ⚖️ **Balanced viewpoints** | For and against arguments before a neutral conclusion. |
-| 🧒 **Simplify (ELI5)** | Beginner-friendly explanation without jargon. |
-| 🗓️ **Measurable action plan** | Numbered steps with deadlines and clear success criteria. |
-
-### 5) Live quality score 📈
-A percentage ring plus **12 checks** (task, role, context, audience, format, length, tone, constraints, do-not, CoT, self-review, examples).
-**Clicking any incomplete item jumps straight to the missing field.**
-
-### 6) Output tools 📤
-- One-click copy (auto-saved to history — the last 8 prompts).
-- Download as `.txt` or `.md`.
-- **✨ Auto-fill** button that fills the missing fields with best practices.
-- **30 ready-made presets**: article/content, **article writing**, coding, data analysis, marketing, summarizing, plan & study, **plan preparation**, translation, image generation, email, social post, video script, ideation, competitor analysis, product descriptions, concept explainer, customer reply, **postgraduate & academic research**, **classical/general poetry**, **mass crowd management plans**, **language auditor**, **spell checker**, **positive analysis**, **negative analysis**, **crisis management plans**, **event management plans**, **risk management plans**, **emergency & evacuation plans**, **post-incident assessment reports**.
-- Every preset also ships a **starter task** with bracketed placeholders (`[topic]`, `[audience]`, `[duration]`…) in both languages, so it can be reused from the **Ready tasks** picker inside the Task field.
-
-### 7) Image generation mode 🖼️
-Turns your request into a **ready-to-use English image prompt** for Midjourney / DALL·E / Stable Diffusion, with:
-- **46 art styles** in 4 groups (📷 Photography · 🖌️ Fine art · 💻 Digital & 3D · 🎨 Graphics & design).
-- **28 sizes** in 3 groups (landscape · square/portrait · 📐 common pixel sizes like `1920x1080` and `A4`) **plus a custom size field** that overrides the selection — pixel sizes are converted automatically into a `resolution` line and a computed `--ar` ratio.
-- An editable **Negative Prompt** line + a quality line + the mood taken from the chosen tone.
-
-### 8) Recommended tools section 🤖
-A section at the bottom of the page lists **8 recommended AI tools** to use your prompt with, each with a **free open-source alternative**. Clicking a card opens **both** links:
-
-| Recommended tool 🔗 | Free open-source alternative 🔓 |
-|---|---|
-| ChatGPT | [Open WebUI](https://github.com/open-webui/open-webui) |
-| Claude | [LibreChat](https://github.com/danny-avila/LibreChat) |
-| Gemini | [Jan](https://github.com/janhq/jan) |
-| Midjourney | [Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) |
-| GitHub Copilot | [Aider](https://github.com/Aider-AI/aider) |
-| Perplexity | [Khoj](https://github.com/khoj-ai/khoj) |
-| ElevenLabs | [Coqui TTS](https://github.com/coqui-ai/TTS) |
-| Sora | [LTX-Video](https://github.com/Lightricks/LTX-Video) |
-
-### 9) Mobile version 📱 (second site + Android APK)
-A standalone **mobile phone UI** with a **light indigo dashboard** design: greeting header, gradient quality card, 4 quick-action buttons, collapsible section cards with colored icons, a circular quality ring, presets, image mode, tool cards and a 5-tab bottom navigation bar.
-
-- 🔗 **Second site (mobile UI):** https://moopuu.github.io/prompt-engineer/mobile/
-- 📦 **Android app:** `Prompt-Engineer-v2.0.0.apk` on the [v2.0 release page](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.0)
-- 🌍 Arabic/English in one tap · installable PWA · works offline (Service Worker) · exactly the same prompt engine and output as the desktop version.
-- ✅ Opens **fullscreen as a real app** (Trusted Web Activity — no browser address bar): the verification statement lives at `https://moopuu.github.io/.well-known/assetlinks.json`, served by the [MooPuu.github.io](https://github.com/MooPuu/MooPuu.github.io) root site. If you rotate the APK signing key, update that file.
-- The Arabic language button in the UI is the **letter ع inside a white square with black borders** (instead of the 🇸🇦 flag).
-
----
-
-## 🧩 Structure of the generated prompt
-
-Every prompt leaves the app organized into `##` sections that models handle well:
-
-```
-## ROLE
-## TASK
-## CONTEXT
-## AUDIENCE
-## OUTPUT REQUIREMENTS
-## TONE
-## CONSTRAINTS
-## DO NOT
-## METHOD              ← when CoT / Ask is enabled
-## FEW-SHOT            ← when examples are enabled
-## SUCCESS CRITERIA
-## FINAL INSTRUCTIONS
-```
-
-> With Arabic selected as the answer language, the same sections are emitted with Arabic headings (الدور · المهمة · السياق …).
-
----
-
-## 🚀 How to run it
-
-### 1) Web (no install)
-Open: **https://moopuu.github.io/prompt-engineer/**
-
-### 2) Mobile version — Android APK 📱
-
-| Option | Link / steps |
-|---|---|
-| 🌐 Mobile site | **https://moopuu.github.io/prompt-engineer/mobile/** |
-| 📦 Direct APK download | **https://github.com/MooPuu/prompt-engineer/releases/tag/v2.0** ← `Prompt-Engineer-v2.0.0.apk` |
-
-1. Download `Prompt-Engineer-v2.0.0.apk` from the release page.
-2. Open it on your phone — if you see an “Unknown sources” warning, allow your browser or file manager.
-3. Install the app; it appears with the same icon as the desktop version.
-
-> The mobile UI is also a **PWA**: from the phone browser use “Add to Home screen” to run it full-screen as a standalone, offline-capable app.
-
-### 3) Locally from the files
-Open `index.html` directly in any browser (works offline except for Google Fonts). For the mobile UI, open `mobile/index.html`.
+## 🛠 Run it
 
 ```bash
-# or through a local server
-npx serve .
+git clone https://github.com/MooPuu/prompt-engineer.git
+cd prompt-engineer
+npm install
+npm start        # desktop app (Electron)
+npm run build    # installers → dist/
 ```
 
-### 4) Desktop version (Electron)
+The web app needs no build — open `index.html` or serve the folder.
 
-```bash
-npm install          # install dependencies
-npm start            # run in development
-npm run build        # build all three installers 🔄
-```
-
-| Command | Output |
-|---|---|
-| `npm run build:portable` | **Portable build** — `Prompt-Engineer-Portable-v2.0.0.exe` (no install, runs from anywhere / USB) |
-| `npm run build:nsis` | **Setup installer** — `Prompt-Engineer-Setup-v2.0.0.exe` (custom path + shortcuts) |
-| `npm run build:msi` | **MSI installer** — `Prompt-Engineer-Setup-v2.0.0.msi` (official/company Windows installs) |
-| `npm run build` | All three at once |
-
-> Artifacts are written to the `dist/` folder.
-> The installers are self-signed — Windows may ask you to confirm the run.
-
----
-
-## 📁 Project structure
+## 📁 Structure
 
 ```
-prompt-engineer/
-├── index.html                  # the whole web/desktop app (HTML + CSS + JS)
-├── themes.css                  # three-theme layer + modern UI
-├── mobile/                     # 📱 mobile phone site (PWA + APK source)
-│   ├── index.html              # mobile UI (light dashboard)
-│   ├── mobile.css              # mobile design system
-│   ├── app.js                  # logic + AR/EN translations + prompt engine
-│   ├── data.js                 # data (presets, tones, tools) — extracted from index.html
-│   ├── manifest.webmanifest    # PWA manifest (installable from the home screen)
-│   ├── sw.js                   # Service Worker for offline use
-│   └── icon-192/512.png        # app icons (192 / 512 / maskable)
-├── prompt engineer icon.png    # official app icon
-├── main.js                     # Electron main process
-├── package.json                # package metadata + build configuration
-├── build/
-│   ├── icon.png                # 256×256 (square) icon
-│   └── icon.ico                # Windows icon (multi-size)
-├── dist/                       # build output (not committed)
-├── README.md
-├── LICENSE                     # MIT
-└── .gitignore
+index.html     desktop app (UI, builder, prompt data)
+themes.css     3 themes
+main.js        Electron entry point
+mobile/        phone PWA (index.html, app.js, data.js, sw.js, manifest)
+build/         app icon + social preview
+dist/          built installers
 ```
 
----
+## 🧰 Stack
 
-## 🛠️ Tech stack
-
-- **HTML5 / CSS3 / Vanilla JavaScript** — no framework, easy to read and extend.
-- **CSS Custom Properties** — a full theming system built on variables.
-- **localStorage** — saves theme, language and history.
-- **Electron + electron-builder** — desktop version and EXE/MSI builds.
-- **Bubblewrap (Trusted Web Activity)** — the Android APK wraps the live mobile site.
-
----
-
-## 📌 Suggested roadmap
-
-- [ ] Save prompts to files (JSON export/import).
-- [ ] A comparison mode for outputs from several models.
-- [ ] Keyboard shortcuts (Ctrl+C to copy, Ctrl+1..3 for themes).
-- [ ] More presets (SEO, workflows, competitor analysis).
-- [ ] Start in the system language (Arabic ⇄ English) by default.
-
----
+Vanilla HTML / CSS / JS (no framework) · Electron · GitHub Pages · Bubblewrap TWA (Android).
 
 ## 📄 License
 
-This project is licensed under the **MIT** license — see [LICENSE](./LICENSE).
-
----
-
-## © Copyright
-
-**© 2026 Mahdi Kareem — All rights reserved.**
-Crafted with care ❤️
-
----
-
-> 🇸🇦 **Note:** the application itself remains fully bilingual — Arabic (RTL) and English (LTR) — switchable from the top bar with one click.
+MIT · © 2026 **Mahdi Kareem** — جميع الحقوق محفوظة

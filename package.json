@@ -1,7 +1,7 @@
 {
   "name": "prompt-engineer",
   "version": "2.0.0",
-  "description": "Prompt Engineer — bilingual (Arabic/English) tool for building perfect prompts for any AI tool",
+  "description": "Bilingual (Arabic/English) prompt builder for desktop, web and Android",
   "author": "Mahdi Kareem",
   "license": "MIT",
   "homepage": "https://moopuu.github.io/prompt-engineer/",
