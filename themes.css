@@ -290,8 +290,6 @@ label.lb{color:var(--muted)}
   display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
   font-size:13.5px;color:var(--muted)
 }
-.foot-in .cr b{color:var(--txt);font-weight:800}
-.foot-in .cr .cc{color:var(--acc);font-weight:800}
 .foot-links{display:flex;gap:8px;flex-wrap:wrap}
 .foot-links a{
   text-decoration:none;color:var(--muted);border:1px solid var(--line2);

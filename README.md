@@ -85,4 +85,4 @@ Vanilla HTML / CSS / JS (no framework) · Electron · GitHub Pages · Bubblewrap
 
 ## 📄 License
 
-MIT · © 2026 **Mahdi Kareem** — جميع الحقوق محفوظة
+MIT — see [LICENSE](./LICENSE).

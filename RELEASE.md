@@ -99,4 +99,4 @@ No framework, no build step for the web app — just open `index.html`.
 
 ## 📄 License
 
-MIT · © 2026 **Mahdi Kareem**
+MIT — see [LICENSE](./LICENSE).
