@@ -1,4 +1,4 @@
-/* Prompt Engineer — shared language data (10 languages loaded, 413 keys each)
+/* Prompt Engineer — shared language data (10 languages loaded, 415 keys each)
    Fallback chain: chosen language → English → Arabic → key.
    Preset bodies and tone descriptions stay bilingual AR/EN by design. */
 const LANGS = [
@@ -497,7 +497,9 @@ const I18N = {
   "preset.56": "🎬 برومبت تحريك فيديو",
   "preset.57": "🎙️ إعداد حلقات بودكاست",
   "preset.58": "📖 قصصي سردي",
-  "preset.59": "🖼️ توليد صورة"
+  "preset.59": "🖼️ توليد صورة",
+  "preset.60": "🤲 دعاء",
+  "preset.61": "📖 قرآن كريم"
  },
  "en": {
   "app.title": "Prompt Engineer — AI Prompt Builder",
@@ -912,7 +914,9 @@ const I18N = {
   "preset.56": "🎬 Video animation prompt",
   "preset.57": "🎙️ Podcast episode planning",
   "preset.58": "📖 Narrative storytelling",
-  "preset.59": "🖼️ Image Generation"
+  "preset.59": "🖼️ Image Generation",
+  "preset.60": "🤲 Dua / Supplication",
+  "preset.61": "📖 Qur'an"
  },
  "de": {
   "app.title": "Prompt Engineer — KI-Prompt-Builder",
@@ -1326,6 +1330,8 @@ const I18N = {
   "preset.57": "🎙️ Podcast-Folgenplanung",
   "preset.58": "📖 Erzählendes Schreiben",
   "preset.59": "🖼️ Bildgenerierung",
+  "preset.60": "🤲 Dua / Bittgebet",
+  "preset.61": "📖 Koran",
   "task.tpl": "📚 Fertige Aufgaben",
   "task.tpl.sub": "Wähle eine fertige Aufgabe als Startpunkt, bearbeite sie oder schreibe im Feld oben deine eigene:",
   "role.tpl": "🧑‍💼 Fertige Rollen",
@@ -1752,7 +1758,9 @@ const I18N = {
   "preset.56": "🎬 Prompt de animación de vídeo",
   "preset.57": "🎙️ Planificación de episodio de pódcast",
   "preset.58": "📖 Narrativa",
-  "preset.59": "🖼️ Generación de imágenes"
+  "preset.59": "🖼️ Generación de imágenes",
+  "preset.60": "🤲 Dua (invocación)",
+  "preset.61": "📖 Corán"
  },
  "fa": {
   "app.title": "مهندس پرامپت — Prompt Engineer",
@@ -2171,7 +2179,9 @@ const I18N = {
   "preset.56": "🎬 پرامپت انیمیشن ویدیو",
   "preset.57": "🎙️ برنامه‌ریزی اپیزود پادکست",
   "preset.58": "📖 روایت داستانی",
-  "preset.59": "🖼️ تولید تصویر"
+  "preset.59": "🖼️ تولید تصویر",
+  "preset.60": "🤲 دعا",
+  "preset.61": "📖 قرآن کریم"
  },
  "fr": {
   "app.title": "Prompt Engineer — Générateur de prompts IA",
@@ -2590,7 +2600,9 @@ const I18N = {
   "preset.56": "🎬 Prompt d’animation vidéo",
   "preset.57": "🎙️ Planification d’épisode de podcast",
   "preset.58": "📖 Récit narratif",
-  "preset.59": "🖼️ Génération d’image"
+  "preset.59": "🖼️ Génération d’image",
+  "preset.60": "🤲 Doua (invocation)",
+  "preset.61": "📖 Coran"
  },
  "ru": {
   "app.title": "Prompt Engineer — генератор промптов для ИИ",
@@ -3009,7 +3021,9 @@ const I18N = {
   "preset.56": "🎬 Промпт для видеоанимации",
   "preset.57": "🎙️ Планирование эпизода подкаста",
   "preset.58": "📖 Нарративный текст",
-  "preset.59": "🖼️ Генерация изображений"
+  "preset.59": "🖼️ Генерация изображений",
+  "preset.60": "🤲 Дуа (молитва)",
+  "preset.61": "📖 Коран"
  },
  "sv": {
   "app.title": "Prompt Engineer — Promptbyggare för AI",
@@ -3428,7 +3442,9 @@ const I18N = {
   "preset.56": "🎬 Prompt för videoanimation",
   "preset.57": "🎙️ Planering av podcastepisode",
   "preset.58": "📖 Berättande text",
-  "preset.59": "🖼️ Bildgenerering"
+  "preset.59": "🖼️ Bildgenerering",
+  "preset.60": "🤲 Bön",
+  "preset.61": "📖 Koranen"
  },
  "tr": {
   "app.title": "Prompt Engineer — Yapay Zekâ Prompt Oluşturucu",
@@ -3847,6 +3863,8 @@ const I18N = {
   "preset.57": "🎙️ Podcast bölüm planlaması",
   "preset.58": "📖 Anlatıcı hikâye anlatımı",
   "preset.59": "🖼️ Görsel oluşturma",
+  "preset.60": "🤲 Dua",
+  "preset.61": "📖 Kur'an-ı Kerim",
   "lb.avoid2": "kaçınılması gerekenler"
  },
  "zh": {
@@ -4262,6 +4280,8 @@ const I18N = {
   "preset.56": "🎬 视频动画提示词",
   "preset.57": "🎙️ 播客单期策划",
   "preset.58": "📖 叙事化讲述",
-  "preset.59": "🖼️ 图像生成"
+  "preset.59": "🖼️ 图像生成",
+  "preset.60": "🤲 祈祷词",
+  "preset.61": "📖 古兰经"
  }
 };

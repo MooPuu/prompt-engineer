@@ -802,7 +802,7 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
   </div>
 </footer>
 
-<script src="i18n.js?v=1b3c4256"></script>
+<script src="i18n.js?v=ff65e1cb"></script>
 <script>
 /* ================= i18n ================= */
 /* I18N + LANGS now live in the shared i18n.js file */
@@ -1635,7 +1635,23 @@ const PRESETS = [
 {name:['🖼️ توليد صورة','🖼️ Image Generation'], set:{
   task:['صورة لـ[الموضوع] بأسلوب [الأسلوب] وإضاءة [الإضاءة] وتكوين [التكوين]','A photo of [subject] in [style] style with [lighting] lighting and [composition] composition'],
   role:[''],audience:['',''],tone:[],fmt:[],length:'',constraints:['',''],avoid:['',''],
-  flags:{ask:false,cot:false,self:false,few:false}, img:true}}
+  flags:{ask:false,cot:false,self:false,few:false}, img:true}},
+ {name:['🤲 دعاء','🤲 Dua / Supplication'], set:{
+  task:['اكتب دعاءً في [الموضوع] بأسلوب موجز وأدب نبوي، مقسّمًا إلى: تمهيد بحمد الله، ثم الاستغفار، ثم الدعاء المطلوب، ثم الختام','Write a supplication about [topic] in a concise style with the prophetic etiquette — structured as: an opening with praise, seeking forgiveness, the supplication itself, then a closing'],
+  role:['عالمة دين متقنة لأدب الدعاء وأدب أهل القرآن','Islamic scholar well-versed in the etiquette of supplication and of the people of the Qur\'an'],
+  audience:['مؤمنون يقرؤون في صلاة الليل أو بعد الصلوات المفروضة','Believers reciting at night or after the obligatory prayers'],
+  tone:['heritage','concise'], fmt:['md'], length:'medium',
+  constraints:['ابدأ بحمد الله والصلاة على النبي صلى الله عليه وسلم\nاستعمل لفظًا قرآنيًا أو حديثًا صحيحًا في كل مقطع\nخاطب الله مباشرة بصيغة: اللهم\nاجعل كل جملة مفهومة بذاتها دون حاجة إلى ما قبلها','Start by praising Allah and sending salutations on the Prophet ﷺ\nUse a Qur\'anic phrase or an authentic hadith in every section\nAddress Allah directly with the words: Allahumma\nKeep every sentence meaningful on its own, without depending on what came before'],
+  avoid:['لا تخترع آية ولا حديثًا ولا سندًا — إن لم تتأكد فاحذف\nلا تخلط الفصحى بالعامية أو بعبارات غير مفهومة\nلا تنسب دعاءً إلى مصدر لم يُنقل عنه','Never invent an ayah, a hadith or a chain of narration — if unsure, leave it out\nDo not mix Modern Standard Arabic with dialect or with unclear wording\nDo not attribute a supplication to a source it was not transmitted from'],
+  flags:{self:true}}},
+{name:['📖 قرآن كريم','📖 Qur\'an'], set:{
+  task:['اكتب [نوع العمل] عن سورة [اسم السورة] أو الآية [رقم الآية]، متضمنًا التفسير والمعاني','Write a [type of work] about surah [surah name] or ayah [ayah number], including tafsir and word meanings'],
+  role:['مفسر للقرآن معتمد، متخصص في علوم التفسير والبلاغة','Qur\'an exegete grounded in the classical sciences of tafsir and rhetoric'],
+  audience:['طلاب حلقات القرآن الكريم وبرامج الحفظ','Students in Qur\'an circles and memorisation programmes'],
+  tone:['academic','heritage'], fmt:['paper'], length:'long',
+  constraints:['اذكر اسم السورة ورقم الآية عند كل اقتباس\nميّز بوضوح بين كلام الله وتعليق المفسّر\nاستند إلى تفسير معروف مثل ابن كثير أو الطاهري أو تفسير معاصر موثوق\nاختم بفقرة تربوية عملية','Cite the surah name and ayah number with every quotation\nDistinguish clearly between the words of Allah and the exegete\'s commentary\nRely on a well-known tafsir such as Ibn Kathir, al-Tahiri or a verified modern one\nClose with a practical, applicable lesson'],
+  avoid:['لا تخترع آية ولا تفسيرًا ولا درجة صحة\nلا تنسب رأيًا إلى مفسر لم يقله\nلا تستعمل العامية في نص التفسير','Never invent an ayah, a tafsir or a grading\nDo not attribute an opinion to an exegete who never held it\nDo not use colloquial Arabic in the exegesis'],
+  flags:{sources:true,self:true}}}
 ];
 
 function renderPresets(){
