@@ -20,9 +20,10 @@ Build a complete, professional AI prompt in a few clicks — **Arabic + English*
 ## ✨ What it does
 
 - **9-field builder** — task · role · context · audience · tone · format · constraints · do-not.
-- **📚 30 presets** · **🧑‍💼 21 tones** · **14 formats** · **11 toggles**.
+- **📚 60 presets** · **🧑‍💼 47 tones** · **36 formats** · **11 toggles**.
+- **18 languages** — العربية, English, فارسی, کوردی, Svenska, Deutsch, Русский, 日本語, 한국어, 中文, Türkçe, اردو, हिन्दी, Français, Español, Nederlands, Português, Naijá.
 - **Two one-click pickers** — ready **tasks** and ready **roles** fill the builder; both fields stay editable.
-- **3 themes** 🌙 ☀️ ⚡ · **2 languages** AR/EN · contrast checked (WCAG ≥ 4.5:1).
+- **3 themes** 🌙 ☀️ ⚡ · **18 languages** · contrast checked (WCAG ≥ 4.5:1).
 - **Live quality score** (12 checks) · **image mode** (46 styles × 28 sizes).
 - **16 AI tool cards** — official tools and open-source alternatives.
 - **Mobile PWA** that works offline, plus a **fullscreen Android app**.
