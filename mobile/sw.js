@@ -1,5 +1,5 @@
 /* Prompt Engineer — mobile service worker (offline support) */
-const CACHE = 'pe-mobile-v2.0';
+const CACHE = 'pe-mobile-a0c46819';
 const ASSETS = [
   './',
   './index.html',
