@@ -27,6 +27,23 @@ Build a complete, professional AI prompt in a few clicks — in **18 languages**
 - **16 AI tool cards** — official tools and open-source alternatives.
 - **Mobile PWA** that works offline, plus a **fullscreen Android app**.
 
+## 🌍 18 languages
+
+All **413 UI strings** are translated in every language — section titles, labels, placeholders,
+quality messages, all 47 tone names, all 36 formats and all 60 preset names. Direction switches
+automatically: RTL for العربية · فارسی · کوردی · اردو, LTR for the rest.
+
+| | | | |
+|---|---|---|---|
+| العربية | فارسی | کوردی (سۆرانی) | اردو |
+| English | हिन्दी | 中文 | 日本語 |
+| 한국어 | Deutsch | Français | Español |
+| Português | Nederlands | Svenska | Русский |
+| Türkçe | Naijá (Nigeria) | | |
+
+> Preset **bodies** (the ready-made task, role, audience and constraint text) stay Arabic + English
+> by design, so prompt quality is identical in every language.
+
 ## ⬇ Install
 
 | File | Use it when |
