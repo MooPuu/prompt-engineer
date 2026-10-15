@@ -1389,7 +1389,15 @@ const I18N = {
   "preset.56": "🎬 Video-Animations-Prompt",
   "preset.57": "🎙️ Podcast-Folgenplanung",
   "preset.58": "📖 Erzählendes Schreiben",
-  "preset.59": "🖼️ Bildgenerierung"
+  "preset.59": "🖼️ Bildgenerierung",
+  "task.tpl": "📚 Fertige Aufgaben",
+  "task.tpl.sub": "Wähle eine fertige Aufgabe als Startpunkt, bearbeite sie oder schreibe im Feld oben deine eigene:",
+  "role.tpl": "🧑‍💼 Fertige Rollen",
+  "role.tpl.sub": "Wähle eine fertige Rolle — die übrigen Felder füllen sich automatisch. Bearbeite danach alles frei:",
+  "lb.lang": "Antwortsprache",
+  "q.score": "Reifegrad",
+  "q.checks": "Kriterien (12)",
+  "q.tap": "Zum Springen tippen"
  },
  "fa": {
   "app.title": "مهندس پرامپت — Prompt Engineer",
