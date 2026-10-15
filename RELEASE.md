@@ -1,52 +1,105 @@
-# 🚀 Prompt Engineer v2.0.0
+# 🧠 Prompt Engineer v2.1.0
 
-Bilingual (Arabic / English) prompt builder for desktop, web and Android — **© 2026 Mahdi Kareem**.
+**18 languages. One prompt builder. Every platform.**
 
-## ⬇ Download
+Build a complete, professional AI prompt in a few clicks — in **any of 18 languages** — on desktop, web or phone.
 
-| File | Type |
+| | |
 |---|---|
-| `Prompt-Engineer-Portable-v2.0.0.exe` | 🟢 Portable — no install |
-| `Prompt-Engineer-Setup-v2.0.0.exe` | 🟦 Windows installer |
-| `Prompt-Engineer-Setup-v2.0.0.msi` | 🟨 Windows MSI (managed install) |
-| `Prompt-Engineer-v2.0.0.apk` | 📱 Android — installs over v1.5 |
+| 🌐 Web app | **https://moopuu.github.io/prompt-engineer/** |
+| 📱 Mobile UI | **https://moopuu.github.io/prompt-engineer/mobile/** |
+| 💻 Desktop | Windows installer, MSI or portable EXE |
+| 📲 Android | Fullscreen TWA — installs over v1.5 and v2.0 |
 
-> Windows: self-signed → **More info → Run**. Android: allow *Unknown sources* once.
+---
 
-🌐 Web: **https://moopuu.github.io/prompt-engineer/** · 📱 Phone: **…/mobile/**
+## 📥 Downloads
 
-## ✨ What's new
-
-**🗣️ 4 argument tones** (17 → **21**): supportive · firm refusal · objection · endorsement — translated in both languages and in the generated prompt.
-
-**📚 Ready tasks** — a button in the Task field with **30 starter tasks** built from the presets (placeholders like `[topic]`, `[audience]`). Picking one fills the task *and* applies its preset.
-
-**🧑‍💼 Ready roles** — a button in the Role field with the **30 preset personas**. Picking one fills the role and auto-completes audience, tone, format, length and constraints — without touching your task.
-
-Both pickers work on desktop and mobile, in Arabic and English, and both fields stay free for custom text.
-
-**📋 14 new presets** (16 → **30**), including:
-
-| Area | Presets |
+| File | Use it when |
 |---|---|
-| Writing | article writing · postgraduate research · classical/general poetry |
-| Analysis | positive analysis · negative analysis |
-| Language | language auditor · spell checker |
-| Planning | plan preparation · study plan |
-| Risk & safety | risk management · crisis management · emergency & evacuation · mass crowd management · event management · post-incident assessment |
+| `Prompt-Engineer-Portable-v2.1.0.exe` | No install — run it straight from a USB stick |
+| `Prompt-Engineer-Setup-v2.1.0.exe` | Standard Windows install (custom path, shortcuts) |
+| `Prompt-Engineer-Setup-v2.1.0.msi` | Managed / company Windows install |
+| `Prompt-Engineer-v2.1.0.apk` | Android — upgrades in place over v1.5 / v2.0 |
 
-**🧹 Fixes** — the mobile greeting line was removed; the phone app now loads fresh content reliably (network-first shell, versioned assets) while still working offline.
+> **Windows:** the installers are self-signed, so Windows SmartScreen shows a blue dialog → *More info → Run anyway*.
+> **Android:** allow *Unknown sources* once. The app then launches fullscreen with no browser chrome.
 
-**📦 Version** — everything bumped to **2.0.0**.
+---
 
-## 🧰 Everything else
+## 🌍 18 languages
 
-9-field builder · 30 presets · 21 tones · 14 formats · 11 toggles · 3 themes · 2 languages ·
-12-point quality score · image mode (46 styles × 28 sizes) · 16 AI tool cards ·
-collapsible top bar · instant search · keyboard & screen-reader support.
+| | | | |
+|---|---|---|---|
+| العربية | فارسی | کوردی (سۆرانی) | اردو |
+| English | हिन्दी | 中文 | 日本語 |
+| 한국어 | Deutsch | Français | Español |
+| Português | Nederlands | Svenska | Русский |
+| Türkçe | Naijá (Nigeria) | | |
 
-## 🔐 Privacy
+Every one of the **413 UI strings** is translated in all 18 languages: section titles, field labels,
+placeholders, quality messages, all **47 tone** names, all **36 output formats** and all **60 preset**
+names. The interface switches direction automatically (RTL for العربية · فارسی · کوردی · اردو,
+LTR for the rest).
 
-Runs locally or online as you choose. Nothing is collected or sent; history stays in your browser.
+**Preset bodies stay Arabic + English by design** — the ready-made task, role, audience and constraint
+text is deliberately not machine-translated, so prompt quality is identical in every language.
 
-**MIT License**
+---
+
+## ✨ Highlights
+
+- **9-field builder** — task · role · context · audience · tone · format · constraints · answer language · avoid.
+- **📚 60 presets** · **🧑‍💼 47 tones** · **36 formats** · **11 improvement toggles**.
+- **Two one-click pickers** — a ready **task** and a ready **role** fill the builder for you; both
+  fields stay free-text and editable afterwards.
+- **Live quality score** — 12 checks, each one clickable to jump to the field it complains about.
+- **Image mode** — 46 artistic styles × 28 output sizes, generating a ready English prompt for
+  Midjourney / DALL·E / Stable Diffusion.
+- **16 AI tool cards** — the official tool plus its open-source alternative.
+- **3 themes** 🌙 ☀️ ⚡, contrast checked to WCAG ≥ 4.5:1.
+- **Works offline** on desktop and mobile.
+
+---
+
+## 🐛 Fixed in v2.1
+
+- **The desktop installers were missing `i18n.js`.** v2.0's packaged build shipped without the
+  dictionary file, so the language system could not initialise inside the EXE/MSI. `i18n.js` is now
+  part of the packaged app — **this is why you should upgrade even if you never changed language.**
+- **The mobile service worker served a stale dictionary forever.** The offline cache name is now
+  derived from the dictionary's content hash, so a translation update always invalidates the cache
+  instead of pinning users to an old one.
+- Japanese copy was cleaned end-to-end (it had picked up stray fragments in a few strings).
+
+---
+
+## 🔐 Installers
+
+Self-signed. Fingerprint (SHA-256 of the signing certificate):
+
+```
+DB:7D:62:10:…:54:29:B
+```
+
+The Android APK uses the **same keystore as v1.5 and v2.0**, which is why it upgrades in place and
+keeps Digital Asset Links working — Android shows a verified warning on install only because the app
+is not on Google Play.
+
+---
+
+## 🧑‍💻 Build it yourself
+
+```bash
+git clone https://github.com/MooPuu/prompt-engineer.git
+cd prompt-engineer
+npm install
+npm start        # run the desktop app
+npm run build    # build installers into dist/
+```
+
+No framework, no build step for the web app — just open `index.html`.
+
+## 📄 License
+
+MIT · © 2026 **Mahdi Kareem**

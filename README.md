@@ -1,11 +1,11 @@
 # 🧠 Prompt Engineer
 
-Build a complete, professional AI prompt in a few clicks — **Arabic + English**, on desktop, web or phone.
+Build a complete, professional AI prompt in a few clicks — in **18 languages**, on desktop, web or phone.
 
 ![Prompt Engineer](./build/social-preview.png)
 
 [![Live](https://img.shields.io/badge/Live-🟢-6c8cff?style=flat-square)](https://moopuu.github.io/prompt-engineer/)
-[![v2.0](https://img.shields.io/badge/release-v2.0-3ddc97?style=flat-square)](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.0)
+[![v2.1](https://img.shields.io/badge/release-v2.1-3ddc97?style=flat-square)](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.1)
 [![MIT](https://img.shields.io/badge/license-MIT-9b6cff?style=flat-square)](./LICENSE)
 
 ## 🔗 Links
@@ -14,16 +14,15 @@ Build a complete, professional AI prompt in a few clicks — **Arabic + English*
 |---|---|
 | 🌐 Web app | **moopuu.github.io/prompt-engineer/** |
 | 📱 Mobile UI | **moopuu.github.io/prompt-engineer/mobile/** |
-| ⬇ Installers + APK | **releases/tag/v2.0** |
-| 📖 What's new in v2.0 | **[release notes](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.0)** |
+| ⬇ Installers + APK | **releases/tag/v2.1** |
+| 📖 What's new in v2.1 | **[release notes](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.1)** |
 
 ## ✨ What it does
 
 - **9-field builder** — task · role · context · audience · tone · format · constraints · do-not.
 - **📚 60 presets** · **🧑‍💼 47 tones** · **36 formats** · **11 toggles**.
-- **18 languages** — العربية, English, فارسی, کوردی, Svenska, Deutsch, Русский, 日本語, 한국어, 中文, Türkçe, اردو, हिन्दी, Français, Español, Nederlands, Português, Naijá.
 - **Two one-click pickers** — ready **tasks** and ready **roles** fill the builder; both fields stay editable.
-- **3 themes** 🌙 ☀️ ⚡ · **18 languages** · contrast checked (WCAG ≥ 4.5:1).
+- **3 themes** 🌙 ☀️ ⚡ · full RTL/LTR support · contrast checked (WCAG ≥ 4.5:1).
 - **Live quality score** (12 checks) · **image mode** (46 styles × 28 sizes).
 - **16 AI tool cards** — official tools and open-source alternatives.
 - **Mobile PWA** that works offline, plus a **fullscreen Android app**.
@@ -32,10 +31,10 @@ Build a complete, professional AI prompt in a few clicks — **Arabic + English*
 
 | File | Use it when |
 |---|---|
-| `Prompt-Engineer-Portable-v2.0.0.exe` | no install — run from a USB stick |
-| `Prompt-Engineer-Setup-v2.0.0.exe` | standard Windows install (custom path, shortcuts) |
-| `Prompt-Engineer-Setup-v2.0.0.msi` | managed / company Windows install |
-| `Prompt-Engineer-v2.0.0.apk` | Android — installs over v1.5 |
+| `Prompt-Engineer-Portable-v2.1.0.exe` | no install — run from a USB stick |
+| `Prompt-Engineer-Setup-v2.1.0.exe` | standard Windows install (custom path, shortcuts) |
+| `Prompt-Engineer-Setup-v2.1.0.msi` | managed / company Windows install |
+| `Prompt-Engineer-v2.1.0.apk` | Android — installs over v1.5 and v2.0 |
 
 > Windows: the files are self-signed → **More info → Run**.
 > Android: allow *Unknown sources* once; the app then opens fullscreen.
@@ -56,6 +55,7 @@ The web app needs no build — open `index.html` or serve the folder.
 
 ```
 index.html     desktop app (UI, builder, prompt data)
+i18n.js        shared dictionary — 18 languages, 413 UI keys
 themes.css     3 themes
 main.js        Electron entry point
 mobile/        phone PWA (index.html, app.js, data.js, sw.js, manifest)
