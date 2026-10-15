@@ -1,6 +1,6 @@
 # 🧠 Prompt Engineer
 
-Build a complete, professional AI prompt in a few clicks — in **18 languages**, on desktop, web or phone.
+Build a complete, professional AI prompt in a few clicks — in **10 languages**, on desktop, web or phone.
 
 ![Prompt Engineer](./build/social-preview.png)
 
@@ -27,19 +27,18 @@ Build a complete, professional AI prompt in a few clicks — in **18 languages**
 - **16 AI tool cards** — official tools and open-source alternatives.
 - **Mobile PWA** that works offline, plus a **fullscreen Android app**.
 
-## 🌍 18 languages
+## 🌍 10 languages
 
-All **413 UI strings** are translated in every language — section titles, labels, placeholders,
+All **413 UI strings** are translated in all ten languages — section titles, labels, placeholders,
 quality messages, all 47 tone names, all 36 formats and all 60 preset names. Direction switches
-automatically: RTL for العربية · فارسی · کوردی · اردو, LTR for the rest.
+automatically: RTL for العربية and فارسی, LTR for the rest.
 
-| | | | |
-|---|---|---|---|
-| العربية | فارسی | کوردی (سۆرانی) | اردو |
-| English | हिन्दी | 中文 | 日本語 |
-| 한국어 | Deutsch | Français | Español |
-| Português | Nederlands | Svenska | Русский |
-| Türkçe | Naijá (Nigeria) | | |
+| | | | | |
+|---|---|---|---|---|
+| العربية | فارسی | Svenska | Deutsch | Русский |
+| 中文 | Türkçe | Français | Español | English |
+
+> العربية and فارسی render right-to-left; the other eight render left-to-right.
 
 > Preset **bodies** (the ready-made task, role, audience and constraint text) stay Arabic + English
 > by design, so prompt quality is identical in every language.
@@ -72,7 +71,7 @@ The web app needs no build — open `index.html` or serve the folder.
 
 ```
 index.html     desktop app (UI, builder, prompt data)
-i18n.js        shared dictionary — 18 languages, 413 UI keys
+i18n.js        shared dictionary — 10 languages, 413 UI keys
 themes.css     3 themes
 main.js        Electron entry point
 mobile/        phone PWA (index.html, app.js, data.js, sw.js, manifest)

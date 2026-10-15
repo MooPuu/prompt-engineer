@@ -1,8 +1,8 @@
 # 🧠 Prompt Engineer v2.1.0
 
-**18 languages. One prompt builder. Every platform.**
+**10 languages. One prompt builder. Every platform.**
 
-Build a complete, professional AI prompt in a few clicks — in **any of 18 languages** — on desktop, web or phone.
+Build a complete, professional AI prompt in a few clicks — in **any of 10 languages** — on desktop, web or phone.
 
 | | |
 |---|---|
@@ -27,20 +27,18 @@ Build a complete, professional AI prompt in a few clicks — in **any of 18 lang
 
 ---
 
-## 🌍 18 languages
+## 🌍 10 languages
 
-| | | | |
-|---|---|---|---|
-| العربية | فارسی | کوردی (سۆرانی) | اردو |
-| English | हिन्दी | 中文 | 日本語 |
-| 한국어 | Deutsch | Français | Español |
-| Português | Nederlands | Svenska | Русский |
-| Türkçe | Naijá (Nigeria) | | |
+| | | | | |
+|---|---|---|---|---|
+| العربية | فارسی | Svenska | Deutsch | Русский |
+| 中文 | Türkçe | Français | Español | English |
 
-Every one of the **413 UI strings** is translated in all 18 languages: section titles, field labels,
+The interface switches direction automatically: **RTL** for العربية · فارسی,
+**LTR** for the other eight.
+Every one of the **413 UI strings** is translated in all ten languages: section titles, field labels,
 placeholders, quality messages, all **47 tone** names, all **36 output formats** and all **60 preset**
-names. The interface switches direction automatically (RTL for العربية · فارسی · کوردی · اردو,
-LTR for the rest).
+names.
 
 **Preset bodies stay Arabic + English by design** — the ready-made task, role, audience and constraint
 text is deliberately not machine-translated, so prompt quality is identical in every language.
@@ -70,7 +68,6 @@ text is deliberately not machine-translated, so prompt quality is identical in e
 - **The mobile service worker served a stale dictionary forever.** The offline cache name is now
   derived from the dictionary's content hash, so a translation update always invalidates the cache
   instead of pinning users to an old one.
-- Japanese copy was cleaned end-to-end (it had picked up stray fragments in a few strings).
 
 ---
 
