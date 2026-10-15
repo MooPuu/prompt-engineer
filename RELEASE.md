@@ -1,4 +1,4 @@
-# 🧠 Prompt Engineer v2.1.0
+# 🧠 Prompt Engineer v2.2.0
 
 **10 languages. One prompt builder. Every platform.**
 
@@ -9,7 +9,7 @@ Build a complete, professional AI prompt in a few clicks — in **any of 10 lang
 | 🌐 Web app | **https://moopuu.github.io/prompt-engineer/** |
 | 📱 Mobile UI | **https://moopuu.github.io/prompt-engineer/mobile/** |
 | 💻 Desktop | Windows installer, MSI or portable EXE |
-| 📲 Android | Fullscreen TWA — installs over v1.5 and v2.0 |
+| 📲 Android | Fullscreen TWA — upgrades over any earlier build |
 
 ---
 
@@ -17,10 +17,10 @@ Build a complete, professional AI prompt in a few clicks — in **any of 10 lang
 
 | File | Use it when |
 |---|---|
-| `Prompt-Engineer-Portable-v2.1.0.exe` | No install — run it straight from a USB stick |
-| `Prompt-Engineer-Setup-v2.1.0.exe` | Standard Windows install (custom path, shortcuts) |
-| `Prompt-Engineer-Setup-v2.1.0.msi` | Managed / company Windows install |
-| `Prompt-Engineer-v2.1.0.apk` | Android — upgrades in place over v1.5 / v2.0 |
+| `Prompt-Engineer-Portable-v2.2.0.exe` | No install — run it straight from a USB stick |
+| `Prompt-Engineer-Setup-v2.2.0.exe` | Standard Windows install (custom path, shortcuts) |
+| `Prompt-Engineer-Setup-v2.2.0.msi` | Managed / company Windows install |
+| `Prompt-Engineer-v2.2.0.apk` | Android — upgrades in place over v1.5 / v2.0 / v2.1 |
 
 > **Windows:** the installers are self-signed, so Windows SmartScreen shows a blue dialog → *More info → Run anyway*.
 > **Android:** allow *Unknown sources* once. The app then launches fullscreen with no browser chrome.
@@ -34,14 +34,12 @@ Build a complete, professional AI prompt in a few clicks — in **any of 10 lang
 | العربية | فارسی | Svenska | Deutsch | Русский |
 | 中文 | Türkçe | Français | Español | English |
 
-The interface switches direction automatically: **RTL** for العربية · فارسی,
-**LTR** for the other eight.
-Every one of the **413 UI strings** is translated in all ten languages: section titles, field labels,
+All **413 UI strings** are translated in every language — section titles, field labels,
 placeholders, quality messages, all **47 tone** names, all **36 output formats** and all **60 preset**
-names.
+names. Direction switches automatically: **RTL** for العربية · فارسی, **LTR** for the other eight.
 
-**Preset bodies stay Arabic + English by design** — the ready-made task, role, audience and constraint
-text is deliberately not machine-translated, so prompt quality is identical in every language.
+> Preset **bodies** (the ready-made task, role, audience and constraint text) stay Arabic + English
+> by design, so prompt quality is identical in every language.
 
 ---
 
@@ -60,14 +58,25 @@ text is deliberately not machine-translated, so prompt quality is identical in e
 
 ---
 
-## 🐛 Fixed in v2.1
+## 🗑️ Removed in v2.2
 
-- **The desktop installers were missing `i18n.js`.** v2.0's packaged build shipped without the
-  dictionary file, so the language system could not initialise inside the EXE/MSI. `i18n.js` is now
-  part of the packaged app — **this is why you should upgrade even if you never changed language.**
+Eight languages were retired to keep the interface tight and the bundle lean:
+
+`Kurdish (Sorani)` · `日本語` · `한국어` · `اردو` · `हिन्दी` · `Nederlands` · `Português` · `Naijá (Nigeria)`
+
+Chinese (`中文`) stays. The remaining ten are العربية · English · فارسی · Svenska · Deutsch · Русский · 中文 · Türkçe · Français · Español.
+
+---
+
+## 🐛 Fixed
+
 - **The mobile service worker served a stale dictionary forever.** The offline cache name is now
   derived from the dictionary's content hash, so a translation update always invalidates the cache
   instead of pinning users to an old one.
+- **The version string in the footer used to revert.** The number lived only in the generated file,
+  so rebuilding the dictionary rolled it back — it is now fixed in the source dictionaries.
+- **Release links pointed at `v2.1` while the tag was `v2.1.0`**, which is a 404.
+- The visible copyright line was dropped from every footer.
 
 ---
 
@@ -79,9 +88,9 @@ Self-signed. Fingerprint (SHA-256 of the signing certificate):
 DB:7D:62:10:…:54:29:B
 ```
 
-The Android APK uses the **same keystore as v1.5 and v2.0**, which is why it upgrades in place and
-keeps Digital Asset Links working — Android shows a verified warning on install only because the app
-is not on Google Play.
+The Android APK uses the **same keystore as every earlier build**, which is why it upgrades in place
+and keeps Digital Asset Links working — Android shows a verified warning on install only because the
+app is not on Google Play.
 
 ---
 
