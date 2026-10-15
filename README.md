@@ -5,7 +5,7 @@ Build a complete, professional AI prompt in a few clicks — in **18 languages**
 ![Prompt Engineer](./build/social-preview.png)
 
 [![Live](https://img.shields.io/badge/Live-🟢-6c8cff?style=flat-square)](https://moopuu.github.io/prompt-engineer/)
-[![v2.1](https://img.shields.io/badge/release-v2.1-3ddc97?style=flat-square)](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.1)
+[![v2.1.0](https://img.shields.io/badge/release-v2.1.0-3ddc97?style=flat-square)](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.1.0)
 [![MIT](https://img.shields.io/badge/license-MIT-9b6cff?style=flat-square)](./LICENSE)
 
 ## 🔗 Links
@@ -14,8 +14,8 @@ Build a complete, professional AI prompt in a few clicks — in **18 languages**
 |---|---|
 | 🌐 Web app | **moopuu.github.io/prompt-engineer/** |
 | 📱 Mobile UI | **moopuu.github.io/prompt-engineer/mobile/** |
-| ⬇ Installers + APK | **releases/tag/v2.1** |
-| 📖 What's new in v2.1 | **[release notes](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.1)** |
+| ⬇ Installers + APK | **releases/tag/v2.1.0** |
+| 📖 What's new in v2.1 | **[release notes](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.1.0)** |
 
 ## ✨ What it does
 
