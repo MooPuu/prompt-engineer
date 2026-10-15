@@ -222,6 +222,27 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .divider{display:flex;align-items:center;gap:10px;color:#55618a;font-size:11.5px;margin:6px 0 10px}
 .divider::before,.divider::after{content:"";height:1px;background:var(--line);flex:1}
+
+/* ===== language picker ===== */
+.langpick{position:relative;display:inline-flex}
+.lang-btn .chev{font-size:10px;opacity:.7;margin-inline-start:2px}
+.lang-menu{
+  position:absolute;top:calc(100% + 8px);inset-inline-end:0;z-index:60;
+  min-width:210px;max-height:60vh;overflow:auto;padding:6px;
+  background:var(--panel);border:1px solid var(--line2);border-radius:14px;
+  box-shadow:0 18px 40px rgba(0,0,0,.45)
+}
+.lang-item{
+  display:flex;align-items:center;gap:9px;width:100%;text-align:start;
+  padding:8px 10px;border:0;border-radius:10px;background:transparent;
+  color:var(--txt);font-size:13px;cursor:pointer;transition:.14s
+}
+.lang-item:hover{background:var(--panel2);color:var(--acc)}
+.lang-item.active{background:var(--accent-grad,linear-gradient(135deg,var(--acc),var(--acc2)));color:var(--on-grad,#fff)}
+.li-ic{width:22px;text-align:center;font-weight:800;flex:0 0 22px}
+.li-name{flex:1;font-weight:600}
+.li-en{font-size:11px;opacity:.65}
+html[dir="ltr"] .lang-menu{inset-inline-end:0}
 </style>
 
 <link rel="icon" type="image/png" href="prompt%20engineer%20icon.png">
@@ -254,9 +275,11 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
   </div>
 
   <div class="top-actions">
-    <div class="themes" id="langs" role="group" aria-label="Language">
-      <button class="tbtn active" data-lang="ar" title="العربية"><span class="em ar-box" aria-hidden="true">ع</span><span class="tx">عربي</span></button>
-      <button class="tbtn" data-lang="en" title="English"><span class="em">🌐</span><span class="tx">EN</span></button>
+    <div class="langpick" id="langpick">
+      <button class="tbtn lang-btn" id="langBtn" type="button" aria-haspopup="listbox" aria-expanded="false" title="Language">
+        <span class="em" id="langIcon">ع</span><span class="tx" id="langName">عربي</span><span class="chev">▾</span>
+      </button>
+      <div class="lang-menu" id="langMenu" role="listbox" hidden></div>
     </div>
 
     <div class="themes" id="themes" role="group" aria-label="Theme">
@@ -388,6 +411,33 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
           <input type="checkbox" id="t19" value="refuse"><label for="t19" data-i18n="tone.refuse">🚫 رافض حازم</label>
           <input type="checkbox" id="t20" value="object"><label for="t20" data-i18n="tone.object">⚖️ معترض مبرّر</label>
           <input type="checkbox" id="t21" value="endorse"><label for="t21" data-i18n="tone.endorse">✅ مؤيّد ومدافع</label>
+          <input type="checkbox" id="t22" value="historic"><label for="t22" data-i18n="tone.historic">📜 نبرة تاريخية</label>
+  <input type="checkbox" id="t23" value="critical"><label for="t23" data-i18n="tone.critical">🔍 تحليلي نقدي</label>
+  <input type="checkbox" id="t24" value="neutral"><label for="t24" data-i18n="tone.neutral">⚖️ محايد وموضوعي</label>
+  <input type="checkbox" id="t25" value="philosophical"><label for="t25" data-i18n="tone.philosophical">🌀 فلسفي عميق</label>
+  <input type="checkbox" id="t26" value="skeptical"><label for="t26" data-i18n="tone.skeptical">🕵️ استقصائي متشكك</label>
+  <input type="checkbox" id="t27" value="socratic"><label for="t27" data-i18n="tone.socratic">❓ سقراطي تساؤلي</label>
+  <input type="checkbox" id="t28" value="directive"><label for="t28" data-i18n="tone.directive">🎯 تنفيذ مباشر</label>
+  <input type="checkbox" id="t29" value="diplomatic"><label for="t29" data-i18n="tone.diplomatic">🤝 دبلوماسي لبق</label>
+  <input type="checkbox" id="t30" value="legal"><label for="t30" data-i18n="tone.legal">⚖️ قانوني رسمي</label>
+  <input type="checkbox" id="t31" value="practical"><label for="t31" data-i18n="tone.practical">🛠️ عملي تطبيقي</label>
+  <input type="checkbox" id="t32" value="negotiation"><label for="t32" data-i18n="tone.negotiation">🗣️ تفاوضي استراتيجي</label>
+  <input type="checkbox" id="t33" value="promo"><label for="t33" data-i18n="tone.promo">📣 تسويقي ترويجي</label>
+  <input type="checkbox" id="t34" value="simple"><label for="t34" data-i18n="tone.simple">🧒 مبسط جدًا</label>
+  <input type="checkbox" id="t35" value="spontaneous"><label for="t35" data-i18n="tone.spontaneous">💬 عفوي تلقائي</label>
+  <input type="checkbox" id="t36" value="podcast"><label for="t36" data-i18n="tone.podcast">🎙️ حواري إذاعي (بودكاست)</label>
+  <input type="checkbox" id="t37" value="news"><label for="t37" data-i18n="tone.news">📰 صحفي إخباري</label>
+  <input type="checkbox" id="t38" value="narrative"><label for="t38" data-i18n="tone.narrative">📖 قصصي سردي (حكواتي)</label>
+  <input type="checkbox" id="t39" value="dramatic"><label for="t39" data-i18n="tone.dramatic">🎭 درامي مشوّق</label>
+  <input type="checkbox" id="t40" value="heritage"><label for="t40" data-i18n="tone.heritage">🏛️ تراثي فصيح</label>
+  <input type="checkbox" id="t41" value="futuristic"><label for="t41" data-i18n="tone.futuristic">🚀 مستقبلي حالم</label>
+  <input type="checkbox" id="t42" value="mystery"><label for="t42" data-i18n="tone.mystery">🕯️ غامض ومثير</label>
+  <input type="checkbox" id="t43" value="advisory"><label for="t43" data-i18n="tone.advisory">🧭 إرشادي ناصح</label>
+  <input type="checkbox" id="t44" value="calm"><label for="t44" data-i18n="tone.calm">🫧 هادئ ومطمئن</label>
+  <input type="checkbox" id="t45" value="warning"><label for="t45" data-i18n="tone.warning">⚠️ تحذيري حاسم</label>
+  <input type="checkbox" id="t46" value="cautious"><label for="t46" data-i18n="tone.cautious">🧮 واقعي حذر</label>
+  <input type="checkbox" id="t47" value="pessimistic"><label for="t47" data-i18n="tone.pessimistic">🌧️ تشاؤمي</label>
+
         </div>
       </section>
 
@@ -409,6 +459,29 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
           <input type="checkbox" id="f12" value="script"><label for="f12" data-i18n="fmt.script">🎬 سكربت</label>
           <input type="checkbox" id="f13" value="slides"><label for="f13" data-i18n="fmt.slides">📽️ عرض تقديمي</label>
           <input type="checkbox" id="f14" value="pdf"><label for="f14" data-i18n="fmt.pdf">📕 تقرير رسمي</label>
+          <input type="checkbox" id="f15" value="mermaid"><label for="f15" data-i18n="fmt.mermaid">🗺️ مخطط Mermaid</label>
+  <input type="checkbox" id="f16" value="mindmap"><label for="f16" data-i18n="fmt.mindmap">🧠 خريطة ذهنية</label>
+  <input type="checkbox" id="f17" value="timeline"><label for="f17" data-i18n="fmt.timeline">📆 خط زمني</label>
+  <input type="checkbox" id="f18" value="tree"><label for="f18" data-i18n="fmt.tree">🌳 هيكل شجري</label>
+  <input type="checkbox" id="f19" value="qa"><label for="f19" data-i18n="fmt.qa">❓ سؤال وجواب</label>
+  <input type="checkbox" id="f20" value="tasks"><label for="f20" data-i18n="fmt.tasks">✅ قائمة مهام</label>
+  <input type="checkbox" id="f21" value="dialogue"><label for="f21" data-i18n="fmt.dialogue">🎭 سيناريو حواري</label>
+  <input type="checkbox" id="f22" value="cli"><label for="f22" data-i18n="fmt.cli">⌨️ أوامر طرفية (CLI)</label>
+  <input type="checkbox" id="f23" value="yaml"><label for="f23" data-i18n="fmt.yaml">📄 صيغة YAML</label>
+  <input type="checkbox" id="f24" value="xml"><label for="f24" data-i18n="fmt.xml">📄 صيغة XML</label>
+  <input type="checkbox" id="f25" value="actionplan"><label for="f25" data-i18n="fmt.actionplan">🗺️ خطة عمل</label>
+  <input type="checkbox" id="f26" value="comparison"><label for="f26" data-i18n="fmt.comparison">⚖️ مقارنة شاملة</label>
+  <input type="checkbox" id="f27" value="swot"><label for="f27" data-i18n="fmt.swot">🧭 تحليل SWOT</label>
+  <input type="checkbox" id="f28" value="execsummary"><label for="f28" data-i18n="fmt.execsummary">📌 ملخص تنفيذي</label>
+  <input type="checkbox" id="f29" value="minutes"><label for="f29" data-i18n="fmt.minutes">🗒️ محضر اجتماع</label>
+  <input type="checkbox" id="f30" value="flashcards"><label for="f30" data-i18n="fmt.flashcards">🃏 بطاقات استذكار</label>
+  <input type="checkbox" id="f31" value="quiz"><label for="f31" data-i18n="fmt.quiz">📝 اختبار قصير</label>
+  <input type="checkbox" id="f32" value="paper"><label for="f32" data-i18n="fmt.paper">📄 ورقة بحثية</label>
+  <input type="checkbox" id="f33" value="thread"><label for="f33" data-i18n="fmt.thread">🧵 سلسلة تغريدات</label>
+  <input type="checkbox" id="f34" value="duo"><label for="f34" data-i18n="fmt.duo">👥 حوار ثنائي</label>
+  <input type="checkbox" id="f35" value="adcopy"><label for="f35" data-i18n="fmt.adcopy">📢 نص إعلاني</label>
+  <input type="checkbox" id="f36" value="socialpost"><label for="f36" data-i18n="fmt.socialpost">📱 منشور تواصل</label>
+
         </div>
         <div class="row" style="margin-top:12px">
           <div>
@@ -718,253 +791,17 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
   </div>
 </footer>
 
+<script src="i18n.js"></script>
 <script>
 /* ================= i18n ================= */
-const I18N = {
-ar:{
-'app.title':'مهندس البرومبت — Prompt Engineer','app.sub':'ابنِ برومبتًا مثاليًا ومستوفى لأي أداة ذكاء اصطناعي',
-'theme.night':'ليلي','theme.light':'نهاري','theme.neon':'نيون',
-'act.auto':'أكمل تلقائيًا','act.clear':'مسح','act.copy':'نسخ البرومبت',
-'card.builder':'لوحة البناء','card.presets':'قوالب جاهزة',
-'ph.search':'ابحث عن قسم أو حقل أو قالب…',
-'side.menu':'القائمة','side.stats':'حالة البرومبت','side.star':'نجمة على GitHub',
-'side.presets':'القوالب الجاهزة','side.preview':'البرومبت الناتج','side.quality':'تقييم الجودة','side.tools':'برامج مقترحة',
-'side.results':'نتيجة','side.res0':'لا نتائج','side.res1':'نتيجة واحدة','side.res2':'نتيجتان','side.resFew':'نتائج','side.res11':'نتيجة','side.resMany':'نتائج',
-'side.noresult':'لا توجد نتائج مطابقة',
-'tb.collapse':'طيّ الشريط العلوي (اضغط على الشعار)','tb.expand':'توسيع الشريط العلوي (اضغط على الشعار)',
-'wl.title':'مرحبًا بك في مهندس البرومبت 👋',
-'wl.sub':'اختر قالبًا جاهزًا أو املأ الحقول — واحصل على برومبت مثالي جاهز للنسخ فورًا.',
-'div.info':'معلومات المهمة','div.shape':'شكل المخرجات','div.tech':'تقنيات هندسة البرومبت المتقدمة',
-'sec.task':'المهمة الأساسية','lb.task':'ماذا تريد من الذكاء الاصطناعي أن يفعل؟','lb.task2':'اكتب بوضوح وبجملة محددة',
-'task.tpl':'قوالب جاهزة','task.tpl.sub':'اختر مهمة جاهزة كبداية، ثم عدّلها أو اكتب مهمتك الخاصة في الحقل أعلاه:',
-'ph.task':'مثال: اكتب لي مقالًا كاملًا عن فوائد المشي اليومي لصحة القلب، بعمق علمي مبسّط...',
-'hint.task':'💡 كلما كانت المهمة أدق، كانت النتيجة أقرب لما تتوقعه. تجنب الجمل العامة مثل "ساعدني في هذا".',
-'sec.role':'الدور (Role)','lb.role':'من تريد أن يتقمّص الشخصية؟',
-'role.tpl':'أدوار جاهزة','role.tpl.sub':'اختر شخصية جاهزة، وستُملأ بقية الحقول تلقائيًا — ثم عدّل أي حقل أو اكتب دورك المخصص في الحقل أعلاه:','ph.role':'مثال: خبير تسويق رقمي، مهندس برمجيات، مدرّس، محرر لغوي',
-'hint.role':'منح النموذج هوية مهنية يجعل الإجابات أكثر عمقًا ودقة.',
-'sec.context':'السياق والخلفية','lb.context':'معلومات إضافية تساعد على فهم الموقف (سطر لكل نقطة)',
-'ph.context':'مثال:\nالمشروع متجر إلكتروني للقهوة\nالجمهور أعماره 25-40\nلديّ 3 أيام فقط للتنفيذ',
-'sec.audience':'الجمهور المستهدف','lb.audience':'لمن المحتوى المطلوب؟',
-'ph.audience':'مثال: طلاب جامعيات، مديرو تسويق، مبتدئون في البرمجة، عملاء محتملون',
-'sec.tone':'النبرة والأسلوب','sec.format':'صيغة التسليم',
-'tone.pro':'💼 احترافي','tone.friendly':'😊 ودّي','tone.edu':'🎓 تعليمي','tone.creative':'🎨 إبداعي',
-'tone.concise':'⚡ مختصر','tone.sales':'📢 مقنع','tone.sci':'🔬 علمي',
-'tone.academic':'🎓 أكاديمي','tone.witty':'🤣 ساخر ذكي','tone.motivate':'🔥 تحفيزي',
-'tone.literary':'📖 أدبي شاعري','tone.convo':'💬 حواري مهذّب','tone.doc':'📋 توثيقي تقريري',
-'tone.optimistic':'☀️ متفائل','tone.playful':'🎲 مرح وخفيف','tone.empathy':'💗 متعاطف','tone.bold':'🦁 جريء وحاسم',
- 'tone.support':'💗 داعم ومشجّع','tone.refuse':'🚫 رافض حازم','tone.object':'⚖️ معترض مبرّر','tone.endorse':'✅ مؤيّد ومدافع',
-'fmt.bullets':'نقاط','fmt.table':'جدول','fmt.code':'كود','fmt.para':'فقرات',
-'fmt.img':'🖼️ صورة','fmt.html':'🌐 HTML','fmt.csv':'📄 CSV','fmt.sql':'🗃️ SQL',
-'fmt.email':'✉️ إيميل','fmt.script':'🎬 سكربت','fmt.slides':'📽️ عرض تقديمي','fmt.pdf':'📕 تقرير رسمي',
-'lb.length':'الطول المطلوب','opt.select':'— اختر —','opt.short':'قصير (100–150 كلمة)',
-'opt.medium':'متوسط (300–500 كلمة)','opt.long':'طويل (600–1000 كلمة)','opt.deep':'مفصّل وشامل (دون حد أقصى)',
-'lb.answerLang':'لغة الإجابة','opt.ar':'العربية','opt.en':'English','opt.same':'نفس لغة طلبي',
-'sec.constraints':'القيود والمتطلبات','lb.constraints':'شروط يجب احترامها','lb.lineEach':'(سطر لكل متطلب)',
-'ph.constraints':'مثال:\nاستخدم مصادر موثوقة\nلا تتجاوز 5 عناوين فرعية\nأضف أمثلة واقعية\nابدأ بجملة خطاف قوية',
-'lb.avoid':'ما يجب','lb.avoid2':'تجنّبه',
-'ph.avoid':'مثال:\nلا تستخدم مصطلحات تقنية معقدة\nلا تختلق أرقامًا أو إحصاءات\nلا تكرر نفس الجملة',
-'sec.toggles':'مفاتيح التحسين',
-'tg.ask':'اسأل قبل البدء 🙋','tg.ask.d':'إذا وجدت معلومة ناقصة، يطرح النموذج سؤالًا محددًا بدل التخمين.',
-'tg.cot':'تفكير خطوة بخطوة 🧩','tg.cot.d':'يحلّل المهمة في مراحل قبل الإجابة النهائية → نتائج أدق للمهام المعقدة.',
-'tg.self':'مراجعة ذاتية قبل التسليم ✅','tg.self.d':'يتحقق أن كل المتطلبات مستوفاة ويصحح الأخطاء قبل أن يعطيك الناتج.',
-'tg.few':'أمثلة (Few-Shot) 🎯','tg.few.d':'تعطي النموذج نموذجًا يقلّده — من أقوى التقنيات لضبط الأسلوب.',
-'tg.direct':'إجابة مباشرة بلا مقدمات 🎯','tg.direct.d':'يحذف عبارات مثل "بالتأكيد!" ويبدأ بالقيمة فورًا.',
-'tg.sources':'اذكر المصادر والمراجع 📎','tg.sources.d':'يطلب روابط/مراجع للمعلومات غير الشائعة مع تمييز الافتراضات.',
-'tg.alts':'قدّم 2–3 بدائل وقارنها 🧪','tg.alts.d':'يعرض خيارات متعددة مع إيجابيات وسلبيات كل واحدة وتوصيته.',
-'tg.balanced':'وجهات نظر متوازنة ⚖️','tg.balanced.d':'يعرض الرأي المؤيد والمعارض ثم يستنتج موقفًا محايدًا.',
-'tg.simple':'بسّط اللغة (ELI5) 🧒','tg.simple.d':'يجعل الشرح مفهومًا للمبتدئ مع تجنّب المصطلحات المعقدة.',
-'tg.plan':'خطة تنفيذ قابلة للقياس 🗓️','tg.plan.d':'يترجم النتيجة إلى خطوات مرقّمة بمواعيد ومعايير نجاح واضحة.',
-'lb.in1':'مثال 1 — المدخل','lb.out1':'مثال 1 — المخرجات المتوقعة',
-'lb.in2':'مثال 2 — المدخل','lb.out2':'مثال 2 — المخرجات المتوقعة',
-'ph.in1':'السلعة: قهوة مختصة','ph.out1':'قهوة مختصة تُحمّص طازجة...',
-'ph.in2':'السلعة: ساعة ذكية','ph.out2':'ساعة ذكية تتابع صحتك على مدار الساعة...',
-'hint.few':'لا تكتب كل الأمثلة — مثال أو اثنان كافيان لضبط الأسلوب.',
-'sec.img':'وضع توليد الصور (اختياري)','tg.img':'تحويل الطلب إلى برومبت صور 🖼️',
-'tg.img.d':'ينشئ برومبت إنجليزي جاهزًا لـ Midjourney / DALL·E / Stable Diffusion.',
-'lb.imgStyle':'الأسلوب الفني',
-'og.photo':'📷 تصوير / Photography','og.art':'🖌️ فنون / Fine art','og.digital':'💻 رقمي وتصيير / Digital & 3D',
-'og.design':'🎨 رسوميات وتصميم / Graphics & design',
-'is.photo':'واقعي فوتوغرافي','is.portrait':'بورتريه احترافي','is.product':'تصوير منتجات',
-'is.cine':'لقطة سينمائية','is.drone':'لقطة جوية درون','is.vintage':'طابع فيلم قديم',
-'is.wild':'تصوير طبيعة وحياة برية','is.street':'تصوير شارع واقعي',
-'is.oil':'لوحة زيتية','is.water':'ألوان مائية','is.ink':'رسم بالحبر',
-'is.fantasy':'فن فانتازي ملحمي','is.manga':'مانغا أبيض وأسود','is.impress':'انطباعية (Impressionism)',
-'is.digit':'رسم رقمي','is.3d':'ثلاثي الأبعاد (3D)','is.anime':'أنمي','is.pixar':'أسلوب بيكسار ثلاثي الأبعاد',
-'is.pixel':'بكسل آرت (8/16-bit)','is.cyber':'سايبربانك','is.bauhaus':'بوسترات باوهاوس',
-'is.iso':'ثلاثي الأبعاد أيزومتري','is.minimal':'مينيمال فلات','is.lowpoly':'لو بولي (Low Poly)',
-'is.clay':'ستوب موشن صيني (Clay)',
-'is.macro':'تصوير ماكرو (تقريب عالي)','is.longexp':'تعريض طويل (مسارات ضوئية)','is.bw':'أبيض وأسود درامي',
-'is.food':'تصوير طعام شهي','is.aqua':'تصوير تحت الماء',
-'is.surreal':'سريالية حالمية (Surrealism)','is.pop':'فن البوب (Pop Art)','is.ukiyoe':'الأوكييو-ي الياباني (Ukiyo-e)',
-'is.charcoal':'رسم بالفحم','is.graffiti':'جرافيتي جداري',
-'is.vapor':'ريتروويڤ/بيبور (Vaporwave)','is.glitch':'جلتش آرت (Glitch)','is.voxel':'فوكسل آرت (Voxel)',
-'is.paper':'فن الورق المقصوص (Papercraft)','is.holo':'هولوغرامي وكروم',
-'is.logo':'تصميم شعار (Logo)','is.info':'إنفوجرافيك منظم','is.comic':'قصص مصورة (كوميكس)',
-'is.line':'رسم بخط واحد (Line Art)','is.deco':'أرت ديكو (Art Deco)','is.travel':'بوستر سفر ريترو',
-'lb.imgAr':'أبعاد الصورة',
-'iog.land':'🖥️ أفقي / Landscape','iog.port':'📱 مربع وعمودي / Square & Portrait',
-'iog.px':'📐 مقاسات بكسل شائعة / Exact pixel sizes',
-'iar.uw':'21:9 — ألترا واسع سينمائي','iar.wide':'16:9 — عريض (يوتيوب/شاشة)','iar.wall':'16:10 — خلفية سطح مكتب',
-'iar.banner':'3:1 — بانر ويب عريض','iar.pano':'2:1 — بانوراما','iar.classic':'3:2 — صورة كلاسيكية',
-'iar.fourthree':'4:3 — شاشة كلاسيكية','iar.fivefour':'5:4 — شبه مربع عريض',
-'iar.square':'1:1 — مربع (إنستغرام)','iar.post':'4:5 — بوست سوشيال ميديا',
-'iar.threefour':'3:4 — بورتريه رأسي','iar.poster':'2:3 — بوستر رأسي','iar.story':'9:16 — ستوري/ريلز/تيك توك',
-'iar.scope':'2.4:1 — أنامور픽 سينمائي','iar.og':'1.91:1 — صورة مشاركة رابط (OG)','iar.fivethree':'5:3 — عريض معتدل',
-'iar.fourteen':'14:9 — عريض متعدد الشاشات','iar.dci':'17:9 — DCI سينمائي',
-'iar.fivesix':'5:6 — بوست عمودي مضغوط','iar.seven10':'7:10 — غلاف كتاب/مانغا','iar.one':'1:2 — عمودي طويل (إنفوجرافيك)',
-'iar.px1':'1080×1080 — بوست مربع HD','iar.px2':'1080×1350 — بوست 4:5 رأسي','iar.px3':'1080×1920 — ستوري Full HD',
-'iar.px4':'1920×1080 — Full HD أفقي','iar.px5':'3840×2160 — 4K Ultra HD','iar.px6':'1200×630 — صورة مشاركة رابط',
-'iar.px7':'2480×3508 — A4 للطباعة (300DPI)',
-'lb.imgArCustom':'أبعاد مخصصة (تتجاوز الاختيار أعلاه)','ph.imgArCustom':'مثال: 7:5 أو 1920x1080',
-'lb.imgNeg':'عناصر يجب تجنّبها في الصورة','ph.imgNeg':'blurry, extra fingers, text, watermark, low quality',
-'pv.title':'📝 البرومبت الناتج','pv.txt':'تحميل .txt','pv.md':'تحميل .md','pv.copy':'نسخ',
-'mode.text':'وضع نص عام','mode.img':'وضع توليد الصور 🖼️',
-'st.words':'عدد الكلمات','st.chars':'عدد الأحرف','st.secs':'عدد الأقسام','st.tech':'مفاتيح تقنية',
-'q.title':'تقييم جودة البرومبت','q.label':'جودة البرومبت',
-'q.good':'🟢 <b>ممتاز!</b> برومبت مستوفٍ لجميع العناصر الأساسية — جاهز للنسخ إلى أي أداة ذكاء اصطناعي.',
-'q.mid':'🟡 <b>جيد.</b> ركّز على العناصر غير المكتملة أعلاه لرفع دقة الناتج.',
-'q.low':'🔴 <b>يحتاج عمل.</b> املأ المهمة والقيود والصيغة أولًا — النقر على أي عنصر ينقلك إليه.',
-'h.title':'سجل البرومبتات','h.clear':'حذف الكل',
-'h.empty':'لا توجد برومبتات محفوظة بعد — انسخ برومبتًا وسيُحفظ تلقائيًا هنا.',
-'ft.rights':'جميع الحقوق محفوظة','ft.repo':'📂 المستودع على GitHub','ft.web':'🌐 النسخة الإلكترونية',
-'ft.exe':'⬇ تحميل EXE','ft.mobile':'📱 نسخة الهاتف (APK)','ft.note':'صُنع بعناية — مهندس البرومبت | Prompt Engineer v2.0.0',
-'msg.copy':'✅ تم نسخ البرومبت — الصقه في أي أداة ذكاء اصطناعي','msg.dl':'⬇ تم تحميل الملف',
-'msg.preset':'✅ تم تطبيق القالب: ','msg.tasktpl':'📚 تم اختيار مهمة جاهزة: ','msg.roletpl':'🧑‍💼 تم اختيار دور جاهز: ','msg.auto':'✨ تم استكمال الحقول الناقصة بأفضل الممارسات',
-'msg.clear':'↺ تم المسح','msg.theme':'🎨 تم تطبيق الثيم','msg.noTitle':'بدون عنوان',
-'ask.reset':'مسح جميع الحقول والبرومبت الحالي؟',
-'preview.start':'ابدأ بكتابة المهمة في اللوحة… وسيظهر البرومبت الكامل هنا فورًا.',
-'pre.task':'⚠️ (اكتب المهمة الأساسية في اللوحة)',
-'phd.title':'حذف السجل',
-'ai.title':'🤖 برامج الذكاء الاصطناعي الموصى بها لاستخدام البرومبت',
-'ai.sub':'اضغط على أي بطاقة لفتح الموقع الرسمي + البديل المجاني مفتوح المصدر، أو استخدم زر كل رابط على حدة.',
-'ai.official':'🔗 الموقع الرسمي','ai.alt':'🔓 البديل المفتوح المصدر','ai.free':'مجاني · مفتوح المصدر',
-'ai.both':'فتح الاثنين'
-},
-en:{
-'app.title':'Prompt Engineer — AI Prompt Builder','app.sub':'Build the perfect, complete prompt for any AI tool',
-'theme.night':'Dark','theme.light':'Light','theme.neon':'Neon',
-'act.auto':'Auto-fill','act.clear':'Clear','act.copy':'Copy Prompt',
-'card.builder':'Builder Panel','card.presets':'Quick presets',
-'ph.search':'Search sections, fields or presets…',
-'side.menu':'Menu','side.stats':'Prompt status','side.star':'Star on GitHub',
-'side.presets':'Ready presets','side.preview':'Generated prompt','side.quality':'Quality score','side.tools':'AI tools',
-'side.results':'results','side.res0':'no results','side.res1':'result','side.res2':'2 results','side.resFew':'results','side.res11':'results','side.resMany':'results',
-'side.noresult':'No matching results',
-'tb.collapse':'Collapse the top bar (click the logo)','tb.expand':'Expand the top bar (click the logo)',
-'wl.title':'Welcome to Prompt Engineer 👋',
-'wl.sub':'Pick a ready preset or fill the fields — get a perfect prompt ready to copy instantly.',
-'div.info':'Task details','div.shape':'Output shape','div.tech':'Advanced prompt techniques',
-'sec.task':'Main Task','lb.task':'What should the AI do?','lb.task2':'be specific and concrete',
-'task.tpl':'Ready tasks','task.tpl.sub':'Pick a ready task as a starting point, then edit it or write your own in the field above:',
-'ph.task':'e.g. Write a full article about the benefits of daily walking for heart health, in simplified scientific depth...',
-'hint.task':'💡 The more precise the task, the closer the result. Avoid vague lines like "help me with this".',
-'sec.role':'Role','lb.role':'Who should the AI act as?',
-'role.tpl':'Ready roles','role.tpl.sub':'Pick a ready persona and the other fields fill in automatically — then edit any field or write your own role in the box above:','ph.role':'e.g. digital marketing expert, software engineer, teacher, language editor',
-'hint.role':'Giving the model a professional identity makes answers deeper and more accurate.',
-'sec.context':'Context & Background','lb.context':'Extra information that clarifies the situation (one per line)',
-'ph.context':'Example:\nThe project is a coffee e-commerce store\nAudience aged 25-40\nOnly 3 days to deliver',
-'sec.audience':'Target Audience','lb.audience':'Who is this content for?',
-'ph.audience':'e.g. university students, marketing managers, coding beginners, potential clients',
-'sec.tone':'Tone & Style','sec.format':'Output Format',
-'tone.pro':'💼 Professional','tone.friendly':'😊 Friendly','tone.edu':'🎓 Educational','tone.creative':'🎨 Creative',
-'tone.concise':'⚡ Concise','tone.sales':'📢 Persuasive','tone.sci':'🔬 Scientific',
-'tone.academic':'🎓 Academic','tone.witty':'🤣 Witty & humorous','tone.motivate':'🔥 Motivational',
-'tone.literary':'📖 Literary & poetic','tone.convo':'💬 Conversational','tone.doc':'📋 Documentary / report',
-'tone.optimistic':'☀️ Optimistic','tone.playful':'🎲 Playful & light','tone.empathy':'💗 Empathetic','tone.bold':'🦁 Bold & decisive',
- 'tone.support':'💗 Supportive','tone.refuse':'🚫 Firm refusal','tone.object':'⚖️ Objecting','tone.endorse':'✅ Endorsing',
-'fmt.bullets':'Bullets','fmt.table':'Table','fmt.code':'Code','fmt.para':'Paragraphs',
-'fmt.img':'🖼️ Image','fmt.html':'🌐 HTML','fmt.csv':'📄 CSV','fmt.sql':'🗃️ SQL',
-'fmt.email':'✉️ Email','fmt.script':'🎬 Script','fmt.slides':'📽️ Slides','fmt.pdf':'📕 Formal report',
-'lb.length':'Requested length','opt.select':'— Select —','opt.short':'Short (100–150 words)',
-'opt.medium':'Medium (300–500 words)','opt.long':'Long (600–1000 words)','opt.deep':'Detailed & unlimited',
-'lb.answerLang':'Answer language','opt.ar':'Arabic','opt.en':'English','opt.same':'Same as my task',
-'sec.constraints':'Constraints & Requirements','lb.constraints':'Rules that must be respected','lb.lineEach':'(one per line)',
-'ph.constraints':'Example:\nUse reliable sources\nNo more than 5 subheadings\nAdd real examples\nStart with a strong hook',
-'lb.avoid':'What to','lb.avoid2':'avoid',
-'ph.avoid':'Example:\nAvoid complex technical terms\nDo not invent numbers or stats\nDo not repeat the same sentence',
-'sec.toggles':'Enhancement Toggles',
-'tg.ask':'Ask before starting 🙋','tg.ask.d':'If information is missing, the model asks one specific question instead of guessing.',
-'tg.cot':'Step-by-step reasoning 🧩','tg.cot.d':'It analyzes in stages before the final answer → better results on complex tasks.',
-'tg.self':'Self-review before delivery ✅','tg.self.d':'It verifies every requirement and fixes mistakes before handing you the output.',
-'tg.few':'Few-shot examples 🎯','tg.few.d':'Gives the model an example to imitate — one of the strongest style-control techniques.',
-'tg.direct':'Direct answer, no preamble 🎯','tg.direct.d':'Removes "Sure!" style openers and starts with value immediately.',
-'tg.sources':'Cite sources & references 📎','tg.sources.d':'Asks for links/refs on non-obvious claims and flags assumptions.',
-'tg.alts':'Offer 2–3 alternatives & compare 🧪','tg.alts.d':'Shows several options with pros/cons and a final recommendation.',
-'tg.balanced':'Balanced viewpoints ⚖️','tg.balanced.d':'Presents the for and against views before a neutral conclusion.',
-'tg.simple':'Simplify the language (ELI5) 🧒','tg.simple.d':'Keeps the explanation beginner-friendly and free of jargon.',
-'tg.plan':'Measurable action plan 🗓️','tg.plan.d':'Turns the answer into numbered steps with dates and success criteria.',
-'lb.in1':'Example 1 — Input','lb.out1':'Example 1 — Expected output',
-'lb.in2':'Example 2 — Input','lb.out2':'Example 2 — Expected output',
-'ph.in1':'Product: specialty coffee','ph.out1':'Freshly roasted specialty coffee...',
-'ph.in2':'Product: smart watch','ph.out2':'A smart watch that tracks your health 24/7...',
-'hint.few':'Do not write many examples — one or two are enough to lock the style.',
-'sec.img':'Image Generation Mode (optional)','tg.img':'Turn the request into an image prompt 🖼️',
-'tg.img.d':'Generates a ready-to-use English prompt for Midjourney / DALL·E / Stable Diffusion.',
-'lb.imgStyle':'Art style',
-'og.photo':'📷 Photography','og.art':'🖌️ Fine art','og.digital':'💻 Digital & 3D',
-'og.design':'🎨 Graphics & design',
-'is.photo':'Photorealistic','is.portrait':'Professional portrait','is.product':'Product photography',
-'is.cine':'Cinematic shot','is.drone':'Aerial drone shot','is.vintage':'Vintage film look',
-'is.wild':'Nature & wildlife photography','is.street':'Street photography',
-'is.oil':'Oil painting','is.water':'Watercolor','is.ink':'Ink drawing',
-'is.fantasy':'Epic fantasy art','is.manga':'Black & white manga','is.impress':'Impressionism',
-'is.digit':'Digital illustration','is.3d':'3D render','is.anime':'Anime','is.pixar':'Pixar-style 3D',
-'is.pixel':'Pixel art (8/16-bit)','is.cyber':'Cyberpunk','is.bauhaus':'Bauhaus posters',
-'is.iso':'Isometric 3D','is.minimal':'Minimal flat','is.lowpoly':'Low poly',
-'is.clay':'Clay stop-motion',
-'is.macro':'Macro close-up','is.longexp':'Long exposure light trails','is.bw':'Dramatic black & white',
-'is.food':'Appetizing food photography','is.aqua':'Underwater photography',
-'is.surreal':'Surrealism','is.pop':'Pop Art','is.ukiyoe':'Japanese ukiyo-e',
-'is.charcoal':'Charcoal drawing','is.graffiti':'Street graffiti',
-'is.vapor':'Vaporwave / retrowave','is.glitch':'Glitch art','is.voxel':'Voxel art',
-'is.paper':'Layered papercraft','is.holo':'Holographic & chrome',
-'is.logo':'Logo design','is.info':'Clean infographic','is.comic':'Comic book panel',
-'is.line':'Single line art','is.deco':'Art Deco','is.travel':'Retro travel poster',
-'lb.imgAr':'Aspect ratio',
-'iog.land':'🖥️ Landscape','iog.port':'📱 Square & Portrait',
-'iog.px':'📐 Exact pixel sizes',
-'iar.uw':'21:9 — Ultra-wide cinematic','iar.wide':'16:9 — Wide (YouTube/screen)','iar.wall':'16:10 — Desktop wallpaper',
-'iar.banner':'3:1 — Wide web banner','iar.pano':'2:1 — Panorama','iar.classic':'3:2 — Classic photo',
-'iar.fourthree':'4:3 — Classic screen','iar.fivefour':'5:4 — Slightly wide square',
-'iar.square':'1:1 — Square (Instagram)','iar.post':'4:5 — Social media post',
-'iar.threefour':'3:4 — Vertical portrait','iar.poster':'2:3 — Vertical poster','iar.story':'9:16 — Story/Reels/TikTok',
-'iar.scope':'2.4:1 — Anamorphic cinematic','iar.og':'1.91:1 — Link preview (OG)','iar.fivethree':'5:3 — Moderate wide',
-'iar.fourteen':'14:9 — Multi-screen wide','iar.dci':'17:9 — DCI cinema',
-'iar.fivesix':'5:6 — Compact vertical post','iar.seven10':'7:10 — Book/manga cover','iar.one':'1:2 — Tall vertical (infographic)',
-'iar.px1':'1080×1080 — Square HD post','iar.px2':'1080×1350 — 4:5 vertical post','iar.px3':'1080×1920 — Full HD story',
-'iar.px4':'1920×1080 — Full HD landscape','iar.px5':'3840×2160 — 4K Ultra HD','iar.px6':'1200×630 — Link preview image',
-'iar.px7':'2480×3508 — A4 print (300 DPI)',
-'lb.imgArCustom':'Custom size (overrides the choice above)','ph.imgArCustom':'e.g. 7:5 or 1920x1080',
-'lb.imgNeg':'Elements to avoid in the image','ph.imgNeg':'blurry, extra fingers, text, watermark, low quality',
-'pv.title':'📝 Generated Prompt','pv.txt':'Download .txt','pv.md':'Download .md','pv.copy':'Copy',
-'mode.text':'General text mode','mode.img':'Image mode 🖼️',
-'st.words':'Words','st.chars':'Characters','st.secs':'Sections','st.tech':'Techniques used',
-'q.title':'Prompt Quality Score','q.label':'Prompt Score',
-'q.good':'🟢 <b>Excellent!</b> The prompt covers every core element — ready to paste into any AI tool.',
-'q.mid':'🟡 <b>Good.</b> Focus on the incomplete items above to raise accuracy.',
-'q.low':'🔴 <b>Needs work.</b> Fill in the task, constraints and format first — click any item to jump to it.',
-'h.title':'Prompt History','h.clear':'Clear all',
-'h.empty':'No saved prompts yet — copy one and it will be saved here automatically.',
-'ft.rights':'All rights reserved','ft.repo':'📂 GitHub Repository','ft.web':'🌐 Web App',
-'ft.exe':'⬇ Download EXE','ft.mobile':'📱 Mobile version (APK)','ft.note':'Crafted with care — Prompt Engineer v2.0.0',
-'msg.copy':'✅ Prompt copied — paste it into any AI tool','msg.dl':'⬇ File downloaded',
-'msg.preset':'✅ Preset applied: ','msg.tasktpl':'📚 Ready task picked: ','msg.roletpl':'🧑‍💼 Ready role picked: ','msg.auto':'✨ Missing fields filled with best practices',
-'msg.clear':'↺ Cleared','msg.theme':'🎨 Theme applied','msg.noTitle':'No title',
-'ask.reset':'Clear all fields and the current prompt?',
-'preview.start':'Start writing your task on the left… the full prompt will appear here instantly.',
-'pre.task':'⚠️ (write your main task in the panel)',
-'phd.title':'Delete from history',
-'ai.title':'🤖 Recommended AI tools for this prompt',
-'ai.sub':'Click any card to open the official site + the free open-source alternative, or use each link button separately.',
-'ai.official':'🔗 Official site','ai.alt':'🔓 Open-source alternative','ai.free':'Free · Open source',
-'ai.both':'Open both'
-}};
+/* I18N + LANGS now live in the shared i18n.js file */
 
 const $ = id => document.getElementById(id);
 let LANG = 'ar';
-const t = k => (I18N[LANG][k] !== undefined ? I18N[LANG][k] : (I18N.ar[k] || k));
+const t = k => (I18N[LANG] && I18N[LANG][k] !== undefined ? I18N[LANG][k] : (I18N.en[k] !== undefined ? I18N.en[k] : (I18N.ar[k] || k)));
 const L = () => (LANG === 'en' ? 1 : 0);          // picks [ar, en]
 const tx = x => (Array.isArray(x) ? x[L()] : x);
+const pname = (p,i) => t('preset.'+i);
 
 function applyI18n(){
   document.querySelectorAll('[data-i18n]').forEach(e=>{ e.textContent = t(e.dataset.i18n); });
@@ -972,14 +809,18 @@ function applyI18n(){
   document.querySelectorAll('[data-i18n-ph]').forEach(e=>{ e.placeholder = t(e.dataset.i18nPh); });
   document.querySelectorAll('[data-i18n-title]').forEach(e=>{ e.title = t(e.dataset.i18nTitle); });
   document.documentElement.lang = LANG;
-  document.documentElement.dir = (LANG === 'en' ? 'ltr' : 'rtl');
+  const meta = LANGS.find(l=>l.code===LANG) || LANGS[0];
+  document.documentElement.dir = meta.dir;
+  document.documentElement.className = 'script-' + meta.script;
   document.title = LANG === 'en' ? 'Prompt Engineer — AI Prompt Builder' : 'مهندس البرومبت — Prompt Engineer';
 }
 function setLang(lg, silent){
-  if(lg !== 'ar' && lg !== 'en') lg = 'ar';
+  if(!I18N[lg]) lg = 'ar';
   LANG = lg;
   try{ localStorage.setItem('pe_lang', lg); }catch(e){}
-  document.querySelectorAll('#langs .tbtn').forEach(b=>b.classList.toggle('active', b.dataset.lang===lg));
+  document.getElementById('langIcon').textContent = (LANGS.find(l=>l.code===lg)||{}).icon || '🌐';
+  document.getElementById('langName').textContent = (LANGS.find(l=>l.code===lg)||{}).native || lg;
+  renderLangMenu();
   applyI18n();
   const sel = $('lang'); if(sel) sel.value = (lg === 'en' ? 'en' : 'ar');
   renderPresets(); renderTaskTemplates(); render(); renderHistory(); renderAi();
@@ -1011,6 +852,32 @@ const TONE = {
   refuse:['رافض حازم مع تقدير السبب','firmly refusing while acknowledging the reason'],
   object:['معترض يطرح حجّة ويصمد على رأيه','objecting with a reasoned argument and holding the position'],
   endorse:['مؤيّد يدافع عن رأيه بأدلّة','endorsing and defending the view with supporting reasons']
+,  historic:['سرد تاريخي موثّق بالحقبة والأحداث','historical, grounded in a period and its events'],
+  critical:['تحليل نقدي يوازن بين الإيجابيات والسلبيات','critical analysis balancing strengths and weaknesses'],
+  neutral:['محايد وموضوعي بلا انحياز','neutral and objective, without bias'],
+  philosophical:['تأمّل فلسفي عميق في المعنى والوجود','deep philosophical reflection on meaning and existence'],
+  skeptical:['استقصائي متشكك يختبر كل افتراض','skeptical inquiry that tests every assumption'],
+  socratic:['أسئلة سقراطية متدرجة تقود إلى الفهم','Socratic questioning that leads the learner to understanding'],
+  directive:['توجيهي مباشر بالأوامر والخطوات','directive, command-style instructions'],
+  diplomatic:['دبلوماسي مهذّب ومحايد يحفظ ماء الوجه','diplomatic, courteous and neutral, saving face'],
+  legal:['لغة قانونية رسمية ودقيقة المصطلح','formal legal language with precise terminology'],
+  practical:['عملي تطبيقي بخطوات تنفيذية واضحة','practical and applied, with clear executable steps'],
+  negotiation:['تفاوضي استراتيجي يوازن بين المصالح','strategic negotiation balancing the interests of all sides'],
+  promo:['ترويجي تسويقي بصياغة جذابة','promotional marketing copy written to persuade'],
+  simple:['مبسّط جدًا بلا مصطلحات معقّدة','very simple, free of complex jargon'],
+  spontaneous:['عفوي وتلقائي كأنه يُكتب لحظة بلحظة','spontaneous, written on the spot without polish'],
+  podcast:['حوار بودكاست بين مقدم ومضيف','podcast dialogue between a host and a guest'],
+  news:['صحفي إخباري بلغة عاجلة ودقيقة','news-reporting style, urgent and factual'],
+  narrative:['سرد قصصي متصل الأحداث والشخصيات','connected narrative storytelling with characters and events'],
+  dramatic:['درامي مشوّق مليء بالإيقاع والتوتر','dramatic and suspenseful, full of rhythm'],
+  heritage:['تراثي فصيح يستحضر الحكمة الكلاسيكية','classical heritage evoking timeless wisdom'],
+  futuristic:['مستقبلي حالم برؤية خيالية','dreamlike futuristic vision'],
+  mystery:['غامض ومثير يخلق توترًا متصاعدًا','mysterious and intriguing, building tension'],
+  advisory:['إرشادي ناصح يقدّم توجيهًا واضحًا','advisory and instructive guidance'],
+  calm:['هادئ ومطمئن يخفض التوتّر','calm and reassuring, easing tension'],
+  warning:['تحذيري حاسم لا يحتمل التأويل','firm warning that leaves no room for interpretation'],
+  cautious:['واقعي حذر لا يبالغ ولا يهوين','cautious realism that neither exaggerates nor softens'],
+  pessimistic:['تشاؤمي يتوقع الأسوأ ويذكر المخاطر','pessimistic, expecting the worst and naming the risks']
 };
 const FMT = {
   md:['Markdown','Markdown'], bullets:['قائمة نقطية','bullet points'], table:['جدول','table'],
@@ -1023,6 +890,28 @@ const FMT = {
   script:['نص/سكربت (سيناريو) مكتوب','a written script / screenplay'],
   slides:['بنية عرض تقديمي شريحة بشريحة','a slide-by-slide presentation outline'],
   pdf:['تقرير رسمي منسّق جاهز للطباعة','a formal, print-ready structured report']
+,  mermaid:['مخطط بصيغة Mermaid الجاهزة للعرض','a ready-to-render Mermaid diagram'],
+  mindmap:['خريطة ذهنية هرمية','a hierarchical mind map'],
+  timeline:['خط زمني مرتب بالتسلسل الزمني','a chronological timeline'],
+  tree:['هيكل شجري متفرّع','a branching tree structure'],
+  qa:['أسئلة وأجوبة مرقّمة','numbered question and answer pairs'],
+  tasks:['قائمة مهام بعلامات إنجاز','a task list with checkboxes'],
+  dialogue:['سيناريو حواري بين شخصيات','a dialogue script between characters'],
+  cli:['أوامر طرفية جاهزة للنسخ','ready-to-paste CLI commands'],
+  yaml:['صيغة YAML صالحة فقط','valid YAML only'],
+  xml:['صيغة XML صالحة فقط','valid XML only'],
+  actionplan:['خطة عمل مرقّمة بمسؤول وموعد','a numbered action plan with owner and deadline'],
+  comparison:['مقارنة شاملة في جدول','a full side-by-side comparison table'],
+  swot:['تحليل SWOT في أربعة أرباع','a four-quadrant SWOT analysis'],
+  execsummary:['ملخص تنفيذي في صفحة واحدة','a one-page executive summary'],
+  minutes:['محضر اجتماع بنقاط وقرارات','meeting minutes with points and decisions'],
+  flashcards:['بطاقات استذكار وجه/ظهر','front/back flashcards'],
+  quiz:['اختبار قصير مع الإجابات النموذجية','a short quiz with model answers'],
+  paper:['ورقة بحثية بعناوين ومراجع','a research paper with headings and references'],
+  thread:['سلسلة تغريدات مرقّمة','a numbered tweet thread'],
+  duo:['حوار ثنائي متناوب بين طرفين','a two-person back-and-forth dialogue'],
+  adcopy:['نص إعلاني قصير مع دعوة للإجراء','short ad copy with a call to action'],
+  socialpost:['منشور تواصل اجتماعي','a social media post']
 };
 const LEN_AR={short:'100–150 كلمة (مختصر دون حشو)',medium:'300–500 كلمة',long:'600–1000 كلمة',deep:'مفصّل وشامل دون حد أقصى'};
 const LEN_EN={short:'100–150 words, concise with no filler',medium:'300–500 words',long:'600–1000 words',deep:'comprehensive and detailed with no length cap'};
@@ -1312,6 +1201,426 @@ const PRESETS = [
   avoid:['لا تلوم أفرادًا علنًا\nلا تخفّف حجم الخسائر\nلا تقدّم توصية بلا مسؤول وموعد',
          'Never blame individuals publicly\nDo not downplay the damage\nNo recommendation without an owner and a date'],
   flags:{ask:true,sources:true,self:true}}},
+{name:['📄 نصوص قانونية',
+'📄 Legal drafting'], set:{
+  task:['صُغ نصًا قانونيًا حول [الموضوع] وفق الصياغة المعتمدة في [البلد]',
+  'Draft a legal text on [subject] following the drafting conventions of [jurisdiction]'],
+  role:['محامٍ وصائغ نصوص قانونية',
+  'Lawyer and legal drafter'],
+  audience:['الجهات الحكومية والشركات',
+  'Government bodies and companies'],
+  tone:['legal','pro'], fmt:['para','md'], length:'deep',
+  constraints:['حدّد الأطراف والالتزامات والحقوق بوضوح\nاستخدم مصطلحات قانونية دقيقة لا عامّة\nأدرج بندًا للجزاء عند الإخلال\nأضف بنود السرية وحل النزاع والقوة القاهرة\nاختم بطلب مراجعة محامٍ قبل الاعتماد',
+               'Define the parties, obligations and rights clearly\nUse precise legal terms rather than general wording\nAdd a penalty clause for breach\nInclude confidentiality, dispute resolution and force majeure clauses\nEnd with a note that a lawyer must review before adoption'],
+  avoid:['لا تكتب بندًا غير قابل للتنفيذ\nلا تخلط بين الالتزام والنية\nلا تتجاهل القانون الواجب التطبيق',
+          'No unenforceable clause without a criterion\nDo not mix obligation with intent\nDo not ignore the governing law'],
+  flags:{ask:true,sources:true,self:true}}},
+{name:['📨 رسائل ومخاطبات رسمية (مذكرة)',
+'📨 Memos & official correspondence'], set:{
+  task:['اكتب مذكرة داخلية إلى [الجهة] بخصوص [الموضوع] مع التوصية والإجراء المطلوب',
+  'Write an internal memo to [department] about [subject] with the recommendation and the requested action'],
+  role:['مسؤول إداري يكتب المراسلات الرسمية',
+  'Administrator writing formal correspondence'],
+  audience:['الإدارة العليا والأقسام',
+  'Senior management and departments'],
+  tone:['diplomatic','pro'], fmt:['email','para'], length:'short',
+  constraints:['ابدأ بترويسة واضحة: إلى، من، التاريخ، الموضوع\nاعرض الخلاصة في أول سطرين\nاشرح الخلفية والوقائع بإيجاز\nقدّم التوصية مع بديل أو بديلين\nاختم بخطوة تالية ومسؤول محدد',
+               'Start with a clear header: to, from, date, subject\nGive the summary in the first two lines\nExplain the background briefly\nPresent the recommendation with one or two alternatives\nEnd with a next step and a named owner'],
+  avoid:['لا تكتب بلغة غامضة\nلا تكرر ما هو معروف للجميع\nلا تتجاوز حدود صلاحية المرسل',
+          'No vague wording\nDo not repeat what everyone already knows\nDo not exceed the sender authority'],
+  flags:{ask:true,direct:true}}},
+{name:['📑 صياغة عقود واتفاقيات',
+'📑 Contracts & agreements'], set:{
+  task:['صُغ بنود عقد بين [الطرف الأول] و[الطرف الثاني] بشأن [الموضوع]',
+  'Draft the clauses of an agreement between [party A] and [party B] about [subject]'],
+  role:['محامٍ يصوغ العقود والاتفاقيات',
+  'Lawyer drafting contracts and agreements'],
+  audience:['الشركات والمستثمرون',
+  'Companies and investors'],
+  tone:['legal','neutral'], fmt:['md','bullets'], length:'deep',
+  constraints:['عرّف الأطراف والالتزامات الأساسية لكل طرف\nأدرج مدة العقد وشروط الإيقاف والتجديد\nحدّد آلية تسوية النزاعات والقانون الواجب التطبيق\nأضف بند السرية وحماية البيانات\nاختم بمراجعة محامٍ قبل التوقيع',
+               'Define the parties and the core obligations of each side\nAdd the term length, termination and renewal conditions\nSet the dispute resolution route and the governing law\nAdd confidentiality and data protection clauses\nClose with a note that a lawyer must review before signing'],
+  avoid:['لا تكتب بندًا غامضًا\nلا تترك التزامًا بلا مقابل\nلا تهمل مدة العقد وآلية الخروج',
+          'No vague clauses\nNever leave an obligation without a counterpart\nDo not omit the term and the exit route'],
+  flags:{ask:true,sources:true,self:true}}},
+{name:['🧩 صياغة مشكلة وفرضيات',
+'🧩 Problem statement & hypotheses'], set:{
+  task:['صُغ مشكلة بحثية وفرضياتها في [المجال] مع تعريف المتغيرات',
+  'Frame a research problem and its hypotheses in [field] with variable definitions'],
+  role:['باحث يصوغ المشكلة البحثية والفرضيات',
+  'Researcher framing the problem statement and hypotheses'],
+  audience:['لجنة بحثية ومشرف أكاديمي',
+  'A research committee and an academic supervisor'],
+  tone:['academic','neutral'], fmt:['md','para'], length:'long',
+  constraints:['ابدأ بظاهرة واضحة قابلة للملاحظة\nحدّد الفجوة المعرفية بدقة\nاكتب فرضية رئيسية وفرضيات فرعية قابلة للدحض\nعرّف كل متغير إجرائيًا\nاذكر الحدود الموضوعية والمكانية والزمنية',
+               'Start with a clear, observable phenomenon\nDefine the knowledge gap precisely\nWrite a main hypothesis plus falsifiable sub-hypotheses\nDefine every variable operationally\nState the thematic, spatial and time boundaries'],
+  avoid:['لا تكتب فرضيات غير قابلة للدحض\nلا تخلط بين المشكلة والسؤال\nلا تهمل تعريف المصطلحات',
+          'No unfalsifiable hypotheses\nDo not confuse the problem with the question\nDo not skip term definitions'],
+  flags:{ask:true,cot:true,sources:true}}},
+{name:['📚 نقد الدراسات السابقة',
+'📚 Literature critique'], set:{
+  task:['انقد الدراسات السابقة في [المجال] وحدّد الفجوة البحثية',
+  'Critique the previous studies in [field] and identify the research gap'],
+  role:['باحث ناقد يحلل الدراسات السابقة بموضوعية',
+  'Critical researcher analysing previous studies objectively'],
+  audience:['أكتب وباحث في المجال نفسه',
+  'Academic reader and researcher in the same field'],
+  tone:['critical','academic'], fmt:['table','md'], length:'deep',
+  constraints:['لخّص كل دراسة في جدول: الفكرة والمنهج والنتيجة والقيد\nميّز بين 기여 الدراسة وضعفها\nقارن بين الدراسات ولا تصفها واحدة واحدة\nاختم بالفجوة البحثية التي يمكن سدّها',
+               'Summarise each study in a table: idea, method, result, limitation\nSeparate each contribution from each weakness\nCompare the studies instead of listing them one by one\nClose with the research gap that can still be filled'],
+  avoid:['لا تحكم على المؤلف شخصيًا\nلا تختزل الدراسة في حكم واحد\nلا تتجاهل الدراسات المؤرخة',
+          'Never judge the author personally\nDo not reduce a study to a single verdict\nDo not ignore dated studies'],
+  flags:{ask:true,sources:true,cot:true}}},
+{name:['📋 تصميم استبيان بحثي',
+'📋 Survey design'], set:{
+  task:['صمّم استبيانًا حول [الموضوع] لأربعة شرائح من المستجيبين',
+  'Design a survey on [topic] for four respondent segments'],
+  role:['باحث ميداني يصمم أدوات جمع البيانات',
+  'Field researcher designing data-collection instruments'],
+  audience:['المستجيبون وجهة البحث',
+  'Respondents and the research body'],
+  tone:['neutral','edu'], fmt:['md','table'], length:'long',
+  constraints:['ابدأ بمقدمة تشرح الهدف وسرية البيانات\nاكتب أسئلة مغلقة ثم مفتوحة بترتيب منطقي\nتجنب الأسئلة الموجّهة والمزدوجة\nاختبر الصياغة مع خمسة مستجيبين أولًا\nحدّد طريقة التحليل الإحصائي لكل سؤال',
+               'Start with an intro explaining the goal and data privacy\nWrite closed then open questions in a logical order\nAvoid leading and double-barrelled questions\nPilot the wording with five respondents first\nDefine the statistical analysis method for each question'],
+  avoid:['لا تستخدم مصطلحات غير مفهومة\nلا تكرر السؤال نفسه بصياغتين\nلا تطوّل الاستبيان بلا داعٍ',
+          'No unexplained terminology\nNever repeat the same question in two wordings\nDo not make the survey longer than needed'],
+  flags:{ask:true,sources:true}}},
+{name:['📊 تفسير نتائج إحصائية',
+'📊 Statistical interpretation'], set:{
+  task:['فسّر النتائج الإحصائية في [الدراسة] واذكر ما لا تثبته',
+  'Interpret the statistical results of [study] and state what they do not prove'],
+  role:['إحصائي يفسّر النتائج دون مبالغة',
+  'Statistician interpreting results without exaggeration'],
+  audience:['باحثون وقراء عادون',
+  'Researchers and general readers'],
+  tone:['sci','neutral'], fmt:['table','md'], length:'long',
+  constraints:['اعرض النتائج في جدول: المؤشر والقيمة والدلالة\nفسّر حجم الأثر لا قيمة الاحتمال وحدها\nاذكر الفرضية الصفية والبديلة\nميّز بين الارتباط والسببية\nحدّد حدود العينة والمدى الزمني والجانب غير المدروس',
+               'Show the results in a table: metric, value, significance\nInterpret the effect size, not only the p value\nState the null and alternative hypotheses\nDistinguish correlation from causation\nNote the sample limits, the time frame and what was not studied'],
+  avoid:['لا تستنتج السببية من الارتباط\nلا تخفي النتائج غير الدالة\nلا تعامل معامل الارتباط كدقة',
+          'Never infer causation from correlation\nDo not hide non-significant results\nDo not treat a correlation coefficient as accuracy'],
+  flags:{ask:true,sources:true,cot:true}}},
+{name:['✍️ إعادة صياغة أكاديمية',
+'✍️ Academic rewriting'], set:{
+  task:['أعد صياغة الفقرة الأكاديمية بصياغة أرقن وأوضح',
+  'Rewrite the academic paragraph in a more formal and clearer style'],
+  role:['محرر أكاديمي يحسّن الصياغة دون تغيير المعنى',
+  'Academic editor improving style without changing meaning'],
+  audience:['كاتب ورقة علمية',
+  'Author of a scientific paper'],
+  tone:['academic','neutral'], fmt:['para','md'], length:'long',
+  constraints:['حافظ على المعنى والأدلة كما هي\nقسّم الجمل الطويلة إلى جمل قصيرة\nاستبدل التعميمات بصياغة دقيقة\nوحّد أسلوب التوثيق في النص كله\nاذكر التغييرات الجوهرية التي أجريتها',
+               'Keep the meaning and the evidence intact\nSplit long sentences into short ones\nReplace generalisations with precise wording\nUnify the citation style across the whole text\nList the substantive changes you made'],
+  avoid:['لا تضف استنتاجات جديدة\nلا تحذف معلومات من النص\nلا تتجاوز أسلوب المجلة المطلوب',
+          'Do not add new conclusions\nDo not remove information from the text\nDo not override the required journal style'],
+  flags:{ask:true,self:true}}},
+{name:['⚖️ تحكيم ورقة علمية',
+'⚖️ Peer review'], set:{
+  task:['اكتب تقرير تحكيم لورقة علمية في [المجال] مع قرار النشر',
+  'Write a peer review for a paper in [field] with a publication decision'],
+  role:['محكّم علمي يكتب تقريرًا نزيهًا وبنّاءً',
+  'Reviewer writing an impartial and constructive report'],
+  audience:['رؤساء التحرير والمؤلف',
+  'Editors and the author'],
+  tone:['critical','diplomatic'], fmt:['table','md'], length:'deep',
+  constraints:['قيّم المساهمة العلمية والمنهجية والوضوح في جدول\nاذكر نقاط القوة أولًا ثم الملاحظات مرتبة حسب الأهمية\nاقترح تعديلات محددة قابلة للتنفيذ\nاقترح قرارًا: قبول أو تعديلات أو رفض مع التبرير\nميّز بين عيوب المنهج وأخطاء الصياغة',
+               'Score the contribution, methodology and clarity in a table\nList the strengths first, then the issues ranked by importance\nPropose specific and actionable revisions\nRecommend a decision — accept, revise or reject — with reasons\nSeparate methodological flaws from writing errors'],
+  avoid:['لا تحكم على المؤلفين شخصيًا\nلا ترفض دون مبرر مفصّل',
+          'Never judge the authors personally\nDo not reject without detailed reasons'],
+  flags:{ask:true,balanced:true,sources:true}}},
+{name:['📚 توثيق برمجي',
+'📚 Technical documentation'], set:{
+  task:['وثّق وحدة [الوحدة] البرمجية مع أمثلة استخدام',
+  'Document the [module] with usage examples'],
+  role:['كاتب توثيق تقني يشرح للمستخدمين',
+  'Technical writer explaining usage to developers'],
+  audience:['مطوّرو الفريق والمستخدمون النهائيون',
+  'Team developers and end users'],
+  tone:['neutral','edu'], fmt:['md','bullets'], length:'long',
+  constraints:['ابدأ بوصف مختصر ومتى تستخدم الوحدة\nاشرح كل دالة: الغرض والمعاملات والقيمة المُعادة\nأضف مثالًا عمليًا لكل حالة استخدام\nاذكر حدود الوحدة وما لا تدعمه\nاربط الوحدات ذات صلة واعرض كيف تبلّغ عن خطأ',
+               'Start with a short description and when to use the module\nExplain each function: purpose, parameters and return value\nAdd a practical example for every use case\nState the module limits and what it does not support\nLink the related modules and explain how to report a bug'],
+  avoid:['لا تكرّر ما هو واضح من التسمية\nلا توثّق معامل غير موجود',
+          'Do not repeat what the names already say\nNever document a parameter that does not exist'],
+  flags:{ask:true,self:true}}},
+{name:['🧱 هيكلة وتوصيف وظيفي',
+'🧱 Job description'], set:{
+  task:['اكتب وصفًا وظيفيًا لوظيفة [المسمى] في [الجهة]',
+  'Write a job description for the [title] role at [company]'],
+  role:['أخصائي موارد بشرية يكتب وصفًا وظيفيًا دقيقًا',
+  'HR specialist writing a precise job description'],
+  audience:['المرشحون ومدير التوظيف',
+  'Candidates and the hiring manager'],
+  tone:['directive','pro'], fmt:['md','bullets'], length:'long',
+  constraints:['ابدأ بملخص الوظيفة في جملتين\nاذكر المسؤوليات كأفعال قابلة للقياس\nافصل المتطلبات الأساسية عن الإضافية\nحدّد سنوات الخبرة والمهارات التقنية\nاذكر خط التقارير ومسار النمو ونوع العقد',
+               'Start with a two-sentence job summary\nList the responsibilities as measurable actions\nSeparate essential from nice-to-have requirements\nState the years of experience and the technical skills\nGive the reporting line, the growth path and the contract type'],
+  avoid:['لا تكتب صفات عامة بلا فعل\nلا تستخدم لغة تمييزية\nلا تكرّر ما لا يهم المرشح',
+          'No vague adjectives without actions\nNo discriminatory wording\nDo not repeat what does not matter to the candidate'],
+  flags:{ask:true}}},
+{name:['📰 بيان إعلامي',
+'📰 Press statement'], set:{
+  task:['اكتب بيانًا إعلاميًا عن [الموضوع] بلغة رسمية موجزة',
+  'Write a press statement about [subject] in a formal and concise style'],
+  role:['مسؤول إعلام يكتب بيانات دقيقة وموزونة',
+  'PR officer writing accurate and balanced statements'],
+  audience:['الصحافة والجمهور',
+  'The press and the public'],
+  tone:['diplomatic','news'], fmt:['para','md'], length:'short',
+  constraints:['اكتب سطرًا افتتاحيًا يحمل الخبر الأساسي\nاذكر التفاصيل المعلنة فقط\nاستخدم أرقامًا قابلة للتحقق\nأرفق اقتباسًا قصيرًا للمسؤول\nاختم بقناة اتصال واحدة للتفاصيل',
+               'Write a lead line that carries the core news\nState only the disclosed details\nUse verifiable numbers\nAdd one short quote from the official\nClose with a single contact channel'],
+  avoid:['لا تستخدم مبالغات أو لغة إنشائية\nلا تنشر معلومات غير مؤكدة',
+          'No exaggeration or flowery language\nNever publish unconfirmed information'],
+  flags:{ask:true,self:true}}},
+{name:['🚨 بيان إعلامي للأزمات',
+'🚨 Crisis press statement'], set:{
+  task:['اكتب بيانًا إعلاميًا أثناء أزمة [الأزمة] يحفظ الثقة',
+  'Write a crisis press statement during the [incident] that preserves trust'],
+  role:['متحدث أزمالي يحافظ على الثقة والمصداقية',
+  'Crisis spokesperson protecting trust and credibility'],
+  audience:['الصحافة والجمهور المتأثر',
+  'The press and the affected public'],
+  tone:['calm','warning'], fmt:['para','md'], length:'short',
+  constraints:['ابدأ بوقائع مؤكدة فقط\nاعترف بالمشكلة واذكر ما ستقوم به\nاذكر الخطوة التالية والزمن المتوقع\nكن متعاطفًا لا صامتًا ولا مبالغًا\nحدّد موعد التحديث التالي صراحة',
+               'Start with confirmed facts only\nAcknowledge the problem and state what will be done\nGive the next step and the expected timing\nBe empathetic, neither silent nor exaggerated\nState the time of the next update clearly'],
+  avoid:['لا تخمّن سببًا غير مؤكد\nلا تنكر المشكلة',
+          'Do not speculate about unverified causes\nDo not deny the problem'],
+  flags:{ask:true,sources:true,self:true}}},
+{name:['🌳 تخطيط السيناريوهات',
+'🌳 Scenario planning'], set:{
+  task:['خطّط ثلاثة سيناريوهات لـ[المشروع] مع مؤشرات إنذار لكل منها',
+  'Plan three scenarios for [project] with early-warning indicators for each'],
+  role:['مخطط استراتيجي يبني سيناريوهات بديلة',
+  'Strategic planner building alternative scenarios'],
+  audience:['لجنة التخطيط والإدارة',
+  'The planning committee and management'],
+  tone:['neutral','practical'], fmt:['table','md'], length:'deep',
+  constraints:['ابدأ بثلاثة سيناريوهات: متحفظ وأساسي وطموح\nاذكر لكل سيناريو المؤشرات التي تدل عليه اليوم\nحدّد نقطة التحوّل بين السيناريوهات\nاربط كل سيناريو بخطة عمل وموارد\nاختم بقرار مبكر يصلح لكل السيناريوهات',
+               'Start with three scenarios: conservative, base and ambitious\nGive the indicators that reveal each one today\nMark the tipping point between them\nAttach an action plan and resources to each\nClose with an early decision that works across all scenarios'],
+  avoid:['لا تعتبر أي سيناريو محسومًا مسبقًا\nلا تخلط بين الاحتمال والأهمية',
+          'Do not treat any scenario as already decided\nDo not confuse likelihood with importance'],
+  flags:{ask:true,plan:true,alts:true,sources:true}}},
+{name:['💹 دراسة جدوى اقتصادية',
+'💹 Economic feasibility study'], set:{
+  task:['اختبر الجدوى الاقتصادية لمشروع [المشروع] بأرقام واقعية',
+  'Test the economic feasibility of [project] with realistic numbers'],
+  role:['محلل اقتصادي يدرس الجدوى بأرقام قابلة للتحقق',
+  'Economic analyst testing feasibility with verifiable numbers'],
+  audience:['المستثمرون ولجنة القرار',
+  'Investors and the decision committee'],
+  tone:['sci','neutral'], fmt:['table','md'], length:'deep',
+  constraints:['ابدأ بملخص السوق والطلب المتوقع\nقدّر التكاليف الثابتة والمتغيرة في جدول\nاحسب نقطة التعادل وفترة استرداد الاستثمار\nاختبر ثلاثة سيناريوهات: متحفظ وأساسي ومتفائل\nاذكر الحساسية: أي متغير يغيّر النتيجة أكثر',
+               'Start with the market summary and the expected demand\nEstimate the fixed and variable costs in a table\nCalculate the break-even point and the payback period\nTest three scenarios: conservative, base and optimistic\nShow the sensitivity: which variable changes the result most'],
+  avoid:['لا تُخفِ الافتراضات الجوهرية\nلا تُقرّب الأرقام لتبدو جميلة',
+          'Do not hide the core assumptions\nDo not round the numbers to look better'],
+  flags:{ask:true,sources:true,cot:true}}},
+{name:['💼 أسئلة مقابلات التوظيف',
+'💼 Hiring interview questions'], set:{
+  task:['اكتب أسئلة مقابلة لوظيفة [المسمى] مع معايير تقييم',
+  'Write interview questions for a [title] role with scoring criteria'],
+  role:['مختص توظيف يصمم مقابلات مبنية على المهارات',
+  'Hiring specialist designing skills-based interviews'],
+  audience:['المدير والمُحاوِر',
+  'The hiring manager and the interviewer'],
+  tone:['practical','neutral'], fmt:['table','md'], length:'long',
+  constraints:['ابدأ بثلاثة أسئلة تتحقق من الخبرة الفعلية\nاربط كل سؤال بمعيار تقييم من خمس درجات\nأضف سؤالًا عن الفشل وما تعلّمه منه\nاقترح تمرينًا عمليًا قصيرًا للمهارات',
+               'Start with three questions that verify real experience\nLink every question to a five-point scoring criterion\nAdd a question about failure and what was learned from it\nSuggest a short practical exercise for the skills'],
+  avoid:['لا تسأل عن العمر أو الحالة الاجتماعية\nلا تكتب أسئلة لا يجيب عنها الجميع',
+          'Never ask about age or marital status\nNo questions that not everyone can answer fairly'],
+  flags:{ask:true,balanced:true}}},
+{name:['🤝 سيناريو تفاوض ذكي',
+'🤝 Smart negotiation scenario'], set:{
+  task:['اكتب سيناريو تفاوض بين [طرف] و[طرف] حول [الموضوع]',
+  'Write a negotiation scenario between [party A] and [party B] over [subject]'],
+  role:['مفاوض محترف يحضّر موقفًا متكاملًا',
+  'Professional negotiator preparing a complete position'],
+  audience:['فريق التفاوض والإدارة',
+  'The negotiation team and management'],
+  tone:['negotiation','diplomatic'], fmt:['dialogue','table'], length:'long',
+  constraints:['حدّد موقف كل طرف ومصالحه الحقيقية',
+               'Define each side position and its real interests'],
+  avoid:['لا تكتب حوارًا بلا توتر واقعي',
+          'Do not write a dialogue without realistic tension'],
+  flags:{ask:true,alts:true,plan:true}}},
+{name:['💰 عرض للمستثمرين',
+'💰 Investor pitch'], set:{
+  task:['اكتب عرضًا تقديميًا للمستثمرين عن [الفكرة] في عشر شرائح',
+  'Write a ten-slide investor pitch about [idea]'],
+  role:['مؤسس الشركة يعرض الفكرة على المستثمرين',
+  'Founder pitching the idea to investors'],
+  audience:['المستثمرون وملاك الأعمال',
+  'Investors and business angels'],
+  tone:['promo','pro'], fmt:['slides','md'], length:'medium',
+  constraints:['ابدأ بالمشكلة في جملة واحدة',
+               'Open with the problem in one sentence'],
+  avoid:['لا تضخّم الأرقام',
+          'Do not inflate the numbers'],
+  flags:{ask:true,sources:true,alts:true}}},
+{name:['📄 تحسين السيرة الذاتية للوظائف',
+'📄 Resume optimization for ATS'], set:{
+  task:['حسّن سيرتي الذاتية لتجاوز أنظمة الفرز الآلي في [المجال]',
+  'Improve my resume to pass automated screening in [field]'],
+  role:['خبير توظيف يعرف كيف تقرأ أنظمة الفرز الآلي',
+  'Hiring expert who knows how applicant tracking systems read'],
+  audience:['الباحث عن عمل',
+  'A job seeker'],
+  tone:['directive','pro'], fmt:['md','bullets'], length:'medium',
+  constraints:['قسّم السيرة إلى أقسام واضحة',
+               'Split the resume into clear sections'],
+  avoid:['لا تخترع خبرة غير حقيقية',
+          'Never invent experience you do not have'],
+  flags:{ask:true,direct:true,self:true}}},
+{name:['🐛 إصلاح أخطاء الكود',
+'🐛 Bug fixing'], set:{
+  task:['صحّح الخطأ في الدالة [الوظيفة] واشرح السبب الجذري',
+  'Fix the bug in [function] and explain the root cause'],
+  role:['مهندس برمجيات يشخّص الأخطاء ويصلحها',
+  'Software engineer diagnosing and fixing bugs'],
+  audience:['فريق التطوير',
+  'The development team'],
+  tone:['directive','sci'], fmt:['code','md'], length:'medium',
+  constraints:['ابدأ بإعادة إنتاج الخطأ بأبسط مثال',
+               'Start by reproducing the bug in the smallest example'],
+  avoid:['لا تخفِّف الاختبار بدل إصلاح الخطأ',
+          'Do not weaken the test instead of fixing the bug'],
+  flags:{ask:true,cot:true,self:true}}},
+{name:['🗄️ تصميم قواعد البيانات',
+'🗄️ Database design'], set:{
+  task:['صمّم قاعدة بيانات لـ[النظام] مع الجداول والعلاقات',
+  'Design a database for [system] with the tables and relationships'],
+  role:['مهندس قواعد بيانات يصمم مخططات علائقية',
+  'Database engineer designing relational schemas'],
+  audience:['المطورون ومسؤولو البيانات',
+  'Developers and data owners'],
+  tone:['sci','directive'], fmt:['sql','md'], length:'long',
+  constraints:['ابدأ بالمتطلبات وأنماط الاستخدام',
+               'Start with the requirements and the usage patterns'],
+  avoid:['لا تخزّن بيانات مشتقة يمكن حسابها',
+          'Do not store derivable data'],
+  flags:{ask:true,cot:true,self:true}}},
+{name:['🔍 مراجعة وتجويد الكود',
+'🔍 Code review'], set:{
+  task:['راجع الكود في [الملف] واقترح تحسينات مرتبة حسب الأولوية',
+  'Review the code in [file] and suggest improvements ranked by priority'],
+  role:['مهندس مراجعة كود يقيس الجودة والوضوح',
+  'Code reviewer assessing quality and clarity'],
+  audience:['مطوّر الكود وفريقه',
+  'The code author and their team'],
+  tone:['critical','directive'], fmt:['md','bullets'], length:'medium',
+  constraints:['ابدأ بملخص عام للحالة الراهنة',
+               'Start with an overall summary of the current state'],
+  avoid:['لا تنتقل إلى تفاصيل لا علاقة لها بالصحة',
+          'Do not nitpick details unrelated to correctness'],
+  flags:{ask:true,self:true}}},
+{name:['🔐 فحص ثغرات أمنية',
+'🔐 Security audit'], set:{
+  task:['افحص أمن [النظام] وحدّد الثغرات وخطة الإصلاح',
+  'Security-audit [system], identify the vulnerabilities and propose fixes'],
+  role:['محلل أمن سيبراني يفحص الأنظمة ويقترح الإصلاحات',
+  'Cybersecurity analyst auditing systems and proposing fixes'],
+  audience:['الفريق التقني والإدارة',
+  'The technical team and management'],
+  tone:['skeptical','warning'], fmt:['table','md'], length:'deep',
+  constraints:['ابدأ بنطاق الفحص وما شمله',
+               'Start with the audit scope and what was covered'],
+  avoid:['لا تصف ثغرة بدون دليل',
+          'Never report a flaw without evidence'],
+  flags:{ask:true,sources:true,balanced:true,self:true}}},
+{name:['🎨 تصميم واجهات المستخدم',
+'🎨 UI/UX design'], set:{
+  task:['صمّم واجهة [المنتج] مع مواصفة بصرية ونصية كاملة',
+  'Design the [product] interface with a full visual and written specification'],
+  role:['مصمم واجهات يجمع بين الجمال وسهولة الاستخدام',
+  'UI/UX designer balancing beauty and usability'],
+  audience:['فريق التطوير والمستخدم النهائي',
+  'The development team and end users'],
+  tone:['practical','creative'], fmt:['table','md'], length:'long',
+  constraints:['ابدأ بتدفق المستخدم في ثلاث إلى خمس خطوات',
+               'Start with the user flow in three to five steps'],
+  avoid:['لا تقترح تباينًا أقل من أربعة فاصلة خمسة',
+          'Never propose a contrast below 4.5 to 1'],
+  flags:{ask:true,self:true}}},
+{name:['🎮 وثيقة تصميم لعبة',
+'🎮 Game design document'], set:{
+  task:['اكتب وثيقة تصميم لعبة حول [الفكرة]',
+  'Write a game design document for the [concept]'],
+  role:['مصمم ألعاب يوثّق التصميم بلغة الفريق',
+  'Game designer documenting the design for the team'],
+  audience:['فريق التطوير والناشر',
+  'The development team and the publisher'],
+  tone:['narrative','practical'], fmt:['md','table'], length:'deep',
+  constraints:['ابدأ باللعبة في سطر واحد: من يلعب وماذا يفعل ولماذا يستمتع',
+               'Start with the game in one line: who plays, what they do, why it is fun'],
+  avoid:['لا تصف ميزات لا يمكن بناؤها ضمن الوقت',
+          'Do not describe features that cannot be built in time'],
+  flags:{ask:true,alts:true,plan:true,self:true}}},
+{name:['🧊 وصف مجسمات ثلاثية الأبعاد',
+'🧊 3D model description'], set:{
+  task:['اكتب وصفًا دقيقًا لمجسم ثلاثي الأبعاد لـ[الكائن]',
+  'Write a precise 3D model description of a [subject]'],
+  role:['فنان ثلاثي الأبعاد يصمم ويصف المجسم',
+  '3D artist designing and describing the model'],
+  audience:['فنانو النمذجة ومحركو العرض',
+  'Modellers and rendering engineers'],
+  tone:['practical','creative'], fmt:['para','bullets'], length:'medium',
+  constraints:['صف الشكل العام والنسب',
+               'Describe the overall shape and the proportions'],
+  avoid:['لا تصف صفات بصرية متناقضة',
+          'No contradictory visual attributes'],
+  flags:{ask:true,self:true}}},
+{name:['🎵 هندسة أغان وموسيقى',
+'🎵 Song & music engineering'], set:{
+  task:['صمّم أغنية عن [الموضوع] مع اللحن والإيقاع والبنية',
+  'Design a song about [topic] with melody, rhythm and structure'],
+  role:['منتج موسيقي يصمم الأغاني ويكتب كلماتها',
+  'Music producer designing songs and writing lyrics'],
+  audience:['المغنون وجمهور الأغنية',
+  'The singers and the audience'],
+  tone:['creative','dramatic'], fmt:['table','para'], length:'long',
+  constraints:['حدّد المزاج والإيقاع وسرعة اللحن',
+               'Set the mood, the groove and the tempo'],
+  avoid:['لا تكتب كلمات صعبة النطق',
+          'No lyrics that are hard to sing'],
+  flags:{ask:true,self:true}}},
+{name:['🎬 برومبت تحريك فيديو',
+'🎬 Video animation prompt'], set:{
+  task:['اكتب برومبت تحريك لفيديو عن [المشهد] بأسلوب [الأسلوب]',
+  'Write an animation prompt for a video about [scene] in [style]'],
+  role:['مخرج موشن جرافيك يكتب برومبتات دقيقة',
+  'Motion-graphics director writing precise prompts'],
+  audience:['الفنانون ومنتجو الفيديو',
+  'Artists and video producers'],
+  tone:['narrative','directive'], fmt:['para','bullets'], length:'medium',
+  constraints:['صف اللقطات والزوايا والحركة بالترتيب الزمني',
+               'Describe the shots, the angles and the movement in time order'],
+  avoid:['لا تدمج توجيهين مختلفين في لقطة واحدة',
+          'Do not merge two different directions into one shot'],
+  flags:{ask:true,self:true}}},
+{name:['🎙️ إعداد حلقات بودكاست',
+'🎙️ Podcast episode planning'], set:{
+  task:['خطّط حلقة بودكاست عن [الموضوع] مع الضيوف والزمن',
+  'Plan a podcast episode on [topic] with the guests and the timing'],
+  role:['منتج بودكاست يخطط الحلقات ويكتب المحاور',
+  'Podcast producer planning episodes and writing the running order'],
+  audience:['المستمعون ومقدّم البرنامج',
+  'Listeners and the show host'],
+  tone:['podcast','narrative'], fmt:['table','md'], length:'long',
+  constraints:['ابدأ بعنوان جاذب ووصف في سطرين',
+               'Start with a catchy title and a two-line description'],
+  avoid:['لا تبدأ بمقدمة بلا معلومة',
+          'Do not open with an intro that carries no information'],
+  flags:{ask:true,plan:true,self:true}}},
+{name:['📖 قصصي سردي',
+'📖 Narrative storytelling'], set:{
+  task:['اكتب قصة قصيرة عن [الموضوع] بصوت سردي متصل الأحداث',
+  'Write a short story about [topic] in a connected narrative voice'],
+  role:['كاتب سردي يبني أحداثًا مترابطة',
+  'Narrative writer building connected events'],
+  audience:['القارئ العام',
+  'The general reader'],
+  tone:['narrative','literary'], fmt:['para'], length:'long',
+  constraints:['ابدأ بمشهد يشد الانتباه لا بالتمهيد',
+               'Open with a gripping scene, not with a preamble'],
+  avoid:['لا تشرح المعنى في النهاية',
+          'Do not explain the meaning at the end'],
+  flags:{ask:true,self:true}}},
 {name:['🖼️ توليد صورة','🖼️ Image Generation'], set:{
   task:['صورة لـ[الموضوع] بأسلوب [الأسلوب] وإضاءة [الإضاءة] وتكوين [التكوين]','A photo of [subject] in [style] style with [lighting] lighting and [composition] composition'],
   role:[''],audience:['',''],tone:[],fmt:[],length:'',constraints:['',''],avoid:['',''],
@@ -1322,7 +1631,7 @@ function renderPresets(){
   const box=$('presets'); box.innerHTML='';
   PRESETS.forEach((p,i)=>{
     const b=document.createElement('button');
-    b.className='chip'; b.textContent=tx(p.name); b.dataset.i=i;
+    b.className='chip'; b.textContent=pname(p,i); b.dataset.i=i;
     b.onclick=()=>applyPreset(i);
     box.appendChild(b);
   });
@@ -1970,6 +2279,36 @@ function toggleTopbar(){ setTopbar(!$('topbar').classList.contains('min')); }
   lg.addEventListener('keydown', e=>{
     if(e.key==='Enter' || e.key===' ' || e.key==='Spacebar'){ e.preventDefault(); toggleTopbar(); }
   });
+})();
+
+/* ---------- language picker ---------- */
+function availableLangs(){ return LANGS.filter(l=>I18N[l.code]); }
+function renderLangMenu(){
+  const menu=$('langMenu'); if(!menu) return;
+  menu.innerHTML='';
+  availableLangs().forEach(l=>{
+    const b=document.createElement('button');
+    b.type='button'; b.className='lang-item'; b.setAttribute('role','option');
+    b.classList.toggle('active', l.code===LANG);
+    b.innerHTML='<span class="li-ic"></span><span class="li-name"></span><span class="li-en"></span>';
+    b.querySelector('.li-ic').textContent=l.icon;
+    b.querySelector('.li-name').textContent=l.native;
+    b.querySelector('.li-en').textContent=l.en;
+    b.onclick=()=>{ setLang(l.code); toggleLangMenu(false); };
+    menu.appendChild(b);
+  });
+}
+function toggleLangMenu(force){
+  const m=$('langMenu'), b=$('langBtn'); if(!m) return;
+  const open = force===undefined ? m.hidden : !!force;
+  m.hidden=!open;
+  if(b) b.setAttribute('aria-expanded',String(open));
+}
+(function wireLangPicker(){
+  const b=$('langBtn'); if(!b) return;
+  b.addEventListener('click',e=>{ e.stopPropagation(); toggleLangMenu(); });
+  document.addEventListener('click',e=>{ if(!$('langpick').contains(e.target)) toggleLangMenu(false); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') toggleLangMenu(false); });
 })();
 
 /* أزرار القوالب الجاهزة داخل حقلي المهمة والدور */

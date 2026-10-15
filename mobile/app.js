@@ -5,167 +5,12 @@
    ========================================================================= */
 const $ = id => document.getElementById(id);
 let LANG = 'ar';
-const t = k => (M[LANG] && M[LANG][k] !== undefined ? M[LANG][k] : (M.ar[k] !== undefined ? M.ar[k] : k));
+const t = k => (I18N[LANG] && I18N[LANG][k] !== undefined ? I18N[LANG][k] : (I18N.en[k] !== undefined ? I18N.en[k] : (I18N.ar[k] !== undefined ? I18N.ar[k] : k)));
 const tx = x => (Array.isArray(x) ? x[(LANG === 'en' ? 1 : 0)] : x);
+const pname = (p,i) => t('preset.'+i);
 
 /* ================= i18n ================= */
-const M = {
-ar:{
-'app.title':'مهندس البرومبت','app.sub':'برومبت مثالي في ثوانٍ',
-'home.greet':'لنصنع برومبتًا مثاليًا',
-'hero.quality':'تقييم جودة البرومبت',
-'st.words':'كلمات','st.chars':'الأحرف','st.secs':'أقسام','st.tech':'مفاتيح تقنية',
-'act.auto':'أكمل تلقائيًا','act.copy':'نسخ','act.download':'تحميل','act.clear':'مسح',
-'sec.h':'حقول البرومبت',
-'sec.task':'المهمة الأساسية','sec.task.d':'ماذا تريد من الذكاء الاصطناعي أن يفعل؟',
-'task.tpl':'قوالب جاهزة','task.tpl.sub':'اختر مهمة جاهزة كبداية، ثم عدّلها أو اكتب مهمتك الخاصة في الحقل أعلاه:',
-'sec.role':'الدور (Role)','sec.role.d':'من يتقمّص الشخصية؟',
-'role.tpl':'أدوار جاهزة','role.tpl.sub':'اختر شخصية جاهزة، وستُملأ بقية الحقول تلقائيًا — ثم عدّل أي حقل أو اكتب دورك المخصص:',
-'sec.context':'السياق والخلفية','sec.context.d':'معلومات تساعد على فهم الموقف',
-'sec.audience':'الجمهور المستهدف','sec.audience.d':'من سيقرأ الناتج؟',
-'sec.style':'النبرة والصيغة','sec.style.d':'أسلوب الإجابة وشكلها',
-'sec.constraints':'القيود وما يجب تجنّبه','sec.constraints.d':'شروط يجب احترامها',
-'sec.toggles':'مفاتيح التحسين','sec.toggles.d':'تقنيات هندسة البرومبت',
-'sec.examples':'أمثلة مرجعية (Few-Shot)','sec.examples.d':'مثال واحد يضبط الأسلوب',
-'lb.task':'اكتب مهمتك بوضوح','ph.task':'مثال: اكتب لي مقالًا كاملًا عن فوائد المشي اليومي…',
-'hint.task':'💡 كلما كانت المهمة أدق، كانت النتيجة أقرب لما تتوقعه. تجنب «ساعدني في هذا».',
-'lb.role':'الشخصية المهنية','ph.role':'مثال: خبير تسويق رقمي، مهندس برمجيات، مدرّس، محرر لغوي',
-'lb.context':'سطر لكل نقطة','ph.context':'المشروع: متجر قهوة\nالجمهور: أعمار 25-40\nالمدة: 3 أيام',
-'lb.audience':'وصف الجمهور','ph.audience':'مثال: طلاب جامعيات، مديرو تسويق، مبتدئون في البرمجة',
-'lb.tone':'النبرة والأسلوب','lb.fmt':'صيغة التسليم','lb.length':'الطول المطلوب','lb.lang':'لغة الإجابة',
-'opt.select':'— اختر —','opt.short':'قصير (100–150)','opt.medium':'متوسط (300–500)',
-'opt.long':'طويل (600–1000)','opt.deep':'مفصّل وشامل',
-'opt.ar':'العربية','opt.en':'English','opt.same':'نفس لغة الطلب',
-'lb.constraints':'الشروط المطلوبة (سطر لكل متطلب)',
-'ph.constraints':'استخدم مصادر موثوقة\nلا تتجاوز 5 عناوين فرعية\nأضف أمثلة واقعية',
-'lb.avoid':'ما يجب تجنّبه','ph.avoid':'لا تستخدم مصطلحات معقّدة\nلا تختلق أرقامًا أو إحصاءات',
-'tg.ask':'اسأل قبل البدء 🙋','tg.ask.d':'يطرح سؤالًا محددًا بدل التخمين.',
-'tg.cot':'تفكير خطوة بخطوة 🧩','tg.cot.d':'يحلّل المهمة في مراحل قبل الإجابة.',
-'tg.self':'مراجعة ذاتية ✅','tg.self.d':'يتحقق من المتطلبات قبل التسليم.',
-'tg.direct':'إجابة مباشرة 🎯','tg.direct.d':'يبدأ بالقيمة فورًا بلا مقدمات.',
-'tg.sources':'اذكر المصادر 📎','tg.sources.d':'روابط ومراجع للمعلومات غير الشائعة.',
-'tg.alts':'2–3 بدائل ومقارنة 🧪','tg.alts.d':'خيارات مع مزايا وعيوب وتوصية.',
-'tg.balanced':'وجهات نظر متوازنة ⚖️','tg.balanced.d':'الرأي المؤيد والمعارض ثم موقف محايد.',
-'tg.simple':'بسّط اللغة (ELI5) 🧒','tg.simple.d':'شرح مفهوم للمبتدئ بلا تعقيد.',
-'tg.plan':'خطة تنفيذ قابلة للقياس 🗓️','tg.plan.d':'خطوات بمواعيد ومعايير نجاح.',
-'tg.few':'تفعيل الأمثلة 🎯','tg.few.d':'تعطي النموذج نموذجًا يقلّده.',
-'lb.in1':'مثال 1 — المدخل','ph.in1':'السلعة: قهوة مختصة',
-'lb.out1':'مثال 1 — المخرجات المتوقعة','ph.out1':'قهوة مختصة تُحمّص طازجة…',
-'lb.in2':'مثال 2 — المدخل','ph.in2':'السلعة: ساعة ذكية',
-'lb.out2':'مثال 2 — المخرجات المتوقعة','ph.out2':'ساعة ذكية تتابع صحتك…',
-'pv.title':'📝 البرومبت الناتج','pv.copy':'نسخ البرومبت','pv.txt':'تحميل .txt',
-'mode.text':'وضع نص','mode.img':'وضع صورة',
-'preview.start':'ابدأ بكتابة المهمة… وسيظهر البرومبت الكامل هنا فورًا.',
-'pre.task':'⚠️ (اكتب مهمتك أولاً)',
-'q.title':'تقييم جودة البرومبت','q.score':'جاهزية','q.checks':'المعايير (12)','q.tap':'اضغط للانتقال',
-'q.good':'ممتاز! برومبتك جاهز للاستخدام مباشرة.',
-'q.mid':'جيد — أضف بضعة حقول لرفع الجودة.',
-'q.low':'ابدأ بكتابة المهمة لرفع التقييم.',
-'presets.h':'قوالب جاهزة','presets.sub':'اختر قالبًا ليتم تعبئة الحقول تلقائيًا، ثم عد لتبويب البناء لتعديل أي حقل.',
-'img.h':'وضع توليد الصور',
-'img.note':'اكتب وصف المشهد أسفله — أو استخدم مهمة تبويب البناء — ثم انسخ البرومبت الجاهز لـ Midjourney / DALL·E / Stable Diffusion.',
-'lb.imgTask':'وصف المشهد','img.out':'🖼️ برومبت الصورة','img.start':'اكتب وصف المشهد… وسيظهر برومبت الصورة هنا.',
-'lb.imgStyle':'الأسلوب الفني','lb.imgAr':'أبعاد الصورة',
-'lb.imgArCustom':'أبعاد مخصصة (تتجاوز الاختيار)','ph.imgArCustom':'مثال: 7:5 أو 1920x1080',
-'lb.imgNeg':'عناصر يجب تجنّبها','ph.imgNeg':'blurry, extra fingers, text, watermark, low quality',
-'ai.title':'🤖 برامج مقترحة',
-'ai.sub':'اضغط أي بطاقة لفتح الموقع الرسمي + البديل المجاني مفتوح المصدر.',
-'ai.official':'🔗 الموقع الرسمي','ai.alt':'🔓 بديل مفتوح المصدر','ai.both':'فتح الاثنين',
-'nav.build':'البناء','nav.quality':'الجودة','nav.presets':'القوالب','nav.image':'الصورة','nav.tools':'الأدوات',
-'d.lang':'اللغة','d.links':'روابط','d.desktop':'نسخة الحاسوب','d.apk':'تحميل APK للأندرويد','d.star':'نجمة على GitHub',
-'ft.note':'© Mahdi Kareem — جميع الحقوق محفوظة','ft.web':'الويب: moopuu.github.io/prompt-engineer',
-'msg.copy':'تم نسخ البرومبت ✅','msg.dl':'تم تحميل الملف ⬇️','msg.clear':'تم مسح كل الحقول ↺',
-'msg.auto':'تمت التعبئة التلقائية ✨','msg.preset':'تم تطبيق القالب: ','msg.tasktpl':'تم اختيار مهمة جاهزة: 📚 ','msg.roletpl':'تم اختيار دور جاهز: 🧑‍💼 ','msg.lang':'تم تغيير اللغة 🌍',
-'ask.reset':'مسح كل الحقول والبرومبت الحالي؟',
-'tone.pro':'💼 احترافي','tone.friendly':'😊 ودّي','tone.edu':'🎓 تعليمي','tone.creative':'🎨 إبداعي',
-'tone.concise':'⚡ مختصر','tone.sales':'📢 مقنع','tone.sci':'🔬 علمي','tone.academic':'🎓 أكاديمي',
-'tone.witty':'🤣 ساخر ذكي','tone.motivate':'🔥 تحفيزي','tone.literary':'📖 أدبي شاعري','tone.convo':'💬 حواري مهذّب',
-'tone.doc':'📋 توثيقي تقريري','tone.optimistic':'☀️ متفائل','tone.playful':'🎲 مرح وخفيف',
-'tone.empathy':'💗 متعاطف','tone.bold':'🦁 جريء وحاسم',
- 'tone.support':'💗 داعم ومشجّع','tone.refuse':'🚫 رافض حازم','tone.object':'⚖️ معترض مبرّر','tone.endorse':'✅ مؤيّد ومدافع',
-'fmt.bullets':'نقاط','fmt.table':'جدول','fmt.code':'كود','fmt.para':'فقرات','fmt.img':'🖼️ صورة',
-'fmt.html':'🌐 HTML','fmt.csv':'📄 CSV','fmt.sql':'🗃️ SQL','fmt.email':'✉️ إيميل','fmt.script':'🎬 سكربت',
-'fmt.slides':'📽️ عرض تقديمي','fmt.pdf':'📕 تقرير PDF'
-},
-en:{
-'app.title':'Prompt Engineer','app.sub':'A perfect prompt in seconds',
-'home.greet':"Let's craft a perfect prompt",
-'hero.quality':'Prompt quality score',
-'st.words':'Words','st.chars':'Chars','st.secs':'Sections','st.tech':'Tech keys',
-'act.auto':'Auto-fill','act.copy':'Copy','act.download':'Download','act.clear':'Clear',
-'sec.h':'Prompt fields',
-'sec.task':'Main task','sec.task.d':'What should the AI actually do?',
-'task.tpl':'Ready tasks','task.tpl.sub':'Pick a ready task as a starting point, then edit it or write your own in the field above:',
-'sec.role':'Role','sec.role.d':'Who plays the persona?',
-'role.tpl':'Ready roles','role.tpl.sub':'Pick a ready persona and the other fields fill in automatically — then edit any field or write your own role:',
-'sec.context':'Context & background','sec.context.d':'Details that frame the situation',
-'sec.audience':'Target audience','sec.audience.d':'Who will read the output?',
-'sec.style':'Tone & format','sec.style.d':'How the answer sounds and looks',
-'sec.constraints':'Constraints & avoid','sec.constraints.d':'Rules that must be respected',
-'sec.toggles':'Enhancement switches','sec.toggles.d':'Prompt engineering techniques',
-'sec.examples':'Few-shot examples','sec.examples.d':'One example locks the style',
-'lb.task':'Describe your task clearly','ph.task':'e.g. Write a full article about the benefits of daily walking…',
-'hint.task':'💡 The more precise the task, the closer the result. Avoid "help me with this".',
-'lb.role':'Professional persona','ph.role':'e.g. digital marketing expert, software engineer, teacher…',
-'lb.context':'One line per point','ph.context':'Project: coffee shop\nAudience: ages 25-40\nDeadline: 3 days',
-'lb.audience':'Describe the audience','ph.audience':'e.g. university students, marketing managers, beginner devs',
-'lb.tone':'Tone & style','lb.fmt':'Output format','lb.length':'Requested length','lb.lang':'Answer language',
-'opt.select':'— Select —','opt.short':'Short (100–150)','opt.medium':'Medium (300–500)',
-'opt.long':'Long (600–1000)','opt.deep':'Deep & comprehensive',
-'opt.ar':'العربية','opt.en':'English','opt.same':'Same language as the task',
-'lb.constraints':'Requirements (one per line)',
-'ph.constraints':'Use reliable sources\nNo more than 5 subheadings\nAdd real examples',
-'lb.avoid':'What to avoid','ph.avoid':'No complex jargon\nNever invent numbers or stats',
-'tg.ask':'Ask before starting 🙋','tg.ask.d':'Raises one specific question instead of guessing.',
-'tg.cot':'Step-by-step thinking 🧩','tg.cot.d':'Analyses the task in stages before answering.',
-'tg.self':'Self-review ✅','tg.self.d':'Checks the requirements before delivering.',
-'tg.direct':'Direct answer 🎯','tg.direct.d':'Starts with value, no preamble.',
-'tg.sources':'Cite sources 📎','tg.sources.d':'Links & references for uncommon claims.',
-'tg.alts':'2–3 alternatives 🧪','tg.alts.d':'Options with pros, cons and a recommendation.',
-'tg.balanced':'Balanced views ⚖️','tg.balanced.d':'For and against, then a neutral position.',
-'tg.simple':'Simplify (ELI5) 🧒','tg.simple.d':'Beginner-friendly explanation, no jargon.',
-'tg.plan':'Measurable action plan 🗓️','tg.plan.d':'Steps with timing and success criteria.',
-'tg.few':'Enable examples 🎯','tg.few.d':'Gives the model a pattern to imitate.',
-'lb.in1':'Example 1 — Input','ph.in1':'Item: speciality coffee',
-'lb.out1':'Example 1 — Expected output','ph.out1':'Freshly roasted speciality coffee…',
-'lb.in2':'Example 2 — Input','ph.in2':'Item: smart watch',
-'lb.out2':'Example 2 — Expected output','ph.out2':'A smart watch that tracks your health…',
-'pv.title':'📝 Generated prompt','pv.copy':'Copy prompt','pv.txt':'Download .txt',
-'mode.text':'Text mode','mode.img':'Image mode',
-'preview.start':'Start writing your task… the full prompt will appear here instantly.',
-'pre.task':'⚠️ (write your main task first)',
-'q.title':'Prompt quality score','q.score':'readiness','q.checks':'Criteria (12)','q.tap':'Tap to jump',
-'q.good':'Excellent — your prompt is ready to use as is.',
-'q.mid':'Good — add a few fields to raise the quality.',
-'q.low':'Start writing the task to raise the score.',
-'presets.h':'Ready-made presets','presets.sub':'Pick a preset to fill the fields automatically, then return to the Build tab to adjust anything.',
-'img.h':'Image generation mode',
-'img.note':'Write the scene below — or reuse the task from the Build tab — then copy the ready prompt for Midjourney / DALL·E / Stable Diffusion.',
-'lb.imgTask':'Scene description','img.out':'🖼️ Image prompt','img.start':'Write a scene… the image prompt will appear here.',
-'lb.imgStyle':'Art style','lb.imgAr':'Image dimensions',
-'lb.imgArCustom':'Custom dimensions (overrides the choice)','ph.imgArCustom':'e.g. 7:5 or 1920x1080',
-'lb.imgNeg':'Elements to avoid','ph.imgNeg':'blurry, extra fingers, text, watermark, low quality',
-'ai.title':'🤖 Recommended AI tools',
-'ai.sub':'Tap any card to open the official site + the free open-source alternative.',
-'ai.official':'🔗 Official site','ai.alt':'🔓 Open-source alternative','ai.both':'Open both',
-'nav.build':'Build','nav.quality':'Quality','nav.presets':'Presets','nav.image':'Image','nav.tools':'Tools',
-'d.lang':'Language','d.links':'Links','d.desktop':'Desktop version','d.apk':'Download Android APK','d.star':'Star on GitHub',
-'ft.note':'© Mahdi Kareem — All rights reserved','ft.web':'Web: moopuu.github.io/prompt-engineer',
-'msg.copy':'Prompt copied ✅','msg.dl':'File downloaded ⬇️','msg.clear':'All fields cleared ↺',
-'msg.auto':'Auto-filled ✨','msg.preset':'Preset applied: ','msg.tasktpl':'Ready task picked: 📚 ','msg.roletpl':'Ready role picked: 🧑‍💼 ','msg.lang':'Language changed 🌍',
-'ask.reset':'Clear all fields and the current prompt?',
-'tone.pro':'💼 Professional','tone.friendly':'😊 Friendly','tone.edu':'🎓 Educational','tone.creative':'🎨 Creative',
-'tone.concise':'⚡ Concise','tone.sales':'📢 Persuasive','tone.sci':'🔬 Scientific','tone.academic':'🎓 Academic',
-'tone.witty':'🤣 Witty','tone.motivate':'🔥 Motivational','tone.literary':'📖 Literary','tone.convo':'💬 Conversational',
-'tone.doc':'📄 Documentary','tone.optimistic':'☀️ Optimistic','tone.playful':'🎲 Playful',
-'tone.empathy':'💗 Empathetic','tone.bold':'🦁 Bold',
- 'tone.support':'💗 Supportive','tone.refuse':'🚫 Firm refusal','tone.object':'⚖️ Objecting','tone.endorse':'✅ Endorsing',
-'fmt.bullets':'Bullets','fmt.table':'Table','fmt.code':'Code','fmt.para':'Paragraphs','fmt.img':'🖼️ Image',
-'fmt.html':'🌐 HTML','fmt.csv':'📄 CSV','fmt.sql':'🗃️ SQL','fmt.email':'✉️ Email','fmt.script':'🎬 Script',
-'fmt.slides':'📽️ Slides','fmt.pdf':'📕 PDF report'
-}
-};
-
+/* I18N + LANGS come from the shared i18n.js file */
 /* ================= State ================= */
 const FLAGS = {ask:false, cot:false, self:false, few:false, img:false,
                direct:false, sources:false, alts:false, balanced:false, simple:false, plan:false};
@@ -565,7 +410,7 @@ function renderPresets(){
   PRESETS.forEach((p,i)=>{
     const b=document.createElement('button');
     b.className='pcard'; b.type='button'; b.dataset.i=i;
-    b.innerHTML='<b></b>'; b.querySelector('b').textContent=tx(p.name);
+    b.innerHTML='<b></b>'; b.querySelector('b').textContent=pname(p,i);
     b.onclick=()=>applyPreset(i);
     box.appendChild(b);
   });
@@ -672,23 +517,40 @@ function buildImgSelects(){
 }
 
 /* ================= i18n ================= */
+function renderLangList(){
+  const box=$('langList'); if(!box) return;
+  box.innerHTML='';
+  LANGS.filter(l=>I18N[l.code]).forEach(l=>{
+    const b=document.createElement('button');
+    b.type='button'; b.dataset.lang=l.code;
+    b.className=l.code===LANG?'active':'';
+    b.innerHTML='<span class="li-ic"></span><span class="li-name"></span><span class="li-en"></span>';
+    b.querySelector('.li-ic').textContent=l.icon;
+    b.querySelector('.li-name').textContent=l.native;
+    b.querySelector('.li-en').textContent=l.en;
+    b.onclick=()=>{ setLang(l.code); closeDrawer(); };
+    box.appendChild(b);
+  });
+}
 function applyI18n(){
   document.querySelectorAll('[data-i18n]').forEach(e=>{ e.textContent=t(e.dataset.i18n); });
   document.querySelectorAll('[data-i18n-ph]').forEach(e=>{ e.placeholder=t(e.dataset.i18nPh); });
+  const meta=LANGS.find(l=>l.code===LANG)||LANGS[0];
   document.documentElement.lang=LANG;
-  document.documentElement.dir=(LANG==='en'?'ltr':'rtl');
+  document.documentElement.dir=meta.dir;
+  document.documentElement.className='script-'+meta.script;
   document.title = LANG==='en'
     ? 'Prompt Engineer — Mobile'
     : 'مهندس البرومبت — واجهة الهاتف';
 }
 function setLang(lg, silent){
-  if(lg!=='ar' && lg!=='en') lg='ar';
+  if(!I18N[lg]) lg='ar';
   LANG=lg;
   try{ localStorage.setItem('pe_lang', lg); }catch(e){}
-  document.querySelectorAll('.lang-seg button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lg));
+  document.querySelectorAll('#langList button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lg));
   applyI18n();
   buildImgSelects();
-  renderPresets(); renderTaskTemplates(); renderAi(); render();
+  renderLangList(); renderPresets(); renderTaskTemplates(); renderAi(); render();
   if(!silent) toast(t('msg.lang'));
 }
 
