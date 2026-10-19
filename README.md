@@ -20,7 +20,7 @@ Build a complete, professional AI prompt in a few clicks — in **10 languages**
 ## ✨ What it does
 
 - **9-field builder** — task · role · context · audience · tone · format · constraints · do-not.
-- **📚 60 presets** · **🧑‍💼 47 tones** · **36 formats** · **11 toggles**.
+- **📚 62 presets** · **🧑‍💼 47 tones** · **36 formats** · **11 toggles**.
 - **Two one-click pickers** — ready **tasks** and ready **roles** fill the builder; both fields stay editable.
 - **3 themes** 🌙 ☀️ ⚡ · full RTL/LTR support · contrast checked (WCAG ≥ 4.5:1).
 - **Live quality score** (12 checks) · **image mode** (46 styles × 28 sizes).
@@ -29,8 +29,8 @@ Build a complete, professional AI prompt in a few clicks — in **10 languages**
 
 ## 🌍 10 languages
 
-All **413 UI strings** are translated in all ten languages — section titles, labels, placeholders,
-quality messages, all 47 tone names, all 36 formats and all 60 preset names. Direction switches
+All **415 UI strings** are translated in all ten languages — section titles, labels, placeholders,
+quality messages, all 47 tone names, all 36 formats and all 62 preset names. Direction switches
 automatically: RTL for العربية and فارسی, LTR for the rest.
 
 | | | | | |
@@ -71,7 +71,7 @@ The web app needs no build — open `index.html` or serve the folder.
 
 ```
 index.html     desktop app (UI, builder, prompt data)
-i18n.js        shared dictionary — 10 languages, 413 UI keys
+i18n.js        shared dictionary — 10 languages, 415 UI keys
 themes.css     3 themes
 main.js        Electron entry point
 mobile/        phone PWA (index.html, app.js, data.js, sw.js, manifest)

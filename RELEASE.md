@@ -34,8 +34,8 @@ Build a complete, professional AI prompt in a few clicks — in **any of 10 lang
 | العربية | فارسی | Svenska | Deutsch | Русский |
 | 中文 | Türkçe | Français | Español | English |
 
-All **413 UI strings** are translated in every language — section titles, field labels,
-placeholders, quality messages, all **47 tone** names, all **36 output formats** and all **60 preset**
+All **415 UI strings** are translated in every language — section titles, field labels,
+placeholders, quality messages, all **47 tone** names, all **36 output formats** and all **62 preset**
 names. Direction switches automatically: **RTL** for العربية · فارسی, **LTR** for the other eight.
 
 > Preset **bodies** (the ready-made task, role, audience and constraint text) stay Arabic + English
@@ -46,7 +46,7 @@ names. Direction switches automatically: **RTL** for العربية · فارس�
 ## ✨ Highlights
 
 - **9-field builder** — task · role · context · audience · tone · format · constraints · answer language · avoid.
-- **📚 60 presets** · **🧑‍💼 47 tones** · **36 formats** · **11 improvement toggles**.
+- **📚 62 presets** · **🧑‍💼 47 tones** · **36 formats** · **11 improvement toggles**.
 - **Two one-click pickers** — a ready **task** and a ready **role** fill the builder for you; both
   fields stay free-text and editable afterwards.
 - **Live quality score** — 12 checks, each one clickable to jump to the field it complains about.
@@ -55,6 +55,19 @@ names. Direction switches automatically: **RTL** for العربية · فارس�
 - **16 AI tool cards** — the official tool plus its open-source alternative.
 - **3 themes** 🌙 ☀️ ⚡, contrast checked to WCAG ≥ 4.5:1.
 - **Works offline** on desktop and mobile.
+
+---
+
+## 🕌 Two new presets
+
+| | |
+|---|---|
+| 🤲 **دعاء** — Dua / Supplication | A structured supplication: opening praise, seeking forgiveness, the dua itself, closing. |
+| 📖 **قرآن كريم** — Qur'an | Tafsir and word-meaning work on a surah or ayah. |
+
+Both are written to make the model **verify rather than invent**: never fabricate an ayah, a hadith,
+a chain of narration, a tafsir, a grading, or an opinion attributed to an exegete who never held it.
+Preserve the distinction between the words of Allah and the commentator's own words.
 
 ---
 
