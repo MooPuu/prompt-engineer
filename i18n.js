@@ -1,4 +1,4 @@
-/* Prompt Engineer — shared language data (10 languages loaded, 417 keys each)
+/* Prompt Engineer — shared language data (10 languages loaded, 419 keys each)
    Fallback chain: chosen language → English → Arabic → key.
    Preset bodies and tone descriptions stay bilingual AR/EN by design. */
 const LANGS = [
@@ -501,7 +501,9 @@ const I18N = {
   "preset.60": "🤲 دعاء",
   "preset.61": "📖 قرآن كريم",
   "fmt.md": "📝 Markdown",
-  "fmt.json": "🔧 JSON"
+  "fmt.json": "🔧 JSON",
+  "pv.empty": "ابدأ بكتابة المهمة في اللوحة… وسيظهر البرومبت الكامل هنا فورًا.",
+  "img.empty": "اكتب وصف المشهد… وسيظهر برومبت الصورة هنا."
  },
  "en": {
   "app.title": "Prompt Engineer — AI Prompt Builder",
@@ -920,7 +922,9 @@ const I18N = {
   "preset.60": "🤲 Dua / Supplication",
   "preset.61": "📖 Qur'an",
   "fmt.md": "📝 Markdown",
-  "fmt.json": "🔧 JSON"
+  "fmt.json": "🔧 JSON",
+  "pv.empty": "Start writing your task on the left… the full prompt will appear here instantly.",
+  "img.empty": "Write a scene… the image prompt will appear here."
  },
  "de": {
   "app.title": "Prompt Engineer — KI-Prompt-Builder",
@@ -1336,6 +1340,8 @@ const I18N = {
   "preset.59": "🖼️ Bildgenerierung",
   "preset.60": "🤲 Dua / Bittgebet",
   "preset.61": "📖 Koran",
+  "pv.empty": "Schreibe links deine Aufgabe… der vollständige Prompt erscheint sofort hier.",
+  "img.empty": "Beschreibe eine Szene… der Bild-Prompt erscheint hier.",
   "task.tpl": "📚 Fertige Aufgaben",
   "task.tpl.sub": "Wähle eine fertige Aufgabe als Startpunkt, bearbeite sie oder schreibe im Feld oben deine eigene:",
   "role.tpl": "🧑‍💼 Fertige Rollen",
@@ -1764,7 +1770,9 @@ const I18N = {
   "preset.58": "📖 Narrativa",
   "preset.59": "🖼️ Generación de imágenes",
   "preset.60": "🤲 Dua (invocación)",
-  "preset.61": "📖 Corán"
+  "preset.61": "📖 Corán",
+  "pv.empty": "Escribe tu tarea a la izquierda… el prompt completo aparecerá aquí al instante.",
+  "img.empty": "Escribe una escena… el prompt de imagen aparecerá aquí."
  },
  "fa": {
   "app.title": "مهندس پرامپت — Prompt Engineer",
@@ -2185,7 +2193,9 @@ const I18N = {
   "preset.58": "📖 روایت داستانی",
   "preset.59": "🖼️ تولید تصویر",
   "preset.60": "🤲 دعا",
-  "preset.61": "📖 قرآن کریم"
+  "preset.61": "📖 قرآن کریم",
+  "pv.empty": "وظیفه‌تان را در سمت راست بنویسید… پرامپت کامل همین‌جا ظاهر می‌شود.",
+  "img.empty": "صحنه‌ای بنویسید… پرامپت تصویر همین‌جا ظاهر می‌شود."
  },
  "fr": {
   "app.title": "Prompt Engineer — Générateur de prompts IA",
@@ -2606,7 +2616,9 @@ const I18N = {
   "preset.58": "📖 Récit narratif",
   "preset.59": "🖼️ Génération d’image",
   "preset.60": "🤲 Doua (invocation)",
-  "preset.61": "📖 Coran"
+  "preset.61": "📖 Coran",
+  "pv.empty": "Écrivez votre tâche à gauche… le prompt complet apparaîtra ici instantanément.",
+  "img.empty": "Décrivez une scène… le prompt d’image apparaîtra ici."
  },
  "ru": {
   "app.title": "Prompt Engineer — генератор промптов для ИИ",
@@ -3027,7 +3039,9 @@ const I18N = {
   "preset.58": "📖 Нарративный текст",
   "preset.59": "🖼️ Генерация изображений",
   "preset.60": "🤲 Дуа (молитва)",
-  "preset.61": "📖 Коран"
+  "preset.61": "📖 Коран",
+  "pv.empty": "Напишите задачу слева… полный промпт появится здесь сразу.",
+  "img.empty": "Опишите сцену… промпт для изображения появится здесь."
  },
  "sv": {
   "app.title": "Prompt Engineer — Promptbyggare för AI",
@@ -3448,7 +3462,9 @@ const I18N = {
   "preset.58": "📖 Berättande text",
   "preset.59": "🖼️ Bildgenerering",
   "preset.60": "🤲 Bön",
-  "preset.61": "📖 Koranen"
+  "preset.61": "📖 Koranen",
+  "pv.empty": "Skriv din uppgift till vänster… hela prompten visas här direkt.",
+  "img.empty": "Beskriv en scen… bildprompten visas här."
  },
  "tr": {
   "app.title": "Prompt Engineer — Yapay Zekâ Prompt Oluşturucu",
@@ -3869,6 +3885,8 @@ const I18N = {
   "preset.59": "🖼️ Görsel oluşturma",
   "preset.60": "🤲 Dua",
   "preset.61": "📖 Kur'an-ı Kerim",
+  "pv.empty": "Görevini yaz… tam prompt anında burada görünecek.",
+  "img.empty": "Bir sahne yaz… görsel promptu burada görünecek.",
   "lb.avoid2": "kaçınılması gerekenler"
  },
  "zh": {
@@ -4288,6 +4306,8 @@ const I18N = {
   "preset.60": "🤲 祈祷词",
   "preset.61": "📖 古兰经",
   "fmt.md": "📝 Markdown",
-  "fmt.json": "🔧 JSON"
+  "fmt.json": "🔧 JSON",
+  "pv.empty": "开始在左侧撰写你的任务……完整提示词会即时显示在这里。",
+  "img.empty": "描述一个场景……图像提示词会显示在这里。"
  }
 };

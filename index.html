@@ -318,7 +318,7 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
     <div class="ministat">
       <div class="ms"><span class="ms-ic" style="--c:#16a34a">📊</span><span class="ms-t" data-i18n="q.title">تقييم جودة البرومبت</span><b class="ms-b" id="msScore">0%</b></div>
       <div class="ms"><span class="ms-ic" style="--c:#2f6bff">🔤</span><span class="ms-t" data-i18n="st.words">عدد الكلمات</span><b class="ms-b" id="msWords">0</b></div>
-      <div class="ms"><span class="ms-ic" style="--c:#e8590c">🛠️</span><span class="ms-t" data-i18n="st.tech">مفاتيح تقنية</span><b class="ms-b" id="msTech">0/12</b></div>
+      <div class="ms"><span class="ms-ic" style="--c:#e8590c">🛠️</span><span class="ms-t" data-i18n="st.tech">مفاتيح تقنية</span><b class="ms-b" id="msTech">0/10</b></div>
       <div class="ms"><span class="ms-ic" style="--c:#7b5cff">🗂️</span><span class="ms-t" data-i18n="st.secs">عدد الأقسام</span><b class="ms-b" id="msSecsM">0</b></div>
     </div>
 
@@ -739,7 +739,7 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
         <button class="btn small" id="btnMd">⬇ <span data-i18n="pv.md">تحميل .md</span></button>
         <button class="btn small primary" id="btnCopy">📋 <span data-i18n="pv.copy">نسخ</span></button>
       </div>
-      <pre class="prompt" id="preview" data-i18n="preview.start">ابدأ بكتابة المهمة في اللوحة… وسيظهر البرومبت الكامل هنا فورًا.</pre>
+      <pre class="prompt" id="preview" data-i18n="pv.empty">ابدأ بكتابة المهمة في اللوحة… وسيظهر البرومبت الكامل هنا فورًا.</pre>
       <div class="stats">
         <span><span data-i18n="st.words">عدد الكلمات</span>: <b id="stWords">0</b></span>
         <span><span data-i18n="st.chars">عدد الأحرف</span>: <b id="stChars">0</b></span>
@@ -802,7 +802,7 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
   </div>
 </footer>
 
-<script src="i18n.js?v=a3321b20"></script>
+<script src="i18n.js?v=6bfecfb5"></script>
 <script>
 /* ================= i18n ================= */
 /* I18N + LANGS now live in the shared i18n.js file */
@@ -1743,8 +1743,8 @@ function setChips(boxId,vals){
 function getChips(boxId){
   return Array.prototype.map.call(document.querySelectorAll('#'+boxId+' input:checked'), i=>i.value);
 }
-/* see mobile/app.js -- derived from the markup so it can never drift */
-const TECH_MAX = document.querySelectorAll('.tg[data-tg]').length + 2;
+/* see mobile/app.js -- counts toggles only, derived from the markup */
+const TECH_MAX = document.querySelectorAll('.tg[data-tg]:not([data-tg="img"])').length;
 
 function setFlag(k,v){
   FLAGS[k]=v;
@@ -1952,7 +1952,7 @@ function render(){
   $('stChars').textContent = CURRENT.length;
   $('stSecs').textContent = (CURRENT.match(/^## /gm)||[]).length;
   const activeFlags = Object.keys(FLAGS).filter(k=>k!=='img' && FLAGS[k]).length;
-  const tech = activeFlags + (v.tone.length?1:0) + (v.constraints?1:0);
+  const tech = activeFlags;
   $('stTech').textContent = tech+' / '+TECH_MAX;
   $('modeTag').textContent = FLAGS.img ? t('mode.img') : t('mode.text');
   score(v);

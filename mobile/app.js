@@ -108,10 +108,9 @@ function lines(s){ return s.split('\n').map(x=>x.trim()).filter(Boolean); }
 function bullets(arr,mark){ return arr.map(x=>(mark||'- ')+x).join('\n'); }
 function getChips(boxId){ return Array.prototype.map.call(document.querySelectorAll('#'+boxId+' input:checked'), i=>i.value); }
 function setChips(boxId,vals){ document.querySelectorAll('#'+boxId+' input').forEach(inp=>{ inp.checked = vals.indexOf(inp.value)>=0; }); }
-/* the "techniques used" meter: number of toggles actually on this screen, plus
-   the two implicit points for tone and constraints -- never hard-coded, so the
-   denominator follows whatever the markup contains */
-const TECH_MAX = document.querySelectorAll('.tg[data-tg]').length + 2;
+/* "Technique keys used": counts the toggles and nothing else, so the numerator
+   can never exceed the denominator. Both numbers are derived from the markup. */
+const TECH_MAX = document.querySelectorAll('.tg[data-tg]:not([data-tg="img"])').length;
 
 function setFlag(k,v){
   FLAGS[k]=v;
@@ -292,7 +291,7 @@ function render(){
 
   /* hero card */
   const activeFlags = Object.keys(FLAGS).filter(k=>k!=='img' && FLAGS[k]).length;
-  const tech = activeFlags + (v.tone.length?1:0) + (v.constraints?1:0);
+  const tech = activeFlags;
   $('heroWords').textContent = words;
   $('heroSecs').textContent = (CURRENT.match(/^## /gm)||[]).length;
   $('heroTech').textContent = tech+'/'+TECH_MAX;
