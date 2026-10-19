@@ -424,22 +424,26 @@ function renderPresets(){
   });
 }
 function applyPreset(i){
-  const s=PRESETS[i].set;
-  if(s.task!==undefined) $('task').value=tx(s.task);
-  if(s.role!==undefined) $('role').value=tx(s.role);
-  if(s.audience!==undefined) $('audience').value=tx(s.audience);
-  if(s.tone!==undefined) setChips('toneChips',s.tone);
-  if(s.fmt!==undefined) setChips('fmtChips',s.fmt);
-  if(s.length!==undefined) $('length').value=s.length;
-  if(s.constraints!==undefined) $('constraints').value=tx(s.constraints);
-  if(s.avoid!==undefined) $('avoid').value=tx(s.avoid);
-  /* Reset every toggle first, then apply the ones this preset declares.
-     Otherwise a key switched on by the previous preset (cot, say) stayed on
-     for a preset that never asked for it. */
-  Object.keys(FLAGS).forEach(k=>setFlag(k, !!(s.flags && s.flags[k])));
+  const s = PRESETS[i].set;
+  if(s.task !== undefined) {
+    $('task').value = tx(s.task);
+    $('imgTask').value = $('task').value;
+  }
+  if(s.role !== undefined) $('role').value = tx(s.role);
+  if(s.audience !== undefined) $('audience').value = tx(s.audience);
+  if(s.tone !== undefined) setChips('toneChips', s.tone);
+  if(s.fmt !== undefined) setChips('fmtChips', s.fmt);
+  if(s.length !== undefined) $('length').value = s.length;
+  if(s.constraints !== undefined) $('constraints').value = tx(s.constraints);
+  if(s.avoid !== undefined) $('avoid').value = tx(s.avoid);
+
+  /* reset every toggle first, then apply the ones this preset declares --
+     otherwise a key switched on by the previous preset stayed on */
+  Object.keys(FLAGS).forEach(k => setFlag(k, false));
+  if(s.flags) Object.keys(s.flags).forEach(k => setFlag(k, !!s.flags[k]));
+
   render();
-  toast(t('msg.preset')+tx(PRESETS[i].name));
-  /* an image preset belongs on the image tab, not the text tab */
+  toast(t('msg.preset') + tx(PRESETS[i].name));
   goTab(s.img ? 'm-image' : 'm-home');
 }
 
