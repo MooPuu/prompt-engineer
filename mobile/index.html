@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>مهندس البرومبت — واجهة الهاتف | Prompt Engineer Mobile</title>
 <meta name="description" content="نسخة الهاتف من مهندس البرومبت — ابنِ برومبتًا مثاليًا لأي أداة ذكاء اصطناعي من جوالك. © Mahdi Kareem">
 <meta name="theme-color" content="#3d63f5">
@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="Build a complete, professional AI prompt in a few clicks - 10 languages, 62 presets, 47 tones, 36 output formats. Desktop, web and Android.">
 <meta name="twitter:image" content="https://moopuu.github.io/prompt-engineer/build/social-preview.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="../prompt engineer icon.png">
+<link rel="icon" href="prompt-engineer-icon.png">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -31,9 +31,9 @@
 
   <!-- ================= Top app bar ================= -->
   <header class="appbar">
-    <button class="icon-btn" id="btnMenu" type="button" aria-label="menu">☰</button>
+    <button class="icon-btn" id="btnMenu" type="button" aria-label="menu" aria-expanded="false" aria-controls="drawer">☰</button>
     <h1 data-i18n="app.title">مهندس البرومبت</h1>
-    <img class="avatar" src="../prompt engineer icon.png" alt="Prompt Engineer">
+    <img class="avatar" src="prompt-engineer-icon.png" alt="Prompt Engineer">
   </header>
 
   <!-- ================= TAB 1: BUILD ================= -->
@@ -72,7 +72,7 @@
 
       <!-- 1: task -->
       <div class="scard open" data-card="task">
-        <button class="s-head" type="button">
+        <button class="s-head" type="button" aria-expanded="false" aria-controls="sc1">
           <span class="s-ic">🎯</span>
           <span class="s-title"><b data-i18n="sec.task">المهمة الأساسية</b><span data-i18n="sec.task.d">ماذا تريد من الذكاء الاصطناعي أن يفعل؟</span></span>
           <span class="s-done" id="d-task">✓</span><span class="s-chev">›</span>
@@ -97,7 +97,7 @@
 
       <!-- 2: role -->
       <div class="scard" data-card="role">
-        <button class="s-head" type="button">
+        <button class="s-head" type="button" aria-expanded="false" aria-controls="sc2">
           <span class="s-ic">🧑‍💼</span>
           <span class="s-title"><b data-i18n="sec.role">الدور (Role)</b><span data-i18n="sec.role.d">من يتقمّص الشخصية؟</span></span>
           <span class="s-done" id="d-role">✓</span><span class="s-chev">›</span>
@@ -121,7 +121,7 @@
 
       <!-- 3: context -->
       <div class="scard" data-card="context">
-        <button class="s-head" type="button">
+        <button class="s-head" type="button" aria-expanded="false" aria-controls="sc3">
           <span class="s-ic">📄</span>
           <span class="s-title"><b data-i18n="sec.context">السياق والخلفية</b><span data-i18n="sec.context.d">معلومات تساعد على فهم الموقف</span></span>
           <span class="s-done" id="d-context">✓</span><span class="s-chev">›</span>
@@ -136,7 +136,7 @@
 
       <!-- 4: audience -->
       <div class="scard" data-card="audience">
-        <button class="s-head" type="button">
+        <button class="s-head" type="button" aria-expanded="false" aria-controls="sc4">
           <span class="s-ic">👥</span>
           <span class="s-title"><b data-i18n="sec.audience">الجمهور المستهدف</b><span data-i18n="sec.audience.d">من سيقرأ الناتج؟</span></span>
           <span class="s-done" id="d-audience">✓</span><span class="s-chev">›</span>
@@ -144,14 +144,14 @@
         <div class="s-body">
           <div class="f">
             <label class="lb" for="audience" data-i18n="lb.audience">وصف الجمهور</label>
-            <input type="text" id="audience" data-i18n-ph="ph.audience" placeholder="مثال: طلاب جامعيات، مديرو تسويق…">
+            <input type="text" id="audience" data-i18n-ph="ph.audience" placeholder="مثال: طلاب جامعات، مديرو تسويق…">
           </div>
         </div>
       </div>
 
       <!-- 5: tone / format / length / language -->
       <div class="scard" data-card="style">
-        <button class="s-head" type="button">
+        <button class="s-head" type="button" aria-expanded="false" aria-controls="sc5">
           <span class="s-ic">🎨</span>
           <span class="s-title"><b data-i18n="sec.style">النبرة والصيغة</b><span data-i18n="sec.style.d">أسلوب الإجابة وشكلها</span></span>
           <span class="s-done" id="d-style">✓</span><span class="s-chev">›</span>
@@ -212,15 +212,15 @@
           <div class="f">
             <label class="lb" data-i18n="lb.fmt">صيغة التسليم</label>
             <div class="chips" id="fmtChips">
-              <input type="checkbox" id="mf1" value="md"><label for="mf1">Markdown</label>
-              <input type="checkbox" id="mf2" value="bullets"><label for="mf2" data-i18n="fmt.bullets">نقاط</label>
-              <input type="checkbox" id="mf3" value="table"><label for="mf3" data-i18n="fmt.table">جدول</label>
-              <input type="checkbox" id="mf4" value="json"><label for="mf4">JSON</label>
-              <input type="checkbox" id="mf5" value="code"><label for="mf5" data-i18n="fmt.code">كود</label>
-              <input type="checkbox" id="mf6" value="para"><label for="mf6" data-i18n="fmt.para">فقرات</label>
+              <input type="checkbox" id="mf1" value="md"><label for="mf1" data-i18n="fmt.md">📝 Markdown</label>
+              <input type="checkbox" id="mf2" value="bullets"><label for="mf2" data-i18n="fmt.bullets">• نقاط</label>
+              <input type="checkbox" id="mf3" value="table"><label for="mf3" data-i18n="fmt.table">📊 جدول</label>
+              <input type="checkbox" id="mf4" value="json"><label for="mf4" data-i18n="fmt.json">🔧 JSON</label>
+              <input type="checkbox" id="mf5" value="code"><label for="mf5" data-i18n="fmt.code">⌨️ كود</label>
+              <input type="checkbox" id="mf6" value="para"><label for="mf6" data-i18n="fmt.para">¶ فقرات</label>
               <input type="checkbox" id="mf7" value="img"><label for="mf7" data-i18n="fmt.img">🖼️ صورة</label>
               <input type="checkbox" id="mf8" value="html"><label for="mf8" data-i18n="fmt.html">🌐 HTML</label>
-              <input type="checkbox" id="mf9" value="csv"><label for="mf9" data-i18n="fmt.csv">📄 CSV</label>
+              <input type="checkbox" id="mf9" value="csv"><label for="mf9" data-i18n="fmt.csv">🗃️ CSV</label>
               <input type="checkbox" id="mf10" value="sql"><label for="mf10" data-i18n="fmt.sql">🗃️ SQL</label>
               <input type="checkbox" id="mf11" value="email"><label for="mf11" data-i18n="fmt.email">✉️ إيميل</label>
               <input type="checkbox" id="mf12" value="script"><label for="mf12" data-i18n="fmt.script">🎬 سكربت</label>
@@ -234,8 +234,8 @@
               <input type="checkbox" id="mf20" value="tasks"><label for="mf20" data-i18n="fmt.tasks">✅ قائمة مهام</label>
               <input type="checkbox" id="mf21" value="dialogue"><label for="mf21" data-i18n="fmt.dialogue">🎭 سيناريو حواري</label>
               <input type="checkbox" id="mf22" value="cli"><label for="mf22" data-i18n="fmt.cli">⌨️ أوامر طرفية (CLI)</label>
-              <input type="checkbox" id="mf23" value="yaml"><label for="mf23" data-i18n="fmt.yaml">📄 صيغة YAML</label>
-              <input type="checkbox" id="mf24" value="xml"><label for="mf24" data-i18n="fmt.xml">📄 صيغة XML</label>
+              <input type="checkbox" id="mf23" value="yaml"><label for="mf23" data-i18n="fmt.yaml">🧾 صيغة YAML</label>
+              <input type="checkbox" id="mf24" value="xml"><label for="mf24" data-i18n="fmt.xml">🧾 صيغة XML</label>
               <input type="checkbox" id="mf25" value="actionplan"><label for="mf25" data-i18n="fmt.actionplan">🗺️ خطة عمل</label>
               <input type="checkbox" id="mf26" value="comparison"><label for="mf26" data-i18n="fmt.comparison">⚖️ مقارنة شاملة</label>
               <input type="checkbox" id="mf27" value="swot"><label for="mf27" data-i18n="fmt.swot">🧭 تحليل SWOT</label>
@@ -275,7 +275,7 @@
 
       <!-- 6: constraints -->
       <div class="scard" data-card="constraints">
-        <button class="s-head" type="button">
+        <button class="s-head" type="button" aria-expanded="false" aria-controls="sc6">
           <span class="s-ic">🔒</span>
           <span class="s-title"><b data-i18n="sec.constraints">القيود وما يجب تجنّبه</b><span data-i18n="sec.constraints.d">شروط يجب احترامها</span></span>
           <span class="s-done" id="d-constraints">✓</span><span class="s-chev">›</span>
@@ -294,33 +294,33 @@
 
       <!-- 7: enhancement switches -->
       <div class="scard" data-card="toggles">
-        <button class="s-head" type="button">
+        <button class="s-head" type="button" aria-expanded="false" aria-controls="sc7">
           <span class="s-ic">🛠️</span>
           <span class="s-title"><b data-i18n="sec.toggles">مفاتيح التحسين</b><span data-i18n="sec.toggles.d">تقنيات هندسة البرومبت</span></span>
           <span class="s-done" id="d-toggles">✓</span><span class="s-chev">›</span>
         </button>
         <div class="s-body">
-          <button class="tg" type="button" data-tg="ask"><span class="tg-t"><b data-i18n="tg.ask">اسأل قبل البدء 🙋</b><span data-i18n="tg.ask.d">يطرح سؤالًا محددًا بدل التخمين.</span></span><span class="sw"></span></button>
-          <button class="tg" type="button" data-tg="cot"><span class="tg-t"><b data-i18n="tg.cot">تفكير خطوة بخطوة 🧩</b><span data-i18n="tg.cot.d">يحلّل المهمة في مراحل قبل الإجابة.</span></span><span class="sw"></span></button>
-          <button class="tg" type="button" data-tg="self"><span class="tg-t"><b data-i18n="tg.self">مراجعة ذاتية ✅</b><span data-i18n="tg.self.d">يتحقق من المتطلبات قبل التسليم.</span></span><span class="sw"></span></button>
-          <button class="tg" type="button" data-tg="direct"><span class="tg-t"><b data-i18n="tg.direct">إجابة مباشرة 🎯</b><span data-i18n="tg.direct.d">يبدأ بالقيمة فورًا بلا مقدمات.</span></span><span class="sw"></span></button>
-          <button class="tg" type="button" data-tg="sources"><span class="tg-t"><b data-i18n="tg.sources">اذكر المصادر 📎</b><span data-i18n="tg.sources.d">روابط ومراجع للمعلومات غير الشائعة.</span></span><span class="sw"></span></button>
-          <button class="tg" type="button" data-tg="alts"><span class="tg-t"><b data-i18n="tg.alts">2–3 بدائل ومقارنة 🧪</b><span data-i18n="tg.alts.d">خيارات مع مزايا وعيوب وتوصية.</span></span><span class="sw"></span></button>
-          <button class="tg" type="button" data-tg="balanced"><span class="tg-t"><b data-i18n="tg.balanced">وجهات نظر متوازنة ⚖️</b><span data-i18n="tg.balanced.d">الرأي المؤيد والمعارض ثم موقف محايد.</span></span><span class="sw"></span></button>
-          <button class="tg" type="button" data-tg="simple"><span class="tg-t"><b data-i18n="tg.simple">بسّط اللغة (ELI5) 🧒</b><span data-i18n="tg.simple.d">شرح مفهوم للمبتدئ بلا تعقيد.</span></span><span class="sw"></span></button>
-          <button class="tg" type="button" data-tg="plan"><span class="tg-t"><b data-i18n="tg.plan">خطة تنفيذ قابلة للقياس 🗓️</b><span data-i18n="tg.plan.d">خطوات بمواعيد ومعايير نجاح.</span></span><span class="sw"></span></button>
+          <button class="tg" type="button" role="switch" aria-checked="false" data-tg="ask"><span class="tg-t"><b data-i18n="tg.ask">اسأل قبل البدء 🙋</b><span data-i18n="tg.ask.d">يطرح سؤالًا محددًا بدل التخمين.</span></span><span class="sw"></span></button>
+          <button class="tg" type="button" role="switch" aria-checked="false" data-tg="cot"><span class="tg-t"><b data-i18n="tg.cot">تفكير خطوة بخطوة 🧩</b><span data-i18n="tg.cot.d">يحلّل المهمة في مراحل قبل الإجابة.</span></span><span class="sw"></span></button>
+          <button class="tg" type="button" role="switch" aria-checked="false" data-tg="self"><span class="tg-t"><b data-i18n="tg.self">مراجعة ذاتية ✅</b><span data-i18n="tg.self.d">يتحقق من المتطلبات قبل التسليم.</span></span><span class="sw"></span></button>
+          <button class="tg" type="button" role="switch" aria-checked="false" data-tg="direct"><span class="tg-t"><b data-i18n="tg.direct">إجابة مباشرة 🎯</b><span data-i18n="tg.direct.d">يبدأ بالقيمة فورًا بلا مقدمات.</span></span><span class="sw"></span></button>
+          <button class="tg" type="button" role="switch" aria-checked="false" data-tg="sources"><span class="tg-t"><b data-i18n="tg.sources">اذكر المصادر 📎</b><span data-i18n="tg.sources.d">روابط ومراجع للمعلومات غير الشائعة.</span></span><span class="sw"></span></button>
+          <button class="tg" type="button" role="switch" aria-checked="false" data-tg="alts"><span class="tg-t"><b data-i18n="tg.alts">2–3 بدائل ومقارنة 🧪</b><span data-i18n="tg.alts.d">خيارات مع مزايا وعيوب وتوصية.</span></span><span class="sw"></span></button>
+          <button class="tg" type="button" role="switch" aria-checked="false" data-tg="balanced"><span class="tg-t"><b data-i18n="tg.balanced">وجهات نظر متوازنة ⚖️</b><span data-i18n="tg.balanced.d">الرأي المؤيد والمعارض ثم موقف محايد.</span></span><span class="sw"></span></button>
+          <button class="tg" type="button" role="switch" aria-checked="false" data-tg="simple"><span class="tg-t"><b data-i18n="tg.simple">بسّط اللغة (ELI5) 🧒</b><span data-i18n="tg.simple.d">شرح مفهوم للمبتدئ بلا تعقيد.</span></span><span class="sw"></span></button>
+          <button class="tg" type="button" role="switch" aria-checked="false" data-tg="plan"><span class="tg-t"><b data-i18n="tg.plan">خطة تنفيذ قابلة للقياس 🗓️</b><span data-i18n="tg.plan.d">خطوات بمواعيد ومعايير نجاح.</span></span><span class="sw"></span></button>
         </div>
       </div>
 
       <!-- 8: few-shot examples -->
       <div class="scard" data-card="examples">
-        <button class="s-head" type="button">
+        <button class="s-head" type="button" aria-expanded="false" aria-controls="sc8">
           <span class="s-ic">🎯</span>
           <span class="s-title"><b data-i18n="sec.examples">أمثلة مرجعية (Few-Shot)</b><span data-i18n="sec.examples.d">مثال واحد يضبط الأسلوب</span></span>
           <span class="s-done" id="d-examples">✓</span><span class="s-chev">›</span>
         </button>
         <div class="s-body">
-          <button class="tg" type="button" data-tg="few"><span class="tg-t"><b data-i18n="tg.few">تفعيل الأمثلة 🎯</b><span data-i18n="tg.few.d">تعطي النموذج نموذجًا يقلّده.</span></span><span class="sw"></span></button>
+          <button class="tg" type="button" role="switch" aria-checked="false" data-tg="few"><span class="tg-t"><b data-i18n="tg.few">تفعيل الأمثلة 🎯</b><span data-i18n="tg.few.d">تعطي النموذج نموذجًا يقلّده.</span></span><span class="sw"></span></button>
           <div class="f">
             <label class="lb" for="in1" data-i18n="lb.in1">مثال 1 — المدخل</label>
             <input type="text" id="in1" data-i18n-ph="ph.in1" placeholder="السلعة: قهوة مختصة">
@@ -348,7 +348,7 @@
         <b data-i18n="pv.title">📝 البرومبت الناتج</b>
         <span class="tag" id="modeTag" data-i18n="mode.text">وضع نص</span>
       </div>
-      <pre class="out-p" id="preview">ابدأ بكتابة المهمة… وسيظهر البرومبت الكامل هنا فورًا.</pre>
+      <pre class="out-p" id="preview" data-i18n="preview.start">ابدأ بكتابة المهمة… وسيظهر البرومبت الكامل هنا فورًا.</pre>
       <div class="out-btns">
         <button class="btn primary" id="btnCopy" type="button">📋 <span data-i18n="pv.copy">نسخ البرومبت</span></button>
         <button class="btn pink" id="btnTxt" type="button">⬇️ <span data-i18n="pv.txt">تحميل .txt</span></button>
@@ -360,7 +360,7 @@
       </div>
     </div>
 
-    <div class="d-foot" style="margin-top:18px" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
+    <div class="d-foot d-foot-gap" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
   </section>
 
   <!-- ================= TAB 2: QUALITY ================= -->
@@ -372,7 +372,7 @@
     </div>
     <div class="sec-h"><b data-i18n="q.checks">المعايير (12)</b><span data-i18n="q.tap">اضغط للانتقال</span></div>
     <div id="checks"></div>
-    <div class="d-foot" style="margin-top:18px" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
+    <div class="d-foot d-foot-gap" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
   </section>
 
   <!-- ================= TAB 3: PRESETS ================= -->
@@ -380,7 +380,7 @@
     <div class="greet" data-i18n="presets.h">قوالب جاهزة</div>
     <div class="note" data-i18n="presets.sub">اختر قالبًا ليتم تعبئة الحقول تلقائيًا، ثم عد لتبويب البناء لتعديل أي حقل.</div>
     <div class="pgrid" id="presets"></div>
-    <div class="d-foot" style="margin-top:18px" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
+    <div class="d-foot d-foot-gap" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
   </section>
 
   <!-- ================= TAB 4: IMAGE ================= -->
@@ -388,8 +388,8 @@
     <div class="greet" data-i18n="img.h">وضع توليد الصور</div>
     <div class="note" data-i18n="img.note">اكتب وصف المشهد أسفله — أو استخدم مهمة تبويب البناء — ثم انسخ البرومبت الجاهز لـ Midjourney / DALL·E / Stable Diffusion.</div>
 
-    <div class="scard open">
-      <div class="s-body" style="display:block;border-top:0;padding-top:4px">
+    <div class="scard open scard-bare">
+      <div class="s-body">
         <div class="f">
           <label class="lb" for="imgTask" data-i18n="lb.imgTask">وصف المشهد</label>
           <textarea id="imgTask" data-i18n-ph="ph.task" placeholder="مثال: قطة تركية ترتدي معطفًا أنيقًا في شارع ممطر ليلًا…"></textarea>
@@ -418,14 +418,14 @@
         <b data-i18n="img.out">🖼️ برومبت الصورة</b>
         <span class="tag" data-i18n="mode.img">وضع صورة</span>
       </div>
-      <pre class="out-p" id="imgPrev">اكتب وصف المشهد… وسيظهر برومبت الصورة هنا.</pre>
+      <pre class="out-p" id="imgPrev" data-i18n="img.start">اكتب وصف المشهد… وسيظهر برومبت الصورة هنا.</pre>
       <div class="out-btns">
         <button class="btn primary" id="btnImgCopy" type="button">📋 <span data-i18n="pv.copy">نسخ البرومبت</span></button>
         <button class="btn pink" id="btnImgTxt" type="button">⬇️ <span data-i18n="pv.txt">تحميل .txt</span></button>
       </div>
     </div>
 
-    <div class="d-foot" style="margin-top:18px" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
+    <div class="d-foot d-foot-gap" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
   </section>
 
   <!-- ================= TAB 5: AI TOOLS ================= -->
@@ -433,7 +433,7 @@
     <div class="greet" data-i18n="ai.title">🤖 برامج مقترحة</div>
     <div class="note" data-i18n="ai.sub">اضغط أي بطاقة لفتح الموقع الرسمي + البديل المجاني مفتوح المصدر.</div>
     <div id="aiGrid"></div>
-    <div class="d-foot" style="margin-top:18px" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
+    <div class="d-foot d-foot-gap" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
   </section>
 
 </div><!-- /.app -->
@@ -449,9 +449,9 @@
 
 <!-- ================= Drawer ================= -->
 <div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer">
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" hidden>
   <div class="d-head">
-    <img src="../prompt engineer icon.png" alt="">
+    <img src="prompt-engineer-icon.png" alt="">
     <div><b data-i18n="app.title">مهندس البرومبت</b><span data-i18n="app.sub">برومبت مثالي في ثوانٍ</span></div>
   </div>
 
@@ -471,7 +471,7 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="../i18n.js?v=ff65e1cb"></script>
+<script src="i18n.js?v=ff65e1cb"></script>
 <script src="data.js?v=2.2"></script>
 <script src="app.js?v=2.2"></script>
 </body>

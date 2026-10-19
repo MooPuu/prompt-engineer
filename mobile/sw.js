@@ -5,13 +5,13 @@ const ASSETS = [
   './index.html',
   './mobile.css',
   './app.js',
-  '../i18n.js',
+  './i18n.js',
   './data.js',
   './manifest.webmanifest',
   './icon-192.png',
   './icon-512.png',
   './icon-maskable-512.png',
-  '../prompt engineer icon.png'
+  './prompt-engineer-icon.png'
 ];
 
 self.addEventListener('install', e => {

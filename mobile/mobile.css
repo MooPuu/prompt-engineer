@@ -111,6 +111,7 @@ html[dir="rtl"] .drawer{left:auto;right:0;transform:translateX(102%)}
 .d-item .di{width:26px;height:26px;border-radius:9px;display:grid;place-items:center;
   background:#fff;box-shadow:var(--shadow-sm);font-size:14px;flex:0 0 auto}
 .d-foot{margin-top:auto;font-size:11.5px;color:var(--muted);text-align:center;line-height:1.7}
+.d-foot-gap{margin-top:18px}
 
 /* language segmented control (ع in a white box) */
 .lang-seg{display:flex;gap:6px;background:#f2f5fd;padding:5px;border-radius:15px;border:1px solid var(--line)}
@@ -227,6 +228,9 @@ html[dir="rtl"] .drawer{left:auto;right:0;transform:translateX(102%)}
 .scard.open .s-chev{transform:rotate(90deg);color:var(--primary)}
 .s-body{display:none;padding:2px 13px 15px;border-top:1px dashed var(--line)}
 .scard.open .s-body{display:block}
+/* card with no header: never collapse, drop the top border */
+.scard-bare > .s-body{display:block;height:auto;border-top:0;padding-top:4px}
+.scard-bare > .s-body[hidden]{display:block}
 
 /* ---------------- Form controls ---------------- */
 .f{margin-top:12px}

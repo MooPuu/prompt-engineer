@@ -108,9 +108,14 @@ function lines(s){ return s.split('\n').map(x=>x.trim()).filter(Boolean); }
 function bullets(arr,mark){ return arr.map(x=>(mark||'- ')+x).join('\n'); }
 function getChips(boxId){ return Array.prototype.map.call(document.querySelectorAll('#'+boxId+' input:checked'), i=>i.value); }
 function setChips(boxId,vals){ document.querySelectorAll('#'+boxId+' input').forEach(inp=>{ inp.checked = vals.indexOf(inp.value)>=0; }); }
+/* the "techniques used" meter: number of toggles actually on this screen, plus
+   the two implicit points for tone and constraints -- never hard-coded, so the
+   denominator follows whatever the markup contains */
+const TECH_MAX = document.querySelectorAll('.tg[data-tg]').length + 2;
+
 function setFlag(k,v){
   FLAGS[k]=v;
-  document.querySelectorAll('.tg[data-tg="'+k+'"]').forEach(el=>el.classList.toggle('on',v));
+  document.querySelectorAll('.tg[data-tg="'+k+'"]').forEach(el=>{el.classList.toggle('on',v);el.setAttribute('aria-checked',v?'true':'false');});
 }
 function readV(){
   return {
@@ -290,7 +295,7 @@ function render(){
   const tech = activeFlags + (v.tone.length?1:0) + (v.constraints?1:0);
   $('heroWords').textContent = words;
   $('heroSecs').textContent = (CURRENT.match(/^## /gm)||[]).length;
-  $('heroTech').textContent = tech+'/12';
+  $('heroTech').textContent = tech+'/'+TECH_MAX;
 
   updateDone(v);
   score(v);
@@ -401,8 +406,8 @@ function goTab(id){
   document.querySelectorAll('#bnav button').forEach(b=>b.classList.toggle('active', b.dataset.tab===id));
   window.scrollTo({top:0, behavior:'smooth'});
 }
-function closeDrawer(){ $('drawer').classList.remove('open'); $('scrim').classList.remove('open'); }
-function openDrawer(){ $('drawer').classList.add('open'); $('scrim').classList.add('open'); }
+function closeDrawer(){ $('drawer').classList.remove('open'); $('scrim').classList.remove('open'); $('drawer').setAttribute('hidden',''); $('btnMenu').setAttribute('aria-expanded','false'); }
+function openDrawer(){ $('drawer').classList.add('open'); $('scrim').classList.add('open'); $('drawer').removeAttribute('hidden'); $('btnMenu').setAttribute('aria-expanded','true'); }
 
 /* ================= Presets ================= */
 function renderPresets(){
@@ -543,6 +548,18 @@ function applyI18n(){
     ? 'Prompt Engineer — Mobile'
     : 'مهندس البرومبت — واجهة الهاتف';
 }
+/* the answer-language <select> must offer every shipped language, not just ar/en.
+   Built from LANGS so it can never fall out of sync with the dictionary. */
+function fillAnswerLangs(){
+  const sel=$('lang'); if(!sel) return;
+  const cur=sel.value;
+  sel.innerHTML='';
+  const add=(v,label)=>{ const o=document.createElement('option'); o.value=v; o.textContent=label; sel.appendChild(o); };
+  add('same', t('opt.same'));
+  (typeof LANGS!=='undefined'?LANGS:[]).forEach(l=>add(l.code,l.native));
+  sel.value = Array.prototype.some.call(sel.options, o=>o.value===cur) ? cur : 'same';
+}
+
 function setLang(lg, silent){
   if(!I18N[lg]) lg='ar';
   LANG=lg;
@@ -551,6 +568,7 @@ function setLang(lg, silent){
   applyI18n();
   buildImgSelects();
   renderLangList(); renderPresets(); renderTaskTemplates(); renderAi(); render();
+  fillAnswerLangs();
   if(!silent) toast(t('msg.lang'));
 }
 
@@ -572,7 +590,20 @@ function wire(){
 
   /* accordion */
   document.querySelectorAll('.scard .s-head').forEach(h=>{
-    h.addEventListener('click',()=>h.parentElement.classList.toggle('open'));
+    const card=h.parentElement;
+    /* give the panel an id so aria-controls points at something real */
+    const body=card.querySelector('.s-body');
+    const id='card-body-'+(card.dataset.card||Math.random().toString(36).slice(2,8));
+    if(body && !body.id){ body.id=id; h.setAttribute('aria-controls',id); }
+    const open=card.classList.contains('open');
+    h.setAttribute('aria-expanded', open?'true':'false');
+    if(body && open) body.removeAttribute('hidden');
+    h.addEventListener('click',()=>{
+      const isOpen=card.classList.toggle('open');
+      h.setAttribute('aria-expanded', isOpen?'true':'false');
+      const b=card.querySelector('.s-body');
+      if(b){ if(isOpen) b.removeAttribute('hidden'); else b.setAttribute('hidden',''); }
+    });
   });
 
   /* bottom nav */
@@ -618,7 +649,7 @@ function wire(){
     if(!confirm(t('ask.reset'))) return;
     ['task','role','context','audience','constraints','avoid','in1','out1','in2','out2','imgNeg','imgArCustom'].forEach(k=>$(k).value='');
     $('imgTask').value='';
-    $('length').value=''; $('lang').value=(LANG==='en'?'en':'ar');
+    $('length').value=''; fillAnswerLangs();
     setChips('toneChips',[]); setChips('fmtChips',[]);
     ['ask','cot','self','few','img','direct','sources','alts','balanced','simple','plan'].forEach(k=>setFlag(k,false));
     render(); toast(t('msg.clear'));

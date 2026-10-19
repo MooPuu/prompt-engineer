@@ -245,7 +245,7 @@ pre.prompt::-webkit-scrollbar-thumb{background:#26314f;border-radius:10px}
 html[dir="ltr"] .lang-menu{inset-inline-end:0}
 </style>
 
-<link rel="icon" type="image/png" href="prompt%20engineer%20icon.png">
+<link rel="icon" type="image/png" href="prompt-engineer-icon.png">
 <link rel="stylesheet" href="themes.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -393,7 +393,7 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
       <section class="fsec">
         <h3><span class="n">4</span><span class="fi" style="--c:#0891b2">👥</span> <span data-i18n="sec.audience">الجمهور المستهدف</span></h3>
         <label class="lb" data-i18n="lb.audience">لمن المحتوى المطلوب؟</label>
-        <input type="text" id="audience" data-i18n-ph="ph.audience" placeholder="مثال: طلاب جامعيات، مديرو تسويق، مبتدئون في البرمجة، عملاء محتملون">
+        <input type="text" id="audience" data-i18n-ph="ph.audience" placeholder="مثال: طلاب جامعات، مديرو تسويق، مبتدئون في البرمجة، عملاء محتملون">
       </section>
 
       <div class="divider" data-i18n="div.shape">شكل المخرجات</div>
@@ -457,12 +457,12 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
       <section class="fsec">
         <h3><span class="n">6</span><span class="fi" style="--c:#e8590c">📐</span> <span data-i18n="sec.format">صيغة التسليم</span></h3>
         <div class="chips" id="fmtChips">
-          <input type="checkbox" id="f1" value="md"><label for="f1">Markdown</label>
-          <input type="checkbox" id="f2" value="bullets"><label for="f2" data-i18n="fmt.bullets">نقاط</label>
-          <input type="checkbox" id="f3" value="table"><label for="f3" data-i18n="fmt.table">جدول</label>
-          <input type="checkbox" id="f4" value="json"><label for="f4">JSON</label>
-          <input type="checkbox" id="f5" value="code"><label for="f5" data-i18n="fmt.code">كود</label>
-          <input type="checkbox" id="f6" value="para"><label for="f6" data-i18n="fmt.para">فقرات</label>
+          <input type="checkbox" id="f1" value="md"><label for="f1" data-i18n="fmt.md">📝 Markdown</label>
+          <input type="checkbox" id="f2" value="bullets"><label for="f2" data-i18n="fmt.bullets">• نقاط</label>
+          <input type="checkbox" id="f3" value="table"><label for="f3" data-i18n="fmt.table">📊 جدول</label>
+          <input type="checkbox" id="f4" value="json"><label for="f4" data-i18n="fmt.json">🔧 JSON</label>
+          <input type="checkbox" id="f5" value="code"><label for="f5" data-i18n="fmt.code">⌨️ كود</label>
+          <input type="checkbox" id="f6" value="para"><label for="f6" data-i18n="fmt.para">¶ فقرات</label>
           <input type="checkbox" id="f7" value="img"><label for="f7" data-i18n="fmt.img">🖼️ صورة</label>
           <input type="checkbox" id="f8" value="html"><label for="f8" data-i18n="fmt.html">🌐 HTML</label>
           <input type="checkbox" id="f9" value="csv"><label for="f9" data-i18n="fmt.csv">📄 CSV</label>
@@ -739,7 +739,7 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
         <button class="btn small" id="btnMd">⬇ <span data-i18n="pv.md">تحميل .md</span></button>
         <button class="btn small primary" id="btnCopy">📋 <span data-i18n="pv.copy">نسخ</span></button>
       </div>
-      <pre class="prompt" id="preview">ابدأ بكتابة المهمة في اللوحة… وسيظهر البرومبت الكامل هنا فورًا.</pre>
+      <pre class="prompt" id="preview" data-i18n="preview.start">ابدأ بكتابة المهمة في اللوحة… وسيظهر البرومبت الكامل هنا فورًا.</pre>
       <div class="stats">
         <span><span data-i18n="st.words">عدد الكلمات</span>: <b id="stWords">0</b></span>
         <span><span data-i18n="st.chars">عدد الأحرف</span>: <b id="stChars">0</b></span>
@@ -825,6 +825,18 @@ function applyI18n(){
   document.documentElement.className = 'script-' + meta.script;
   document.title = LANG === 'en' ? 'Prompt Engineer — AI Prompt Builder' : 'مهندس البرومبت — Prompt Engineer';
 }
+/* the answer-language <select> must offer every shipped language, not just ar/en.
+   Built from LANGS so it can never fall out of sync with the dictionary. */
+function fillAnswerLangs(){
+  const sel=$('lang'); if(!sel) return;
+  const cur=sel.value;
+  sel.innerHTML='';
+  const add=(v,label)=>{ const o=document.createElement('option'); o.value=v; o.textContent=label; sel.appendChild(o); };
+  add('same', t('opt.same'));
+  (typeof LANGS!=='undefined'?LANGS:[]).forEach(l=>add(l.code,l.native));
+  sel.value = Array.prototype.some.call(sel.options, o=>o.value===cur) ? cur : 'same';
+}
+
 function setLang(lg, silent){
   if(!I18N[lg]) lg = 'ar';
   LANG = lg;
@@ -833,11 +845,11 @@ function setLang(lg, silent){
   document.getElementById('langName').textContent = (LANGS.find(l=>l.code===lg)||{}).native || lg;
   renderLangMenu();
   applyI18n();
-  const sel = $('lang'); if(sel) sel.value = (lg === 'en' ? 'en' : 'ar');
+  fillAnswerLangs();
   renderPresets(); renderTaskTemplates(); render(); renderHistory(); renderAi();
   if(qEl && qEl.value) filterUI(qEl.value);
   markActive();
-  if(!silent) toast(t('msg.theme'));
+  if(!silent) toast(t('msg.lang'));
 }
 
 /* ================= Tonal / format maps ================= */
@@ -1731,6 +1743,9 @@ function setChips(boxId,vals){
 function getChips(boxId){
   return Array.prototype.map.call(document.querySelectorAll('#'+boxId+' input:checked'), i=>i.value);
 }
+/* see mobile/app.js -- derived from the markup so it can never drift */
+const TECH_MAX = document.querySelectorAll('.tg[data-tg]').length + 2;
+
 function setFlag(k,v){
   FLAGS[k]=v;
   document.querySelectorAll('.tg[data-tg="'+k+'"]').forEach(el=>el.classList.toggle('on',v));
@@ -1938,7 +1953,7 @@ function render(){
   $('stSecs').textContent = (CURRENT.match(/^## /gm)||[]).length;
   const activeFlags = Object.keys(FLAGS).filter(k=>k!=='img' && FLAGS[k]).length;
   const tech = activeFlags + (v.tone.length?1:0) + (v.constraints?1:0);
-  $('stTech').textContent = tech+' / 12';
+  $('stTech').textContent = tech+' / '+TECH_MAX;
   $('modeTag').textContent = FLAGS.img ? t('mode.img') : t('mode.text');
   score(v);
 }
