@@ -283,6 +283,8 @@ input:focus,textarea:focus,select:focus{border-color:var(--primary);background:#
 .tg.on{background:#fff;border-color:#cfd9ff;box-shadow:var(--shadow-sm)}
 .tg.on .sw{background:var(--grad)}
 .tg.on .sw::after{transform:translateX(18px)}
+/* the knob starts on the right in Arabic, so it has to travel left */
+html[dir="rtl"] .tg.on .sw::after{transform:translateX(-18px)}
 
 /* ---------------- Output card ---------------- */
 .out{

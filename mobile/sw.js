@@ -1,5 +1,5 @@
 /* Prompt Engineer — mobile service worker (offline support) */
-const CACHE = 'pe-mobile-6db7333f';
+const CACHE = 'pe-mobile-360799c5';
 const ASSETS = [
   './',
   './index.html',
@@ -58,7 +58,14 @@ self.addEventListener('fetch', e => {
         const net = fetch(new Request(req, { cache: 'no-cache' })).then(res => {
           if (res && res.status === 200 && res.type === 'basic') {
             const copy = res.clone();
-            caches.open(CACHE).then(c => c.put(req, copy)).catch(() => {});
+            /* Store under the query-less key and drop the versioned one, so a
+               single entry per asset can never shadow a newer build. Without
+               this the cache held both "./app.js" and "./app.js?v=2.2", and the
+               ignoreSearch lookup always matched the older query-less entry. */
+            const clean = new Request(url.origin + url.pathname);
+            caches.open(CACHE)
+              .then(c => Promise.all([c.delete(req), c.put(clean, copy)]))
+              .catch(() => {});
           }
           return res;
         }).catch(() => hit);
@@ -68,8 +75,10 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  /* fonts/CDN: cache first, fall back to network */
+  /* fonts/CDN: cache first, fall back to network.
+     respondWith() rejects a null response, so the offline path has to return a
+     real Response -- Response.error() is the documented placeholder. */
   e.respondWith(
-    caches.match(req).then(hit => hit || fetch(req).catch(() => null))
+    caches.match(req).then(hit => hit || fetch(req).catch(() => Response.error()))
   );
 });

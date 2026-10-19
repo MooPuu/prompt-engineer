@@ -6,7 +6,11 @@
 const $ = id => document.getElementById(id);
 let LANG = 'ar';
 const t = k => (I18N[LANG] && I18N[LANG][k] !== undefined ? I18N[LANG][k] : (I18N.en[k] !== undefined ? I18N.en[k] : (I18N.ar[k] !== undefined ? I18N.ar[k] : k)));
-const tx = x => (Array.isArray(x) ? x[(LANG === 'en' ? 1 : 0)] : x);
+/* Arabic is index 0, every other shipped language is index 1. The old
+   check compared against 'en' only, so French, Spanish, Turkish ... fell back
+   to Arabic. The ?? guard means a one-element array can never leak the word
+   "undefined" into a field. */
+const tx = x => (Array.isArray(x) ? (x[(LANG === 'ar' ? 0 : 1)] ?? x[0] ?? '') : x);
 const pname = (p,i) => t('preset.'+i);
 
 /* ================= i18n ================= */
@@ -55,7 +59,7 @@ const IMG_STYLES = [
   ['isometric 3d render, clean design, soft ambient occlusion, pastel colors','ثلاثي الأبعاد أيزومتري','Isometric 3D'],
   ['minimalist, flat design, vector illustration, simple shapes','مينيمال فلات','Minimal flat'],
   ['low poly, faceted, geometric, soft gradients, modern','لو بولي (Low Poly)','Low poly'],
-  ['claymation, stop motion, clay texture, playful, soft studio light','ستوب موشن صيني (Clay)','Claymation'],
+  ['claymation, stop motion, clay texture, playful, soft studio light','ستوب موشن طيني (Clay)','Claymation'],
   ['vaporwave, retro grid horizon, pastel pink and teal, 80s synthwave aesthetic','ريتروويڤ/بيبور (Vaporwave)','Vaporwave'],
   ['glitch art, chromatic aberration, datamosh, distorted pixels, digital error','جلتش آرت (Glitch)','Glitch art'],
   ['voxel art, blocky 3d cubes, minecraft-like, clean isometric pixels','فوكسل آرت (Voxel)','Voxel art'],
@@ -79,7 +83,7 @@ const IMG_SIZES = [
   ['3:2','3:2 — صورة كلاسيكية','3:2 — Classic photo'],
   ['4:3','4:3 — شاشة كلاسيكية','4:3 — Classic screen'],
   ['5:4','5:4 — شبه مربع عريض','5:4 — Wide squarish'],
-  ['2.4:1','2.4:1 — أنامور픽 سينمائي','2.4:1 — Anamorphic'],
+  ['2.4:1','2.4:1 — أنامورفيك سينمائي','2.4:1 — Anamorphic'],
   ['1.91:1','1.91:1 — صورة مشاركة رابط (OG)','1.91:1 — Link preview (OG)'],
   ['5:3','5:3 — عريض معتدل','5:3 — Moderate wide'],
   ['14:9','14:9 — عريض متعدد الشاشات','14:9 — Multi-screen wide'],
@@ -205,7 +209,7 @@ function buildText(v){
       ? 'If any necessary information is missing, ask one specific, clear question instead of guessing, then wait for my answer before continuing.'
       : 'إذا كانت أي معلومة ضرورية ناقصة، اطرح سؤالًا واحدًا محددًا وواضحًا بدل التخمين، ثم انتظر الرد قبل المتابعة.');
   }
-  if(v.in1||v.out1){
+  if(FLAGS.few && (v.in1||v.out1)){
     method.push(en ? 'Follow the style and level of detail shown in the examples below in every output.'
                    : 'التزم بأسلوب الأمثلة المرفقة أدناه في كل ناتج تقدّمه.');
   }
@@ -240,7 +244,7 @@ function buildText(v){
   if(FLAGS.few && (v.in1||v.out1||v.in2||v.out2)){
     s.push('\n'+H('أمثلة مرجعية','FEW-SHOT EXAMPLES'));
     let n=1;
-    if(v.in1||v.out1){ s.push('\n'+(en?'### Example ':'### المثال ')+n+'\n'+(en?'Input':'المدخل')+':\n'+(v.in1||'—')+'\n'+(en?'Expected output':'المخرجات المتوقعة')+':\n'+(v.out1||'—')); n++; }
+    if(FLAGS.few && (v.in1||v.out1)){ s.push('\n'+(en?'### Example ':'### المثال ')+n+'\n'+(en?'Input':'المدخل')+':\n'+(v.in1||'—')+'\n'+(en?'Expected output':'المخرجات المتوقعة')+':\n'+(v.out1||'—')); n++; }
     if(v.in2||v.out2){ s.push('\n'+(en?'### Example ':'### المثال ')+n+'\n'+(en?'Input':'المدخل')+':\n'+(v.in2||'—')+'\n'+(en?'Expected output':'المخرجات المتوقعة')+':\n'+(v.out2||'—')); }
   }
   s.push('\n'+H('معايير النجاح','SUCCESS CRITERIA'));
@@ -421,6 +425,7 @@ function renderPresets(){
 }
 function applyPreset(i){
   const s=PRESETS[i].set;
+  if(s.task!==undefined) $('task').value=tx(s.task);
   if(s.role!==undefined) $('role').value=tx(s.role);
   if(s.audience!==undefined) $('audience').value=tx(s.audience);
   if(s.tone!==undefined) setChips('toneChips',s.tone);
@@ -428,10 +433,14 @@ function applyPreset(i){
   if(s.length!==undefined) $('length').value=s.length;
   if(s.constraints!==undefined) $('constraints').value=tx(s.constraints);
   if(s.avoid!==undefined) $('avoid').value=tx(s.avoid);
-  if(s.flags) Object.keys(s.flags).forEach(k=>setFlag(k,s.flags[k]));
+  /* Reset every toggle first, then apply the ones this preset declares.
+     Otherwise a key switched on by the previous preset (cot, say) stayed on
+     for a preset that never asked for it. */
+  Object.keys(FLAGS).forEach(k=>setFlag(k, !!(s.flags && s.flags[k])));
   render();
   toast(t('msg.preset')+tx(PRESETS[i].name));
-  goTab('m-home');
+  /* an image preset belongs on the image tab, not the text tab */
+  goTab(s.img ? 'm-image' : 'm-home');
 }
 
 /* ================= Ready templates for task & role (built from the presets) ================= */
@@ -493,10 +502,17 @@ function renderAi(){
         '<a class="oss" href="'+tool.au+'" target="_blank" rel="noopener">'+t('ai.alt')+'</a>'+
         '<button class="both" type="button">'+t('ai.both')+'</button>'+
       '</div>';
-    card.querySelector('.both').onclick=()=>{ openLink(tool.u); setTimeout(()=>openLink(tool.au), 350); };
+    /* Open the first tab inside the click gesture, then steer that same tab to
+       the second URL. Calling window.open() from inside setTimeout() loses the
+       user-activation and mobile browsers block it outright. */
+    const openBoth = () => {
+      const w = window.open(tool.u, '_blank');
+      if (w) setTimeout(() => { try { w.location.href = tool.au; } catch(_) {} }, 350);
+    };
+    card.querySelector('.both').onclick = openBoth;
+    card.querySelector('.oss').title = tool.ad || '';
     card.style.cursor='pointer';
-    card.onclick=(e)=>{ if(e.target.closest('a')||e.target.closest('button')) return;
-                        openLink(tool.u); setTimeout(()=>openLink(tool.au), 350); };
+    card.onclick=(e)=>{ if(e.target.closest('a')||e.target.closest('button')) return; openBoth(); };
     grid.appendChild(card);
   });
 }
@@ -613,9 +629,6 @@ function wire(){
   /* drawer */
   $('btnMenu').addEventListener('click',openDrawer);
   $('scrim').addEventListener('click',closeDrawer);
-  document.querySelectorAll('.lang-seg button').forEach(b=>{
-    b.addEventListener('click',()=>{ setLang(b.dataset.lang); closeDrawer(); });
-  });
 
   /* quick actions */
   $('qAuto').onclick=()=>{
