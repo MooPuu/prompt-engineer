@@ -209,7 +209,7 @@ function buildText(v){
       ? 'If any necessary information is missing, ask one specific, clear question instead of guessing, then wait for my answer before continuing.'
       : 'إذا كانت أي معلومة ضرورية ناقصة، اطرح سؤالًا واحدًا محددًا وواضحًا بدل التخمين، ثم انتظر الرد قبل المتابعة.');
   }
-  if(FLAGS.few && (v.in1||v.out1)){
+  if(FLAGS.few && (v.in1||v.out1||v.in2||v.out2)){
     method.push(en ? 'Follow the style and level of detail shown in the examples below in every output.'
                    : 'التزم بأسلوب الأمثلة المرفقة أدناه في كل ناتج تقدّمه.');
   }
@@ -332,7 +332,7 @@ const CHECKS=[
   {w:5,t:['ما يجب تجنّبه','Things to avoid'],d:['حدّد الأخطاء التي لا تريدها','List the mistakes you do not want'],ok:v=>v.avoid.length>5,f:'avoid'},
   {w:5,t:['تفكير خطوة بخطوة','Step-by-step reasoning'],d:['مفيد للمهام المعقدة','Helpful for complex tasks'],ok:()=>FLAGS.cot,f:'cot'},
   {w:4,t:['مراجعة ذاتية','Self-review'],d:['يتحقق من الناتج قبل التسليم','Checks the output before delivery'],ok:()=>FLAGS.self,f:'self'},
-  {w:10,t:['أمثلة مرجعية','Few-shot examples'],d:['مثال واحد يضبط الأسلوب','One example locks the style'],ok:v=>FLAGS.few&&(v.in1||v.out1),f:'few'}
+  {w:10,t:['أمثلة مرجعية','Few-shot examples'],d:['مثال واحد يضبط الأسلوب','One example locks the style'],ok:v=>FLAGS.few&&(v.in1||v.out1||v.in2||v.out2),f:'few'}
 ];
 function score(v){
   const box=$('checks'); box.innerHTML='';
