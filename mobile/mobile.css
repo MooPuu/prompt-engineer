@@ -35,6 +35,12 @@ html[data-theme="oled"] body::before{background:none}
 /* ---------------- Hero card theming ---------------- */
 
 /* the app shell background, per theme */
+
+/* the bottom navigation bar, per theme */
+:root{ --nav-bg:rgba(255,255,255,.96); }
+html[data-theme="dark"]{ --nav-bg:rgba(16,22,38,.94); }
+html[data-theme="neon"]{ --nav-bg:rgba(8,12,24,.94); }
+html[data-theme="oled"]{ --nav-bg:rgba(10,10,10,.96); }
 :root{ --app-bg:linear-gradient(180deg,#f7f8fd,#eff1f9); --app-shadow:0 0 60px rgba(23,32,84,.10); }
 html[data-theme="dark"]{ --app-bg:#0b0f1a; --app-shadow:0 0 60px rgba(0,0,0,.5); }
 html[data-theme="neon"]{ --app-bg:#04060d; --app-shadow:0 0 60px rgba(0,0,0,.55); }
@@ -471,7 +477,7 @@ pre.out-p{
 .bnav{
   position:fixed;bottom:0;left:50%;transform:translateX(-50%);
   width:min(480px,100%);z-index:35;display:grid;grid-template-columns:repeat(5,1fr);
-  background:rgba(255,255,255,.96);backdrop-filter:blur(14px);
+  background:var(--nav-bg);backdrop-filter:blur(14px);
   border-top:1px solid var(--line);border-radius:20px 20px 0 0;
   box-shadow:0 -8px 30px rgba(23,32,84,.10);
   padding:8px 6px calc(8px + env(safe-area-inset-bottom));
@@ -681,3 +687,14 @@ html[data-theme="dark"] .note,html[data-theme="neon"] .note,html[data-theme="ole
 html[data-theme="dark"] .s-title b,html[data-theme="neon"] .s-title b,html[data-theme="oled"] .s-title b{color:var(--ink)}
 html[data-theme="dark"] .s-title span,html[data-theme="neon"] .s-title span,html[data-theme="oled"] .s-title span{color:var(--muted)}
 html[data-theme="dark"] .s-done,html[data-theme="neon"] .s-done,html[data-theme="oled"] .s-done{color:var(--muted)}
+
+/* ---------------- Bottom navigation in the dark themes ---------------- */
+html[data-theme="dark"] .bnav,html[data-theme="neon"] .bnav,html[data-theme="oled"] .bnav{
+  border-top-color:var(--line);color:var(--ink)}
+html[data-theme="dark"] .bnav .bn-ic,html[data-theme="neon"] .bnav .bn-ic,html[data-theme="oled"] .bnav .bn-ic{
+  background:var(--surface2);color:var(--muted)}
+html[data-theme="dark"] .bnav button.active .bn-ic,html[data-theme="neon"] .bnav button.active .bn-ic,html[data-theme="oled"] .bnav button.active .bn-ic{
+  background:var(--blue-soft);color:var(--primary)}
+html[data-theme="dark"] .bnav .bn-t,html[data-theme="neon"] .bnav .bn-t,html[data-theme="oled"] .bnav .bn-t{color:var(--muted)}
+html[data-theme="dark"] .bnav button.active .bn-t,html[data-theme="neon"] .bnav button.active .bn-t,html[data-theme="oled"] .bnav button.active .bn-t{
+  color:var(--primary)}
