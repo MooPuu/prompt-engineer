@@ -8,8 +8,12 @@ const path = require('path');
 const APP_NAME = 'Prompt Engineer — مهندس البرومبت';
 
 /* منع نسخ متعددة (Installer / Portable) */
-if (!app.requestSingleInstanceLock()) {
+const gotTheLock = app.requestSingleInstanceLock();
+if (!gotTheLock) {
+  /* quit() alone does not stop execution -- the rest of this file kept running
+     and registered app.whenReady() before the process exited. */
   app.quit();
+  process.exit(0);
 }
 
 function createWindow() {
@@ -27,7 +31,8 @@ function createWindow() {
       contextIsolation: true,
       nodeIntegration: false,
       spellcheck: false,
-      devTools: true
+      /* never open DevTools for a real user in a shipped build */
+      devTools: !app.isPackaged
     }
   });
 

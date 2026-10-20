@@ -261,6 +261,8 @@ label.lb{color:var(--muted)}
 .ai-em{font-size:22px;line-height:1.2;filter:drop-shadow(0 3px 8px rgba(0,0,0,.35))}
 .ai-txt{flex:1;min-width:0}
 .ai-name{font-weight:800;font-size:15px;color:var(--head)}
+.ai-alt{font-size:11.5px;color:var(--muted);line-height:1.55;margin-top:3px}
+.ai-alt b{color:var(--acc)}
 .ai-desc{font-size:12.3px;color:var(--muted);margin-top:4px;line-height:1.6}
 .ai-badge{
   font-size:10.5px;font-weight:700;background:var(--ok-soft);color:var(--green);

@@ -802,7 +802,7 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
   </div>
 </footer>
 
-<script src="i18n.js?v=360799c5"></script>
+<script src="i18n.js?v=0d308ed4"></script>
 <script>
 /* ================= i18n ================= */
 /* I18N + LANGS now live in the shared i18n.js file */
@@ -810,8 +810,8 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
 const $ = id => document.getElementById(id);
 let LANG = 'ar';
 const t = k => (I18N[LANG] && I18N[LANG][k] !== undefined ? I18N[LANG][k] : (I18N.en[k] !== undefined ? I18N.en[k] : (I18N.ar[k] || k)));
-const L = () => (LANG === 'en' ? 1 : 0);          // picks [ar, en]
-const tx = x => (Array.isArray(x) ? x[L()] : x);
+const L = () => (LANG === 'ar' ? 0 : 1);          // Arabic is index 0, every other language index 1
+const tx = x => (Array.isArray(x) ? (x[L()] ?? x[0] ?? '') : x);
 const pname = (p,i) => t('preset.'+i);
 
 function applyI18n(){
@@ -823,7 +823,7 @@ function applyI18n(){
   const meta = LANGS.find(l=>l.code===LANG) || LANGS[0];
   document.documentElement.dir = meta.dir;
   document.documentElement.className = 'script-' + meta.script;
-  document.title = LANG === 'en' ? 'Prompt Engineer — AI Prompt Builder' : 'مهندس البرومبت — Prompt Engineer';
+  document.title = L() === 1 ? 'Prompt Engineer — AI Prompt Builder' : 'مهندس البرومبت — Prompt Engineer';
 }
 /* the answer-language <select> must offer every shipped language, not just ar/en.
    Built from LANGS so it can never fall out of sync with the dictionary. */
@@ -1724,6 +1724,9 @@ function toggleTaskPanel(force){ toggleTemplatePanel('task',force); }
 function applyPreset(i){
   const s=PRESETS[i].set;
   document.querySelectorAll('#presets .chip').forEach((c,j)=>c.classList.toggle('active',j===i));
+  /* the task field belongs to the ready-task picker, but a quick preset chip
+     should fill it too so the whole builder is consistent */
+  if(s.task!==undefined) $('task').value=tx(s.task);
   if(s.role!==undefined) $('role').value=tx(s.role);
   if(s.audience!==undefined) $('audience').value=tx(s.audience);
   if(s.tone!==undefined) setChips('toneChips',s.tone);
@@ -1731,6 +1734,8 @@ function applyPreset(i){
   if(s.length!==undefined) $('length').value=s.length;
   if(s.constraints!==undefined) $('constraints').value=tx(s.constraints);
   if(s.avoid!==undefined) $('avoid').value=tx(s.avoid);
+  /* clear every toggle first, then apply the ones this preset declares */
+  Object.keys(FLAGS).forEach(k=>setFlag(k,false));
   if(s.flags) Object.keys(s.flags).forEach(k=>setFlag(k,s.flags[k]));
   /* القالب النصي يعيد الوضع إلى النص، وقالب الصور يفعّل وضع الصور */
   if(s.img===undefined) setFlag('img', false);
@@ -1947,7 +1952,9 @@ function render(){
   const empty = !v.task && !v.role && !v.context && !v.audience && !v.constraints && !v.avoid &&
                 !v.tone.length && !v.fmt.length && !v.length && !FLAGS.few && !FLAGS.img;
   $('preview').textContent = empty ? t('preview.start') : CURRENT;
-  $('preview').style.direction = (v.lang==='en' ? 'ltr' : 'rtl');
+  /* an image prompt is always English (and carries --ar / --s flags), so it
+     must never be laid out right-to-left */
+  $('preview').style.direction = (FLAGS.img || L() === 1) ? 'ltr' : 'rtl';
   const words = CURRENT.split(/\s+/).filter(Boolean).length;
   $('stWords').textContent = words;
   $('stChars').textContent = CURRENT.length;
@@ -2042,19 +2049,20 @@ $('btnMd').onclick=()=>download('prompt.md',CURRENT);
 
 $('btnAuto').onclick=()=>{
   const v=readV();
-  if(v.role.length<3) $('role').value = LANG==='en'
+  const _en = L() === 1;
+  if(v.role.length<3) $('role').value = _en
     ? 'A highly skilled expert in the field of this task, precise, practical and organized'
     : 'خبير محترف متخصص في المجال المطابق للمهمة، دقيق، عملي، ومنظم';
-  if(v.audience.length<3) $('audience').value = LANG==='en'
+  if(v.audience.length<3) $('audience').value = _en
     ? 'An interested reader looking for practical, direct content'
     : 'قارئ مهتم يريد محتوى عمليًا ومباشرًا';
   if(!v.tone.length) setChips('toneChips',['pro']);
   if(!v.fmt.length) setChips('fmtChips',['md']);
   if(!v.length) $('length').value='medium';
-  if(v.constraints.length<5) $('constraints').value = LANG==='en'
+  if(v.constraints.length<5) $('constraints').value = _en
     ? 'Stick to the provided information, no guessing\nOrganize the answer with clear headings\nAdd practical examples where needed'
     : 'التزم بالمعلومات المتوفرة فقط دون إضافة تخمينات\nنظّم الإجابة بعناوين واضحة\nقدّم أمثلة عملية عند الحاجة';
-  if(v.avoid.length<5) $('avoid').value = LANG==='en'
+  if(v.avoid.length<5) $('avoid').value = _en
     ? 'Do not repeat the same idea in different words\nNo generic filler sentences'
     : 'لا تكرر نفس الفكرة بصياغات مختلفة\nلا تستخدم جملًا عامّة بلا قيمة';
   setFlag('ask',true); setFlag('self',true);
@@ -2062,10 +2070,11 @@ $('btnAuto').onclick=()=>{
 };
 $('btnReset').onclick=()=>{
   if(!confirm(t('ask.reset'))) return;
-  ['task','role','context','audience','constraints','avoid','in1','out1','in2','out2','imgNeg'].forEach(k=>$(k).value='');
-  $('length').value=''; $('lang').value = (LANG==='en'?'en':'ar');
+  ['task','role','context','audience','constraints','avoid','in1','out1','in2','out2','imgNeg','imgTask','imgArCustom'].forEach(k=>$(k).value='');
+  $('length').value=''; fillAnswerLangs();
   setChips('toneChips',[]); setChips('fmtChips',[]);
-  ['ask','cot','self','few','img'].forEach(k=>setFlag(k,false));
+  /* clear EVERY toggle, not just the first five */
+  Object.keys(FLAGS).forEach(k=>setFlag(k,false));
   document.querySelectorAll('#presets .chip').forEach(c=>c.classList.remove('active'));
   render(); toast(t('msg.clear'));
 };
@@ -2082,9 +2091,6 @@ function setTheme(name){
 }
 document.querySelectorAll('#themes .tbtn').forEach(b=>{
   b.addEventListener('click',()=>{ setTheme(b.dataset.theme); toast(t('msg.theme')); });
-});
-document.querySelectorAll('#langs .tbtn').forEach(b=>{
-  b.addEventListener('click',()=>setLang(b.dataset.lang));
 });
 
 /* ================= History ================= */
@@ -2104,8 +2110,8 @@ function renderHistory(){
     const el=document.createElement('div'); el.className='hitem';
     const txt=document.createElement('div'); txt.className='ht'; txt.textContent=it.task;
     const hm=document.createElement('span'); hm.className='hm';
-    hm.textContent=d.toLocaleDateString(LANG==='en'?'en-GB':'ar-EG')+' '+d.toLocaleTimeString(LANG==='en'?'en-GB':'ar-EG',{hour:'2-digit',minute:'2-digit'});
-    const b1=document.createElement('button'); b1.className='btn small'; b1.textContent='📋 '+(LANG==='en'?'Copy':'نسخ');
+    hm.textContent=d.toLocaleDateString(L()===1?'en-GB':'ar-EG')+' '+d.toLocaleTimeString(L()===1?'en-GB':'ar-EG',{hour:'2-digit',minute:'2-digit'});
+    const b1=document.createElement('button'); b1.className='btn small'; b1.textContent='📋 '+(L()===1?'Copy':'نسخ');
     b1.onclick=()=>copy(it.p);
     const b2=document.createElement('button'); b2.className='btn small ghost'; b2.textContent='✕'; b2.title=t('phd.title');
     b2.onclick=()=>{ h.splice(i,1); try{localStorage.setItem('pe_hist',JSON.stringify(h));}catch(e){} renderHistory(); };
@@ -2178,7 +2184,8 @@ function renderAi(){
       '<div class="ai-head">'+
         '<span class="ai-em">'+tool.e+'</span>'+
         '<div class="ai-txt"><div class="ai-name">'+tx(tool.n)+'</div>'+
-        '<div class="ai-desc">'+tx(tool.d)+'</div></div>'+
+        '<div class="ai-desc">'+tx(tool.d)+'</div>'+
+        '<div class="ai-alt"><b>'+t('ai.alt')+'</b> '+tx(tool.an)+' — '+tx(tool.ad)+'</div></div>'+
         '<span class="ai-badge">'+t('ai.free')+'</span>'+
       '</div>'+
       '<div class="ai-links">'+
@@ -2187,8 +2194,10 @@ function renderAi(){
       '</div>';
     card.addEventListener('click', e=>{
       if(e.target.closest('a')) return;      /* الزر يفتح رابطه فقط */
-      openLink(tool.u);                      /* البطاقة تفتح الاثنين */
-      openLink(tool.au);
+      /* the card opens the official tool; the open-source button opens its own.
+         Opening both at once surprised users in Electron and was blocked
+         outright by mobile browsers. */
+      openLink(tool.u);
     });
     grid.appendChild(card);
   });
@@ -2238,7 +2247,7 @@ window.addEventListener('scroll',()=>{
 /* بحث فوري يفلتر الأقسام والقوالب والأدوات والقائمة */
 function resText(n){
   if(n === 0) return t('side.res0');
-  if(LANG === 'en') return n + ' ' + (n === 1 ? t('side.res1') : t('side.resMany'));
+  if(L() === 1) return n + ' ' + (n === 1 ? t('side.res1') : t('side.resMany'));
   if(n === 1) return t('side.res1');
   if(n === 2) return t('side.res2');
   if(n >= 3 && n <= 10) return n + ' ' + t('side.resFew');

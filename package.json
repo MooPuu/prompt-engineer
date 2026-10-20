@@ -12,10 +12,11 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder --win portable nsis msi",
+    "build": "npm run build:icons && electron-builder --win portable nsis msi",
     "build:portable": "electron-builder --win portable",
     "build:nsis": "electron-builder --win nsis",
-    "build:msi": "electron-builder --win msi"
+    "build:msi": "electron-builder --win msi",
+    "build:icons": "node build/make-icon.mjs"
   },
   "devDependencies": {
     "electron": "^33.4.11",

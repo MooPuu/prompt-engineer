@@ -351,7 +351,7 @@ function score(v){
   $('score').textContent=p+'%';
   $('heroScore').textContent=p+'%';
   $('heroBar').style.width=p+'%';
-  $('scoreTip').textContent = p>=80 ? t('q.good') : (p>=50 ? t('q.mid') : t('q.low'));
+  $('scoreTip').innerHTML = p>=80 ? t('q.good') : (p>=50 ? t('q.mid') : t('q.low'));
 }
 function focusField(f){
   const tgEl = document.querySelector('.tg[data-tg="'+f+'"]');
