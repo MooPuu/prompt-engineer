@@ -23,7 +23,7 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="mobile.css?v=8e602d55">
+<link rel="stylesheet" href="mobile.css?v=5f44003a">
 </head>
 <body>
 
@@ -71,7 +71,14 @@
     <div id="secList">
 
       <!-- 1: task -->
-      <div class="scard open" data-card="task">
+      <!-- target model: the engine reshapes the prompt for it -->
+  <div class="modelpick">
+    <label class="lb" for="targetModel" data-i18n="mdl.label">النموذج المستهدف</label>
+    <select id="targetModel"></select>
+    <span class="modelpick-n" id="modelNote"></span>
+  </div>
+
+  <div class="scard open" data-card="task">
         <button class="s-head" type="button" aria-expanded="false" aria-controls="sc1">
           <span class="s-ic">🎯</span>
           <span class="s-title"><b data-i18n="sec.task">المهمة الأساسية</b><span data-i18n="sec.task.d">ماذا تريد من الذكاء الاصطناعي أن يفعل؟</span></span>
@@ -386,7 +393,9 @@
     <div class="sec-h"><b data-i18n="q.checks">المعايير (12)</b><span data-i18n="q.tap">اضغط للانتقال</span></div>
     <div id="checks"></div>
     <div class="d-foot d-foot-gap" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
-  </section>
+  
+  <div class="gap-list" id="gapList"></div>
+</section>
 
   <!-- ================= TAB 3: PRESETS ================= -->
   <section class="panel" id="m-presets">
@@ -489,6 +498,6 @@
 
 <script src="i18n.js?v=b07995ef"></script>
 <script src="data.js?v=9ec1560d"></script>
-<script src="app.js?v=e6f8ff4b"></script>
+<script src="app.js?v=4f70d2f3"></script>
 </body>
 </html>

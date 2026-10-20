@@ -163,8 +163,35 @@ function buildImage(v){
   s.push('2. Keep one clear focal point and a clean, balanced composition.');
   s.push('3. If any part of the description is written in Arabic, translate it into precise English visual terms first, then generate.');
   s.push('4. Never render any text, letters or watermarks inside the image.');
-  return s.join('\n');
+  return applyModelTuning(s.join('\n'));
 }
+/* Reshape the finished prompt for the target model.
+   Claude: wrap every section in an XML-ish tag, the shape it parses best.
+   DeepSeek: ask for the reasoning explicitly before the answer.
+   Llama: drop the quoted padding and the extra blank lines. */
+function applyModelTuning(text){
+  const en = (typeof LANG!=='undefined') ? LANG!=='ar' : true;
+  if(TARGET_MODEL==='claude'){
+    const out=[]; let tag=null, buf=[];
+    const flush=()=>{ if(tag!==null && buf.length){ out.push('<'+tag+'>'); out.push(...buf); out.push('</'+tag+'>'); } tag=null; buf=[]; };
+    for(const ln of text.split('\n')){
+      const h=/^##\s+(.+)$/.exec(ln);
+      if(h){ flush(); tag=h[1].trim().toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')||'section'; continue; }
+      buf.push(ln);
+    }
+    flush();
+    return out.join('\n');
+  }
+  if(TARGET_MODEL==='deepseek'){
+    return (en ? 'Think step by step before answering. State the reasoning in a short section, then give the final answer in a separate section.'
+               : 'فكّر خطوة بخطوة قبل الإجابة. اعرض التحليل في قسم قصير، ثم قدّم الإجابة النهائية في قسم منفصل.') + '\n\n' + text;
+  }
+  if(TARGET_MODEL==='llama'){
+    return text.split('\n').filter(l=>!l.startsWith('> ')).join('\n').replace(/\n{3,}/g,'\n\n');
+  }
+  return text;
+}
+
 function buildText(v){
   const en = v.lang==='en';
   const H = (ar,x)=> '## '+(en?x:ar);
@@ -272,7 +299,7 @@ function buildText(v){
   fin.push(en? 'Start now.' : 'ابدأ الآن.');
   s.push('\n'+H('تعليمات أخيرة','FINAL INSTRUCTIONS'));
   s.push(fin.map((x,n)=>(n+1)+'. '+x).join('\n'));
-  return s.join('\n');
+  return applyModelTuning(s.join('\n'));
 }
 
 /* ================= Render ================= */
@@ -401,6 +428,100 @@ function download(name,content){
 function openLink(u){
   const a=document.createElement('a'); a.href=u; a.target='_blank'; a.rel='noopener';
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
+}
+
+/* ================= Target model tuning ================= */
+const MODEL_TUNE = {
+  auto:   { label: {ar:'تلقائي', en:'Auto'}, note:{ar:'', en:''} },
+  claude: { label: {ar:'Claude', en:'Claude'},
+            note:{ar:'البنية مُنسّقة بوسوم XML كما يفضّل Claude.', en:'XML-style tagged structure, the way Claude prefers it.'} },
+  chatgpt:{ label: {ar:'ChatGPT', en:'ChatGPT'},
+            note:{ar:'فقرات مرتّبة ومراحل واضحة، لا وسوم.', en:'Ordered paragraphs and clear stages, no tags.'} },
+  deepseek:{label: {ar:'DeepSeek', en:'DeepSeek'},
+            note:{ar:'توجيه صريح للتفكير خطوة بخطوة قبل الإجابة.', en:'Explicit step-by-step reasoning guidance before the answer.'} },
+  llama:  { label: {ar:'Llama محلي', en:'Local Llama'},
+            note:{ar:'تعليمات قصيرة ومباشرة بلا حشو.', en:'Short, direct imperatives with no padding.'} }
+};
+let TARGET_MODEL='auto';
+function fillModelSelect(){
+  const sel=$('targetModel'); if(!sel) return;
+  const cur = sel.value || TARGET_MODEL;
+  if(sel.options.length !== Object.keys(MODEL_TUNE).length){
+    sel.innerHTML='';
+    Object.keys(MODEL_TUNE).forEach(k=>{
+      const o=document.createElement('option'); o.value=k;
+      o.textContent = MODEL_TUNE[k].label[LANG==='ar'?'ar':'en'];
+      sel.appendChild(o);
+    });
+  }
+  if(MODEL_TUNE[cur]) sel.value=cur; else sel.value=TARGET_MODEL;
+}
+function modelTune(){
+  const m=MODEL_TUNE[TARGET_MODEL]||MODEL_TUNE.auto;
+  const note=$('modelNote');
+  if(note) note.textContent = m.note[LANG==='ar'?'ar':'en'] || '';
+  return m;
+}
+
+/* ================= Intent gap analyser ================= */
+/* Looks for the requirements a strong prompt usually carries and reports
+   the ones that are missing, each with a one-click fix. */
+const GAP_RULES = [
+  { id:'lang',  ar:'لم تحدد لغة البرمجة أو إطار العمل', en:'You did not name the programming language or framework',
+    fix:'lang', when: v => /\b(code|coding|program|script|function|api|bug|debug|\u0628\u0631\u0645\u062c|\u0643\u0648\u062f|\u062f\u0627\u0644\u0629|\u062a\u0637\u0628\u064a\u0642|\u062e\u0627\u0644\u0642|\u062f\u0627\u0644\u0629)/i.test(v.task) },
+  { id:'aud',   ar:'لم تذكر الجمهور المستهدف', en:'You did not say who the output is for',
+    fix:'audience', when: v => v.task.length>12 && !v.audience.trim() },
+  { id:'len',   ar:'لم تحدد الطول أو العمق المطلوب', en:'You did not say how long or how deep the answer should be',
+    fix:'length', when: v => v.task.length>12 && !v.length },
+  { id:'cons',  ar:'لا توجد قيود — قد يخرج الرد عن المطلوب', en:'No constraints, so the answer may drift',
+    fix:'constraints', when: v => v.task.length>12 && !v.constraints.trim() },
+  { id:'short', ar:'المهمة قصيرة جدًا', en:'The task is too short to act on',
+    fix:'task', when: v => v.task.length>0 && v.task.length<25 },
+  { id:'fmt',   ar:'لم تختار صيغة الإخراج', en:'No output format chosen',
+    fix:'fmt', when: v => v.task.length>12 && !v.fmt.length },
+  { id:'lang_out', ar:'لغة الإجابة غير محددة', en:'The answer language is not set',
+    fix:'lang', when: v => v.task.length>12 && v.lang==='same' }
+];
+function findGaps(){
+  const v=readV();
+  return GAP_RULES.filter(r=>{ try{ return r.when(v); }catch(e){ return false; } });
+}
+function renderGaps(){
+  const box=$('gapList'); if(!box) return;
+  const gaps=findGaps();
+  const ar=LANG==='ar';
+  box.innerHTML='';
+  if(!gaps.length){
+    box.innerHTML='<div class="gap-ok">'+(ar?'✓ لا ثغرات ظاهرة في المواصفات':'✓ No gaps detected in the spec')+'</div>';
+    return;
+  }
+  gaps.forEach(g=>{
+    const row=document.createElement('div'); row.className='gap';
+    const ic=document.createElement('span'); ic.className='gap-ic'; ic.textContent='⚠';
+    const tx=document.createElement('span'); tx.className='gap-t'; tx.textContent=(ar?g.ar:g.en);
+    const btn=document.createElement('button'); btn.className='gap-fix'; btn.type='button';
+    btn.textContent=(ar?'أضف':'Add');
+    btn.onclick=()=>applyGapFix(g);
+    row.appendChild(ic); row.appendChild(tx); row.appendChild(btn);
+    box.appendChild(row);
+  });
+}
+function applyGapFix(g){
+  const ar=LANG==='ar';
+  const FILL={
+    lang:{field:'task', value:'using Python'},
+    audience:{field:'audience', value: ar?'متخصصون في المجال، يقرؤون للقرار العملي':'Practitioners in the field, reading to make a decision'},
+    length:{field:'length', value:'medium'},
+    constraints:{field:'constraints', value: ar?'التزم بمطلوب المهمة دون إضافة خارجها\nوضّح الخطوة التالية بعد كل نقطة':'Stay within the scope of the task and add nothing outside it\nState the next step after every point'},
+    task:{field:'task', value:''},
+    fmt:{field:'fmtChips', value:['md']},
+    lang_out:{field:'lang', value:'en'}
+  };
+  const f=FILL[g.fix]; if(!f) return;
+  if(f.field==='fmtChips'){ setChips('fmtChips', f.value); }
+  else { const el=$(f.field); if(el) el.value=f.value; }
+  render();
+  toast(t('gap.fixed'));
 }
 
 /* ================= Phased response ================= */
@@ -773,6 +894,17 @@ function wire(){
   let lg='ar'; try{ lg=localStorage.getItem('pe_lang')||'ar'; }catch(e){}
   wire();
   renderThemeRow();
+  const mSel=$('targetModel');
+  if(mSel){
+    fillModelSelect();
+    mSel.addEventListener('change',()=>{
+      TARGET_MODEL = mSel.value;
+      try{ localStorage.setItem('pe_model', TARGET_MODEL); }catch(e){}
+      const note=$('modelNote');
+      if(note){ const m=MODEL_TUNE[TARGET_MODEL]; note.textContent = m ? (m.note[LANG==='ar'?'ar':'en']||'') : ''; }
+    });
+    try{ const saved=localStorage.getItem('pe_model'); if(saved && MODEL_TUNE[saved]){ TARGET_MODEL=saved; mSel.value=saved; } }catch(e){}
+  }
   const psel=$('phaseCountSel');
   if(psel){ for(let i=1;i<=6;i++){ const o=document.createElement('option'); o.value=String(i); o.textContent=String(i); psel.appendChild(o); }
     psel.value='3'; psel.addEventListener('change',renderPhases); }

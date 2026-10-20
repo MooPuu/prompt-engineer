@@ -1825,7 +1825,34 @@ function buildImage(v){
   s.push('2. Keep one clear focal point and a clean, balanced composition.');
   s.push('3. If any part of the description is written in Arabic, translate it into precise English visual terms first, then generate.');
   s.push('4. Never render any text, letters or watermarks inside the image.');
-  return s.join('\n');
+  return applyModelTuning(s.join('\n'));
+}
+
+/* Reshape the finished prompt for the target model.
+   Claude: wrap every section in an XML-ish tag, the shape it parses best.
+   DeepSeek: ask for the reasoning explicitly before the answer.
+   Llama: drop the quoted padding and the extra blank lines. */
+function applyModelTuning(text){
+  const en = (typeof LANG!=='undefined') ? LANG!=='ar' : true;
+  if(TARGET_MODEL==='claude'){
+    const out=[]; let tag=null, buf=[];
+    const flush=()=>{ if(tag!==null && buf.length){ out.push('<'+tag+'>'); out.push(...buf); out.push('</'+tag+'>'); } tag=null; buf=[]; };
+    for(const ln of text.split('\n')){
+      const h=/^##\s+(.+)$/.exec(ln);
+      if(h){ flush(); tag=h[1].trim().toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'')||'section'; continue; }
+      buf.push(ln);
+    }
+    flush();
+    return out.join('\n');
+  }
+  if(TARGET_MODEL==='deepseek'){
+    return (en ? 'Think step by step before answering. State the reasoning in a short section, then give the final answer in a separate section.'
+               : 'فكّر خطوة بخطوة قبل الإجابة. اعرض التحليل في قسم قصير، ثم قدّم الإجابة النهائية في قسم منفصل.') + '\n\n' + text;
+  }
+  if(TARGET_MODEL==='llama'){
+    return text.split('\n').filter(l=>!l.startsWith('> ')).join('\n').replace(/\n{3,}/g,'\n\n');
+  }
+  return text;
 }
 
 function buildText(v){
