@@ -403,6 +403,90 @@ function openLink(u){
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
 
+/* ================= Phased response ================= */
+const PHASES=[{"key":"plan","ar":{"title":"البحث والتحليل","goal":"ابحث عن المادة وحلّل المطلوب قبل الكتابة","body":"حلل المهمة بعمق: ابحث في المعطيات المتاحة،حدّد المصادر والأفكار الرئيسة، ووضّح زاوية الطرح والجمهور المستهدف. لا تكتب النص النهائي بعد — أخرج بحثًا منظّمًا وخطة تنفيذ."},"en":{"title":"Research & analysis","goal":"Gather the material and analyse the brief before writing","body":"Analyse the task in depth: work through the material you were given, identify the key sources and ideas, and clarify the angle and the target audience. Do not write the final text yet — produce a structured research brief and a plan."}},{"key":"outline","ar":{"title":"الهيكل والمخطط","goal":"ابنِ مخططًا تفصيليًا قبل صياغة النص","body":"بناءً على البحث السابق، ضع مخططًا تفصيليًا: العناوين الرئيسة، وما تحت كل عنوان، وترتيب النقاط، والأمثلة التي ستُستعمل. أخرج المخطط فقط."},"en":{"title":"Outline & structure","goal":"Build a detailed outline before any prose","body":"Building on the research above, produce a detailed outline: the main headings, what sits under each one, the order of the points, and the examples that will be used. Output the outline only."}},{"key":"draft","ar":{"title":"الصياغة","goal":"اكتب المسودّة كاملة","body":"اكتب المسودّة كاملة وفق المخطط، مع الالتزام بالقيود وبأسلوب المأمور. لا تحذف أي شرط، وإن نقص شيء فاذكره في نهاية المسودّة."},"en":{"title":"The draft","goal":"Write the complete first draft","body":"Write the full draft following the outline, honouring every constraint and the requested style. Do not drop a requirement; if something is missing, note it at the end of the draft."}},{"key":"expand","ar":{"title":"التفصيل والإثراء","goal":"وسّع المسودّة وأضف العمق","body":"وسّع المسودّة: أضف التفاصيل والأمثلة والشواهد، ووسّع الأقسام الضعيفة، لكن لا تغيّر الاتجاه العام ولا تضف استنتاجات لم تطلبها."},"en":{"title":"Expand & enrich","goal":"Deepen the draft without drifting","body":"Expand the draft: add the detail, the examples and the supporting points, and thicken the weaker sections — but do not change the overall direction and do not add conclusions you were not asked for."}},{"key":"review","ar":{"title":"المراجعة والتدقيق","goal":"راجع المسودّة مقابل كل شرط","body":"راجع المسودّة حصرًا مقابل قائمة المتطلبات: اذكر ما استوفى الشرط، وما لم يستوفِه، مع تحديد المشكلة. لا تعِد كتابة النص في هذه المرحلة — أعطِ تقرير مراجعة فقط."},"en":{"title":"Review & audit","goal":"Audit the draft against every requirement","body":"Review the draft strictly against the requirement list: state which requirements are met, which are not, and where the gap is. Do not rewrite the text in this stage — produce a review report only."}},{"key":"final","ar":{"title":"التنقيح النهائي","goal":"سلّم النسخة النهائية جاهزة","body":"طبّق ملاحظات المراجعة، وانقح الأسلوب، ووحّد المفردات والعلامات، ثم سلّم النسخة النهائية وحدها دون شرح ولا مقدمات."},"en":{"title":"Final polish","goal":"Deliver the finished text","body":"Apply the review notes, polish the prose, unify the vocabulary and the punctuation, then deliver the final version alone — no commentary, no preamble."}}];
+function phasePlan(n){
+  n=Math.max(1,Math.min(6,n|0));
+  if(n===1) return [0];
+  if(n>=6) return [0,1,2,3,4,5];
+  return [0,5].concat([1,2,3,4].slice(0,n-2)).sort((a,b)=>a-b);
+}
+function buildPhases(n){
+  const v=readV();
+  const plan=phasePlan(n);
+  const ctx=[];
+  if(v.task) ctx.push('TASK: '+v.task);
+  if(v.role) ctx.push('ROLE: '+v.role);
+  if(v.audience) ctx.push('AUDIENCE: '+v.audience);
+  if(v.context) ctx.push('CONTEXT: '+v.context);
+  if(v.constraints) ctx.push('REQUIREMENTS:\n'+v.constraints);
+  if(v.avoid) ctx.push('DO NOT:\n'+v.avoid);
+  const head=ctx.join('\n\n');
+  const ar = LANG==='ar';
+  return plan.map((idx,k)=>{
+    const p=PHASES[idx];
+    const isFirst=k===0, isLast=k===plan.length-1;
+    const link=isFirst?'':'\n\nCONTINUE FROM THE PREVIOUS STAGE. Do not restart it.\n';
+    const close=isLast?'\n\nDeliver this stage only. The next stage continues from your output.':'';
+    return { n:k+1,
+      title: ar?p.ar.title:p.en.title,
+      goal: ar?p.ar.goal:p.en.goal,
+      text: (isFirst?head+'\n\n':'')+link+(ar?p.ar.body:p.en.body)+close };
+  });
+}
+function renderPhases(){
+  const list=$('phaseList'); if(!list) return;
+  const n=Number(($('phaseCountSel')||{}).value||1);
+  const phases=buildPhases(n);
+  list.innerHTML='';
+  phases.forEach((ph,i)=>{
+    const box=document.createElement('div'); box.className='phase';
+    const h=document.createElement('div'); h.className='phase-h';
+    h.innerHTML='<span class="phase-n">'+(i+1)+'</span><b></b><span class="phase-goal"></span>';
+    h.querySelector('b').textContent=ph.title;
+    h.querySelector('.phase-goal').textContent=ph.goal;
+    const pre=document.createElement('pre'); pre.className='phase-txt'; pre.textContent=ph.text;
+    const b=document.createElement('button'); b.className='btn small ghost phase-cp'; b.type='button';
+    b.textContent='📋 '+t('ph.copy');
+    b.onclick=()=>copy(ph.text);
+    box.appendChild(h); box.appendChild(pre); box.appendChild(b);
+    list.appendChild(box);
+  });
+}
+
+/* ================= Themes ================= */
+const MOBILE_THEMES = [
+  {code:'light', label:'فاتح',  icon:'☀️', bg:'#EFF1F9'},
+  {code:'dark',  label:'داكن',  icon:'🌙', bg:'#0b0f1a'},
+  {code:'neon',  label:'نيون',  icon:'⚡', bg:'#04060d'},
+  {code:'oled',  label:'أسود',  icon:'⬛', bg:'#000000'}
+];
+function setTheme(code){
+  if(!MOBILE_THEMES.some(x=>x.code===code)) code='light';
+  document.documentElement.setAttribute('data-theme', code);
+  const m=document.querySelector('meta[name="theme-color"]');
+  const th=MOBILE_THEMES.find(x=>x.code===code);
+  if(m && th) m.content=th.bg;
+  document.querySelectorAll('#themeRow button').forEach(b=>{
+    const on=b.dataset.theme===code;
+    b.classList.toggle('active', on);
+    b.setAttribute('aria-checked', on?'true':'false');
+  });
+  try{ localStorage.setItem('pe_theme', code); }catch(e){}
+}
+function renderThemeRow(){
+  const box=$('themeRow'); if(!box) return;
+  box.innerHTML='';
+  MOBILE_THEMES.forEach(th=>{
+    const b=document.createElement('button');
+    b.type='button'; b.className='theme-btn'; b.dataset.theme=th.code;
+    b.setAttribute('role','radio'); b.setAttribute('aria-checked','false');
+    b.innerHTML='<span class="th-ic" style="background:'+th.bg+'">'+th.icon+'</span><span class="th-t">'+th.label+'</span>';
+    b.addEventListener('click',()=>setTheme(th.code));
+    box.appendChild(b);
+  });
+}
+
 /* ================= Tabs / drawer / accordion ================= */
 function goTab(id){
   document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id===id));
@@ -676,6 +760,17 @@ function wire(){
 (function init(){
   let lg='ar'; try{ lg=localStorage.getItem('pe_lang')||'ar'; }catch(e){}
   wire();
+  renderThemeRow();
+  const psel=$('phaseCountSel');
+  if(psel){ for(let i=1;i<=6;i++){ const o=document.createElement('option'); o.value=String(i); o.textContent=String(i); psel.appendChild(o); }
+    psel.value='3'; psel.addEventListener('change',renderPhases); }
+  const pcopy=$('btnPhaseCopy');
+  if(pcopy) pcopy.onclick=()=>{
+    const phases=buildPhases(Number(psel.value));
+    copy(phases.map(p=>'=== STAGE '+p.n+' ===\n'+p.text).join('\n\n'));
+  };
+  let th='light'; try{ th=localStorage.getItem('pe_theme')||'light'; }catch(e){}
+  setTheme(th);
   setLang(lg, true);
   goTab('m-home');
   if('serviceWorker' in navigator){

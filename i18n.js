@@ -1,4 +1,4 @@
-/* Prompt Engineer — shared language data (10 languages loaded, 427 keys each)
+/* Prompt Engineer — shared language data (10 languages loaded, 431 keys each)
    Fallback chain: chosen language → English → Arabic → key.
    Preset bodies and tone descriptions stay bilingual AR/EN by design. */
 const LANGS = [
@@ -511,7 +511,11 @@ const I18N = {
   "st.cost": "التكلفة التقريبية",
   "vars.title": "متغيّرات",
   "vars.clear": "مسح القيم",
-  "focus.mode": "تركيز"
+  "focus.mode": "تركيز",
+  "ph.title": "استجابة مرحلية",
+  "ph.hint": "قسّم البرومبت إلى مراحل تُرسَل بالتتابع، كل مرحلة تبني على سابقتها.",
+  "ph.copy": "نسخ المرحلة",
+  "ph.copyAll": "نسخ كل المراحل"
  },
  "en": {
   "app.title": "Prompt Engineer — AI Prompt Builder",
@@ -940,7 +944,11 @@ const I18N = {
   "st.cost": "Est. cost",
   "vars.title": "Variables",
   "vars.clear": "Clear values",
-  "focus.mode": "Focus"
+  "focus.mode": "Focus",
+  "ph.title": "Phased response",
+  "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
+  "ph.copy": "Copy stage",
+  "ph.copyAll": "Copy all stages"
  },
  "de": {
   "app.title": "Prompt Engineer — KI-Prompt-Builder",
@@ -1369,7 +1377,11 @@ const I18N = {
   "st.cost": "Est. cost",
   "vars.title": "Variables",
   "vars.clear": "Clear values",
-  "focus.mode": "Focus"
+  "focus.mode": "Focus",
+  "ph.title": "Phased response",
+  "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
+  "ph.copy": "Copy stage",
+  "ph.copyAll": "Copy all stages"
  },
  "es": {
   "app.title": "Prompt Engineer — Generador de prompts con IA",
@@ -1798,7 +1810,11 @@ const I18N = {
   "st.cost": "Est. cost",
   "vars.title": "Variables",
   "vars.clear": "Clear values",
-  "focus.mode": "Focus"
+  "focus.mode": "Focus",
+  "ph.title": "Phased response",
+  "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
+  "ph.copy": "Copy stage",
+  "ph.copyAll": "Copy all stages"
  },
  "fa": {
   "app.title": "مهندس پرامپت — Prompt Engineer",
@@ -2227,7 +2243,11 @@ const I18N = {
   "st.cost": "Est. cost",
   "vars.title": "Variables",
   "vars.clear": "Clear values",
-  "focus.mode": "Focus"
+  "focus.mode": "Focus",
+  "ph.title": "Phased response",
+  "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
+  "ph.copy": "Copy stage",
+  "ph.copyAll": "Copy all stages"
  },
  "fr": {
   "app.title": "Prompt Engineer — Générateur de prompts IA",
@@ -2656,7 +2676,11 @@ const I18N = {
   "st.cost": "Est. cost",
   "vars.title": "Variables",
   "vars.clear": "Clear values",
-  "focus.mode": "Focus"
+  "focus.mode": "Focus",
+  "ph.title": "Phased response",
+  "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
+  "ph.copy": "Copy stage",
+  "ph.copyAll": "Copy all stages"
  },
  "ru": {
   "app.title": "Prompt Engineer — генератор промптов для ИИ",
@@ -3085,7 +3109,11 @@ const I18N = {
   "st.cost": "Est. cost",
   "vars.title": "Variables",
   "vars.clear": "Clear values",
-  "focus.mode": "Focus"
+  "focus.mode": "Focus",
+  "ph.title": "Phased response",
+  "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
+  "ph.copy": "Copy stage",
+  "ph.copyAll": "Copy all stages"
  },
  "sv": {
   "app.title": "Prompt Engineer — Promptbyggare för AI",
@@ -3514,7 +3542,11 @@ const I18N = {
   "st.cost": "Est. cost",
   "vars.title": "Variables",
   "vars.clear": "Clear values",
-  "focus.mode": "Focus"
+  "focus.mode": "Focus",
+  "ph.title": "Phased response",
+  "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
+  "ph.copy": "Copy stage",
+  "ph.copyAll": "Copy all stages"
  },
  "tr": {
   "app.title": "Prompt Engineer — Yapay Zekâ Prompt Oluşturucu",
@@ -3943,6 +3975,10 @@ const I18N = {
   "vars.title": "Variables",
   "vars.clear": "Clear values",
   "focus.mode": "Focus",
+  "ph.title": "Phased response",
+  "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
+  "ph.copy": "Copy stage",
+  "ph.copyAll": "Copy all stages",
   "lb.avoid2": "kaçınılması gerekenler"
  },
  "zh": {
@@ -4372,6 +4408,10 @@ const I18N = {
   "st.cost": "Est. cost",
   "vars.title": "Variables",
   "vars.clear": "Clear values",
-  "focus.mode": "Focus"
+  "focus.mode": "Focus",
+  "ph.title": "Phased response",
+  "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
+  "ph.copy": "Copy stage",
+  "ph.copyAll": "Copy all stages"
  }
 };

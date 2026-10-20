@@ -23,7 +23,7 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="mobile.css?v=27b5b60a">
+<link rel="stylesheet" href="mobile.css?v=da151938">
 </head>
 <body>
 
@@ -361,7 +361,20 @@
     </div>
 
     <div class="d-foot d-foot-gap" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
-  </section>
+  <!-- phased response: split the prompt into a chain of 1..6 stages -->
+<div class="phasebar" id="phaseBar">
+  <div class="phasebar-h">
+    <span class="phasebar-t" data-i18n="ph.title">استجابة مرحلية</span>
+    <select id="phaseCountSel" class="phase-sel" aria-label="Number of phases"></select>
+  </div>
+  <div class="phase-hint" data-i18n="ph.hint">قسّم البرومبت إلى مراحل تُرسَل بالتتابع، كل مرحلة تبني على سابقتها.</div>
+  <div class="phase-list" id="phaseList"></div>
+  <div class="phasebar-a">
+    <button class="btn small ghost" id="btnPhaseCopy" type="button" data-i18n="ph.copyAll">نسخ كل المراحل</button>
+  </div>
+</div>
+
+</section>
 
   <!-- ================= TAB 2: QUALITY ================= -->
   <section class="panel" id="m-quality">
@@ -458,7 +471,10 @@
   <div class="d-label" data-i18n="d.lang">اللغة</div>
   <div class="lang-list" id="langList"></div>
 
-  <div class="d-label" data-i18n="d.links">روابط</div>
+  <div class="d-label" data-i18n="d.theme">المظهر</div>
+<div class="theme-row" id="themeRow" role="radiogroup" aria-label="Theme"></div>
+
+<div class="d-label" data-i18n="d.links">روابط</div>
   <a class="d-item" href="../index.html"><span class="di">💻</span><span data-i18n="d.desktop">نسخة الحاسوب</span></a>
   <a class="d-item" href="https://github.com/MooPuu/prompt-engineer/releases/tag/v2.2.0" target="_blank" rel="noopener"><span class="di">⬇️</span><span data-i18n="d.apk">تحميل APK للأندرويد</span></a>
   <a class="d-item" href="https://github.com/MooPuu/prompt-engineer" target="_blank" rel="noopener"><span class="di">⭐</span><span data-i18n="d.star">نجمة على GitHub</span></a>
@@ -471,8 +487,8 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="i18n.js?v=3b6fbf33"></script>
-<script src="data.js?v=d7b486a6"></script>
-<script src="app.js?v=19d07424"></script>
+<script src="i18n.js?v=ba3ad931"></script>
+<script src="data.js?v=9ec1560d"></script>
+<script src="app.js?v=ba7c6162"></script>
 </body>
 </html>

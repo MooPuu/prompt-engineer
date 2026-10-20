@@ -3,6 +3,34 @@
    Light indigo/blue theme inspired by the reference mock-up:
    soft cards, pastel icon tiles, gradient hero card, bottom navigation.
    ========================================================================= */
+/* ---------------- Themes (the mobile UI used to be light-only) ---------------- */
+html[data-theme="dark"]{
+  --bg:#0b0f1a;--card:#141b2c;--ink:#e8edf9;--muted:#93a0c0;--line:#253050;--line2:#2f3c63;
+  --primary:#6c8cff;--primary-link:#9db2ff;--primary2:#9b6cff;--grad:linear-gradient(135deg,#4a6bf0,#6c8cff);
+  --pink:#ff8fa3;--pink-deep:#ff6b85;--pink-soft:rgba(244,86,111,.14);--blue-soft:rgba(108,139,255,.14);
+  --green:#3ddc97;--green-soft:rgba(61,220,151,.14);--amber:#ffc266;--amber-soft:rgba(255,194,102,.14);
+  --shadow:0 10px 28px rgba(0,0,0,.45);--shadow-sm:0 4px 14px rgba(0,0,0,.35);
+}
+html[data-theme="dark"] body::before{
+  background:
+    radial-gradient(600px 320px at 90% -5%, rgba(108,139,255,.20), transparent 70%),
+    radial-gradient(520px 300px at -10% 25%, rgba(155,108,255,.14), transparent 70%);
+}
+html[data-theme="neon"]{
+  --bg:#04060d;--card:#0a0f1c;--ink:#eef2ff;--muted:#8b96b8;--line:#1a2340;--line2:#28355f;
+  --primary:#7d9bff;--primary-link:#a9bcff;--primary2:#c07dff;--grad:linear-gradient(135deg,#4a6bf0,#9b6cff);
+  --pink:#ff7aa2;--pink-deep:#ff5c8a;--pink-soft:rgba(255,122,162,.14);--blue-soft:rgba(125,155,255,.14);
+  --green:#46e0a0;--green-soft:rgba(70,224,160,.14);--amber:#ffd07a;--amber-soft:rgba(255,208,122,.14);
+  --shadow:0 10px 28px rgba(0,0,0,.5);--shadow-sm:0 4px 14px rgba(0,0,0,.4);
+}
+html[data-theme="oled"]{
+  --bg:#000;--card:#080808;--ink:#f2f2f2;--muted:#9a9a9a;--line:#181818;--line2:#242424;
+  --primary:#7d9bff;--primary-link:#a9bcff;--primary2:#b07dff;--grad:linear-gradient(135deg,#4a6bf0,#7d9bff);
+  --pink:#ff8fa3;--pink-deep:#ff6b85;--pink-soft:rgba(255,122,162,.14);--blue-soft:rgba(125,155,255,.14);
+  --green:#46e0a0;--green-soft:rgba(70,224,160,.14);--amber:#ffcf7a;--amber-soft:rgba(255,207,122,.14);
+  --shadow:0 10px 28px rgba(0,0,0,.85);--shadow-sm:0 4px 14px rgba(0,0,0,.7);
+}
+html[data-theme="oled"] body::before{background:none}
 :root{
   --bg:#EFF1F9;
   --card:#ffffff;
@@ -424,3 +452,13 @@ pre.out-p{
 .lang-list .li-ic{width:26px;text-align:center;font-weight:800;flex:0 0 26px}
 .lang-list .li-name{flex:1;font-weight:600}
 .lang-list .li-en{font-size:11px;color:var(--muted)}
+
+/* ---------------- Theme picker ---------------- */
+.theme-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.theme-btn{display:flex;align-items:center;gap:7px;padding:6px 11px 6px 7px;border-radius:99px;
+  border:1px solid var(--line);background:var(--card);font-size:12.5px;font-weight:700;color:var(--ink);
+  transition:border-color .15s,box-shadow .15s}
+.theme-btn .th-ic{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;
+  border:1px solid var(--line2)}
+.theme-btn.active{border-color:var(--primary);box-shadow:0 0 0 2px var(--blue-soft)}
+.theme-btn.active .th-t{color:var(--primary)}
