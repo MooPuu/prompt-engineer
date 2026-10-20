@@ -575,3 +575,19 @@ html[data-theme="dark"] .pcard:hover,html[data-theme="neon"] .pcard:hover,html[d
   border-color:var(--primary)}
 html[data-theme="dark"] .theme-btn,html[data-theme="neon"] .theme-btn,html[data-theme="oled"] .theme-btn{
   background:var(--card);border-color:var(--line);color:var(--ink)}
+
+/* drawer link pills and lists had a hard-coded white background */
+html[data-theme="dark"] .d-item,html[data-theme="neon"] .d-item,html[data-theme="oled"] .d-item{
+  background:var(--surface2);border-color:var(--line);color:var(--ink)}
+html[data-theme="dark"] .d-item .di,html[data-theme="neon"] .d-item .di,html[data-theme="oled"] .d-item .di{
+  background:var(--card);color:var(--ink)}
+html[data-theme="dark"] .d-label,html[data-theme="neon"] .d-label,html[data-theme="oled"] .d-label{color:var(--muted)}
+html[data-theme="dark"] .d-foot,html[data-theme="neon"] .d-foot,html[data-theme="oled"] .d-foot{color:var(--muted)}
+html[data-theme="dark"] .lang-list button,html[data-theme="neon"] .lang-list button,html[data-theme="oled"] .lang-list button{
+  background:var(--surface2);border-color:var(--line);color:var(--ink)}
+html[data-theme="dark"] .greet,html[data-theme="neon"] .greet,html[data-theme="oled"] .greet{color:var(--ink)}
+html[data-theme="dark"] .sec-h,html[data-theme="neon"] .sec-h,html[data-theme="oled"] .sec-h{color:var(--muted)}
+html[data-theme="dark"] .lb,html[data-theme="neon"] .lb,html[data-theme="oled"] .lb{color:var(--muted)}
+html[data-theme="dark"] .pcard,html[data-theme="neon"] .pcard,html[data-theme="oled"] .pcard{
+  background:var(--surface2);border-color:var(--line);color:var(--ink)}
+html[data-theme="dark"] .pcard b,html[data-theme="neon"] .pcard b,html[data-theme="oled"] .pcard b{color:var(--ink)}
