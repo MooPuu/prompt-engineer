@@ -171,6 +171,7 @@ function buildImage(v){
    Llama: drop the quoted padding and the extra blank lines. */
 function applyModelTuning(text){
   const en = (typeof LANG!=='undefined') ? LANG!=='ar' : true;
+  const M = MODEL_TUNE[TARGET_MODEL] || MODEL_TUNE.auto;
   if(TARGET_MODEL==='claude'){
     const out=[]; let tag=null, buf=[];
     const flush=()=>{ if(tag!==null && buf.length){ out.push('<'+tag+'>'); out.push(...buf); out.push('</'+tag+'>'); } tag=null; buf=[]; };
@@ -186,8 +187,42 @@ function applyModelTuning(text){
     return (en ? 'Think step by step before answering. State the reasoning in a short section, then give the final answer in a separate section.'
                : 'فكّر خطوة بخطوة قبل الإجابة. اعرض التحليل في قسم قصير، ثم قدّم الإجابة النهائية في قسم منفصل.') + '\n\n' + text;
   }
-  if(TARGET_MODEL==='llama'){
-    return text.split('\n').filter(l=>!l.startsWith('> ')).join('\n').replace(/\n{3,}/g,'\n\n');
+  if(TARGET_MODEL==='gemini'){
+    /* Gemini reads labelled, numbered blocks very well */
+    const lines=text.split('\n');
+    const out=[]; let n=0; let section='';
+    for(const ln of lines){
+      const h=/^##\s+(.+)$/.exec(ln);
+      if(h){ section=h[1].trim(); n=0; out.push(ln); continue; }
+      if(/^\s*[-•]/.test(ln) && section){ n++; out.push(ln.replace(/^(\s*)[-•]/, (m,sp)=>sp+n+'. ')); continue; }
+      out.push(ln);
+    }
+    const head = en ? 'Answer the following task. Keep the sections in order and number every list.'
+                    : 'أجب عن المهمة التالية. حافظ على ترتيب الأقسام، وترقّم كل قائمة.';
+    return head + '\n\n' + out.join('\n');
+  }
+  if(TARGET_MODEL==='qwen'){
+    const head = en ? 'First state a short plan as a numbered list, then carry it out. Do not repeat the plan in the answer.'
+                    : 'ابدأ بخطة مختصرة في قائمة مرقّمة، ثم نفّذها. لا تكرّر الخطة في الإجابة.';
+    return head + '\n\n' + text;
+  }
+  if(TARGET_MODEL==='replicate'){
+    const head = en ? 'Self-contained request. The task, the required inputs and the exact shape of the expected output are described below. Follow the output shape exactly and return nothing else.'
+                    : 'طلب ذاتي الاكتفاء. المهمة والمدخلات المطلوبة وشكل المخرجات المتوقّع مشروحة أدناه. اتّبع شكل المخرجات تمامًا ولا تُعِد شيئًا غيره.';
+    return head + '\n\n' + text;
+  }
+  if(TARGET_MODEL==='meta' || TARGET_MODEL==='llama'){
+    let out = text.split('\n').filter(l=>!l.startsWith('> ')).join('\n').replace(/\n{3,}/g,'\n\n');
+    if(M.strict){
+      out += '\n\n' + (en ? 'Begin the answer immediately. No preamble, no summary of the task, no closing remarks.'
+                            : 'ابدأ الإجابة فورًا. بلا مقدمة، وبلا تلخيص للمهمة، وبلا خاتمة.');
+    }
+    return out;
+  }
+  if(TARGET_MODEL==='universal'){
+    const head = en ? 'TASK — what must be produced.\nINPUTS — the material you may use.\nCONSTRAINTS — the rules you may not break.\nOUTPUT — the exact format and the audience.\n\nFollow the four labels below in that order.'
+                    : 'المهمة — ما الذي يجب إنتاجه.\nالمدخلات — المادة المتاحة لك.\nالقيود — القواعد التي لا يجوز كسرها.\nالمخرج — الشكل المطلوب والجمهور المستهدف.\n\nاتّبع العلامات الأربع أدناه بهذا الترتيب.';
+    return head + '\n\n' + text;
   }
   return text;
 }
@@ -436,15 +471,34 @@ function openLink(u){
 
 /* ================= Target model tuning ================= */
 const MODEL_TUNE = {
-  auto:   { label: {ar:'تلقائي', en:'Auto'}, note:{ar:'', en:''} },
+  auto:   { label: {ar:'تلقائي', en:'Auto'},
+            note:  {ar:'', en:''} },
   claude: { label: {ar:'Claude', en:'Claude'},
-            note:{ar:'البنية مُنسّقة بوسوم XML كما يفضّل Claude.', en:'XML-style tagged structure, the way Claude prefers it.'} },
+            note:  {ar:'البنية مُنسّقة بوسوم XML كما يفضّل Claude.', en:'XML-style tagged structure, the way Claude prefers it.'},
+            wrap:  true },
   chatgpt:{ label: {ar:'ChatGPT', en:'ChatGPT'},
-            note:{ar:'فقرات مرتّبة ومراحل واضحة، لا وسوم.', en:'Ordered paragraphs and clear stages, no tags.'} },
+            note:  {ar:'فقرات مرتّبة ومراحل واضحة، لا وسوم.', en:'Ordered paragraphs and clear stages, no tags.'} },
+  gemini: { label: {ar:'جيميناي', en:'Gemini'},
+            note:  {ar:'عناوين واضحة ونقاط مرقّمة، وهو يحبّ.Schema مُنظّم.', en:'Clear headings and numbered points, with a tidy schema.'},
+            numbered: true },
   deepseek:{label: {ar:'DeepSeek', en:'DeepSeek'},
-            note:{ar:'توجيه صريح للتفكير خطوة بخطوة قبل الإجابة.', en:'Explicit step-by-step reasoning guidance before the answer.'} },
-  llama:  { label: {ar:'Llama محلي', en:'Local Llama'},
-            note:{ar:'تعليمات قصيرة ومباشرة بلا حشو.', en:'Short, direct imperatives with no padding.'} }
+            note:  {ar:'توجيه صريح للتفكير خطوة بخطوة قبل الإجابة.', en:'Explicit step-by-step reasoning guidance before the answer.'},
+            reason: true },
+  llama:  { label: {ar:'لاما محلي', en:'Local Llama'},
+            note:  {ar:'تعليمات قصيرة ومباشرة بلا حشو.', en:'Short, direct imperatives with no padding.'},
+            terse: true },
+  meta:   { label: {ar:'ميتا (لاما)', en:'Meta (Llama)'},
+            note:  {ar:'أوامر مباشرة، بلا مقدمات، مع تحديد صارم للمطلوب.', en:'Direct imperatives, no preamble, with a strict definition of done.'},
+            terse: true, strict: true },
+  qwen:   { label: {ar:'كوين', en:'Qwen'},
+            note:  {ar:'خطة أولًا ثم تنفيذ، مع وسم واضح لكل مرحلة.', en:'Plan first, then execute, with a clear label per stage.'},
+            planFirst: true },
+  replicate:{ label: {ar:'ريبليكستي', en:'Replicate'},
+            note:  {ar:'برومبت واحد ذاتي الاكتفاء يشرح المهمة والمدخلات والمخرجات.', en:'One self-contained prompt that states the task, the inputs and the outputs.'},
+            selfContained: true },
+  universal:{ label: {ar:'شامل لكل برامج الذكاء', en:'Universal (any model)'},
+            note:  {ar:'صياغة محايدة وشفافة تناسب أي نموذج.', en:'A neutral, transparent formulation that suits any model.'},
+            universal: true }
 };
 let TARGET_MODEL='auto';
 function fillModelSelect(){
@@ -454,7 +508,7 @@ function fillModelSelect(){
     sel.innerHTML='';
     Object.keys(MODEL_TUNE).forEach(k=>{
       const o=document.createElement('option'); o.value=k;
-      o.textContent = MODEL_TUNE[k].label[LANG==='ar'?'ar':'en'];
+      o.textContent = t('mdl.'+k);
       sel.appendChild(o);
     });
   }
@@ -463,7 +517,7 @@ function fillModelSelect(){
 function modelTune(){
   const m=MODEL_TUNE[TARGET_MODEL]||MODEL_TUNE.auto;
   const note=$('modelNote');
-  if(note) note.textContent = m.note[LANG==='ar'?'ar':'en'] || '';
+  if(note) note.textContent = t('mdl.note.'+TARGET_MODEL) || '';
   return m;
 }
 
@@ -908,7 +962,7 @@ function wire(){
       TARGET_MODEL = mSel.value;
       try{ localStorage.setItem('pe_model', TARGET_MODEL); }catch(e){}
       const note=$('modelNote');
-      if(note){ const m=MODEL_TUNE[TARGET_MODEL]; note.textContent = m ? (m.note[LANG==='ar'?'ar':'en']||'') : ''; }
+      if(note){ note.textContent = t('mdl.note.'+TARGET_MODEL) || ''; }
       render();
     });
     try{ const saved=localStorage.getItem('pe_model'); if(saved && MODEL_TUNE[saved]){ TARGET_MODEL=saved; mSel.value=saved; } }catch(e){}
