@@ -318,6 +318,19 @@
           <button class="tg" type="button" role="switch" aria-checked="false" data-tg="phased"><span class="tg-t"><b data-i18n="tg.phased">استجابة مرحلية 🎯</b><span data-i18n="tg.phased.d">يقسّم البرومبت إلى مراحل تُرسَل بالتتابع.</span></span></button>
 <button class="tg" type="button" role="switch" aria-checked="false" data-tg="plan"><span class="tg-t"><b data-i18n="tg.plan">خطة تنفيذ قابلة للقياس 🗓️</b><span data-i18n="tg.plan.d">خطوات بمواعيد ومعايير نجاح.</span></span><span class="sw"></span></button>
         </div>
+  <!-- phased response: split the prompt into a chain of 1..6 stages -->
+<div class="phasebar" id="phaseBar">
+  <div class="phasebar-h">
+    <span class="phasebar-t" data-i18n="ph.title">استجابة مرحلية</span>
+    <select id="phaseCountSel" class="phase-sel" aria-label="Number of phases"></select>
+  </div>
+  <div class="phase-hint" data-i18n="ph.hint">قسّم البرومبت إلى مراحل تُرسَل بالتتابع، كل مرحلة تبني على سابقتها.</div>
+  <div class="phase-list" id="phaseList"></div>
+  <div class="phasebar-a">
+    <button class="btn small ghost" id="btnPhaseCopy" type="button" data-i18n="ph.copyAll">نسخ كل المراحل</button>
+  </div>
+</div>
+
       </div>
 
       <!-- 8: few-shot examples -->
@@ -369,18 +382,6 @@
     </div>
 
     <div class="d-foot d-foot-gap" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
-  <!-- phased response: split the prompt into a chain of 1..6 stages -->
-<div class="phasebar" id="phaseBar">
-  <div class="phasebar-h">
-    <span class="phasebar-t" data-i18n="ph.title">استجابة مرحلية</span>
-    <select id="phaseCountSel" class="phase-sel" aria-label="Number of phases"></select>
-  </div>
-  <div class="phase-hint" data-i18n="ph.hint">قسّم البرومبت إلى مراحل تُرسَل بالتتابع، كل مرحلة تبني على سابقتها.</div>
-  <div class="phase-list" id="phaseList"></div>
-  <div class="phasebar-a">
-    <button class="btn small ghost" id="btnPhaseCopy" type="button" data-i18n="ph.copyAll">نسخ كل المراحل</button>
-  </div>
-</div>
 
 </section>
 
@@ -499,6 +500,6 @@
 
 <script src="i18n.js?v=8e5abab5"></script>
 <script src="data.js?v=9ec1560d"></script>
-<script src="app.js?v=c6719a38"></script>
+<script src="app.js?v=e330ba03"></script>
 </body>
 </html>

@@ -339,19 +339,6 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
     <div class="varbar-a"><button class="btn small ghost" id="btnVarsClear" type="button" data-i18n="vars.clear">مسح القيم</button></div>
   </div>
 
-<!-- phased response: split the prompt into a chain of 1..6 stages -->
-<div class="phasebar" id="phaseBar">
-  <div class="phasebar-h">
-    <span class="phasebar-t" data-i18n="ph.title">استجابة مرحلية</span>
-    <select id="phaseCountSel" class="phase-sel" aria-label="Number of phases"></select>
-  </div>
-  <div class="phase-hint" data-i18n="ph.hint">قسّم البرومبت إلى مراحل تُرسَل بالتتابع، كل مرحلة تبني على سابقتها.</div>
-  <div class="phase-list" id="phaseList"></div>
-  <div class="phasebar-a">
-    <button class="btn small ghost" id="btnPhaseCopy" type="button" data-i18n="ph.copyAll">نسخ كل المراحل</button>
-  </div>
-</div>
-
   <!-- target model: the engine rewrites the structure for it -->
   <div class="modelpick">
     <label class="lb" for="targetModel" data-i18n="mdl.label">النموذج المستهدف</label>
@@ -642,6 +629,19 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
           <div class="hint" data-i18n="hint.few">لا تكتب كل الأمثلة — مثال أو اثنان كافيان لضبط الأسلوب.</div>
         </div>
       </section>
+<!-- phased response: split the prompt into a chain of 1..6 stages -->
+<div class="phasebar" id="phaseBar">
+  <div class="phasebar-h">
+    <span class="phasebar-t" data-i18n="ph.title">استجابة مرحلية</span>
+    <select id="phaseCountSel" class="phase-sel" aria-label="Number of phases"></select>
+  </div>
+  <div class="phase-hint" data-i18n="ph.hint">قسّم البرومبت إلى مراحل تُرسَل بالتتابع، كل مرحلة تبني على سابقتها.</div>
+  <div class="phase-list" id="phaseList"></div>
+  <div class="phasebar-a">
+    <button class="btn small ghost" id="btnPhaseCopy" type="button" data-i18n="ph.copyAll">نسخ كل المراحل</button>
+  </div>
+</div>
+
 
       <!-- 9 -->
       <section class="fsec">
@@ -2294,8 +2294,13 @@ function buildPhases(n){
 function renderPhases(){
   const list=$('phaseList'); if(!list) return;
   const bar=$('phaseBar');
-  if(bar) bar.hidden = !FLAGS.phased;
+  if(bar){ bar.hidden = !FLAGS.phased; if(!FLAGS.phased) delete bar.dataset.shown; }
   if(!FLAGS.phased){ list.innerHTML=''; return; }
+  /* bring the stage options into view: the key lives far above the bar */
+  if(bar && !bar.dataset.shown){
+    bar.dataset.shown='1';
+    try{ bar.scrollIntoView({behavior:'smooth', block:'center'}); }catch(e){}
+  }
   const n=Number(($('phaseCountSel')||{}).value||1);
   const phases=buildPhases(n);
   list.innerHTML='';

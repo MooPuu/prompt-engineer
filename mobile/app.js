@@ -628,8 +628,13 @@ function buildPhases(n){
 function renderPhases(){
   const list=$('phaseList'); if(!list) return;
   const bar=$('phaseBar');
-  if(bar) bar.hidden = !FLAGS.phased;
+  if(bar){ bar.hidden = !FLAGS.phased; if(!FLAGS.phased) delete bar.dataset.shown; }
   if(!FLAGS.phased){ list.innerHTML=''; return; }
+  /* bring the stage options into view: the key lives far above the bar */
+  if(bar && !bar.dataset.shown){
+    bar.dataset.shown='1';
+    try{ bar.scrollIntoView({behavior:'smooth', block:'center'}); }catch(e){}
+  }
   const n=Number(($('phaseCountSel')||{}).value||1);
   const phases=buildPhases(n);
   list.innerHTML='';
