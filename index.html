@@ -842,7 +842,7 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
   </div>
 </footer>
 
-<script src="i18n.js?v=8e5abab5"></script>
+<script src="i18n.js?v=70991976"></script>
 <script>
 /* ================= i18n ================= */
 /* I18N + LANGS now live in the shared i18n.js file */
@@ -1856,6 +1856,13 @@ function applyModelTuning(text){
     return (en ? 'Think step by step before answering. State the reasoning in a short section, then give the final answer in a separate section.'
                : 'فكّر خطوة بخطوة قبل الإجابة. اعرض التحليل في قسم قصير، ثم قدّم الإجابة النهائية في قسم منفصل.') + '\n\n' + text;
   }
+  if(TARGET_MODEL==='perplexity'){
+    const head = en ? 'Answer directly and precisely. Follow the constraints exactly and list the sources you relied on at the end.'
+                    : 'أجب مباشرةً ودقة. التزم بالقيود تمامًا، واذكر المصادر التي اعتمدت عليها في النهاية.';
+    const tail = en ? '\n\nSOURCES:\n- (list each source with its title and URL)'
+                    : '\n\nالمصادر:\n- (اذكر كل مصدر مع عنوانه ورابطه)';
+    return head + '\n\n' + text + tail;
+  }
   if(TARGET_MODEL==='gemini'){
     /* Gemini reads labelled, numbered blocks very well */
     const lines=text.split('\n');
@@ -2107,33 +2114,33 @@ function focusField(f){
 
 /* ================= Target model tuning ================= */
 const MODEL_TUNE = {
-  auto:   { label: {ar:'تلقائي', en:'Auto'},
-            note:  {ar:'', en:''} },
+  perplexity: { label:{ar:'بيربلكسيتي', en:'Perplexity'},
+            note:{ar:'إجابة مباشرة وموثّقة مع ذكر المصادر.', en:'A direct, well-sourced answer with the references attached.'},
+            sourced: true },
+  gemini: { label: {ar:'جيميناي', en:'Gemini'},
+            note:  {ar:'عناوين واضحة ونقاط مرقّمة مع مخطّط منظّم.', en:'Clear headings and numbered points with a tidy schema.'},
+            numbered: true },
+  qwen:   { label: {ar:'كوين', en:'Qwen'},
+            note:  {ar:'خطة أولًا ثم تنفيذ، مع وسم واضح لكل مرحلة.', en:'Plan first, then execute, with a clear label per stage.'},
+            planFirst: true },
+  llama:  { label: {ar:'لاما محلي', en:'Local Llama'},
+            note:  {ar:'تعليمات قصيرة ومباشرة بلا حشو.', en:'Short, direct imperatives with no padding.'},
+            terse: true },
+  meta:   { label: {ar:'ميتا (لاما)', en:'Meta (Llama)'},
+            note:  {ar:'أوامر مباشرة بلا مقدمات، مع تحديد صارم للمطلوب.', en:'Direct imperatives, no preamble, with a strict definition of done.'},
+            terse: true, strict: true },
   claude: { label: {ar:'Claude', en:'Claude'},
             note:  {ar:'البنية مُنسّقة بوسوم XML كما يفضّل Claude.', en:'XML-style tagged structure, the way Claude prefers it.'},
             wrap:  true },
   chatgpt:{ label: {ar:'ChatGPT', en:'ChatGPT'},
             note:  {ar:'فقرات مرتّبة ومراحل واضحة، لا وسوم.', en:'Ordered paragraphs and clear stages, no tags.'} },
-  gemini: { label: {ar:'جيميناي', en:'Gemini'},
-            note:  {ar:'عناوين واضحة ونقاط مرقّمة، وهو يحبّ.Schema مُنظّم.', en:'Clear headings and numbered points, with a tidy schema.'},
-            numbered: true },
   deepseek:{label: {ar:'DeepSeek', en:'DeepSeek'},
             note:  {ar:'توجيه صريح للتفكير خطوة بخطوة قبل الإجابة.', en:'Explicit step-by-step reasoning guidance before the answer.'},
             reason: true },
-  llama:  { label: {ar:'لاما محلي', en:'Local Llama'},
-            note:  {ar:'تعليمات قصيرة ومباشرة بلا حشو.', en:'Short, direct imperatives with no padding.'},
-            terse: true },
-  meta:   { label: {ar:'ميتا (لاما)', en:'Meta (Llama)'},
-            note:  {ar:'أوامر مباشرة، بلا مقدمات، مع تحديد صارم للمطلوب.', en:'Direct imperatives, no preamble, with a strict definition of done.'},
-            terse: true, strict: true },
-  qwen:   { label: {ar:'كوين', en:'Qwen'},
-            note:  {ar:'خطة أولًا ثم تنفيذ، مع وسم واضح لكل مرحلة.', en:'Plan first, then execute, with a clear label per stage.'},
-            planFirst: true },
-  replicate:{ label: {ar:'ريبليكستي', en:'Replicate'},
-            note:  {ar:'برومبت واحد ذاتي الاكتفاء يشرح المهمة والمدخلات والمخرجات.', en:'One self-contained prompt that states the task, the inputs and the outputs.'},
-            selfContained: true },
-  universal:{ label: {ar:'شامل لكل برامج الذكاء', en:'Universal (any model)'},
-            note:  {ar:'صياغة محايدة وشفافة تناسب أي نموذج.', en:'A neutral, transparent formulation that suits any model.'},
+  auto:   { label: {ar:'تلقائي', en:'Auto'},
+            note:  {ar:'', en:''} },
+  universal:{ label:{ar:'شامل لكل برامج الذكاء', en:'Whole AI apps'},
+            note:  {ar:'صياغة محايدة وشفافة تناسب أي برنامج ذكاء اصطناعي.', en:'A neutral, transparent formulation that suits any AI app.'},
             universal: true }
 };
 let TARGET_MODEL='auto';

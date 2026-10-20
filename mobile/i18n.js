@@ -530,7 +530,6 @@ const I18N = {
   "mdl.llama": "لاما محلي",
   "mdl.meta": "ميتا (لاما)",
   "mdl.qwen": "كوين",
-  "mdl.replicate": "ريبليكستي",
   "mdl.universal": "شامل لكل برامج الذكاء",
   "mdl.note.auto": "",
   "mdl.note.claude": "البنية مُنسّقة بوسوم XML كما يفضّل Claude.",
@@ -540,8 +539,9 @@ const I18N = {
   "mdl.note.llama": "تعليمات قصيرة ومباشرة بلا حشو.",
   "mdl.note.meta": "أوامر مباشرة بلا مقدمات، مع تحديد صارم للمطلوب.",
   "mdl.note.qwen": "خطة أولًا ثم تنفيذ، مع وسم واضح لكل مرحلة.",
-  "mdl.note.replicate": "برومبت واحد ذاتي الاكتفاء يشرح المهمة والمدخلات والمخرجات.",
-  "mdl.note.universal": "صياغة محايدة وشفافة تناسب أي نموذج."
+  "mdl.note.universal": "صياغة محايدة وشفافة تناسب أي برنامج ذكاء اصطناعي.",
+  "mdl.perplexity": "بيربلكسيتي",
+  "mdl.note.perplexity": "إجابة مباشرة وموثّقة مع ذكر المصادر."
  },
  "en": {
   "app.title": "Prompt Engineer — AI Prompt Builder",
@@ -989,8 +989,7 @@ const I18N = {
   "mdl.llama": "Local Llama",
   "mdl.meta": "Meta (Llama)",
   "mdl.qwen": "Qwen",
-  "mdl.replicate": "Replicate",
-  "mdl.universal": "Universal (any model)",
+  "mdl.universal": "Whole AI apps",
   "mdl.note.auto": "",
   "mdl.note.claude": "XML-style tagged structure, the way Claude prefers it.",
   "mdl.note.chatgpt": "Ordered paragraphs and clear stages, no tags.",
@@ -999,8 +998,9 @@ const I18N = {
   "mdl.note.llama": "Short, direct imperatives with no padding.",
   "mdl.note.meta": "Direct imperatives, no preamble, with a strict definition of done.",
   "mdl.note.qwen": "Plan first, then execute, with a clear label per stage.",
-  "mdl.note.replicate": "One self-contained prompt that states the task, the inputs and the outputs.",
-  "mdl.note.universal": "A neutral, transparent formulation that suits any model."
+  "mdl.note.universal": "A neutral, transparent formulation that suits any AI app.",
+  "mdl.perplexity": "Perplexity",
+  "mdl.note.perplexity": "A direct, well-sourced answer with the references attached."
  },
  "de": {
   "app.title": "Prompt Engineer — KI-Prompt-Builder",
@@ -1448,8 +1448,7 @@ const I18N = {
   "mdl.llama": "Lokales Llama",
   "mdl.meta": "Meta (Llama)",
   "mdl.qwen": "Qwen",
-  "mdl.replicate": "Replicate",
-  "mdl.universal": "Universal (beliebige KI)",
+  "mdl.universal": "Gesamte KI-Programme",
   "mdl.note.auto": "",
   "mdl.note.claude": "XML-artige Struktur, so wie Claude sie bevorzugt.",
   "mdl.note.chatgpt": "Geordnete Absätze und klare Stufen, ohne Tags.",
@@ -1458,8 +1457,9 @@ const I18N = {
   "mdl.note.llama": "Kurze, direkte Befehle ohne Füllmaterial.",
   "mdl.note.meta": "Direkte Befehle, keine Vorrede, mit strenger Definition der Fertigstellung.",
   "mdl.note.qwen": "Erst planen, dann ausführen, jede Stufe klar beschriftet.",
-  "mdl.note.replicate": "Ein in sich geschlossener Prompt mit Aufgabe, Eingaben und Ausgaben.",
-  "mdl.note.universal": "Eine neutrale, transparente Formulierung für jedes Modell."
+  "mdl.note.universal": "Eine neutrale, transparente Formulierung für jede KI-App.",
+  "mdl.perplexity": "Perplexity",
+  "mdl.note.perplexity": "Eine direkte, gut belegte Antwort mit den Quellen."
  },
  "es": {
   "app.title": "Prompt Engineer — Generador de prompts con IA",
@@ -1907,8 +1907,7 @@ const I18N = {
   "mdl.llama": "Llama local",
   "mdl.meta": "Meta (Llama)",
   "mdl.qwen": "Qwen",
-  "mdl.replicate": "Replicate",
-  "mdl.universal": "Universal (cualquier IA)",
+  "mdl.universal": "Todas las apps de IA",
   "mdl.note.auto": "",
   "mdl.note.claude": "Estructura con etiquetas XML, como prefiere Claude.",
   "mdl.note.chatgpt": "Párrafos ordenados y etapas claras, sin etiquetas.",
@@ -1917,8 +1916,9 @@ const I18N = {
   "mdl.note.llama": "Órdenes breves y directas, sin relleno.",
   "mdl.note.meta": "Órdenes directas, sin preámbulo, con una definición estricta de lo terminado.",
   "mdl.note.qwen": "Primero el plan, luego la ejecución, con una etiqueta clara por etapa.",
-  "mdl.note.replicate": "Un prompt autosuficiente que expone la tarea, las entradas y las salidas.",
-  "mdl.note.universal": "Una formulación neutra y transparente para cualquier modelo."
+  "mdl.note.universal": "Una formulación neutra y transparente para cualquier app de IA.",
+  "mdl.perplexity": "Perplexity",
+  "mdl.note.perplexity": "Una respuesta directa y bien documentada, con las fuentes."
  },
  "fa": {
   "app.title": "مهندس پرامپت — Prompt Engineer",
@@ -2366,8 +2366,7 @@ const I18N = {
   "mdl.llama": "لامای محلی",
   "mdl.meta": "Meta (Llama)",
   "mdl.qwen": "Qwen",
-  "mdl.replicate": "Replicate",
-  "mdl.universal": "همه‌گیر (هر هوش مصنوعی)",
+  "mdl.universal": "همهٔ برنامه‌های هوش مصنوعی",
   "mdl.note.auto": "",
   "mdl.note.claude": "ساختار با برچسب‌های XML، همان‌طور که Claude ترجیح می‌دهد.",
   "mdl.note.chatgpt": "بندهای مرتب و مراحل روشن، بدون برچسب.",
@@ -2376,8 +2375,9 @@ const I18N = {
   "mdl.note.llama": "دستورهای کوتاه و مستقیم، بدون حشو.",
   "mdl.note.meta": "دستورهای مستقیم بدون مقدمه، با تعریف سخت‌گیرانهٔ پایان کار.",
   "mdl.note.qwen": "ابتدا برنامه، سپس اجرا، با برچسب روشن برای هر مرحله.",
-  "mdl.note.replicate": "یک پرامپت خودکفا که وظیفه، ورودی‌ها و خروجی‌ها را توضیح می‌دهد.",
-  "mdl.note.universal": "نگارشی خنثی و شفاف که با هر مدلی سازگار است."
+  "mdl.note.universal": "نگارشی خنثی و شفاف که با هر برنامهٔ هوش مصنوعی سازگار است.",
+  "mdl.perplexity": "Perplexity",
+  "mdl.note.perplexity": "پاسخی مستقیم و مستند همراه با ذکر منابع."
  },
  "fr": {
   "app.title": "Prompt Engineer — Générateur de prompts IA",
@@ -2825,8 +2825,7 @@ const I18N = {
   "mdl.llama": "Llama local",
   "mdl.meta": "Meta (Llama)",
   "mdl.qwen": "Qwen",
-  "mdl.replicate": "Replicate",
-  "mdl.universal": "Universel (toute IA)",
+  "mdl.universal": "Toutes les applis IA",
   "mdl.note.auto": "",
   "mdl.note.claude": "Structure à balises XML, comme Claude la préfère.",
   "mdl.note.chatgpt": "Paragraphes ordonnés et étapes claires, sans balises.",
@@ -2835,8 +2834,9 @@ const I18N = {
   "mdl.note.llama": "Instructions courtes et directes, sans remplissage.",
   "mdl.note.meta": "Ordres directs, sans préambule, avec une définition stricte du résultat attendu.",
   "mdl.note.qwen": "D’abord le plan, puis l’exécution, avec une étiquette claire par étape.",
-  "mdl.note.replicate": "Un prompt autonome qui précise la tâche, les entrées et les sorties.",
-  "mdl.note.universal": "Une formulation neutre et transparente qui convient à tout modèle."
+  "mdl.note.universal": "Une formulation neutre et transparente pour toute appli IA.",
+  "mdl.perplexity": "Perplexity",
+  "mdl.note.perplexity": "Une réponse directe et bien sourcée, avec les références."
  },
  "ru": {
   "app.title": "Prompt Engineer — генератор промптов для ИИ",
@@ -3284,8 +3284,7 @@ const I18N = {
   "mdl.llama": "Локальная Llama",
   "mdl.meta": "Meta (Llama)",
   "mdl.qwen": "Qwen",
-  "mdl.replicate": "Replicate",
-  "mdl.universal": "Универсальный (любая ИИ)",
+  "mdl.universal": "Все ИИ-приложения",
   "mdl.note.auto": "",
   "mdl.note.claude": "Структура с XML-тегами — так её предпочитает Claude.",
   "mdl.note.chatgpt": "Упорядоченные абзацы и чёткие этапы, без тегов.",
@@ -3294,8 +3293,9 @@ const I18N = {
   "mdl.note.llama": "Короткие прямые команды без воды.",
   "mdl.note.meta": "Прямые команды без преамбулы и со строгим критерием готовности.",
   "mdl.note.qwen": "Сначала план, затем выполнение, с ясной меткой на каждом этапе.",
-  "mdl.note.replicate": "Один самодостаточный промпт с задачей, входами и выходами.",
-  "mdl.note.universal": "Нейтральная прозрачная формулировка для любой модели."
+  "mdl.note.universal": "Нейтральная прозрачная формулировка для любого ИИ-приложения.",
+  "mdl.perplexity": "Perplexity",
+  "mdl.note.perplexity": "Прямой ответ с проверенными источниками."
  },
  "sv": {
   "app.title": "Prompt Engineer — Promptbyggare för AI",
@@ -3743,8 +3743,7 @@ const I18N = {
   "mdl.llama": "Lokalt Llama",
   "mdl.meta": "Meta (Llama)",
   "mdl.qwen": "Qwen",
-  "mdl.replicate": "Replicate",
-  "mdl.universal": "Universell (valfri AI)",
+  "mdl.universal": "Alla AI-appar",
   "mdl.note.auto": "",
   "mdl.note.claude": "XML-liknande struktur, som Claude föredrar.",
   "mdl.note.chatgpt": "Ordade stycken och tydliga steg, inga taggar.",
@@ -3753,8 +3752,9 @@ const I18N = {
   "mdl.note.llama": "Korta, direkta kommandon utan utfyllning.",
   "mdl.note.meta": "Direkta kommandon, ingen inledning, med en strikt definition av klart.",
   "mdl.note.qwen": "Planera först, sedan utför, med en tydlig etikett per steg.",
-  "mdl.note.replicate": "En självständig prompt med uppgift, indata och utdata.",
-  "mdl.note.universal": "En neutral och transparent formulering som passar alla modeller."
+  "mdl.note.universal": "En neutral och transparent formulering för varje AI-app.",
+  "mdl.perplexity": "Perplexity",
+  "mdl.note.perplexity": "Ett direkt, välunderbyggt svar med källorna."
  },
  "tr": {
   "app.title": "Prompt Engineer — Yapay Zekâ Prompt Oluşturucu",
@@ -4201,8 +4201,7 @@ const I18N = {
   "mdl.llama": "Yerel Llama",
   "mdl.meta": "Meta (Llama)",
   "mdl.qwen": "Qwen",
-  "mdl.replicate": "Replicate",
-  "mdl.universal": "Evrensel (her yapay zekâ)",
+  "mdl.universal": "Tüm yapay zekâ uygulamaları",
   "mdl.note.auto": "",
   "mdl.note.claude": "XML etiketli yapı — Claude’un tercihi.",
   "mdl.note.chatgpt": "Düzenli paragraflar ve net aşamalar, etiket yok.",
@@ -4211,8 +4210,9 @@ const I18N = {
   "mdl.note.llama": "Kısa ve doğrudan komutlar, dolgu yok.",
   "mdl.note.meta": "Doğrudan komutlar, giriş yok, bitiş tanımı sert.",
   "mdl.note.qwen": "Önce plan, sonra uygulama; her aşama açık etiketli.",
-  "mdl.note.replicate": "Görevi, girdileri ve çıktıları belirten tek kendine yeterli istem.",
-  "mdl.note.universal": "Her modele uyan nötr ve şeffaf bir ifade.",
+  "mdl.note.universal": "Her yapay zekâ uygulamasına uyan nötr ve şeffaf bir ifade.",
+  "mdl.perplexity": "Perplexity",
+  "mdl.note.perplexity": "Kaynaklarıyla birlikte doğrudan ve iyi belgelenmiş yanıt.",
   "lb.avoid2": "kaçınılması gerekenler"
  },
  "zh": {
@@ -4661,8 +4661,7 @@ const I18N = {
   "mdl.llama": "本地 Llama",
   "mdl.meta": "Meta (Llama)",
   "mdl.qwen": "Qwen",
-  "mdl.replicate": "Replicate",
-  "mdl.universal": "通用（任意模型）",
+  "mdl.universal": "所有 AI 应用",
   "mdl.note.auto": "",
   "mdl.note.claude": "采用 XML 标签结构，这是 Claude 偏好的方式。",
   "mdl.note.chatgpt": "分段清晰、阶段明确，不使用标签。",
@@ -4671,7 +4670,8 @@ const I18N = {
   "mdl.note.llama": "指令简短直接，不加冗余。",
   "mdl.note.meta": "直接指令、无前言，并严格界定完成标准。",
   "mdl.note.qwen": "先给计划再执行，每一阶段标注清晰。",
-  "mdl.note.replicate": "一个自足提示，说明任务、输入与输出。",
-  "mdl.note.universal": "中性透明的说法，适用于任何模型。"
+  "mdl.note.universal": "适用于任何 AI 应用的中性透明表述。",
+  "mdl.perplexity": "Perplexity",
+  "mdl.note.perplexity": "附带来源的直接且有据可查的回答。"
  }
 };
