@@ -592,6 +592,9 @@ function applyGapFix(g){
 
 /* ================= Phased response ================= */
 const PHASES=[{"key":"plan","ar":{"title":"البحث والتحليل","goal":"ابحث عن المادة وحلّل المطلوب قبل الكتابة","body":"حلل المهمة بعمق: ابحث في المعطيات المتاحة،حدّد المصادر والأفكار الرئيسة، ووضّح زاوية الطرح والجمهور المستهدف. لا تكتب النص النهائي بعد — أخرج بحثًا منظّمًا وخطة تنفيذ."},"en":{"title":"Research & analysis","goal":"Gather the material and analyse the brief before writing","body":"Analyse the task in depth: work through the material you were given, identify the key sources and ideas, and clarify the angle and the target audience. Do not write the final text yet — produce a structured research brief and a plan."}},{"key":"outline","ar":{"title":"الهيكل والمخطط","goal":"ابنِ مخططًا تفصيليًا قبل صياغة النص","body":"بناءً على البحث السابق، ضع مخططًا تفصيليًا: العناوين الرئيسة، وما تحت كل عنوان، وترتيب النقاط، والأمثلة التي ستُستعمل. أخرج المخطط فقط."},"en":{"title":"Outline & structure","goal":"Build a detailed outline before any prose","body":"Building on the research above, produce a detailed outline: the main headings, what sits under each one, the order of the points, and the examples that will be used. Output the outline only."}},{"key":"draft","ar":{"title":"الصياغة","goal":"اكتب المسودّة كاملة","body":"اكتب المسودّة كاملة وفق المخطط، مع الالتزام بالقيود وبأسلوب المأمور. لا تحذف أي شرط، وإن نقص شيء فاذكره في نهاية المسودّة."},"en":{"title":"The draft","goal":"Write the complete first draft","body":"Write the full draft following the outline, honouring every constraint and the requested style. Do not drop a requirement; if something is missing, note it at the end of the draft."}},{"key":"expand","ar":{"title":"التفصيل والإثراء","goal":"وسّع المسودّة وأضف العمق","body":"وسّع المسودّة: أضف التفاصيل والأمثلة والشواهد، ووسّع الأقسام الضعيفة، لكن لا تغيّر الاتجاه العام ولا تضف استنتاجات لم تطلبها."},"en":{"title":"Expand & enrich","goal":"Deepen the draft without drifting","body":"Expand the draft: add the detail, the examples and the supporting points, and thicken the weaker sections — but do not change the overall direction and do not add conclusions you were not asked for."}},{"key":"review","ar":{"title":"المراجعة والتدقيق","goal":"راجع المسودّة مقابل كل شرط","body":"راجع المسودّة حصرًا مقابل قائمة المتطلبات: اذكر ما استوفى الشرط، وما لم يستوفِه، مع تحديد المشكلة. لا تعِد كتابة النص في هذه المرحلة — أعطِ تقرير مراجعة فقط."},"en":{"title":"Review & audit","goal":"Audit the draft against every requirement","body":"Review the draft strictly against the requirement list: state which requirements are met, which are not, and where the gap is. Do not rewrite the text in this stage — produce a review report only."}},{"key":"final","ar":{"title":"التنقيح النهائي","goal":"سلّم النسخة النهائية جاهزة","body":"طبّق ملاحظات المراجعة، وانقح الأسلوب، ووحّد المفردات والعلامات، ثم سلّم النسخة النهائية وحدها دون شرح ولا مقدمات."},"en":{"title":"Final polish","goal":"Deliver the finished text","body":"Apply the review notes, polish the prose, unify the vocabulary and the punctuation, then deliver the final version alone — no commentary, no preamble."}}];
+/* stages the user edited by hand, kept across re-renders */
+const PHASE_EDITS = {};
+
 function phasePlan(n){
   n = Math.max(1, Math.min(6, n|0));
   switch(n){
@@ -652,11 +655,15 @@ function renderPhases(){
     h.innerHTML='<span class="phase-n">'+(i+1)+'</span><b></b><span class="phase-goal"></span>';
     h.querySelector('b').textContent=ph.title;
     h.querySelector('.phase-goal').textContent=ph.goal;
-    const pre=document.createElement('pre'); pre.className='phase-txt'; pre.textContent=ph.text;
+    /* the full stage text in a text box, under the copy button */
+    const ta=document.createElement('textarea');
+    ta.className='phase-txt'; ta.rows=6; ta.spellcheck=false;
+    ta.value = (PHASE_EDITS[ph.n]!==undefined) ? PHASE_EDITS[ph.n] : ph.text;
+    ta.addEventListener('input',()=>{ PHASE_EDITS[ph.n]=ta.value; });
     const b=document.createElement('button'); b.className='btn small ghost phase-cp'; b.type='button';
     b.textContent='📋 '+t('ph.copy');
-    b.onclick=()=>copy(ph.text);
-    box.appendChild(h); box.appendChild(pre); box.appendChild(b);
+    b.onclick=()=>copy(ta.value);
+    box.appendChild(h); box.appendChild(b); box.appendChild(ta);
     list.appendChild(box);
   });
 }

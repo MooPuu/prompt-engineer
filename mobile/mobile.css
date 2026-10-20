@@ -698,3 +698,13 @@ html[data-theme="dark"] .bnav button.active .bn-ic,html[data-theme="neon"] .bnav
 html[data-theme="dark"] .bnav .bn-t,html[data-theme="neon"] .bnav .bn-t,html[data-theme="oled"] .bnav .bn-t{color:var(--muted)}
 html[data-theme="dark"] .bnav button.active .bn-t,html[data-theme="neon"] .bnav button.active .bn-t,html[data-theme="oled"] .bnav button.active .bn-t{
   color:var(--primary)}
+
+/* the stage text box */
+.phase-txt{
+  width:100%;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.65;
+  white-space:pre-wrap;word-break:break-word;resize:vertical;min-height:120px;
+  background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;
+  color:var(--ink);margin:9px 0 0;display:block
+}
+.phase-txt:focus{outline:0;border-color:var(--primary);box-shadow:0 0 0 3px var(--blue-soft)}
+.phase-cp{margin-bottom:0}

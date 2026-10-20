@@ -2248,6 +2248,9 @@ const PHASES=[{"key":"plan","ar":{"title":"البحث والتحليل","goal":"
 /* When the user asks for N stages we always keep the shape
    research -> plan -> draft -> expand -> review -> final, truncated to N.
    One stage is simply the whole prompt unchanged. */
+/* stages the user edited by hand, kept across re-renders */
+const PHASE_EDITS = {};
+
 function phasePlan(n){
   n = Math.max(1, Math.min(6, n|0));
   switch(n){
@@ -2320,11 +2323,15 @@ function renderPhases(){
     h.innerHTML='<span class="phase-n">'+(i+1)+'</span><b></b><span class="phase-goal"></span>';
     h.querySelector('b').textContent=ph.title;
     h.querySelector('.phase-goal').textContent=ph.goal;
-    const pre=document.createElement('pre'); pre.className='phase-txt'; pre.textContent=ph.text;
+    /* the full stage text in a text box, under the copy button */
+    const ta=document.createElement('textarea');
+    ta.className='phase-txt'; ta.rows=6; ta.spellcheck=false;
+    ta.value = (PHASE_EDITS[ph.n]!==undefined) ? PHASE_EDITS[ph.n] : ph.text;
+    ta.addEventListener('input',()=>{ PHASE_EDITS[ph.n]=ta.value; });
     const b=document.createElement('button'); b.className='btn small ghost phase-cp'; b.type='button';
     b.textContent='📋 '+t('ph.copy');
-    b.onclick=()=>copy(ph.text);
-    box.appendChild(h); box.appendChild(pre); box.appendChild(b);
+    b.onclick=()=>copy(ta.value);
+    box.appendChild(h); box.appendChild(b); box.appendChild(ta);
     list.appendChild(box);
   });
 }

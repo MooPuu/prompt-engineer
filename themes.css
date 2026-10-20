@@ -561,8 +561,13 @@ html[data-theme="oled"] ::selection{background:rgba(125,155,255,.32)}
 .phase-n{width:22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:800}
 .phase-h b{font-size:13.5px}
 .phase-goal{font-size:11.5px;color:var(--muted);flex:1 1 100%}
-.phase-txt{font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.65;white-space:pre-wrap;word-break:break-word;
-  background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;max-height:230px;overflow:auto;color:var(--txt);margin:0 0 9px}
+.phase-txt{
+  width:100%;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.65;
+  white-space:pre-wrap;word-break:break-word;resize:vertical;min-height:130px;
+  background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;
+  color:var(--txt);margin:9px 0 0;display:block
+}
+.phase-txt:focus{outline:0;border-color:var(--acc);box-shadow:0 0 0 3px var(--acc-soft2)}
 .phase-cp{align-self:flex-start}
 
 /* ---------------- Target model picker ---------------- */
