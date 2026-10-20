@@ -327,6 +327,10 @@ function render(){
   $('heroSecs').textContent = (CURRENT.match(/^## /gm)||[]).length;
   $('heroTech').textContent = tech+'/'+TECH_MAX;
 
+  if(typeof renderGaps==='function') renderGaps();
+  if(typeof renderPhases==='function') renderPhases();
+  if(typeof fillModelSelect==='function') fillModelSelect();
+  if(typeof modelTune==='function') modelTune();
   updateDone(v);
   score(v);
 }
