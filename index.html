@@ -1825,7 +1825,7 @@ function buildImage(v){
   s.push('2. Keep one clear focal point and a clean, balanced composition.');
   s.push('3. If any part of the description is written in Arabic, translate it into precise English visual terms first, then generate.');
   s.push('4. Never render any text, letters or watermarks inside the image.');
-  return applyModelTuning(s.join('\n'));
+  return s.join('\n'));
 }
 
 /* Reshape the finished prompt for the target model.
@@ -1976,7 +1976,7 @@ function buildText(v){
   s.push('\n'+H('تعليمات أخيرة','FINAL INSTRUCTIONS'));
   s.push(fin.map((x,n)=>(n+1)+'. '+x).join('\n'));
 
-  return s.join('\n');
+  return applyModelTuning(s.join('\n'));
 }
 
 let CURRENT='';
