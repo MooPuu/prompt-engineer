@@ -1,4 +1,4 @@
-/* Prompt Engineer — shared language data (10 languages loaded, 421 keys each)
+/* Prompt Engineer — shared language data (10 languages loaded, 427 keys each)
    Fallback chain: chosen language → English → Arabic → key.
    Preset bodies and tone descriptions stay bilingual AR/EN by design. */
 const LANGS = [
@@ -505,7 +505,13 @@ const I18N = {
   "pv.empty": "ابدأ بكتابة المهمة في اللوحة… وسيظهر البرومبت الكامل هنا فورًا.",
   "img.empty": "اكتب وصف المشهد… وسيظهر برومبت الصورة هنا.",
   "hint.context": "اكتب فقط المعلومات التي تؤثّر فعلًا في الإجابة.",
-  "hint.audience": "مستوى معرفة الجمهور وتوقّعاته يشكّلان الأسلوب."
+  "hint.audience": "مستوى معرفة الجمهور وتوقّعاته يشكّلان الأسلوب.",
+  "theme.oled": "أسود OLED",
+  "st.tokens": "الرموز التقريبية",
+  "st.cost": "التكلفة التقريبية",
+  "vars.title": "متغيّرات",
+  "vars.clear": "مسح القيم",
+  "focus.mode": "تركيز"
  },
  "en": {
   "app.title": "Prompt Engineer — AI Prompt Builder",
@@ -928,7 +934,13 @@ const I18N = {
   "pv.empty": "Start writing your task on the left… the full prompt will appear here instantly.",
   "img.empty": "Write a scene… the image prompt will appear here.",
   "hint.context": "Write only the information that actually influences the answer.",
-  "hint.audience": "The audience's level of knowledge and expectations shape the style."
+  "hint.audience": "The audience's level of knowledge and expectations shape the style.",
+  "theme.oled": "OLED black",
+  "st.tokens": "Est. tokens",
+  "st.cost": "Est. cost",
+  "vars.title": "Variables",
+  "vars.clear": "Clear values",
+  "focus.mode": "Focus"
  },
  "de": {
   "app.title": "Prompt Engineer — KI-Prompt-Builder",
@@ -1351,7 +1363,13 @@ const I18N = {
   "lb.lang": "Antwortsprache",
   "q.score": "Reifegrad",
   "q.checks": "Kriterien (12)",
-  "q.tap": "Zum Springen tippen"
+  "q.tap": "Zum Springen tippen",
+  "theme.oled": "OLED black",
+  "st.tokens": "Est. tokens",
+  "st.cost": "Est. cost",
+  "vars.title": "Variables",
+  "vars.clear": "Clear values",
+  "focus.mode": "Focus"
  },
  "es": {
   "app.title": "Prompt Engineer — Generador de prompts con IA",
@@ -1774,7 +1792,13 @@ const I18N = {
   "preset.60": "🤲 Dua (invocación)",
   "preset.61": "📖 Corán",
   "pv.empty": "Escribe tu tarea a la izquierda… el prompt completo aparecerá aquí al instante.",
-  "img.empty": "Escribe una escena… el prompt de imagen aparecerá aquí."
+  "img.empty": "Escribe una escena… el prompt de imagen aparecerá aquí.",
+  "theme.oled": "OLED black",
+  "st.tokens": "Est. tokens",
+  "st.cost": "Est. cost",
+  "vars.title": "Variables",
+  "vars.clear": "Clear values",
+  "focus.mode": "Focus"
  },
  "fa": {
   "app.title": "مهندس پرامپت — Prompt Engineer",
@@ -2197,7 +2221,13 @@ const I18N = {
   "preset.60": "🤲 دعا",
   "preset.61": "📖 قرآن کریم",
   "pv.empty": "وظیفه‌تان را بنویسید… پرامپت کامل همین‌جا ظاهر می‌شود.",
-  "img.empty": "صحنه‌ای بنویسید… پرامپت تصویر همین‌جا ظاهر می‌شود."
+  "img.empty": "صحنه‌ای بنویسید… پرامپت تصویر همین‌جا ظاهر می‌شود.",
+  "theme.oled": "OLED black",
+  "st.tokens": "Est. tokens",
+  "st.cost": "Est. cost",
+  "vars.title": "Variables",
+  "vars.clear": "Clear values",
+  "focus.mode": "Focus"
  },
  "fr": {
   "app.title": "Prompt Engineer — Générateur de prompts IA",
@@ -2620,7 +2650,13 @@ const I18N = {
   "preset.60": "🤲 Doua (invocation)",
   "preset.61": "📖 Coran",
   "pv.empty": "Écrivez votre tâche à gauche… le prompt complet apparaîtra ici instantanément.",
-  "img.empty": "Décrivez une scène… le prompt d’image apparaîtra ici."
+  "img.empty": "Décrivez une scène… le prompt d’image apparaîtra ici.",
+  "theme.oled": "OLED black",
+  "st.tokens": "Est. tokens",
+  "st.cost": "Est. cost",
+  "vars.title": "Variables",
+  "vars.clear": "Clear values",
+  "focus.mode": "Focus"
  },
  "ru": {
   "app.title": "Prompt Engineer — генератор промптов для ИИ",
@@ -3043,7 +3079,13 @@ const I18N = {
   "preset.60": "🤲 Дуа (молитва)",
   "preset.61": "📖 Коран",
   "pv.empty": "Напишите задачу слева… полный промпт появится здесь сразу.",
-  "img.empty": "Опишите сцену… промпт для изображения появится здесь."
+  "img.empty": "Опишите сцену… промпт для изображения появится здесь.",
+  "theme.oled": "OLED black",
+  "st.tokens": "Est. tokens",
+  "st.cost": "Est. cost",
+  "vars.title": "Variables",
+  "vars.clear": "Clear values",
+  "focus.mode": "Focus"
  },
  "sv": {
   "app.title": "Prompt Engineer — Promptbyggare för AI",
@@ -3466,7 +3508,13 @@ const I18N = {
   "preset.60": "🤲 Bön",
   "preset.61": "📖 Koranen",
   "pv.empty": "Skriv din uppgift… hela prompten visas här direkt.",
-  "img.empty": "Beskriv en scen… bildprompten visas här."
+  "img.empty": "Beskriv en scen… bildprompten visas här.",
+  "theme.oled": "OLED black",
+  "st.tokens": "Est. tokens",
+  "st.cost": "Est. cost",
+  "vars.title": "Variables",
+  "vars.clear": "Clear values",
+  "focus.mode": "Focus"
  },
  "tr": {
   "app.title": "Prompt Engineer — Yapay Zekâ Prompt Oluşturucu",
@@ -3889,6 +3937,12 @@ const I18N = {
   "preset.61": "📖 Kur'an-ı Kerim",
   "pv.empty": "Görevini yaz… tam prompt anında burada görünecek.",
   "img.empty": "Bir sahne yaz… görsel promptu burada görünecek.",
+  "theme.oled": "OLED black",
+  "st.tokens": "Est. tokens",
+  "st.cost": "Est. cost",
+  "vars.title": "Variables",
+  "vars.clear": "Clear values",
+  "focus.mode": "Focus",
   "lb.avoid2": "kaçınılması gerekenler"
  },
  "zh": {
@@ -4312,6 +4366,12 @@ const I18N = {
   "pv.empty": "开始在左侧撰写你的任务……完整提示词会即时显示在这里。",
   "img.empty": "描述一个场景……图像提示词会显示在这里。",
   "hint.context": "💡 任务越精确，结果越贴近预期。避免“帮我做一下”这类含糊的说法。",
-  "hint.audience": "💡 任务越精确，结果越贴近预期。避免“帮我做一下”这类含糊的说法。"
+  "hint.audience": "💡 任务越精确，结果越贴近预期。避免“帮我做一下”这类含糊的说法。",
+  "theme.oled": "OLED black",
+  "st.tokens": "Est. tokens",
+  "st.cost": "Est. cost",
+  "vars.title": "Variables",
+  "vars.clear": "Clear values",
+  "focus.mode": "Focus"
  }
 };
