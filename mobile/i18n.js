@@ -1,4 +1,4 @@
-/* Prompt Engineer — shared language data (10 languages loaded, 432 keys each)
+/* Prompt Engineer — shared language data (10 languages loaded, 435 keys each)
    Fallback chain: chosen language → English → Arabic → key.
    Preset bodies and tone descriptions stay bilingual AR/EN by design. */
 const LANGS = [
@@ -516,7 +516,10 @@ const I18N = {
   "ph.hint": "قسّم البرومبت إلى مراحل تُرسَل بالتتابع، كل مرحلة تبني على سابقتها.",
   "ph.copy": "نسخ المرحلة",
   "ph.copyAll": "نسخ كل المراحل",
-  "d.theme": "المظهر"
+  "d.theme": "المظهر",
+  "gap.title": "ثغرات المواصفات",
+  "gap.fixed": "أُضيفت المواصفة",
+  "mdl.label": "النموذج المستهدف"
  },
  "en": {
   "app.title": "Prompt Engineer — AI Prompt Builder",
@@ -950,7 +953,10 @@ const I18N = {
   "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
   "ph.copy": "Copy stage",
   "ph.copyAll": "Copy all stages",
-  "d.theme": "Theme"
+  "d.theme": "Theme",
+  "gap.title": "Spec gaps",
+  "gap.fixed": "Spec added",
+  "mdl.label": "Target model"
  },
  "de": {
   "app.title": "Prompt Engineer — KI-Prompt-Builder",
@@ -1384,7 +1390,10 @@ const I18N = {
   "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
   "ph.copy": "Copy stage",
   "ph.copyAll": "Copy all stages",
-  "d.theme": "Design"
+  "d.theme": "Design",
+  "gap.title": "Spec gaps",
+  "gap.fixed": "Spec added",
+  "mdl.label": "Target model"
  },
  "es": {
   "app.title": "Prompt Engineer — Generador de prompts con IA",
@@ -1818,7 +1827,10 @@ const I18N = {
   "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
   "ph.copy": "Copy stage",
   "ph.copyAll": "Copy all stages",
-  "d.theme": "Tema"
+  "d.theme": "Tema",
+  "gap.title": "Spec gaps",
+  "gap.fixed": "Spec added",
+  "mdl.label": "Target model"
  },
  "fa": {
   "app.title": "مهندس پرامپت — Prompt Engineer",
@@ -2252,7 +2264,10 @@ const I18N = {
   "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
   "ph.copy": "Copy stage",
   "ph.copyAll": "Copy all stages",
-  "d.theme": "پوسته"
+  "d.theme": "پوسته",
+  "gap.title": "Spec gaps",
+  "gap.fixed": "Spec added",
+  "mdl.label": "Target model"
  },
  "fr": {
   "app.title": "Prompt Engineer — Générateur de prompts IA",
@@ -2686,7 +2701,10 @@ const I18N = {
   "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
   "ph.copy": "Copy stage",
   "ph.copyAll": "Copy all stages",
-  "d.theme": "Thème"
+  "d.theme": "Thème",
+  "gap.title": "Spec gaps",
+  "gap.fixed": "Spec added",
+  "mdl.label": "Target model"
  },
  "ru": {
   "app.title": "Prompt Engineer — генератор промптов для ИИ",
@@ -3120,7 +3138,10 @@ const I18N = {
   "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
   "ph.copy": "Copy stage",
   "ph.copyAll": "Copy all stages",
-  "d.theme": "Тема"
+  "d.theme": "Тема",
+  "gap.title": "Spec gaps",
+  "gap.fixed": "Spec added",
+  "mdl.label": "Target model"
  },
  "sv": {
   "app.title": "Prompt Engineer — Promptbyggare för AI",
@@ -3554,7 +3575,10 @@ const I18N = {
   "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
   "ph.copy": "Copy stage",
   "ph.copyAll": "Copy all stages",
-  "d.theme": "Tema"
+  "d.theme": "Tema",
+  "gap.title": "Spec gaps",
+  "gap.fixed": "Spec added",
+  "mdl.label": "Target model"
  },
  "tr": {
   "app.title": "Prompt Engineer — Yapay Zekâ Prompt Oluşturucu",
@@ -3988,6 +4012,9 @@ const I18N = {
   "ph.copy": "Copy stage",
   "ph.copyAll": "Copy all stages",
   "d.theme": "Tema",
+  "gap.title": "Spec gaps",
+  "gap.fixed": "Spec added",
+  "mdl.label": "Target model",
   "lb.avoid2": "kaçınılması gerekenler"
  },
  "zh": {
@@ -4422,6 +4449,9 @@ const I18N = {
   "ph.hint": "Split the prompt into stages to send in order, each building on the previous one.",
   "ph.copy": "Copy stage",
   "ph.copyAll": "Copy all stages",
-  "d.theme": "主题"
+  "d.theme": "主题",
+  "gap.title": "Spec gaps",
+  "gap.fixed": "Spec added",
+  "mdl.label": "Target model"
  }
 };
