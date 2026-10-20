@@ -606,3 +606,16 @@ html[data-theme="oled"] ::selection{background:rgba(125,155,255,.32)}
 .tbtn[data-theme="light"] .em{color:#f0a63a}
 .tbtn[data-theme="neon"] .em{color:#9b6cff}
 .tbtn[data-theme="oled"] .em{color:#e8e8e8}
+
+/* ---------------- icon sizing per context ---------------- */
+.hi{width:1.15em;height:1.15em;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:-.22em}
+
+/* the round icon chips */
+.si .hi,.ms-ic .hi,.fi .hi,.s-ic .hi,.tpl-ic .hi,.di .hi,.mi .hi,.pcard .hi{
+  width:1.25em;height:1.25em;stroke-width:1.7;vertical-align:-.28em}
+.qa-ic .hi{width:1.3em;height:1.3em;stroke-width:1.7}
+.bn-ic .hi{width:1.25em;height:1.25em;stroke-width:1.7}
+.tile .ti .hi{width:1.3em;height:1.3em}
+.tbtn .em .hi{width:1.15em;height:1.15em}
+.ti,.s-ic,.ms-ic,.fi,.di,.mi{display:inline-flex;align-items:center;justify-content:center}
