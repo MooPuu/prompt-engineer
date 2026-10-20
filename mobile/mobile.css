@@ -33,6 +33,12 @@ html[data-theme="oled"]{
 html[data-theme="oled"] body::before{background:none}
 
 /* ---------------- Hero card theming ---------------- */
+
+/* the app shell background, per theme */
+:root{ --app-bg:linear-gradient(180deg,#f7f8fd,#eff1f9); --app-shadow:0 0 60px rgba(23,32,84,.10); }
+html[data-theme="dark"]{ --app-bg:#0b0f1a; --app-shadow:0 0 60px rgba(0,0,0,.5); }
+html[data-theme="neon"]{ --app-bg:#04060d; --app-shadow:0 0 60px rgba(0,0,0,.55); }
+html[data-theme="oled"]{ --app-bg:#000; --app-shadow:none; }
 :root{
   --hero-grad:linear-gradient(135deg,#3550e0 0%,#4260f5 55%,#4a66f7 100%);
   --hero-ink:#ffffff;
@@ -138,8 +144,8 @@ a{color:var(--primary);text-decoration:none}
   position:relative;z-index:1;
   max-width:480px;margin:0 auto;min-height:100vh;
   padding-bottom:96px;
-  background:linear-gradient(180deg,#f7f8fd, #eff1f9);
-  box-shadow:0 0 60px rgba(23,32,84,.10);
+  background:var(--app-bg);
+  box-shadow:var(--app-shadow);
 }
 @media(max-width:520px){ .app{box-shadow:none} }
 
