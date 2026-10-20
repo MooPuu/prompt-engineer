@@ -510,15 +510,16 @@ const MODEL_TUNE = {
 let TARGET_MODEL='auto';
 function fillModelSelect(){
   const sel=$('targetModel'); if(!sel) return;
+  /* keep the user's choice: another handler may call render() before our own
+     change listener runs, and rebuilding the options used to reset the select */
   const cur = sel.value || TARGET_MODEL;
-  if(sel.options.length !== Object.keys(MODEL_TUNE).length){
+  const keys = Object.keys(MODEL_TUNE);
+  if(sel.options.length !== keys.length){
     sel.innerHTML='';
-    Object.keys(MODEL_TUNE).forEach(k=>{
-      const o=document.createElement('option'); o.value=k;
-      o.textContent = t('mdl.'+k);
-      sel.appendChild(o);
-    });
+    keys.forEach(k=>{ const o=document.createElement('option'); o.value=k; sel.appendChild(o); });
   }
+  /* always refresh the labels -- they are localised and must follow the UI language */
+  keys.forEach((k,idx)=>{ if(sel.options[idx]) sel.options[idx].textContent = t('mdl.'+k); });
   if(MODEL_TUNE[cur]) sel.value=cur; else sel.value=TARGET_MODEL;
 }
 function modelTune(){
