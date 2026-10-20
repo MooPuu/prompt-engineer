@@ -2057,13 +2057,18 @@ const MODEL_TUNE = {
 let TARGET_MODEL='auto';
 function fillModelSelect(){
   const sel=$('targetModel'); if(!sel) return;
-  sel.innerHTML='';
-  Object.keys(MODEL_TUNE).forEach(k=>{
-    const o=document.createElement('option'); o.value=k;
-    o.textContent = MODEL_TUNE[k].label[LANG==='ar'?'ar':'en'];
-    sel.appendChild(o);
-  });
-  sel.value=TARGET_MODEL;
+  /* keep the user's choice: another handler may call render() before our own
+     change listener runs, and rebuilding the options used to reset the select */
+  const cur = sel.value || TARGET_MODEL;
+  if(sel.options.length !== Object.keys(MODEL_TUNE).length){
+    sel.innerHTML='';
+    Object.keys(MODEL_TUNE).forEach(k=>{
+      const o=document.createElement('option'); o.value=k;
+      o.textContent = MODEL_TUNE[k].label[LANG==='ar'?'ar':'en'];
+      sel.appendChild(o);
+    });
+  }
+  if(MODEL_TUNE[cur]) sel.value=cur; else sel.value=TARGET_MODEL;
 }
 function modelTune(){
   const m=MODEL_TUNE[TARGET_MODEL]||MODEL_TUNE.auto;
@@ -2325,7 +2330,11 @@ $('btnCopyTop').onclick=()=>copy(CURRENT);
 const mSel=$('targetModel');
 if(mSel){
   fillModelSelect();
-  mSel.addEventListener('change',()=>{ TARGET_MODEL=mSel.value; try{localStorage.setItem('pe_model',TARGET_MODEL);}catch(e){} render(); });
+  mSel.addEventListener('change',()=>{
+    TARGET_MODEL = mSel.value;
+    try{ localStorage.setItem('pe_model', TARGET_MODEL); }catch(e){}
+    const note=$('modelNote'); if(note){ const m=MODEL_TUNE[TARGET_MODEL]; note.textContent = m? (m.note[LANG==='ar'?'ar':'en']||'') : ''; }
+  });
   try{ const saved=localStorage.getItem('pe_model'); if(saved && MODEL_TUNE[saved]) { TARGET_MODEL=saved; mSel.value=saved; } }catch(e){}
 }
 const phaseSel=$('phaseCountSel');
