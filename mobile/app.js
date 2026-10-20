@@ -902,6 +902,7 @@ function wire(){
       try{ localStorage.setItem('pe_model', TARGET_MODEL); }catch(e){}
       const note=$('modelNote');
       if(note){ const m=MODEL_TUNE[TARGET_MODEL]; note.textContent = m ? (m.note[LANG==='ar'?'ar':'en']||'') : ''; }
+      render();
     });
     try{ const saved=localStorage.getItem('pe_model'); if(saved && MODEL_TUNE[saved]){ TARGET_MODEL=saved; mSel.value=saved; } }catch(e){}
   }
