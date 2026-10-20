@@ -5,6 +5,8 @@
    ========================================================================= */
 /* ---------------- Themes (the mobile UI used to be light-only) ---------------- */
 html[data-theme="dark"]{
+  --bar:rgba(18,25,44,.90);
+  --tint:rgba(255,255,255,.06);
   --bg:#0b0f1a;--card:#141b2c;--ink:#e8edf9;--muted:#93a0c0;--line:#253050;--line2:#2f3c63;
   --primary:#6c8cff;--primary-link:#9db2ff;--primary2:#9b6cff;--grad:linear-gradient(135deg,#4a6bf0,#6c8cff);
   --pink:#ff8fa3;--pink-deep:#ff6b85;--pink-soft:rgba(244,86,111,.14);--blue-soft:rgba(108,139,255,.14);
@@ -17,6 +19,8 @@ html[data-theme="dark"] body::before{
     radial-gradient(520px 300px at -10% 25%, rgba(155,108,255,.14), transparent 70%);
 }
 html[data-theme="neon"]{
+  --bar:rgba(10,14,28,.90);
+  --tint:rgba(255,255,255,.06);
   --bg:#04060d;--card:#0a0f1c;--ink:#eef2ff;--muted:#8b96b8;--line:#1a2340;--line2:#28355f;
   --primary:#7d9bff;--primary-link:#a9bcff;--primary2:#c07dff;--grad:linear-gradient(135deg,#4a6bf0,#9b6cff);
   --pink:#ff7aa2;--pink-deep:#ff5c8a;--pink-soft:rgba(255,122,162,.14);--blue-soft:rgba(125,155,255,.14);
@@ -24,6 +28,8 @@ html[data-theme="neon"]{
   --shadow:0 10px 28px rgba(0,0,0,.5);--shadow-sm:0 4px 14px rgba(0,0,0,.4);
 }
 html[data-theme="oled"]{
+  --bar:rgba(0,0,0,.94);
+  --tint:rgba(255,255,255,.05);
   --bg:#000;--card:#080808;--ink:#f2f2f2;--muted:#9a9a9a;--line:#181818;--line2:#242424;
   --primary:#7d9bff;--primary-link:#a9bcff;--primary2:#b07dff;--grad:linear-gradient(135deg,#4a6bf0,#7d9bff);
   --pink:#ff8fa3;--pink-deep:#ff6b85;--pink-soft:rgba(255,122,162,.14);--blue-soft:rgba(125,155,255,.14);
@@ -37,6 +43,52 @@ html[data-theme="oled"] body::before{background:none}
 /* the app shell background, per theme */
 
 /* the bottom navigation bar, per theme */
+/* ---------------- Surfaces, controls and overlays (one source of truth) ---------------- */
+:root{
+  --bar:rgba(247,248,253,.92);
+  --tint:rgba(108,139,255,.10);
+  --bg2:#e9edf7;
+  --surface2:#f7f9fe;
+  --field-bg:#f7f9fe;
+  --track-off:#dfe4f3;
+  --knob:#ffffff;
+  --toast-bg:#17203a;
+  --toast-ink:#ffffff;
+  --glass:rgba(255,255,255,.96);
+  --line-soft:#e7ebf6;
+}
+html[data-theme="dark"]{
+  --bg2:#0d1424;
+  --surface2:#1b2338;
+  --field-bg:#131a2b;
+  --track-off:#2a3350;
+  --knob:#e8edf9;
+  --toast-bg:#e8edf9;
+  --toast-ink:#0b0f1a;
+  --line-soft:#253050;
+}
+html[data-theme="neon"]{
+  --bg2:#080d1a;
+  --surface2:#121a2e;
+  --field-bg:#0d1424;
+  --track-off:#28355f;
+  --knob:#eef2ff;
+  --toast-bg:#eef2ff;
+  --toast-ink:#04060d;
+  --glass:rgba(8,12,24,.86);
+  --line-soft:#1a2340;
+}
+html[data-theme="oled"]{
+  --bg2:#050505;
+  --surface2:#0d0d0d;
+  --field-bg:#080808;
+  --track-off:#242424;
+  --knob:#f2f2f2;
+  --toast-bg:#f2f2f2;
+  --toast-ink:#000000;
+  --glass:rgba(10,10,10,.96);
+  --line-soft:#181818;
+}
 :root{ --nav-bg:rgba(255,255,255,.96); }
 html[data-theme="dark"]{ --nav-bg:rgba(16,22,38,.94); }
 html[data-theme="neon"]{ --nav-bg:rgba(8,12,24,.94); }
@@ -538,14 +590,11 @@ pre.out-p{
    ========================================================================= */
 html[data-theme="dark"],html[data-theme="neon"],html[data-theme="oled"]{
   --surface:var(--card);
-  --surface2:var(--bg2,#0d1424);
   --line-soft:var(--line);
-  --tint:rgba(255,255,255,.06);
   --glass:rgba(14,20,36,.86);
-  --bar:rgba(18,25,44,.9);
 }
-html[data-theme="neon"]{--surface2:#080d1a}
-html[data-theme="oled"]{--surface2:#050505}
+html[data-theme="neon"]{}
+html[data-theme="oled"]{}
 
 /* app bar, drawer, scrim */
 html[data-theme="dark"] .appbar,html[data-theme="neon"] .appbar,html[data-theme="oled"] .appbar{
