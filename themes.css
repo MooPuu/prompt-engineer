@@ -588,3 +588,21 @@ html[data-theme="oled"] ::selection{background:rgba(125,155,255,.32)}
 .gap-ok{padding:9px 11px;border-radius:11px;background:rgba(61,220,151,.10);border:1px solid rgba(61,220,151,.3);
   font-size:12px;color:var(--green);font-weight:700}
 
+
+/* ---------------- Heroicons micro in the buttons ---------------- */
+.hi{
+  width:1.15em;height:1.15em;flex:0 0 auto;
+  stroke:currentColor;fill:none;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;
+  display:inline-block;vertical-align:-.22em;
+}
+.btn .hi,.tbtn .hi{opacity:.92}
+.tile .ti .hi{width:1.25em;height:1.25em}
+.ti{display:inline-flex;align-items:center;justify-content:center}
+
+/* the theme swatch keeps its colour while the icon is a stroke */
+.tbtn .em .hi{stroke:currentColor;stroke-width:1.6}
+.tbtn[data-theme="midnight"] .em{color:#cfd6ee}
+.tbtn[data-theme="light"] .em{color:#f0a63a}
+.tbtn[data-theme="neon"] .em{color:#9b6cff}
+.tbtn[data-theme="oled"] .em{color:#e8e8e8}
