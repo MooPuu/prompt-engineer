@@ -605,7 +605,6 @@ html[data-theme="dark"] .btn.small.ghost,html[data-theme="neon"] .btn.small.ghos
 html[data-theme="dark"] .ring,html[data-theme="neon"] .ring,html[data-theme="oled"] .ring{background:#1b2440}
 html[data-theme="dark"] .ring .inner,html[data-theme="neon"] .ring .inner,html[data-theme="oled"] .ring .inner{background:var(--card)}
 html[data-theme="dark"] .score-tip,html[data-theme="neon"] .score-tip,html[data-theme="oled"] .score-tip{color:var(--muted)}
-html[data-theme="dark"] .qa button .qa-ic,html[data-theme="neon"] .qa button .qa-ic,html[data-theme="oled"] .qa button .qa-ic{color:var(--muted)}
 html[data-theme="dark"] .sheet,html[data-theme="neon"] .sheet,html[data-theme="oled"] .sheet{
   background:var(--glass);color:var(--ink);border-color:var(--line)}
 html[data-theme="dark"] .toast,html[data-theme="neon"] .toast,html[data-theme="oled"] .toast{
