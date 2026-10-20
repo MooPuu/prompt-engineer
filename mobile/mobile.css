@@ -758,15 +758,6 @@ html[data-theme="dark"] .bnav button.active .bn-t,html[data-theme="neon"] .bnav 
 .phase-txt:focus{outline:0;border-color:var(--primary);box-shadow:0 0 0 3px var(--blue-soft)}
 .phase-cp{margin-bottom:0}
 
-/* ---------------- the circle-loader animation behind the hero ---------------- */
-.hero-anim{
-  position:absolute;inset:0;width:100%;height:100%;
-  object-fit:cover;object-position:center;
-  opacity:.22;z-index:0;pointer-events:none;
-  filter:saturate(.6);
-}
-.hero::before,.hero::after{z-index:1}
-.hero .h-top,.hero .h-score,.hero .h-bar,.hero .h-stats{z-index:2}
 
 /* ---------------- Heroicons micro in the buttons ---------------- */
 .hi{
