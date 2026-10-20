@@ -406,14 +406,26 @@ function openLink(u){
 /* ================= Phased response ================= */
 const PHASES=[{"key":"plan","ar":{"title":"البحث والتحليل","goal":"ابحث عن المادة وحلّل المطلوب قبل الكتابة","body":"حلل المهمة بعمق: ابحث في المعطيات المتاحة،حدّد المصادر والأفكار الرئيسة، ووضّح زاوية الطرح والجمهور المستهدف. لا تكتب النص النهائي بعد — أخرج بحثًا منظّمًا وخطة تنفيذ."},"en":{"title":"Research & analysis","goal":"Gather the material and analyse the brief before writing","body":"Analyse the task in depth: work through the material you were given, identify the key sources and ideas, and clarify the angle and the target audience. Do not write the final text yet — produce a structured research brief and a plan."}},{"key":"outline","ar":{"title":"الهيكل والمخطط","goal":"ابنِ مخططًا تفصيليًا قبل صياغة النص","body":"بناءً على البحث السابق، ضع مخططًا تفصيليًا: العناوين الرئيسة، وما تحت كل عنوان، وترتيب النقاط، والأمثلة التي ستُستعمل. أخرج المخطط فقط."},"en":{"title":"Outline & structure","goal":"Build a detailed outline before any prose","body":"Building on the research above, produce a detailed outline: the main headings, what sits under each one, the order of the points, and the examples that will be used. Output the outline only."}},{"key":"draft","ar":{"title":"الصياغة","goal":"اكتب المسودّة كاملة","body":"اكتب المسودّة كاملة وفق المخطط، مع الالتزام بالقيود وبأسلوب المأمور. لا تحذف أي شرط، وإن نقص شيء فاذكره في نهاية المسودّة."},"en":{"title":"The draft","goal":"Write the complete first draft","body":"Write the full draft following the outline, honouring every constraint and the requested style. Do not drop a requirement; if something is missing, note it at the end of the draft."}},{"key":"expand","ar":{"title":"التفصيل والإثراء","goal":"وسّع المسودّة وأضف العمق","body":"وسّع المسودّة: أضف التفاصيل والأمثلة والشواهد، ووسّع الأقسام الضعيفة، لكن لا تغيّر الاتجاه العام ولا تضف استنتاجات لم تطلبها."},"en":{"title":"Expand & enrich","goal":"Deepen the draft without drifting","body":"Expand the draft: add the detail, the examples and the supporting points, and thicken the weaker sections — but do not change the overall direction and do not add conclusions you were not asked for."}},{"key":"review","ar":{"title":"المراجعة والتدقيق","goal":"راجع المسودّة مقابل كل شرط","body":"راجع المسودّة حصرًا مقابل قائمة المتطلبات: اذكر ما استوفى الشرط، وما لم يستوفِه، مع تحديد المشكلة. لا تعِد كتابة النص في هذه المرحلة — أعطِ تقرير مراجعة فقط."},"en":{"title":"Review & audit","goal":"Audit the draft against every requirement","body":"Review the draft strictly against the requirement list: state which requirements are met, which are not, and where the gap is. Do not rewrite the text in this stage — produce a review report only."}},{"key":"final","ar":{"title":"التنقيح النهائي","goal":"سلّم النسخة النهائية جاهزة","body":"طبّق ملاحظات المراجعة، وانقح الأسلوب، ووحّد المفردات والعلامات، ثم سلّم النسخة النهائية وحدها دون شرح ولا مقدمات."},"en":{"title":"Final polish","goal":"Deliver the finished text","body":"Apply the review notes, polish the prose, unify the vocabulary and the punctuation, then deliver the final version alone — no commentary, no preamble."}}];
 function phasePlan(n){
-  n=Math.max(1,Math.min(6,n|0));
-  if(n===1) return [0];
-  if(n>=6) return [0,1,2,3,4,5];
-  return [0,5].concat([1,2,3,4].slice(0,n-2)).sort((a,b)=>a-b);
+  n = Math.max(1, Math.min(6, n|0));
+  switch(n){
+    case 1: return ['all'];
+    case 2: return [2,5];        /* draft -> final            */
+    case 3: return [0,2,5];      /* research -> draft -> final */
+    case 4: return [0,1,2,5];    /* research -> outline -> draft -> final */
+    case 5: return [0,1,2,4,5];  /* ... -> review -> final    */
+    default: return [0,1,2,3,4,5];
+  }
 }
 function buildPhases(n){
   const v=readV();
   const plan=phasePlan(n);
+  if(plan[0]==='all'){
+    const ar1 = LANG==='ar';
+    return [{ n:1,
+      title: ar1?PHASES[2].ar.title:PHASES[2].en.title,
+      goal:  ar1?'البرومبت كاملًا في رسالة واحدة':'The complete prompt in a single message',
+      text: CURRENT || (ar1?'اكتب مهمتك أولًا.':'Write your task first.') }];
+  }
   const ctx=[];
   if(v.task) ctx.push('TASK: '+v.task);
   if(v.role) ctx.push('ROLE: '+v.role);

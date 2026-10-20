@@ -2030,18 +2030,28 @@ const PHASES=[{"key":"plan","ar":{"title":"البحث والتحليل","goal":"
    One stage is simply the whole prompt unchanged. */
 function phasePlan(n){
   n = Math.max(1, Math.min(6, n|0));
-  if(n===1) return [0];
-  const ORDER=[0,1,2,3,4,5];
-  if(n>=6) return ORDER;
-  /* spread the requested count over the six archetypes, always keeping
-     research first and final last */
-  const keep=[0,5];
-  const middle=[1,2,3,4].slice(0, n-2);
-  return keep.concat(middle).sort((a,b)=>a-b);
+  switch(n){
+    case 1: return ['all'];
+    case 2: return [2,5];        /* draft -> final            */
+    case 3: return [0,2,5];      /* research -> draft -> final */
+    case 4: return [0,1,2,5];    /* research -> outline -> draft -> final */
+    case 5: return [0,1,2,4,5];  /* ... -> review -> final    */
+    default: return [0,1,2,3,4,5];
+  }
 }
 function buildPhases(n){
   const v=readV();
   const plan=phasePlan(n);
+  if(plan[0]==='all'){
+    const ar1 = LANG==='ar';
+    const one = {
+      n:1,
+      title: ar1?PHASES[2].ar.title:PHASES[2].en.title,
+      goal:  ar1?'البرومبت كاملًا في رسالة واحدة':'The complete prompt in a single message',
+      text: CURRENT || (ar1?'اكتب مهمتك أولًا.':'Write your task first.')
+    };
+    return [one];
+  }
   const ctx=[];
   if(v.task) ctx.push('TASK: '+v.task);
   if(v.role) ctx.push('ROLE: '+v.role);
