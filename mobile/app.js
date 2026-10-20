@@ -16,7 +16,7 @@ const pname = (p,i) => t('preset.'+i);
 /* ================= i18n ================= */
 /* I18N + LANGS come from the shared i18n.js file */
 /* ================= State ================= */
-const FLAGS = {ask:false, cot:false, self:false, few:false, img:false,
+const FLAGS = {ask:false, cot:false, self:false, few:false, img:false, phased:false,
                direct:false, sources:false, alts:false, balanced:false, simple:false, plan:false};
 let CURRENT='', CURRENT_IMG='';
 
@@ -114,7 +114,7 @@ function getChips(boxId){ return Array.prototype.map.call(document.querySelector
 function setChips(boxId,vals){ document.querySelectorAll('#'+boxId+' input').forEach(inp=>{ inp.checked = vals.indexOf(inp.value)>=0; }); }
 /* "Technique keys used": counts the toggles and nothing else, so the numerator
    can never exceed the denominator. Both numbers are derived from the markup. */
-const TECH_MAX = document.querySelectorAll('.tg[data-tg]:not([data-tg="img"])').length;
+const TECH_MAX = document.querySelectorAll('.tg[data-tg]:not([data-tg="phased"]):not([data-tg="img"])').length;
 
 function setFlag(k,v){
   FLAGS[k]=v;
@@ -321,7 +321,7 @@ function render(){
   $('imgPrev').style.direction = 'ltr';
 
   /* hero card */
-  const activeFlags = Object.keys(FLAGS).filter(k=>k!=='img' && FLAGS[k]).length;
+  const activeFlags = Object.keys(FLAGS).filter(k=>k!=='img' && k!=='phased' && FLAGS[k]).length;
   const tech = activeFlags;
   $('heroWords').textContent = words;
   $('heroSecs').textContent = (CURRENT.match(/^## /gm)||[]).length;
@@ -573,6 +573,9 @@ function buildPhases(n){
 }
 function renderPhases(){
   const list=$('phaseList'); if(!list) return;
+  const bar=$('phaseBar');
+  if(bar) bar.hidden = !FLAGS.phased;
+  if(!FLAGS.phased){ list.innerHTML=''; return; }
   const n=Number(($('phaseCountSel')||{}).value||1);
   const phases=buildPhases(n);
   list.innerHTML='';

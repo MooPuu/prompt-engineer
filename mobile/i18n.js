@@ -1,4 +1,4 @@
-/* Prompt Engineer — shared language data (10 languages loaded, 435 keys each)
+/* Prompt Engineer — shared language data (10 languages loaded, 437 keys each)
    Fallback chain: chosen language → English → Arabic → key.
    Preset bodies and tone descriptions stay bilingual AR/EN by design. */
 const LANGS = [
@@ -519,7 +519,9 @@ const I18N = {
   "d.theme": "المظهر",
   "gap.title": "ثغرات المواصفات",
   "gap.fixed": "أُضيفت المواصفة",
-  "mdl.label": "النموذج المستهدف"
+  "mdl.label": "النموذج المستهدف",
+  "tg.phased": "استجابة مرحلية 🎯",
+  "tg.phased.d": "يقسّم البرومبت إلى مراحل تُرسَل بالتتابع، كل مرحلة تبني على سابقتها."
  },
  "en": {
   "app.title": "Prompt Engineer — AI Prompt Builder",
@@ -956,7 +958,9 @@ const I18N = {
   "d.theme": "Theme",
   "gap.title": "Spec gaps",
   "gap.fixed": "Spec added",
-  "mdl.label": "Target model"
+  "mdl.label": "Target model",
+  "tg.phased": "Phased response 🎯",
+  "tg.phased.d": "Splits the prompt into stages to send in order, each building on the previous one."
  },
  "de": {
   "app.title": "Prompt Engineer — KI-Prompt-Builder",
@@ -1393,7 +1397,9 @@ const I18N = {
   "d.theme": "Design",
   "gap.title": "Spec gaps",
   "gap.fixed": "Spec added",
-  "mdl.label": "Target model"
+  "mdl.label": "Target model",
+  "tg.phased": "Phased response 🎯",
+  "tg.phased.d": "Splits the prompt into stages to send in order, each building on the previous one."
  },
  "es": {
   "app.title": "Prompt Engineer — Generador de prompts con IA",
@@ -1830,7 +1836,9 @@ const I18N = {
   "d.theme": "Tema",
   "gap.title": "Spec gaps",
   "gap.fixed": "Spec added",
-  "mdl.label": "Target model"
+  "mdl.label": "Target model",
+  "tg.phased": "Phased response 🎯",
+  "tg.phased.d": "Splits the prompt into stages to send in order, each building on the previous one."
  },
  "fa": {
   "app.title": "مهندس پرامپت — Prompt Engineer",
@@ -2267,7 +2275,9 @@ const I18N = {
   "d.theme": "پوسته",
   "gap.title": "Spec gaps",
   "gap.fixed": "Spec added",
-  "mdl.label": "Target model"
+  "mdl.label": "Target model",
+  "tg.phased": "Phased response 🎯",
+  "tg.phased.d": "Splits the prompt into stages to send in order, each building on the previous one."
  },
  "fr": {
   "app.title": "Prompt Engineer — Générateur de prompts IA",
@@ -2704,7 +2714,9 @@ const I18N = {
   "d.theme": "Thème",
   "gap.title": "Spec gaps",
   "gap.fixed": "Spec added",
-  "mdl.label": "Target model"
+  "mdl.label": "Target model",
+  "tg.phased": "Phased response 🎯",
+  "tg.phased.d": "Splits the prompt into stages to send in order, each building on the previous one."
  },
  "ru": {
   "app.title": "Prompt Engineer — генератор промптов для ИИ",
@@ -3141,7 +3153,9 @@ const I18N = {
   "d.theme": "Тема",
   "gap.title": "Spec gaps",
   "gap.fixed": "Spec added",
-  "mdl.label": "Target model"
+  "mdl.label": "Target model",
+  "tg.phased": "Phased response 🎯",
+  "tg.phased.d": "Splits the prompt into stages to send in order, each building on the previous one."
  },
  "sv": {
   "app.title": "Prompt Engineer — Promptbyggare för AI",
@@ -3578,7 +3592,9 @@ const I18N = {
   "d.theme": "Tema",
   "gap.title": "Spec gaps",
   "gap.fixed": "Spec added",
-  "mdl.label": "Target model"
+  "mdl.label": "Target model",
+  "tg.phased": "Phased response 🎯",
+  "tg.phased.d": "Splits the prompt into stages to send in order, each building on the previous one."
  },
  "tr": {
   "app.title": "Prompt Engineer — Yapay Zekâ Prompt Oluşturucu",
@@ -4015,6 +4031,8 @@ const I18N = {
   "gap.title": "Spec gaps",
   "gap.fixed": "Spec added",
   "mdl.label": "Target model",
+  "tg.phased": "Phased response 🎯",
+  "tg.phased.d": "Splits the prompt into stages to send in order, each building on the previous one.",
   "lb.avoid2": "kaçınılması gerekenler"
  },
  "zh": {
@@ -4452,6 +4470,8 @@ const I18N = {
   "d.theme": "主题",
   "gap.title": "Spec gaps",
   "gap.fixed": "Spec added",
-  "mdl.label": "Target model"
+  "mdl.label": "Target model",
+  "tg.phased": "Phased response 🎯",
+  "tg.phased.d": "Splits the prompt into stages to send in order, each building on the previous one."
  }
 };
