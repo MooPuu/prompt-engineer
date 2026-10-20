@@ -462,3 +462,116 @@ pre.out-p{
   border:1px solid var(--line2)}
 .theme-btn.active{border-color:var(--primary);box-shadow:0 0 0 2px var(--blue-soft)}
 .theme-btn.active .th-t{color:var(--primary)}
+
+/* =========================================================================
+   Dark-surface overrides.
+   The mobile sheet was written as a light-only design with colour literals
+   baked into every rule, so switching data-theme left white panels on a
+   black page. These overrides re-point every one of those literals at the
+   theme variables.
+   ========================================================================= */
+html[data-theme="dark"],html[data-theme="neon"],html[data-theme="oled"]{
+  --surface:var(--card);
+  --surface2:var(--bg2,#0d1424);
+  --line-soft:var(--line);
+  --tint:rgba(255,255,255,.06);
+  --glass:rgba(14,20,36,.86);
+  --bar:rgba(18,25,44,.9);
+}
+html[data-theme="neon"]{--surface2:#080d1a}
+html[data-theme="oled"]{--surface2:#050505}
+
+/* app bar, drawer, scrim */
+html[data-theme="dark"] .appbar,html[data-theme="neon"] .appbar,html[data-theme="oled"] .appbar{
+  background:var(--bar);border-bottom-color:var(--line)}
+html[data-theme="dark"] .drawer,html[data-theme="neon"] .drawer,html[data-theme="oled"] .drawer{
+  background:var(--card);color:var(--ink);border-left:1px solid var(--line)}
+html[data-theme="dark"] .avatar,html[data-theme="neon"] .avatar,html[data-theme="oled"] .avatar{
+  background:var(--surface2)}
+html[data-theme="dark"] .drawer .d-head img,html[data-theme="neon"] .drawer .d-head img,html[data-theme="oled"] .drawer .d-head img{
+  background:var(--surface2)}
+
+/* generic surfaces */
+html[data-theme="dark"] .scard,html[data-theme="neon"] .scard,html[data-theme="oled"] .scard{background:var(--card);border-color:var(--line)}
+html[data-theme="dark"] .card,html[data-theme="neon"] .card,html[data-theme="oled"] .card{background:var(--card);border-color:var(--line)}
+html[data-theme="dark"] .out,html[data-theme="neon"] .out,html[data-theme="oled"] .out{background:var(--card);border-color:var(--line)}
+html[data-theme="dark"] .out-p,html[data-theme="neon"] .out-p,html[data-theme="oled"] .out-p{
+  background:var(--bg);color:var(--ink)}
+html[data-theme="dark"] .hint,html[data-theme="neon"] .hint,html[data-theme="oled"] .hint{
+  background:var(--bg2,#0d1424);color:var(--muted);border-color:var(--line)}
+html[data-theme="dark"] .note,html[data-theme="neon"] .note,html[data-theme="oled"] .note{
+  background:var(--blue-soft);color:var(--ink);border-color:var(--line)}
+html[data-theme="dark"] .tpl-panel,html[data-theme="neon"] .tpl-panel,html[data-theme="oled"] .tpl-panel{
+  background:var(--bg2,#0d1424);border-color:var(--line)}
+html[data-theme="dark"] .tpl-btn,html[data-theme="neon"] .tpl-btn,html[data-theme="oled"] .tpl-btn{
+  background:var(--surface2);border-color:var(--line);color:var(--ink)}
+html[data-theme="dark"] .tpl-cnt,html[data-theme="neon"] .tpl-cnt,html[data-theme="oled"] .tpl-cnt{
+  background:var(--tint);color:var(--muted)}
+html[data-theme="dark"] .lang-seg,html[data-theme="neon"] .lang-seg,html[data-theme="oled"] .lang-seg{
+  background:var(--surface2);border-color:var(--line)}
+html[data-theme="dark"] .lang-seg button.active,html[data-theme="neon"] .lang-seg button.active,html[data-theme="oled"] .lang-seg button.active{
+  background:var(--card);color:var(--ink)}
+html[data-theme="dark"] .lang-list button.active,html[data-theme="neon"] .lang-list button.active,html[data-theme="oled"] .lang-list button.active{
+  background:var(--blue-soft);border-color:var(--primary)}
+
+/* form controls */
+html[data-theme="dark"] input,html[data-theme="neon"] input,html[data-theme="oled"] input,
+html[data-theme="dark"] textarea,html[data-theme="neon"] textarea,html[data-theme="oled"] textarea,
+html[data-theme="dark"] select,html[data-theme="neon"] select,html[data-theme="oled"] select{
+  background:var(--bg2,#0d1424);color:var(--ink);border-color:var(--line)}
+html[data-theme="dark"] input:focus,html[data-theme="neon"] input:focus,html[data-theme="oled"] input:focus,
+html[data-theme="dark"] textarea:focus,html[data-theme="neon"] textarea:focus,html[data-theme="oled"] textarea:focus,
+html[data-theme="dark"] select:focus,html[data-theme="neon"] select:focus,html[data-theme="oled"] select:focus{
+  background:var(--card);border-color:var(--primary)}
+html[data-theme="dark"] input::placeholder,html[data-theme="neon"] input::placeholder,html[data-theme="oled"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder,html[data-theme="neon"] textarea::placeholder,html[data-theme="oled"] textarea::placeholder{
+  color:var(--muted)}
+
+/* chips, toggles, checkboxes */
+html[data-theme="dark"] .chips label,html[data-theme="neon"] .chips label,html[data-theme="oled"] .chips label{
+  background:var(--surface2);border-color:var(--line);color:var(--ink)}
+html[data-theme="dark"] .chips label:hover,html[data-theme="neon"] .chips label:hover,html[data-theme="oled"] .chips label:hover{
+  border-color:var(--primary)}
+html[data-theme="dark"] .tg .sw,html[data-theme="neon"] .tg .sw,html[data-theme="oled"] .tg .sw{background:#2a3350}
+html[data-theme="dark"] .tg.on,html[data-theme="neon"] .tg.on,html[data-theme="oled"] .tg.on{
+  background:var(--card);border-color:var(--primary)}
+html[data-theme="dark"] .s-chip,html[data-theme="neon"] .s-chip,html[data-theme="oled"] .s-chip{
+  background:var(--surface2);border-color:var(--line);color:var(--muted)}
+html[data-theme="dark"] .s-done,html[data-theme="neon"] .s-done,html[data-theme="oled"] .s-done{
+  background:var(--green-soft);color:var(--green)}
+html[data-theme="dark"] .s-chev,html[data-theme="neon"] .s-chev,html[data-theme="oled"] .s-chev{color:var(--muted)}
+
+/* buttons */
+html[data-theme="dark"] .btn.ghost,html[data-theme="neon"] .btn.ghost,html[data-theme="oled"] .btn.ghost{
+  background:var(--surface2);color:var(--primary);box-shadow:inset 0 0 0 1.5px var(--line2)}
+html[data-theme="dark"] .btn.small.ghost,html[data-theme="neon"] .btn.small.ghost,html[data-theme="oled"] .btn.small.ghost{
+  background:var(--surface2);color:var(--muted);box-shadow:inset 0 0 0 1.5px var(--line2)}
+
+/* quality ring, panels, popups */
+html[data-theme="dark"] .ring,html[data-theme="neon"] .ring,html[data-theme="oled"] .ring{background:#1b2440}
+html[data-theme="dark"] .ring .inner,html[data-theme="neon"] .ring .inner,html[data-theme="oled"] .ring .inner{background:var(--card)}
+html[data-theme="dark"] .score-tip,html[data-theme="neon"] .score-tip,html[data-theme="oled"] .score-tip{color:var(--muted)}
+html[data-theme="dark"] .qa button .qa-ic,html[data-theme="neon"] .qa button .qa-ic,html[data-theme="oled"] .qa button .qa-ic{color:var(--muted)}
+html[data-theme="dark"] .sheet,html[data-theme="neon"] .sheet,html[data-theme="oled"] .sheet{
+  background:var(--glass);color:var(--ink);border-color:var(--line)}
+html[data-theme="dark"] .toast,html[data-theme="neon"] .toast,html[data-theme="oled"] .toast{
+  background:var(--glass);color:var(--ink)}
+
+/* AI tool cards */
+html[data-theme="dark"] .ai-card,html[data-theme="neon"] .ai-card,html[data-theme="oled"] .ai-card{
+  background:var(--card);border-color:var(--line);color:var(--ink)}
+html[data-theme="dark"] .ai-links .off,html[data-theme="neon"] .ai-links .off,html[data-theme="oled"] .ai-links .off{
+  background:var(--blue-soft);color:var(--primary-link);box-shadow:inset 0 0 0 1.5px var(--line2)}
+html[data-theme="dark"] .ai-links .oss,html[data-theme="neon"] .ai-links .oss,html[data-theme="oled"] .ai-links .oss{
+  background:var(--green-soft);color:var(--green);box-shadow:inset 0 0 0 1.5px var(--line2)}
+html[data-theme="dark"] .ai-desc,html[data-theme="neon"] .ai-desc,html[data-theme="oled"] .ai-desc{color:var(--muted)}
+
+/* misc */
+html[data-theme="dark"] .scard.open,html[data-theme="neon"] .scard.open,html[data-theme="oled"] .scard.open{
+  border-color:var(--primary)}
+html[data-theme="dark"] ::-webkit-scrollbar-thumb,html[data-theme="neon"] ::-webkit-scrollbar-thumb,html[data-theme="oled"] ::-webkit-scrollbar-thumb{
+  background:#2b3552}
+html[data-theme="dark"] .pcard:hover,html[data-theme="neon"] .pcard:hover,html[data-theme="oled"] .pcard:hover{
+  border-color:var(--primary)}
+html[data-theme="dark"] .theme-btn,html[data-theme="neon"] .theme-btn,html[data-theme="oled"] .theme-btn{
+  background:var(--card);border-color:var(--line);color:var(--ink)}
