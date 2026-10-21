@@ -675,3 +675,33 @@ html[data-theme="dark"] .bnav{
 .hbody.open{display:block}
 .hacts{display:flex;gap:7px;margin-top:10px}
 .hacts .btn{flex:1}
+
+/* ---------------- the day / night switch fills the drawer like the other rows ---------------- */
+.theme-row{display:block;margin-bottom:6px}
+.theme-btn.theme-anim-btn{
+  width:100%;display:flex;align-items:center;gap:10px;
+  padding:12px;border-radius:20px;background:var(--surface2);
+  border:1px solid var(--line);font-size:14px;font-weight:700;color:var(--ink);
+  transition:border-color .18s,box-shadow .18s
+}
+.theme-btn.theme-anim-btn:hover{border-color:var(--primary)}
+.theme-btn.theme-anim-btn.active{border-color:var(--primary);box-shadow:0 0 0 2px var(--blue-soft)}
+.theme-btn.theme-anim-btn .th-anim{
+  width:200px;height:112px;border-radius:56px;overflow:hidden;flex:0 0 200px;
+  display:grid;place-items:center;background:var(--card);border:1px solid var(--line);padding:0
+}
+.theme-btn.theme-anim-btn .th-t{font-size:15px;font-weight:800;color:var(--ink);line-height:1.35}
+.theme-btn.theme-anim-btn.active .th-t{color:var(--primary)}
+.theme-anim{display:block;width:200px;height:112px;overflow:hidden;pointer-events:none;user-select:none}
+
+/* ---------------- the paper plane above the progress bar ---------------- */
+.hero .hero-anim{
+  position:absolute;left:30%;transform:translateX(-50%);bottom:70px;
+  width:150px;height:112px;
+  pointer-events:none;user-select:none;opacity:1;z-index:0;
+  /* the paper plane is drawn for a white page, so it needs a light halo to
+     read against the blue card */
+  filter:drop-shadow(0 0 7px rgba(255,255,255,.95)) drop-shadow(0 0 16px rgba(255,255,255,.5))
+}
+.hero .hero-anim svg{display:block;width:100%;height:100%}
+@media (max-width:360px){ .hero .hero-anim{width:124px;height:94px} }
