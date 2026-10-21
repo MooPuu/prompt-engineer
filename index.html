@@ -295,15 +295,15 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
     </div>
 
     <div class="themes" id="themes" role="group" aria-label="Theme">
-      <button class="tbtn active" data-theme="midnight"><span class="em"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21.7519 15.0021C20.597 15.484 19.3296 15.7501 18 15.7501C12.6152 15.7501 8.25 11.3849 8.25 6.00011C8.25 4.67052 8.51614 3.40308 8.99806 2.24817C5.47566 3.71798 3 7.19493 3 11.2501C3 16.6349 7.36522 21.0001 12.75 21.0001C16.8052 21.0001 20.2821 18.5245 21.7519 15.0021Z"/></svg></span><span class="tx" data-i18n="theme.night">ليلي</span></button>
-      <button class="tbtn" data-theme="light"><span class="em"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3V5.25M18.364 5.63604L16.773 7.22703M21 12H18.75M18.364 18.364L16.773 16.773M12 18.75V21M7.22703 16.773L5.63604 18.364M5.25 12H3M7.22703 7.22703L5.63604 5.63604M15.75 12C15.75 14.0711 14.0711 15.75 12 15.75C9.92893 15.75 8.25 14.0711 8.25 12C8.25 9.92893 9.92893 8.25 12 8.25C14.0711 8.25 15.75 9.92893 15.75 12Z"/></svg></span><span class="tx" data-i18n="theme.light">نهاري</span></button>
-      <button class="tbtn" data-theme="neon"><span class="em"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.75 13.5L14.25 2.25L12 10.5H20.25L9.75 21.75L12 13.5H3.75Z"/></svg></span><span class="tx" data-i18n="theme.neon">نيون</span></button>
+      <button class="tbtn tbtn-anim" id="btnThemeAnim" type="button" aria-pressed="false" title="Night / Day">
+        <span class="em"><span class="theme-anim" id="themeAnim" aria-hidden="true"></span></span>
+        <span class="tx" data-i18n="theme.toggle">تبديل</span>
+      </button>
         <button class="tbtn" data-theme="oled" title="OLED"><span class="em"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.42857 9.75L2.25 12L6.42857 14.25M6.42857 9.75L12 12.75L17.5714 9.75M6.42857 9.75L2.25 7.5L12 2.25L21.75 7.5L17.5714 9.75M17.5714 9.75L21.75 12L17.5714 14.25M17.5714 14.25L21.75 16.5L12 21.75L2.25 16.5L6.42857 14.25M17.5714 14.25L12 17.25L6.42857 14.25"/></svg></span><span class="tx" data-i18n="theme.oled">أسود</span></button>
     </div>
 
     <button class="btn ghost" id="btnAuto"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.8132 15.9038L9 18.75L8.1868 15.9038C7.75968 14.4089 6.59112 13.2403 5.09619 12.8132L2.25 12L5.09619 11.1868C6.59113 10.7597 7.75968 9.59112 8.1868 8.09619L9 5.25L9.8132 8.09619C10.2403 9.59113 11.4089 10.7597 12.9038 11.1868L15.75 12L12.9038 12.8132C11.4089 13.2403 10.2403 14.4089 9.8132 15.9038Z"/><path d="M18.2589 8.71454L18 9.75L17.7411 8.71454C17.4388 7.50533 16.4947 6.56117 15.2855 6.25887L14.25 6L15.2855 5.74113C16.4947 5.43883 17.4388 4.49467 17.7411 3.28546L18 2.25L18.2589 3.28546C18.5612 4.49467 19.5053 5.43883 20.7145 5.74113L21.75 6L20.7145 6.25887C19.5053 6.56117 18.5612 7.50533 18.2589 8.71454Z"/><path d="M16.8942 20.5673L16.5 21.75L16.1058 20.5673C15.8818 19.8954 15.3546 19.3682 14.6827 19.1442L13.5 18.75L14.6827 18.3558C15.3546 18.1318 15.8818 17.6046 16.1058 16.9327L16.5 15.75L16.8942 16.9327C17.1182 17.6046 17.6454 18.1318 17.6454 18.3558L19.5 18.75L18.3173 19.1442C17.6454 19.3682 17.1182 19.8954 16.8942 20.5673Z"/></svg> <span data-i18n="act.auto">أكمل تلقائيًا</span></button>
     <button class="btn ghost" id="btnReset"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.0228 9.34841H21.0154V9.34663M2.98413 19.6444V14.6517M2.98413 14.6517L7.97677 14.6517M2.98413 14.6517L6.16502 17.8347C7.15555 18.8271 8.41261 19.58 9.86436 19.969C14.2654 21.1483 18.7892 18.5364 19.9685 14.1353M4.03073 9.86484C5.21 5.46374 9.73377 2.85194 14.1349 4.03121C15.5866 4.4202 16.8437 5.17312 17.8342 6.1655L21.0154 9.34663M21.0154 4.3558V9.34663"/></svg> <span data-i18n="act.clear">مسح</span></button>
-    <button class="btn ghost" id="btnFocus" type="button" aria-pressed="false" title="Focus mode"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2.03555 12.3224C1.96647 12.1151 1.9664 11.8907 2.03536 11.6834C3.42372 7.50972 7.36079 4.5 12.0008 4.5C16.6387 4.5 20.5742 7.50692 21.9643 11.6776C22.0334 11.8849 22.0335 12.1093 21.9645 12.3166C20.5761 16.4903 16.6391 19.5 11.9991 19.5C7.36119 19.5 3.42564 16.4931 2.03555 12.3224Z"/><path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3432 10.3431 9.00001 12 9.00001C13.6569 9.00001 15 10.3432 15 12Z"/></svg> <span data-i18n="focus.mode">تركيز</span></button>
         <button class="btn primary" id="btnCopyTop"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.25 7.5V6.10822C8.25 4.97324 9.09499 4.01015 10.2261 3.91627C10.5994 3.88529 10.9739 3.85858 11.3495 3.83619M15.75 18H18C19.2426 18 20.25 16.9926 20.25 15.75V6.10822C20.25 4.97324 19.405 4.01015 18.2739 3.91627C17.9006 3.88529 17.5261 3.85858 17.1505 3.83619M15.75 18.75V16.875C15.75 15.011 14.239 13.5 12.375 13.5H10.875C10.2537 13.5 9.75 12.9963 9.75 12.375V10.875C9.75 9.01104 8.23896 7.5 6.375 7.5H5.25M17.1505 3.83619C16.8672 2.91757 16.0116 2.25 15 2.25H13.5C12.4884 2.25 11.6328 2.91757 11.3495 3.83619M17.1505 3.83619C17.2152 4.04602 17.25 4.26894 17.25 4.5V5.25H11.25V4.5C11.25 4.26894 11.2848 4.04602 11.3495 3.83619M6.75 7.5H4.875C4.25368 7.5 3.75 8.00368 3.75 8.625V20.625C3.75 21.2463 4.25368 21.75 4.875 21.75H14.625C15.2463 21.75 15.75 21.2463 15.75 20.625V16.5C15.75 11.5294 11.7206 7.5 6.75 7.5Z"/></svg> <span data-i18n="act.copy">نسخ البرومبت</span></button>
   </div>
   </div><!-- /.tb-main -->
@@ -841,7 +841,9 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
   </div>
 </footer>
 
-<script src="i18n.js?v=70991976"></script>
+<script src="i18n.js?v=36f4e58a"></script>
+<script src="lottie.min.js"></script>
+<script src="anim.js"></script>
 <script>
 /* ================= i18n ================= */
 /* I18N + LANGS now live in the shared i18n.js file */
@@ -2356,17 +2358,6 @@ function costEstimate(tokens){
   }));
 }
 
-/* ================= Focus mode ================= */
-function toggleFocus(force){
-  const on = force===undefined ? !document.body.classList.contains('focus') : force;
-  document.body.classList.toggle('focus', on);
-  const b=$('btnFocus'); if(b){
-    b.setAttribute('aria-pressed', on?'true':'false');
-    b.classList.toggle('primary', on);
-  }
-  try{ localStorage.setItem('pe_focus', on?'1':'0'); }catch(e){}
-}
-
 /* ================= Dynamic variables ================= */
 /* [اسم_العميل] and [client_name] in any field become inputs that are
    substituted into the prompt at render time. */
@@ -2456,9 +2447,6 @@ if(btnPhaseCopy) btnPhaseCopy.onclick=()=>{
   const phases=buildPhases(Number(phaseSel.value));
   copy(phases.map(p=>'=== STAGE '+p.n+' / '+p.n+' ===\n'+p.text).join('\n\n'));
 };
-const btnFocus=$('btnFocus');
-if(btnFocus) btnFocus.onclick=()=>toggleFocus();
-try{ if(localStorage.getItem('pe_focus')==='1') toggleFocus(true); }catch(e){}
 const btnVarsClear=$('btnVarsClear');
 if(btnVarsClear) btnVarsClear.onclick=()=>{
   document.querySelectorAll('#varFields input').forEach(i=>i.value='');
@@ -2501,16 +2489,62 @@ $('btnReset').onclick=()=>{
 $('btnClearHist').onclick=()=>{ try{localStorage.removeItem('pe_hist');}catch(e){} renderHistory(); };
 
 /* ================= Themes ================= */
-const THEME_META = {midnight:'#0b0f1a', light:'#eef1f8', neon:'#04060d', oled:'#000000'};
-function setTheme(name){
+const THEME_META = {midnight:'#0b0f1a', light:'#eef1f8', oled:'#000000'};
+function setTheme(name, fromSwitch){
   if(!THEME_META[name]) name='midnight';
   document.documentElement.setAttribute('data-theme', name);
   const m=document.querySelector('meta[name="theme-color"]'); if(m) m.content=THEME_META[name];
   document.querySelectorAll('#themes .tbtn').forEach(b=>b.classList.toggle('active', b.dataset.theme===name));
+  const sw=$('btnThemeAnim');
+  if(sw){
+    const isDay=name==='light';
+    sw.classList.toggle('active', name!=='oled');
+    sw.setAttribute('aria-pressed', isDay?'false':'true');
+    const lbl=sw.querySelector('.tx');
+    if(lbl) lbl.textContent = isDay ? t('theme.light') : t('theme.night');
+  }
+  if(!fromSwitch) syncThemeAnim();
   try{ localStorage.setItem('pe_theme', name); }catch(e){}
 }
-document.querySelectorAll('#themes .tbtn').forEach(b=>{
+document.querySelectorAll('#themes .tbtn[data-theme]').forEach(b=>{
   b.addEventListener('click',()=>{ setTheme(b.dataset.theme); toast(t('msg.theme')); });
+});
+
+/* ---------------- the animated night / day switch ----------------
+   The Lottie is a real switch: the handle slides to the left for the night
+   theme and back to the right for the day theme.
+   Frame 30  = the sun on the right, the day theme
+   Frame 200 = the moon on the left, the night theme               */
+const THEME_FRAMES = {day: 30, night: 200};
+let themeAnim=null;
+function themeIsDay(){ return document.documentElement.getAttribute('data-theme')==='light'; }
+function initThemeAnim(){
+  const box=$('themeAnim');
+  if(!box || typeof lottie==='undefined' || !window.PE_ANIM || !window.PE_ANIM.darkmode) return;
+  try{
+    themeAnim=lottie.loadAnimation({
+      container:box, renderer:'svg', loop:false, autoplay:false,
+      animationData:window.PE_ANIM.darkmode
+    });
+    themeAnim.goToAndStop(themeIsDay()?THEME_FRAMES.day:THEME_FRAMES.night, true);
+  }catch(e){ console.warn('the theme animation failed to load', e); }
+}
+function syncThemeAnim(){
+  if(!themeAnim) return;
+  try{ themeAnim.goToAndStop(themeIsDay()?THEME_FRAMES.day:THEME_FRAMES.night, true); }catch(e){}
+}
+function playThemeAnim(toDark){
+  if(!themeAnim) return;
+  try{
+    if(toDark) themeAnim.playSegments([THEME_FRAMES.day, THEME_FRAMES.night], true);
+    else themeAnim.playSegments([THEME_FRAMES.night, THEME_FRAMES.day], true);
+  }catch(e){}
+}
+$('btnThemeAnim').addEventListener('click',()=>{
+  const toDark = themeIsDay();
+  setTheme(toDark?'midnight':'light', true);
+  playThemeAnim(toDark);
+  toast(t('msg.theme'));
 });
 
 /* ================= History ================= */
@@ -2798,7 +2832,12 @@ function toggleLangMenu(force){
   let tb='full'; try{ tb = localStorage.getItem('pe_topbar') || 'full'; }catch(e){}
   buildSideMenu();
   setTheme(th);
+  initThemeAnim();
   setLang(lg, true);
+  setTheme(th);   /* the switch label follows the language */
+  /* the focus mode was removed -- nobody stays trapped in it */
+  document.body.classList.remove('focus');
+  try{ localStorage.removeItem('pe_focus'); }catch(e){}
   if(tb==='min'){ const m=$('tbMain'); if(m){ m.style.maxHeight='0px'; m.style.opacity='0'; m.style.overflow='hidden'; }
     $('topbar').classList.add('min');
     const l=$('logoBtn'); if(l){ l.setAttribute('aria-expanded','false'); l.dataset.i18nTitle='tb.expand'; l.title=t('tb.expand'); }

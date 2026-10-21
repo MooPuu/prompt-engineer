@@ -672,26 +672,45 @@ function renderPhases(){
 const MOBILE_THEMES = [
   {code:'light', label:'فاتح',  icon:'☀️', bg:'#EFF1F9'},
   {code:'dark',  label:'داكن',  icon:'🌙', bg:'#0b0f1a'},
-  {code:'neon',  label:'نيون',  icon:'⚡', bg:'#04060d'},
   {code:'oled',  label:'أسود',  icon:'⬛', bg:'#000000'}
 ];
-function setTheme(code){
+function setTheme(code, fromSwitch){
   if(!MOBILE_THEMES.some(x=>x.code===code)) code='light';
   document.documentElement.setAttribute('data-theme', code);
   const m=document.querySelector('meta[name="theme-color"]');
   const th=MOBILE_THEMES.find(x=>x.code===code);
   if(m && th) m.content=th.bg;
-  document.querySelectorAll('#themeRow button').forEach(b=>{
+  document.querySelectorAll('#themeRow button[data-theme]').forEach(b=>{
     const on=b.dataset.theme===code;
     b.classList.toggle('active', on);
     b.setAttribute('aria-checked', on?'true':'false');
   });
+  const sw=document.getElementById('btnThemeAnim');
+  if(sw){
+    const isDay=code==='light';
+    sw.classList.toggle('active', code!=='oled');
+    sw.setAttribute('aria-checked', code!=='oled'?'true':'false');
+    sw.setAttribute('aria-pressed', isDay?'false':'true');
+    const lbl=sw.querySelector('.th-t');
+    if(lbl) lbl.textContent = isDay ? t('theme.light') : t('theme.night');
+  }
+  if(!fromSwitch) syncThemeAnim();
   try{ localStorage.setItem('pe_theme', code); }catch(e){}
 }
 function renderThemeRow(){
   const box=$('themeRow'); if(!box) return;
   box.innerHTML='';
-  MOBILE_THEMES.forEach(th=>{
+
+  /* the animated night / day switch */
+  const sw=document.createElement('button');
+  sw.type='button'; sw.className='theme-btn theme-anim-btn'; sw.id='btnThemeAnim';
+  sw.setAttribute('role','radio'); sw.setAttribute('aria-checked','false');
+  sw.innerHTML='<span class="th-ic th-anim"><span class="theme-anim" id="themeAnim"></span></span><span class="th-t"></span>';
+  sw.addEventListener('click',()=>toggleDayNight());
+  box.appendChild(sw);
+
+  /* the black OLED theme */
+  MOBILE_THEMES.filter(th=>th.code==='oled').forEach(th=>{
     const b=document.createElement('button');
     b.type='button'; b.className='theme-btn'; b.dataset.theme=th.code;
     b.setAttribute('role','radio'); b.setAttribute('aria-checked','false');
@@ -699,6 +718,65 @@ function renderThemeRow(){
     b.addEventListener('click',()=>setTheme(th.code));
     box.appendChild(b);
   });
+}
+
+/* ---------------- the animated night / day switch ----------------
+   The Lottie is a real switch: the handle slides to the left for the night
+   theme and back to the right for the day theme.
+   Frame 30  = the sun on the right, the day theme
+   Frame 200 = the moon on the left, the night theme               */
+const THEME_FRAMES = {day: 30, night: 200};
+let themeAnim=null;
+function themeIsDay(){ return document.documentElement.getAttribute('data-theme')==='light'; }
+function initThemeAnim(){
+  const box=document.getElementById('themeAnim');
+  if(!box || typeof lottie==='undefined' || !window.PE_ANIM || !window.PE_ANIM.darkmode) return;
+  try{
+    themeAnim=lottie.loadAnimation({
+      container:box, renderer:'svg', loop:false, autoplay:false,
+      animationData:window.PE_ANIM.darkmode
+    });
+    themeAnim.goToAndStop(themeIsDay()?THEME_FRAMES.day:THEME_FRAMES.night, true);
+  }catch(e){ console.warn('the theme animation failed to load', e); }
+}
+function syncThemeAnim(){
+  if(!themeAnim) return;
+  try{ themeAnim.goToAndStop(themeIsDay()?THEME_FRAMES.day:THEME_FRAMES.night, true); }catch(e){}
+}
+function playThemeAnim(toDark){
+  if(!themeAnim) return;
+  try{
+    if(toDark) themeAnim.playSegments([THEME_FRAMES.day, THEME_FRAMES.night], true);
+    else themeAnim.playSegments([THEME_FRAMES.night, THEME_FRAMES.day], true);
+  }catch(e){}
+}
+function toggleDayNight(){
+  const toDark = themeIsDay();
+  setTheme(toDark?'dark':'light', true);
+  playThemeAnim(toDark);
+}
+
+/* ---------------- the paper plane above the progress bar ---------------- */
+function placeHeroAnim(){
+  const box=document.getElementById('heroAnim');
+  const hero=document.querySelector('.hero'), bar=document.querySelector('.h-bar');
+  if(!box || !hero || !bar) return;
+  const hb=hero.getBoundingClientRect(), bb=bar.getBoundingClientRect();
+  /* the bottom of the plane sits just above the line of the progress bar */
+  box.style.bottom = Math.round(hb.bottom - bb.top + 8) + 'px';
+}
+function initHeroAnim(){
+  const box=document.getElementById('heroAnim');
+  if(!box || typeof lottie==='undefined' || !window.PE_ANIM || !window.PE_ANIM.paperplane) return;
+  try{
+    lottie.loadAnimation({
+      container:box, renderer:'svg', loop:true, autoplay:true,
+      animationData:window.PE_ANIM.paperplane
+    });
+  }catch(e){ console.warn('the hero animation failed to load', e); }
+  placeHeroAnim();
+  window.addEventListener('resize', placeHeroAnim);
+  window.addEventListener('orientationchange', placeHeroAnim);
 }
 
 /* ================= Tabs / drawer / accordion ================= */
@@ -997,7 +1075,10 @@ function wire(){
   };
   let th='light'; try{ th=localStorage.getItem('pe_theme')||'light'; }catch(e){}
   setTheme(th);
+  initThemeAnim();
+  initHeroAnim();
   setLang(lg, true);
+  setTheme(th);   /* the switch label follows the language */  setTheme(th);   /* the switch label follows the language */
   goTab('m-home');
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('sw.js').catch(()=>{});

@@ -18,15 +18,6 @@ html[data-theme="dark"] body::before{
     radial-gradient(600px 320px at 90% -5%, rgba(108,139,255,.20), transparent 70%),
     radial-gradient(520px 300px at -10% 25%, rgba(155,108,255,.14), transparent 70%);
 }
-html[data-theme="neon"]{
-  --bar:rgba(10,14,28,.90);
-  --tint:rgba(255,255,255,.06);
-  --bg:#04060d;--card:#0a0f1c;--ink:#eef2ff;--muted:#8b96b8;--line:#1a2340;--line2:#28355f;
-  --primary:#7d9bff;--primary-link:#a9bcff;--primary2:#c07dff;--grad:linear-gradient(135deg,#4a6bf0,#9b6cff);
-  --pink:#ff7aa2;--pink-deep:#ff5c8a;--pink-soft:rgba(255,122,162,.14);--blue-soft:rgba(125,155,255,.14);
-  --green:#46e0a0;--green-soft:rgba(70,224,160,.14);--amber:#ffd07a;--amber-soft:rgba(255,208,122,.14);
-  --shadow:0 10px 28px rgba(0,0,0,.5);--shadow-sm:0 4px 14px rgba(0,0,0,.4);
-}
 html[data-theme="oled"]{
   --bar:rgba(0,0,0,.94);
   --tint:rgba(255,255,255,.05);
@@ -67,17 +58,6 @@ html[data-theme="dark"]{
   --toast-ink:#0b0f1a;
   --line-soft:#253050;
 }
-html[data-theme="neon"]{
-  --bg2:#080d1a;
-  --surface2:#121a2e;
-  --field-bg:#0d1424;
-  --track-off:#28355f;
-  --knob:#eef2ff;
-  --toast-bg:#eef2ff;
-  --toast-ink:#04060d;
-  --glass:rgba(8,12,24,.86);
-  --line-soft:#1a2340;
-}
 html[data-theme="oled"]{
   --bg2:#050505;
   --surface2:#0d0d0d;
@@ -91,11 +71,9 @@ html[data-theme="oled"]{
 }
 :root{ --nav-bg:rgba(255,255,255,.96); }
 html[data-theme="dark"]{ --nav-bg:rgba(16,22,38,.94); }
-html[data-theme="neon"]{ --nav-bg:rgba(8,12,24,.94); }
 html[data-theme="oled"]{ --nav-bg:rgba(10,10,10,.96); }
 :root{ --app-bg:linear-gradient(180deg,#f7f8fd,#eff1f9); --app-shadow:0 0 60px rgba(23,32,84,.10); }
 html[data-theme="dark"]{ --app-bg:#0b0f1a; --app-shadow:0 0 60px rgba(0,0,0,.5); }
-html[data-theme="neon"]{ --app-bg:#04060d; --app-shadow:0 0 60px rgba(0,0,0,.55); }
 html[data-theme="oled"]{ --app-bg:#000; --app-shadow:none; }
 :root{
   --hero-grad:linear-gradient(135deg,#3550e0 0%,#4260f5 55%,#4a66f7 100%);
@@ -122,19 +100,6 @@ html[data-theme="dark"]{
   --hero-fill:#9db2ff;
   --hero-stat:rgba(255,255,255,.06);
   --hero-stat-b:rgba(255,255,255,.13);
-}
-html[data-theme="neon"]{
-  --hero-grad:linear-gradient(135deg,#2a1150 0%,#3a1566 55%,#4a1a7a 100%);
-  --hero-ink:#f0eaff;
-  --hero-shadow:0 16px 34px rgba(0,0,0,.6);
-  --hero-glow:rgba(192,125,255,.20);
-  --hero-glow2:rgba(125,155,255,.16);
-  --hero-pill:rgba(255,255,255,.12);
-  --hero-pill-b:rgba(255,255,255,.24);
-  --hero-track:rgba(255,255,255,.20);
-  --hero-fill:#c07dff;
-  --hero-stat:rgba(255,255,255,.07);
-  --hero-stat-b:rgba(255,255,255,.15);
 }
 html[data-theme="oled"]{
   --hero-grad:linear-gradient(135deg,#0b0b13 0%,#131320 55%,#1b1b2b 100%);
@@ -588,123 +553,122 @@ pre.out-p{
    black page. These overrides re-point every one of those literals at the
    theme variables.
    ========================================================================= */
-html[data-theme="dark"],html[data-theme="neon"],html[data-theme="oled"]{
+html[data-theme="dark"],html[data-theme="oled"]{
   --surface:var(--card);
   --line-soft:var(--line);
   --glass:rgba(14,20,36,.86);
 }
-html[data-theme="neon"]{}
 html[data-theme="oled"]{}
 
 /* app bar, drawer, scrim */
-html[data-theme="dark"] .appbar,html[data-theme="neon"] .appbar,html[data-theme="oled"] .appbar{
+html[data-theme="dark"] .appbar .appbar,html[data-theme="oled"] .appbar{
   background:var(--bar);border-bottom-color:var(--line)}
-html[data-theme="dark"] .drawer,html[data-theme="neon"] .drawer,html[data-theme="oled"] .drawer{
+html[data-theme="dark"] .drawer .drawer,html[data-theme="oled"] .drawer{
   background:var(--card);color:var(--ink);border-left:1px solid var(--line)}
-html[data-theme="dark"] .avatar,html[data-theme="neon"] .avatar,html[data-theme="oled"] .avatar{
+html[data-theme="dark"] .avatar .avatar,html[data-theme="oled"] .avatar{
   background:var(--surface2)}
-html[data-theme="dark"] .drawer .d-head img,html[data-theme="neon"] .drawer .d-head img,html[data-theme="oled"] .drawer .d-head img{
+html[data-theme="dark"] .drawer .d-head img .drawer .d-head img,html[data-theme="oled"] .drawer .d-head img{
   background:var(--surface2)}
 
 /* generic surfaces */
-html[data-theme="dark"] .scard,html[data-theme="neon"] .scard,html[data-theme="oled"] .scard{background:var(--card);border-color:var(--line)}
-html[data-theme="dark"] .card,html[data-theme="neon"] .card,html[data-theme="oled"] .card{background:var(--card);border-color:var(--line)}
-html[data-theme="dark"] .out,html[data-theme="neon"] .out,html[data-theme="oled"] .out{background:var(--card);border-color:var(--line)}
-html[data-theme="dark"] .out-p,html[data-theme="neon"] .out-p,html[data-theme="oled"] .out-p{
+html[data-theme="dark"] .scard .scard,html[data-theme="oled"] .scard{background:var(--card);border-color:var(--line)}
+html[data-theme="dark"] .card .card,html[data-theme="oled"] .card{background:var(--card);border-color:var(--line)}
+html[data-theme="dark"] .out .out,html[data-theme="oled"] .out{background:var(--card);border-color:var(--line)}
+html[data-theme="dark"] .out-p .out-p,html[data-theme="oled"] .out-p{
   background:var(--bg);color:var(--ink)}
-html[data-theme="dark"] .hint,html[data-theme="neon"] .hint,html[data-theme="oled"] .hint{
+html[data-theme="dark"] .hint .hint,html[data-theme="oled"] .hint{
   background:var(--bg2,#0d1424);color:var(--muted);border-color:var(--line)}
-html[data-theme="dark"] .note,html[data-theme="neon"] .note,html[data-theme="oled"] .note{
+html[data-theme="dark"] .note .note,html[data-theme="oled"] .note{
   background:var(--blue-soft);color:var(--ink);border-color:var(--line)}
-html[data-theme="dark"] .tpl-panel,html[data-theme="neon"] .tpl-panel,html[data-theme="oled"] .tpl-panel{
+html[data-theme="dark"] .tpl-panel .tpl-panel,html[data-theme="oled"] .tpl-panel{
   background:var(--bg2,#0d1424);border-color:var(--line)}
-html[data-theme="dark"] .tpl-btn,html[data-theme="neon"] .tpl-btn,html[data-theme="oled"] .tpl-btn{
+html[data-theme="dark"] .tpl-btn .tpl-btn,html[data-theme="oled"] .tpl-btn{
   background:var(--surface2);border-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .tpl-cnt,html[data-theme="neon"] .tpl-cnt,html[data-theme="oled"] .tpl-cnt{
+html[data-theme="dark"] .tpl-cnt .tpl-cnt,html[data-theme="oled"] .tpl-cnt{
   background:var(--tint);color:var(--muted)}
-html[data-theme="dark"] .lang-seg,html[data-theme="neon"] .lang-seg,html[data-theme="oled"] .lang-seg{
+html[data-theme="dark"] .lang-seg .lang-seg,html[data-theme="oled"] .lang-seg{
   background:var(--surface2);border-color:var(--line)}
-html[data-theme="dark"] .lang-seg button.active,html[data-theme="neon"] .lang-seg button.active,html[data-theme="oled"] .lang-seg button.active{
+html[data-theme="dark"] .lang-seg button.active .lang-seg button.active,html[data-theme="oled"] .lang-seg button.active{
   background:var(--card);color:var(--ink)}
-html[data-theme="dark"] .lang-list button.active,html[data-theme="neon"] .lang-list button.active,html[data-theme="oled"] .lang-list button.active{
+html[data-theme="dark"] .lang-list button.active .lang-list button.active,html[data-theme="oled"] .lang-list button.active{
   background:var(--blue-soft);border-color:var(--primary)}
 
 /* form controls */
-html[data-theme="dark"] input,html[data-theme="neon"] input,html[data-theme="oled"] input,
-html[data-theme="dark"] textarea,html[data-theme="neon"] textarea,html[data-theme="oled"] textarea,
-html[data-theme="dark"] select,html[data-theme="neon"] select,html[data-theme="oled"] select{
+html[data-theme="dark"] input input,html[data-theme="oled"] input,
+html[data-theme="dark"] textarea textarea,html[data-theme="oled"] textarea,
+html[data-theme="dark"] select select,html[data-theme="oled"] select{
   background:var(--bg2,#0d1424);color:var(--ink);border-color:var(--line)}
-html[data-theme="dark"] input:focus,html[data-theme="neon"] input:focus,html[data-theme="oled"] input:focus,
-html[data-theme="dark"] textarea:focus,html[data-theme="neon"] textarea:focus,html[data-theme="oled"] textarea:focus,
-html[data-theme="dark"] select:focus,html[data-theme="neon"] select:focus,html[data-theme="oled"] select:focus{
+html[data-theme="dark"] input:focus input:focus,html[data-theme="oled"] input:focus,
+html[data-theme="dark"] textarea:focus textarea:focus,html[data-theme="oled"] textarea:focus,
+html[data-theme="dark"] select:focus select:focus,html[data-theme="oled"] select:focus{
   background:var(--card);border-color:var(--primary)}
-html[data-theme="dark"] input::placeholder,html[data-theme="neon"] input::placeholder,html[data-theme="oled"] input::placeholder,
-html[data-theme="dark"] textarea::placeholder,html[data-theme="neon"] textarea::placeholder,html[data-theme="oled"] textarea::placeholder{
+html[data-theme="dark"] input::placeholder input::placeholder,html[data-theme="oled"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder textarea::placeholder,html[data-theme="oled"] textarea::placeholder{
   color:var(--muted)}
 
 /* chips, toggles, checkboxes */
-html[data-theme="dark"] .chips label,html[data-theme="neon"] .chips label,html[data-theme="oled"] .chips label{
+html[data-theme="dark"] .chips label .chips label,html[data-theme="oled"] .chips label{
   background:var(--surface2);border-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .chips label:hover,html[data-theme="neon"] .chips label:hover,html[data-theme="oled"] .chips label:hover{
+html[data-theme="dark"] .chips label:hover .chips label:hover,html[data-theme="oled"] .chips label:hover{
   border-color:var(--primary)}
-html[data-theme="dark"] .tg .sw,html[data-theme="neon"] .tg .sw,html[data-theme="oled"] .tg .sw{background:#2a3350}
-html[data-theme="dark"] .tg.on,html[data-theme="neon"] .tg.on,html[data-theme="oled"] .tg.on{
+html[data-theme="dark"] .tg .sw .tg .sw,html[data-theme="oled"] .tg .sw{background:#2a3350}
+html[data-theme="dark"] .tg.on .tg.on,html[data-theme="oled"] .tg.on{
   background:var(--card);border-color:var(--primary)}
-html[data-theme="dark"] .s-chip,html[data-theme="neon"] .s-chip,html[data-theme="oled"] .s-chip{
+html[data-theme="dark"] .s-chip .s-chip,html[data-theme="oled"] .s-chip{
   background:var(--surface2);border-color:var(--line);color:var(--muted)}
-html[data-theme="dark"] .s-done,html[data-theme="neon"] .s-done,html[data-theme="oled"] .s-done{
+html[data-theme="dark"] .s-done .s-done,html[data-theme="oled"] .s-done{
   background:var(--green-soft);color:var(--green)}
-html[data-theme="dark"] .s-chev,html[data-theme="neon"] .s-chev,html[data-theme="oled"] .s-chev{color:var(--muted)}
+html[data-theme="dark"] .s-chev .s-chev,html[data-theme="oled"] .s-chev{color:var(--muted)}
 
 /* buttons */
-html[data-theme="dark"] .btn.ghost,html[data-theme="neon"] .btn.ghost,html[data-theme="oled"] .btn.ghost{
+html[data-theme="dark"] .btn.ghost .btn.ghost,html[data-theme="oled"] .btn.ghost{
   background:var(--surface2);color:var(--primary);box-shadow:inset 0 0 0 1.5px var(--line2)}
-html[data-theme="dark"] .btn.small.ghost,html[data-theme="neon"] .btn.small.ghost,html[data-theme="oled"] .btn.small.ghost{
+html[data-theme="dark"] .btn.small.ghost .btn.small.ghost,html[data-theme="oled"] .btn.small.ghost{
   background:var(--surface2);color:var(--muted);box-shadow:inset 0 0 0 1.5px var(--line2)}
 
 /* quality ring, panels, popups */
-html[data-theme="dark"] .ring,html[data-theme="neon"] .ring,html[data-theme="oled"] .ring{background:#1b2440}
-html[data-theme="dark"] .ring .inner,html[data-theme="neon"] .ring .inner,html[data-theme="oled"] .ring .inner{background:var(--card)}
-html[data-theme="dark"] .score-tip,html[data-theme="neon"] .score-tip,html[data-theme="oled"] .score-tip{color:var(--muted)}
-html[data-theme="dark"] .sheet,html[data-theme="neon"] .sheet,html[data-theme="oled"] .sheet{
+html[data-theme="dark"] .ring .ring,html[data-theme="oled"] .ring{background:#1b2440}
+html[data-theme="dark"] .ring .inner .ring .inner,html[data-theme="oled"] .ring .inner{background:var(--card)}
+html[data-theme="dark"] .score-tip .score-tip,html[data-theme="oled"] .score-tip{color:var(--muted)}
+html[data-theme="dark"] .sheet .sheet,html[data-theme="oled"] .sheet{
   background:var(--glass);color:var(--ink);border-color:var(--line)}
-html[data-theme="dark"] .toast,html[data-theme="neon"] .toast,html[data-theme="oled"] .toast{
+html[data-theme="dark"] .toast .toast,html[data-theme="oled"] .toast{
   background:var(--glass);color:var(--ink)}
 
 /* AI tool cards */
-html[data-theme="dark"] .ai-card,html[data-theme="neon"] .ai-card,html[data-theme="oled"] .ai-card{
+html[data-theme="dark"] .ai-card .ai-card,html[data-theme="oled"] .ai-card{
   background:var(--card);border-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .ai-links .off,html[data-theme="neon"] .ai-links .off,html[data-theme="oled"] .ai-links .off{
+html[data-theme="dark"] .ai-links .off .ai-links .off,html[data-theme="oled"] .ai-links .off{
   background:var(--blue-soft);color:var(--primary-link);box-shadow:inset 0 0 0 1.5px var(--line2)}
-html[data-theme="dark"] .ai-links .oss,html[data-theme="neon"] .ai-links .oss,html[data-theme="oled"] .ai-links .oss{
+html[data-theme="dark"] .ai-links .oss .ai-links .oss,html[data-theme="oled"] .ai-links .oss{
   background:var(--green-soft);color:var(--green);box-shadow:inset 0 0 0 1.5px var(--line2)}
-html[data-theme="dark"] .ai-desc,html[data-theme="neon"] .ai-desc,html[data-theme="oled"] .ai-desc{color:var(--muted)}
+html[data-theme="dark"] .ai-desc .ai-desc,html[data-theme="oled"] .ai-desc{color:var(--muted)}
 
 /* misc */
-html[data-theme="dark"] .scard.open,html[data-theme="neon"] .scard.open,html[data-theme="oled"] .scard.open{
+html[data-theme="dark"] .scard.open .scard.open,html[data-theme="oled"] .scard.open{
   border-color:var(--primary)}
-html[data-theme="dark"] ::-webkit-scrollbar-thumb,html[data-theme="neon"] ::-webkit-scrollbar-thumb,html[data-theme="oled"] ::-webkit-scrollbar-thumb{
+html[data-theme="dark"] ::-webkit-scrollbar-thumb ::-webkit-scrollbar-thumb,html[data-theme="oled"] ::-webkit-scrollbar-thumb{
   background:#2b3552}
-html[data-theme="dark"] .pcard:hover,html[data-theme="neon"] .pcard:hover,html[data-theme="oled"] .pcard:hover{
+html[data-theme="dark"] .pcard:hover .pcard:hover,html[data-theme="oled"] .pcard:hover{
   border-color:var(--primary)}
-html[data-theme="dark"] .theme-btn,html[data-theme="neon"] .theme-btn,html[data-theme="oled"] .theme-btn{
+html[data-theme="dark"] .theme-btn .theme-btn,html[data-theme="oled"] .theme-btn{
   background:var(--card);border-color:var(--line);color:var(--ink)}
 
 /* drawer link pills and lists had a hard-coded white background */
-html[data-theme="dark"] .d-item,html[data-theme="neon"] .d-item,html[data-theme="oled"] .d-item{
+html[data-theme="dark"] .d-item .d-item,html[data-theme="oled"] .d-item{
   background:var(--surface2);border-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .d-item .di,html[data-theme="neon"] .d-item .di,html[data-theme="oled"] .d-item .di{
+html[data-theme="dark"] .d-item .di .d-item .di,html[data-theme="oled"] .d-item .di{
   background:var(--card);color:var(--ink)}
-html[data-theme="dark"] .d-label,html[data-theme="neon"] .d-label,html[data-theme="oled"] .d-label{color:var(--muted)}
-html[data-theme="dark"] .d-foot,html[data-theme="neon"] .d-foot,html[data-theme="oled"] .d-foot{color:var(--muted)}
-html[data-theme="dark"] .lang-list button,html[data-theme="neon"] .lang-list button,html[data-theme="oled"] .lang-list button{
+html[data-theme="dark"] .d-label .d-label,html[data-theme="oled"] .d-label{color:var(--muted)}
+html[data-theme="dark"] .d-foot .d-foot,html[data-theme="oled"] .d-foot{color:var(--muted)}
+html[data-theme="dark"] .lang-list button .lang-list button,html[data-theme="oled"] .lang-list button{
   background:var(--surface2);border-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .greet,html[data-theme="neon"] .greet,html[data-theme="oled"] .greet{color:var(--ink)}
-html[data-theme="dark"] .sec-h,html[data-theme="neon"] .sec-h,html[data-theme="oled"] .sec-h{color:var(--muted)}
-html[data-theme="dark"] .lb,html[data-theme="neon"] .lb,html[data-theme="oled"] .lb{color:var(--muted)}
-html[data-theme="dark"] .pcard,html[data-theme="neon"] .pcard,html[data-theme="oled"] .pcard{
+html[data-theme="dark"] .greet .greet,html[data-theme="oled"] .greet{color:var(--ink)}
+html[data-theme="dark"] .sec-h .sec-h,html[data-theme="oled"] .sec-h{color:var(--muted)}
+html[data-theme="dark"] .lb .lb,html[data-theme="oled"] .lb{color:var(--muted)}
+html[data-theme="dark"] .pcard .pcard,html[data-theme="oled"] .pcard{
   background:var(--surface2);border-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .pcard b,html[data-theme="neon"] .pcard b,html[data-theme="oled"] .pcard b{color:var(--ink)}
+html[data-theme="dark"] .pcard b .pcard b,html[data-theme="oled"] .pcard b{color:var(--ink)}
 
 /* ---------------- Target model picker ---------------- */
 .modelpick{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 12px;padding:10px 12px;
@@ -724,28 +688,28 @@ html[data-theme="dark"] .pcard b,html[data-theme="neon"] .pcard b,html[data-them
   font-size:12.5px;color:var(--green);font-weight:700}
 
 /* ---------------- Home tab in the dark themes ---------------- */
-html[data-theme="dark"] .greet,html[data-theme="neon"] .greet,html[data-theme="oled"] .greet{
+html[data-theme="dark"] .greet .greet,html[data-theme="oled"] .greet{
   color:var(--ink);letter-spacing:-.2px}
-html[data-theme="dark"] .sec-h b,html[data-theme="neon"] .sec-h b,html[data-theme="oled"] .sec-h b{color:var(--ink)}
-html[data-theme="dark"] .sec-h span,html[data-theme="neon"] .sec-h span,html[data-theme="oled"] .sec-h span{color:var(--muted)}
-html[data-theme="dark"] .qa .qa-t,html[data-theme="neon"] .qa .qa-t,html[data-theme="oled"] .qa .qa-t{color:var(--muted)}
-html[data-theme="dark"] .out-h,html[data-theme="neon"] .out-h,html[data-theme="oled"] .out-h{color:var(--ink)}
-html[data-theme="dark"] .out-btns,html[data-theme="neon"] .out-btns,html[data-theme="oled"] .out-btns{color:var(--ink)}
-html[data-theme="dark"] .hint,html[data-theme="neon"] .hint,html[data-theme="oled"] .hint{color:var(--muted);background:var(--bg2,#0d1424)}
-html[data-theme="dark"] .note,html[data-theme="neon"] .note,html[data-theme="oled"] .note{color:var(--ink);border-color:var(--line)}
-html[data-theme="dark"] .s-title b,html[data-theme="neon"] .s-title b,html[data-theme="oled"] .s-title b{color:var(--ink)}
-html[data-theme="dark"] .s-title span,html[data-theme="neon"] .s-title span,html[data-theme="oled"] .s-title span{color:var(--muted)}
-html[data-theme="dark"] .s-done,html[data-theme="neon"] .s-done,html[data-theme="oled"] .s-done{color:var(--muted)}
+html[data-theme="dark"] .sec-h b .sec-h b,html[data-theme="oled"] .sec-h b{color:var(--ink)}
+html[data-theme="dark"] .sec-h span .sec-h span,html[data-theme="oled"] .sec-h span{color:var(--muted)}
+html[data-theme="dark"] .qa .qa-t .qa .qa-t,html[data-theme="oled"] .qa .qa-t{color:var(--muted)}
+html[data-theme="dark"] .out-h .out-h,html[data-theme="oled"] .out-h{color:var(--ink)}
+html[data-theme="dark"] .out-btns .out-btns,html[data-theme="oled"] .out-btns{color:var(--ink)}
+html[data-theme="dark"] .hint .hint,html[data-theme="oled"] .hint{color:var(--muted);background:var(--bg2,#0d1424)}
+html[data-theme="dark"] .note .note,html[data-theme="oled"] .note{color:var(--ink);border-color:var(--line)}
+html[data-theme="dark"] .s-title b .s-title b,html[data-theme="oled"] .s-title b{color:var(--ink)}
+html[data-theme="dark"] .s-title span .s-title span,html[data-theme="oled"] .s-title span{color:var(--muted)}
+html[data-theme="dark"] .s-done .s-done,html[data-theme="oled"] .s-done{color:var(--muted)}
 
 /* ---------------- Bottom navigation in the dark themes ---------------- */
-html[data-theme="dark"] .bnav,html[data-theme="neon"] .bnav,html[data-theme="oled"] .bnav{
+html[data-theme="dark"] .bnav .bnav,html[data-theme="oled"] .bnav{
   border-top-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .bnav .bn-ic,html[data-theme="neon"] .bnav .bn-ic,html[data-theme="oled"] .bnav .bn-ic{
+html[data-theme="dark"] .bnav .bn-ic .bnav .bn-ic,html[data-theme="oled"] .bnav .bn-ic{
   background:var(--surface2);color:var(--muted)}
-html[data-theme="dark"] .bnav button.active .bn-ic,html[data-theme="neon"] .bnav button.active .bn-ic,html[data-theme="oled"] .bnav button.active .bn-ic{
+html[data-theme="dark"] .bnav button.active .bn-ic .bnav button.active .bn-ic,html[data-theme="oled"] .bnav button.active .bn-ic{
   background:var(--blue-soft);color:var(--primary)}
-html[data-theme="dark"] .bnav .bn-t,html[data-theme="neon"] .bnav .bn-t,html[data-theme="oled"] .bnav .bn-t{color:var(--muted)}
-html[data-theme="dark"] .bnav button.active .bn-t,html[data-theme="neon"] .bnav button.active .bn-t,html[data-theme="oled"] .bnav button.active .bn-t{
+html[data-theme="dark"] .bnav .bn-t .bnav .bn-t,html[data-theme="oled"] .bnav .bn-t{color:var(--muted)}
+html[data-theme="dark"] .bnav button.active .bn-t .bnav button.active .bn-t,html[data-theme="oled"] .bnav button.active .bn-t{
   color:var(--primary)}
 
 /* the stage text box */
@@ -782,3 +746,24 @@ html[data-theme="dark"] .bnav button.active .bn-t,html[data-theme="neon"] .bnav 
 .tile .ti .hi{width:1.3em;height:1.3em}
 .tbtn .em .hi{width:1.15em;height:1.15em}
 .ti,.s-ic,.ms-ic,.fi,.di,.mi{display:inline-flex;align-items:center;justify-content:center}
+
+/* ---------------- the animated night / day switch ---------------- */
+.theme-btn .th-anim{
+  width:58px;height:33px;border-radius:17px;overflow:hidden;flex:0 0 58px;
+  display:grid;place-items:center;background:var(--card);border:1px solid var(--line);padding:0
+}
+.theme-anim{display:block;width:58px;height:33px;overflow:hidden;pointer-events:none;user-select:none}
+.theme-anim svg{display:block;width:100%;height:100%}
+.theme-btn.active .th-anim{border-color:var(--primary)}
+
+/* ---------------- the paper plane behind the hero card ---------------- */
+.hero .hero-anim{
+  position:absolute;left:50%;transform:translateX(-50%);bottom:70px;
+  width:158px;height:118px;
+  pointer-events:none;user-select:none;opacity:1;z-index:0;
+  /* the paper plane is drawn for a white page, so it needs a light halo to
+     read against the blue card */
+  filter:drop-shadow(0 0 7px rgba(255,255,255,.95)) drop-shadow(0 0 16px rgba(255,255,255,.5))
+}
+.hero .hero-anim svg{display:block;width:100%;height:100%}
+@media (max-width:360px){ .hero .hero-anim{width:124px;height:94px} }

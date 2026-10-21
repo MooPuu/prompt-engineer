@@ -1,4 +1,4 @@
-/* Prompt Engineer — shared language data (10 languages loaded, 457 keys each)
+/* Prompt Engineer — shared language data (10 languages loaded, 458 keys each)
    Fallback chain: chosen language → English → Arabic → key.
    Preset bodies and tone descriptions stay bilingual AR/EN by design. */
 const LANGS = [
@@ -507,6 +507,7 @@ const I18N = {
   "hint.context": "اكتب فقط المعلومات التي تؤثّر فعلًا في الإجابة.",
   "hint.audience": "مستوى معرفة الجمهور وتوقّعاته يشكّلان الأسلوب.",
   "theme.oled": "أسود OLED",
+  "theme.toggle": "تبديل",
   "st.tokens": "الرموز التقريبية",
   "st.cost": "التكلفة التقريبية",
   "vars.title": "متغيّرات",
@@ -966,6 +967,7 @@ const I18N = {
   "hint.context": "Write only the information that actually influences the answer.",
   "hint.audience": "The audience's level of knowledge and expectations shape the style.",
   "theme.oled": "OLED black",
+  "theme.toggle": "Toggle",
   "st.tokens": "Est. tokens",
   "st.cost": "Est. cost",
   "vars.title": "Variables",
@@ -1425,6 +1427,7 @@ const I18N = {
   "q.checks": "Kriterien (12)",
   "q.tap": "Zum Springen tippen",
   "theme.oled": "OLED black",
+  "theme.toggle": "Umschalten",
   "st.tokens": "Est. tokens",
   "st.cost": "Est. cost",
   "vars.title": "Variables",
@@ -1884,6 +1887,7 @@ const I18N = {
   "pv.empty": "Escribe tu tarea a la izquierda… el prompt completo aparecerá aquí al instante.",
   "img.empty": "Escribe una escena… el prompt de imagen aparecerá aquí.",
   "theme.oled": "OLED black",
+  "theme.toggle": "Alternar",
   "st.tokens": "Est. tokens",
   "st.cost": "Est. cost",
   "vars.title": "Variables",
@@ -2343,6 +2347,7 @@ const I18N = {
   "pv.empty": "وظیفه‌تان را بنویسید… پرامپت کامل همین‌جا ظاهر می‌شود.",
   "img.empty": "صحنه‌ای بنویسید… پرامپت تصویر همین‌جا ظاهر می‌شود.",
   "theme.oled": "OLED black",
+  "theme.toggle": "تغییر",
   "st.tokens": "Est. tokens",
   "st.cost": "Est. cost",
   "vars.title": "Variables",
@@ -2802,6 +2807,7 @@ const I18N = {
   "pv.empty": "Écrivez votre tâche à gauche… le prompt complet apparaîtra ici instantanément.",
   "img.empty": "Décrivez une scène… le prompt d’image apparaîtra ici.",
   "theme.oled": "OLED black",
+  "theme.toggle": "Basculer",
   "st.tokens": "Est. tokens",
   "st.cost": "Est. cost",
   "vars.title": "Variables",
@@ -3261,6 +3267,7 @@ const I18N = {
   "pv.empty": "Напишите задачу слева… полный промпт появится здесь сразу.",
   "img.empty": "Опишите сцену… промпт для изображения появится здесь.",
   "theme.oled": "OLED black",
+  "theme.toggle": "Переключить",
   "st.tokens": "Est. tokens",
   "st.cost": "Est. cost",
   "vars.title": "Variables",
@@ -3720,6 +3727,7 @@ const I18N = {
   "pv.empty": "Skriv din uppgift… hela prompten visas här direkt.",
   "img.empty": "Beskriv en scen… bildprompten visas här.",
   "theme.oled": "OLED black",
+  "theme.toggle": "Växla",
   "st.tokens": "Est. tokens",
   "st.cost": "Est. cost",
   "vars.title": "Variables",
@@ -3835,6 +3843,7 @@ const I18N = {
   "lb.constraints": "Uyulması gereken kurallar",
   "lb.lineEach": "(her satıra bir tane)",
   "lb.avoid": "Kaçınılması gerekenler",
+  "lb.avoid2": "kaçın",
   "lb.in1": "Örnek 1 — Girdi",
   "lb.out1": "Örnek 1 — Beklenen çıktı",
   "lb.in2": "Örnek 2 — Girdi",
@@ -4178,6 +4187,7 @@ const I18N = {
   "pv.empty": "Görevini yaz… tam prompt anında burada görünecek.",
   "img.empty": "Bir sahne yaz… görsel promptu burada görünecek.",
   "theme.oled": "OLED black",
+  "theme.toggle": "Değiştir",
   "st.tokens": "Est. tokens",
   "st.cost": "Est. cost",
   "vars.title": "Variables",
@@ -4212,8 +4222,7 @@ const I18N = {
   "mdl.note.qwen": "Önce plan, sonra uygulama; her aşama açık etiketli.",
   "mdl.note.universal": "Her yapay zekâ uygulamasına uyan nötr ve şeffaf bir ifade.",
   "mdl.perplexity": "Perplexity",
-  "mdl.note.perplexity": "Kaynaklarıyla birlikte doğrudan ve iyi belgelenmiş yanıt.",
-  "lb.avoid2": "kaçınılması gerekenler"
+  "mdl.note.perplexity": "Kaynaklarıyla birlikte doğrudan ve iyi belgelenmiş yanıt."
  },
  "zh": {
   "app.title": "Prompt Engineer — AI 提示词构建器",
@@ -4638,6 +4647,7 @@ const I18N = {
   "hint.context": "💡 任务越精确，结果越贴近预期。避免“帮我做一下”这类含糊的说法。",
   "hint.audience": "💡 任务越精确，结果越贴近预期。避免“帮我做一下”这类含糊的说法。",
   "theme.oled": "OLED black",
+  "theme.toggle": "切换",
   "st.tokens": "Est. tokens",
   "st.cost": "Est. cost",
   "vars.title": "Variables",

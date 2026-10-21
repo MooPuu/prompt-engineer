@@ -1,6 +1,6 @@
 /* =========================================================================
    Prompt Engineer — Themes & Modern UI layer
-   3 ثيمات: midnight (ليلي) / light (نهاري) / neon (نيون)
+   3 الثيمات: midnight (ليلي) / light (نهاري) / oled (أسود)
    تُحمَّل بعد التنسيقات الأساسية ل_override الألوان الثابتة.
    ========================================================================= */
 
@@ -91,45 +91,7 @@ html[data-theme="oled"] .card,html[data-theme="oled"] .fsec,html[data-theme="ole
   --stroke:rgba(23,35,72,.10); --glow-card:rgba(23,35,72,.12);
 }
 
-/* ============ الثيم 3: نيون (سيبر/داكن عالي التباين) ============ */
-[data-theme="neon"]{
-  color-scheme: dark;
-  --bg:#04060d; --bg2:#070a14; --panel:#090d18; --panel2:#0d1324;
-  --line:#153347; --line2:#1e4f6b;
-  --txt:#e9fdff; --muted:#82bcd0; --head:#c6f8ff;
 
-  --input:#04070f;
-  --alt:#0a1020;
-  --tg-bg:#08111f;
-  --track:#0e2737;
-  --switch:#12455c;
-  --tick:#0f374a;
-  --scroll:#17536e;
-  --muted2:#6fa8bd;
-  --divider:#5aa6bf;
-  --empty:#5d8ea3;
-  --code-bg:#03050b;
-  --code-txt:#aef5ff;
-  --glow1:rgba(37,229,255,.14);
-  --glow2:rgba(255,69,213,.12);
-  --topbar:rgba(4,6,13,.88);
-  --chip-on:#c9fbff;
-  --on-grad:#04060d;
-  --acc:#25e5ff; --acc2:#ff45d5;
-  --acc-soft:rgba(37,229,255,.14);
-  --acc-soft2:rgba(37,229,255,.22);
-  --focus:rgba(37,229,255,.18);
-  --green:#3dffb0; --amber:#ffcc5c; --red:#ff6b8b;
-  --shadow:0 18px 44px rgba(0,0,0,.6);
-  --ok-soft:rgba(61,255,176,.07);
-  --ok-line:rgba(61,255,176,.35);
-  --danger-soft:rgba(255,107,139,.12);
-  --accent-grad:linear-gradient(135deg,#25e5ff,#ff45d5);
-
-  /* ألواح الداشبورد */
-  --surface:#070c17; --surface2:#060a12; --hover:#0b1526;
-  --stroke:rgba(37,229,255,.14); --glow-card:rgba(0,0,0,.55);
-}
 
 /* ---------------- 2) تطبيق الرموز على العناصر ---------------- */
 body{
@@ -487,7 +449,7 @@ label.lb{font-weight:700;color:var(--muted)}
 .pv-bar .btn:hover{background:rgba(255,255,255,.30);border-color:rgba(255,255,255,.6);transform:translateY(-1px);box-shadow:0 8px 18px rgba(0,0,0,.22)}
 .pv-bar .btn.primary{background:#ffffff;border-color:#ffffff;color:#1e2a66;box-shadow:0 8px 18px rgba(0,0,0,.25)}
 .pv-bar .btn.primary:hover{filter:brightness(.96);background:#ffffff}
-[data-theme="neon"] .pv-bar .btn.primary{color:#08222b}
+
 .stats{background:var(--surface2);border-top:1px solid var(--stroke)}
 .qwrap .ring::after{background:var(--surface2)}
 .chk{background:var(--surface2);border-color:var(--stroke);border-radius:13px}
@@ -524,10 +486,6 @@ textarea::placeholder,input::placeholder,select::placeholder{color:var(--muted2)
 
 
 /* ---------------- Focus mode ---------------- */
-body.focus .side, body.focus .card > .head, body.focus .topbar, body.focus #themes, body.focus .side-cta{display:none!important}
-body.focus .wrap{grid-template-columns:minmax(420px,1fr)!important;max-width:1180px}
-body.focus .card{margin:0 auto}
-body.focus #preview{min-height:64vh}
 
 /* ---------------- Token / cost readout ---------------- */
 .ms-cost{grid-column:span 2}
@@ -604,7 +562,7 @@ html[data-theme="oled"] ::selection{background:rgba(125,155,255,.32)}
 .tbtn .em .hi{stroke:currentColor;stroke-width:1.6}
 .tbtn[data-theme="midnight"] .em{color:#cfd6ee}
 .tbtn[data-theme="light"] .em{color:#f0a63a}
-.tbtn[data-theme="neon"] .em{color:#9b6cff}
+
 .tbtn[data-theme="oled"] .em{color:#e8e8e8}
 
 /* ---------------- icon sizing per context ---------------- */
@@ -619,3 +577,17 @@ html[data-theme="oled"] ::selection{background:rgba(125,155,255,.32)}
 .tile .ti .hi{width:1.3em;height:1.3em}
 .tbtn .em .hi{width:1.15em;height:1.15em}
 .ti,.s-ic,.ms-ic,.fi,.di,.mi{display:inline-flex;align-items:center;justify-content:center}
+
+/* ---------------- the animated night / day switch ---------------- */
+.tbtn-anim{padding-left:6px;padding-right:6px}
+.tbtn-anim .em{
+  width:64px;height:36px;flex:0 0 64px;border-radius:18px;overflow:hidden;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--surface2);border:1px solid var(--stroke);padding:0
+}
+.theme-anim{
+  display:block;width:64px;height:36px;overflow:hidden;
+  pointer-events:none;user-select:none
+}
+.theme-anim svg{display:block;width:100%;height:100%}
+.tbtn-anim.active .em{border-color:var(--acc)}
