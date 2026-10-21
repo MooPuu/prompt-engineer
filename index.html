@@ -920,6 +920,8 @@ function setLang(lg, silent){
   applyI18n();
   fillAnswerLangs();
   renderPresetCats(); renderPresets(); renderTaskTemplates(); render(); renderHistory(); renderAi();
+  if(typeof renderSkillCats==='function') renderSkillCats();
+  if(typeof renderCommands==='function') renderCommands();
   if(qEl && qEl.value) filterUI(qEl.value);
   markActive();
   if(!silent) toast(t('msg.lang'));

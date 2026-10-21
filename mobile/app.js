@@ -1192,7 +1192,9 @@ function setLang(lg, silent){
   document.querySelectorAll('#langList button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lg));
   applyI18n();
   buildImgSelects();
-  renderLangList(); renderPresets(); renderTaskTemplates(); renderAi(); render();
+  renderLangList(); renderPresetCats(); renderPresets(); renderTaskTemplates(); renderAi(); render();
+  if(typeof renderSkillCats==='function') renderSkillCats();
+  if(typeof renderCommands==='function') renderCommands();
   fillAnswerLangs();
   if(!silent) toast(t('msg.lang'));
 }
