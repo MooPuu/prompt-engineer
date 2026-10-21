@@ -700,8 +700,6 @@ function setTheme(code, fromSwitch){
     sw.classList.toggle('active', code!=='oled');
     sw.setAttribute('aria-checked', code!=='oled'?'true':'false');
     sw.setAttribute('aria-pressed', isDay?'false':'true');
-    const lbl=sw.querySelector('.th-t');
-    if(lbl) lbl.textContent = isDay ? t('theme.light') : t('theme.night');
   }
   if(!fromSwitch) syncThemeAnim();
   try{ localStorage.setItem('pe_theme', code); }catch(e){}
@@ -714,7 +712,7 @@ function renderThemeRow(){
   const sw=document.createElement('button');
   sw.type='button'; sw.className='theme-btn theme-anim-btn'; sw.id='btnThemeAnim';
   sw.setAttribute('role','radio'); sw.setAttribute('aria-checked','false');
-  sw.innerHTML='<span class="th-ic th-anim"><span class="theme-anim" id="themeAnim"></span></span><span class="th-t"></span>';
+  sw.innerHTML='<span class="th-ic th-anim"><span class="theme-anim" id="themeAnim"></span></span>';
   sw.addEventListener('click',()=>toggleDayNight());
   box.appendChild(sw);
 

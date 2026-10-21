@@ -563,12 +563,12 @@ textarea::placeholder,input::placeholder,select::placeholder{color:var(--muted2)
 /* ---------------- the animated night / day switch ---------------- */
 .tbtn-anim{padding-left:6px;padding-right:6px}
 .tbtn-anim .em{
-  width:76px;height:43px;flex:0 0 76px;border-radius:22px;overflow:hidden;
+  width:44px;height:25px;flex:0 0 44px;border-radius:13px;overflow:hidden;
   display:inline-flex;align-items:center;justify-content:center;
   background:var(--surface2);border:1px solid var(--stroke);padding:0
 }
 .theme-anim{
-  display:block;width:76px;height:43px;overflow:hidden;
+  display:block;width:44px;height:25px;overflow:hidden;
   pointer-events:none;user-select:none
 }
 .theme-anim svg{display:block;width:100%;height:100%}

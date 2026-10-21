@@ -679,20 +679,20 @@ html[data-theme="dark"] .bnav{
 /* ---------------- the day / night switch fills the drawer like the other rows ---------------- */
 .theme-row{display:block;margin-bottom:6px}
 .theme-btn.theme-anim-btn{
-  width:100%;display:flex;align-items:center;gap:10px;
-  padding:12px;border-radius:20px;background:var(--surface2);
+  width:auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:7px;border-radius:18px;background:var(--surface2);
   border:1px solid var(--line);font-size:14px;font-weight:700;color:var(--ink);
   transition:border-color .18s,box-shadow .18s
 }
 .theme-btn.theme-anim-btn:hover{border-color:var(--primary)}
 .theme-btn.theme-anim-btn.active{border-color:var(--primary);box-shadow:0 0 0 2px var(--blue-soft)}
 .theme-btn.theme-anim-btn .th-anim{
-  width:200px;height:112px;border-radius:56px;overflow:hidden;flex:0 0 200px;
+  width:50px;height:28px;border-radius:14px;overflow:hidden;flex:0 0 50px;
   display:grid;place-items:center;background:var(--card);border:1px solid var(--line);padding:0
 }
 .theme-btn.theme-anim-btn .th-t{font-size:15px;font-weight:800;color:var(--ink);line-height:1.35}
 .theme-btn.theme-anim-btn.active .th-t{color:var(--primary)}
-.theme-anim{display:block;width:200px;height:112px;overflow:hidden;pointer-events:none;user-select:none}
+.theme-anim{display:block;width:50px;height:28px;overflow:hidden;pointer-events:none;user-select:none}
 
 /* ---------------- the paper plane above the progress bar ---------------- */
 .hero .hero-anim{
