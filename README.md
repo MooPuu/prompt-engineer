@@ -5,7 +5,7 @@ Build a complete, professional AI prompt in a few clicks — in **10 languages**
 ![Prompt Engineer](./build/social-preview.png)
 
 [![Live](https://img.shields.io/badge/Live-🟢-6c8cff?style=flat-square)](https://moopuu.github.io/prompt-engineer/)
-[![v2.2.0](https://img.shields.io/badge/release-v2.2.0-3ddc97?style=flat-square)](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.2.0)
+[![v3.0.0](https://img.shields.io/badge/release-v3.0.0-3ddc97?style=flat-square)](https://github.com/MooPuu/prompt-engineer/releases/tag/v3.0.0)
 [![MIT](https://img.shields.io/badge/license-MIT-9b6cff?style=flat-square)](./LICENSE)
 
 ## 🔗 Links
@@ -14,8 +14,8 @@ Build a complete, professional AI prompt in a few clicks — in **10 languages**
 |---|---|
 | 🌐 Web app | **moopuu.github.io/prompt-engineer/** |
 | 📱 Mobile UI | **moopuu.github.io/prompt-engineer/mobile/** |
-| ⬇ Installers + APK | **releases/tag/v2.2.0** |
-| 📖 What's new in v2.2 | **[release notes](https://github.com/MooPuu/prompt-engineer/releases/tag/v2.2.0)** |
+| ⬇ Installers + APK | **releases/tag/v3.0.0** |
+| 📖 What's new in v2.2 | **[release notes](https://github.com/MooPuu/prompt-engineer/releases/tag/v3.0.0)** |
 
 ## ✨ What it does
 
@@ -47,10 +47,10 @@ automatically: RTL for العربية and فارسی, LTR for the rest.
 
 | File | Use it when |
 |---|---|
-| `Prompt-Engineer-Portable-v2.2.0.exe` | no install — run from a USB stick |
-| `Prompt-Engineer-Setup-v2.2.0.exe` | standard Windows install (custom path, shortcuts) |
-| `Prompt-Engineer-Setup-v2.2.0.msi` | managed / company Windows install |
-| `Prompt-Engineer-v2.2.0.apk` | Android — installs over any earlier build |
+| `Prompt-Engineer-Portable-v3.0.0.exe` | no install — run from a USB stick |
+| `Prompt-Engineer-Setup-v3.0.0.exe` | standard Windows install (custom path, shortcuts) |
+| `Prompt-Engineer-Setup-v3.0.0.msi` | managed / company Windows install |
+| `Prompt-Engineer-v3.0.0.apk` | Android — installs over any earlier build |
 
 > Windows: the files are self-signed → **More info → Run**.
 > Android: allow *Unknown sources* once; the app then opens fullscreen.

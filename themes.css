@@ -1,17 +1,4 @@
-/* =========================================================================
-   Prompt Engineer — Themes & Modern UI layer
-   3 الثيمات: midnight (ليلي) / light (نهاري) / oled (أسود)
-   تُحمَّل بعد التنسيقات الأساسية ل_override الألوان الثابتة.
-   ========================================================================= */
 
-/* ---------------- 1) رموز الثيمات ---------------- */
-html[data-theme="oled"]{
-  --bg:#000;--bg2:#050505;--panel:#0a0a0a;--panel2:#111;--line:#1c1c1c;--line2:#262626;
-  --txt:#f2f2f2;--muted:#9a9a9a;--acc:#7d9bff;--acc2:#b07dff;--green:#46e0a0;--amber:#ffcf7a;--red:#ff8a93;
-  --shadow:0 14px 34px rgba(0,0,0,.85);
-}
-html[data-theme="oled"] body{background:#000}
-html[data-theme="oled"] .card,html[data-theme="oled"] .fsec,html[data-theme="oled"] .side{background:var(--panel)}
 :root{
   color-scheme: dark;
   /* احتياطي (لون محايد إن لم يُحمّل الملف الأساسي) */
@@ -504,9 +491,6 @@ textarea::placeholder,input::placeholder,select::placeholder{color:var(--muted2)
 .varf input:focus{color:#fff}
 .varbar-a{margin-top:9px;text-align:left}
 
-/* ---------------- OLED theme touches ---------------- */
-html[data-theme="oled"] ::selection{background:rgba(125,155,255,.32)}
-
 /* ---------------- Phased response ---------------- */
 .phasebar{margin:0 0 14px;padding:13px 15px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
 .phasebar-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:7px}
@@ -562,8 +546,6 @@ html[data-theme="oled"] ::selection{background:rgba(125,155,255,.32)}
 .tbtn .em .hi{stroke:currentColor;stroke-width:1.6}
 .tbtn[data-theme="midnight"] .em{color:#cfd6ee}
 .tbtn[data-theme="light"] .em{color:#f0a63a}
-
-.tbtn[data-theme="oled"] .em{color:#e8e8e8}
 
 /* ---------------- icon sizing per context ---------------- */
 .hi{width:1.15em;height:1.15em;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:1.6;

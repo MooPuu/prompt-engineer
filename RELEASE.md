@@ -1,4 +1,4 @@
-# 🧠 Prompt Engineer v2.2.0
+# 🧠 Prompt Engineer v3.0.0
 
 **10 languages. One prompt builder. Every platform.**
 
@@ -17,10 +17,10 @@ Build a complete, professional AI prompt in a few clicks — in **any of 10 lang
 
 | File | Use it when |
 |---|---|
-| `Prompt-Engineer-Portable-v2.2.0.exe` | No install — run it straight from a USB stick |
-| `Prompt-Engineer-Setup-v2.2.0.exe` | Standard Windows install (custom path, shortcuts) |
-| `Prompt-Engineer-Setup-v2.2.0.msi` | Managed / company Windows install |
-| `Prompt-Engineer-v2.2.0.apk` | Android — upgrades in place over v1.5 / v2.0 / v2.1 |
+| `Prompt-Engineer-Portable-v3.0.0.exe` | No install — run it straight from a USB stick |
+| `Prompt-Engineer-Setup-v3.0.0.exe` | Standard Windows install (custom path, shortcuts) |
+| `Prompt-Engineer-Setup-v3.0.0.msi` | Managed / company Windows install |
+| `Prompt-Engineer-v3.0.0.apk` | Android — upgrades in place over v1.5 / v2.0 / v2.1 |
 
 > **Windows:** the installers are self-signed, so Windows SmartScreen shows a blue dialog → *More info → Run anyway*.
 > **Android:** allow *Unknown sources* once. The app then launches fullscreen with no browser chrome.

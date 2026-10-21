@@ -867,11 +867,11 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
       <a href="https://github.com/MooPuu/prompt-engineer/releases" target="_blank" rel="noopener" data-i18n="ft.exe">⬇ تحميل EXE</a>
       <a href="https://moopuu.github.io/prompt-engineer/mobile/" target="_blank" rel="noopener" data-i18n="ft.mobile">📱 نسخة الهاتف</a>
     </span>
-    <span class="foot-note" data-i18n="ft.note">صُنع بعناية — مهندس البرومبت | Prompt Engineer v2.2.0</span>
+    <span class="foot-note" data-i18n="ft.note">صُنع بعناية — مهندس البرومبت | Prompt Engineer v3.0.0</span>
   </div>
 </footer>
 
-<script src="i18n.js?v=f9167dda"></script>
+<script src="i18n.js?v=d98b346e"></script>
 <script src="lottie.min.js"></script>
 <script src="anim.js"></script>
 <script src="skills.js"></script>
@@ -2417,7 +2417,11 @@ function renderSkills(){
   const found=S.find(skillsSourceText(), 12);
   list.innerHTML='';
   if(!found.length){
-    list.innerHTML='<div class="skills-empty" data-i18n="skills.empty">اكتب المهمة أولًا لتظهر الاقتراحات</div>';
+    const empty=document.createElement('div');
+    empty.className='skills-empty';
+    empty.textContent = skillsSourceText().trim() ? t('skills.none') : t('skills.empty');
+    list.innerHTML='';
+    list.appendChild(empty);
   } else {
     found.forEach(f=>{
       const s=S.byId[f.id]; if(!s) return;
@@ -2644,7 +2648,7 @@ $('btnAuto').onclick=()=>{
 };
 $('btnReset').onclick=()=>{
   if(!confirm(t('ask.reset'))) return;
-  ['task','role','context','audience','constraints','avoid','in1','out1','in2','out2','imgNeg','imgTask','imgArCustom'].forEach(k=>$(k).value='');
+  ['task','role','context','audience','constraints','avoid','in1','out1','in2','out2','imgNeg','imgTask','imgArCustom'].forEach(k=>{ const el=$(k); if(el) el.value=''; });
   $('length').value=''; fillAnswerLangs();
   setChips('toneChips',[]); setChips('fmtChips',[]);
   /* clear EVERY toggle, not just the first five */
@@ -2656,8 +2660,7 @@ $('btnClearHist').onclick=()=>{ try{localStorage.removeItem('pe_hist');}catch(e)
 
 /* ================= Themes ================= */
 const THEME_META = {midnight:'#0b0f1a', light:'#eef1f8', oled:'#000000'};
-function setTheme(name, fromSwitch){
-  if(name==='oled') name='midnight';
+function setTheme(name, fromSwitch){
   if(!THEME_META[name]) name='midnight';
   document.documentElement.setAttribute('data-theme', name);
   const m=document.querySelector('meta[name="theme-color"]'); if(m) m.content=THEME_META[name];

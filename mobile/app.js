@@ -682,10 +682,8 @@ function renderPhases(){
 const MOBILE_THEMES = [
   {code:'light', label:'فاتح',  icon:'☀️', bg:'#EFF1F9'},
   {code:'dark',  label:'داكن',  icon:'🌙', bg:'#0b0f1a'},
-  {code:'oled',  label:'أسود',  icon:'⬛', bg:'#000000'}
 ];
-function setTheme(code, fromSwitch){
-  if(code==='oled') code='dark';
+function setTheme(code, fromSwitch){
   if(!MOBILE_THEMES.some(x=>x.code===code)) code='light';
   document.documentElement.setAttribute('data-theme', code);
   const m=document.querySelector('meta[name="theme-color"]');
@@ -841,7 +839,11 @@ function renderSkills(){
   const found=S.find(skillsSourceText(), 12);
   list.innerHTML='';
   if(!found.length){
-    list.innerHTML='<div class="skills-empty" data-i18n="skills.empty">اكتب المهمة أولًا لتظهر الاقتراحات</div>';
+    const empty=document.createElement('div');
+    empty.className='skills-empty';
+    empty.textContent = skillsSourceText().trim() ? t('skills.none') : t('skills.empty');
+    list.innerHTML='';
+    list.appendChild(empty);
   } else {
     found.forEach(f=>{
       const s=S.byId[f.id]; if(!s) return;

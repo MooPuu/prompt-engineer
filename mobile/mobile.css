@@ -18,16 +18,6 @@ html[data-theme="dark"] body::before{
     radial-gradient(600px 320px at 90% -5%, rgba(108,139,255,.20), transparent 70%),
     radial-gradient(520px 300px at -10% 25%, rgba(155,108,255,.14), transparent 70%);
 }
-html[data-theme="oled"]{
-  --bar:rgba(0,0,0,.94);
-  --tint:rgba(255,255,255,.05);
-  --bg:#000;--card:#080808;--ink:#f2f2f2;--muted:#9a9a9a;--line:#181818;--line2:#242424;
-  --primary:#7d9bff;--primary-link:#a9bcff;--primary2:#b07dff;--grad:linear-gradient(135deg,#4a6bf0,#7d9bff);
-  --pink:#ff8fa3;--pink-deep:#ff6b85;--pink-soft:rgba(255,122,162,.14);--blue-soft:rgba(125,155,255,.14);
-  --green:#46e0a0;--green-soft:rgba(70,224,160,.14);--amber:#ffcf7a;--amber-soft:rgba(255,207,122,.14);
-  --shadow:0 10px 28px rgba(0,0,0,.85);--shadow-sm:0 4px 14px rgba(0,0,0,.7);
-}
-html[data-theme="oled"] body::before{background:none}
 
 /* ---------------- Hero card theming ---------------- */
 
@@ -58,23 +48,13 @@ html[data-theme="dark"]{
   --toast-ink:#0b0f1a;
   --line-soft:#253050;
 }
-html[data-theme="oled"]{
-  --bg2:#050505;
-  --surface2:#0d0d0d;
-  --field-bg:#080808;
-  --track-off:#242424;
-  --knob:#f2f2f2;
-  --toast-bg:#f2f2f2;
-  --toast-ink:#000000;
-  --glass:rgba(10,10,10,.96);
-  --line-soft:#181818;
-}
+
 :root{ --nav-bg:rgba(255,255,255,.96); }
 html[data-theme="dark"]{ --nav-bg:rgba(16,22,38,.94); }
-html[data-theme="oled"]{ --nav-bg:rgba(10,10,10,.96); }
+
 :root{ --app-bg:linear-gradient(180deg,#f7f8fd,#eff1f9); --app-shadow:0 0 60px rgba(23,32,84,.10); }
 html[data-theme="dark"]{ --app-bg:#0b0f1a; --app-shadow:0 0 60px rgba(0,0,0,.5); }
-html[data-theme="oled"]{ --app-bg:#000; --app-shadow:none; }
+
 :root{
   --hero-grad:linear-gradient(135deg,#3550e0 0%,#4260f5 55%,#4a66f7 100%);
   --hero-ink:#ffffff;
@@ -101,19 +81,7 @@ html[data-theme="dark"]{
   --hero-stat:rgba(255,255,255,.06);
   --hero-stat-b:rgba(255,255,255,.13);
 }
-html[data-theme="oled"]{
-  --hero-grad:linear-gradient(135deg,#0b0b13 0%,#131320 55%,#1b1b2b 100%);
-  --hero-ink:#f2f2f2;
-  --hero-shadow:none;
-  --hero-glow:rgba(125,155,255,.10);
-  --hero-glow2:rgba(176,125,255,.09);
-  --hero-pill:rgba(255,255,255,.09);
-  --hero-pill-b:rgba(255,255,255,.18);
-  --hero-track:rgba(255,255,255,.16);
-  --hero-fill:#7d9bff;
-  --hero-stat:rgba(255,255,255,.05);
-  --hero-stat-b:rgba(255,255,255,.12);
-}
+
 :root{
   --bg:#EFF1F9;
   --card:#ffffff;
@@ -553,122 +521,56 @@ pre.out-p{
    black page. These overrides re-point every one of those literals at the
    theme variables.
    ========================================================================= */
-html[data-theme="dark"],html[data-theme="oled"]{
+html[data-theme="dark"]{
   --surface:var(--card);
   --line-soft:var(--line);
   --glass:rgba(14,20,36,.86);
-}
-html[data-theme="oled"]{}
-
-/* app bar, drawer, scrim */
-html[data-theme="dark"] .appbar .appbar,html[data-theme="oled"] .appbar{
-  background:var(--bar);border-bottom-color:var(--line)}
-html[data-theme="dark"] .drawer .drawer,html[data-theme="oled"] .drawer{
-  background:var(--card);color:var(--ink);border-left:1px solid var(--line)}
-html[data-theme="dark"] .avatar .avatar,html[data-theme="oled"] .avatar{
-  background:var(--surface2)}
-html[data-theme="dark"] .drawer .d-head img .drawer .d-head img,html[data-theme="oled"] .drawer .d-head img{
-  background:var(--surface2)}
-
-/* generic surfaces */
-html[data-theme="dark"] .scard .scard,html[data-theme="oled"] .scard{background:var(--card);border-color:var(--line)}
-html[data-theme="dark"] .card .card,html[data-theme="oled"] .card{background:var(--card);border-color:var(--line)}
-html[data-theme="dark"] .out .out,html[data-theme="oled"] .out{background:var(--card);border-color:var(--line)}
-html[data-theme="dark"] .out-p .out-p,html[data-theme="oled"] .out-p{
-  background:var(--bg);color:var(--ink)}
-html[data-theme="dark"] .hint .hint,html[data-theme="oled"] .hint{
-  background:var(--bg2,#0d1424);color:var(--muted);border-color:var(--line)}
-html[data-theme="dark"] .note .note,html[data-theme="oled"] .note{
-  background:var(--blue-soft);color:var(--ink);border-color:var(--line)}
-html[data-theme="dark"] .tpl-panel .tpl-panel,html[data-theme="oled"] .tpl-panel{
-  background:var(--bg2,#0d1424);border-color:var(--line)}
-html[data-theme="dark"] .tpl-btn .tpl-btn,html[data-theme="oled"] .tpl-btn{
-  background:var(--surface2);border-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .tpl-cnt .tpl-cnt,html[data-theme="oled"] .tpl-cnt{
-  background:var(--tint);color:var(--muted)}
-html[data-theme="dark"] .lang-seg .lang-seg,html[data-theme="oled"] .lang-seg{
-  background:var(--surface2);border-color:var(--line)}
-html[data-theme="dark"] .lang-seg button.active .lang-seg button.active,html[data-theme="oled"] .lang-seg button.active{
-  background:var(--card);color:var(--ink)}
-html[data-theme="dark"] .lang-list button.active .lang-list button.active,html[data-theme="oled"] .lang-list button.active{
-  background:var(--blue-soft);border-color:var(--primary)}
-
-/* form controls */
-html[data-theme="dark"] input input,html[data-theme="oled"] input,
-html[data-theme="dark"] textarea textarea,html[data-theme="oled"] textarea,
-html[data-theme="dark"] select select,html[data-theme="oled"] select{
-  background:var(--bg2,#0d1424);color:var(--ink);border-color:var(--line)}
-html[data-theme="dark"] input:focus input:focus,html[data-theme="oled"] input:focus,
-html[data-theme="dark"] textarea:focus textarea:focus,html[data-theme="oled"] textarea:focus,
-html[data-theme="dark"] select:focus select:focus,html[data-theme="oled"] select:focus{
-  background:var(--card);border-color:var(--primary)}
-html[data-theme="dark"] input::placeholder input::placeholder,html[data-theme="oled"] input::placeholder,
-html[data-theme="dark"] textarea::placeholder textarea::placeholder,html[data-theme="oled"] textarea::placeholder{
-  color:var(--muted)}
-
-/* chips, toggles, checkboxes */
-html[data-theme="dark"] .chips label .chips label,html[data-theme="oled"] .chips label{
-  background:var(--surface2);border-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .chips label:hover .chips label:hover,html[data-theme="oled"] .chips label:hover{
-  border-color:var(--primary)}
-html[data-theme="dark"] .tg .sw .tg .sw,html[data-theme="oled"] .tg .sw{background:#2a3350}
-html[data-theme="dark"] .tg.on .tg.on,html[data-theme="oled"] .tg.on{
-  background:var(--card);border-color:var(--primary)}
-html[data-theme="dark"] .s-chip .s-chip,html[data-theme="oled"] .s-chip{
-  background:var(--surface2);border-color:var(--line);color:var(--muted)}
-html[data-theme="dark"] .s-done .s-done,html[data-theme="oled"] .s-done{
-  background:var(--green-soft);color:var(--green)}
-html[data-theme="dark"] .s-chev .s-chev,html[data-theme="oled"] .s-chev{color:var(--muted)}
-
-/* buttons */
-html[data-theme="dark"] .btn.ghost .btn.ghost,html[data-theme="oled"] .btn.ghost{
-  background:var(--surface2);color:var(--primary);box-shadow:inset 0 0 0 1.5px var(--line2)}
-html[data-theme="dark"] .btn.small.ghost .btn.small.ghost,html[data-theme="oled"] .btn.small.ghost{
-  background:var(--surface2);color:var(--muted);box-shadow:inset 0 0 0 1.5px var(--line2)}
-
-/* quality ring, panels, popups */
-html[data-theme="dark"] .ring .ring,html[data-theme="oled"] .ring{background:#1b2440}
-html[data-theme="dark"] .ring .inner .ring .inner,html[data-theme="oled"] .ring .inner{background:var(--card)}
-html[data-theme="dark"] .score-tip .score-tip,html[data-theme="oled"] .score-tip{color:var(--muted)}
-html[data-theme="dark"] .sheet .sheet,html[data-theme="oled"] .sheet{
-  background:var(--glass);color:var(--ink);border-color:var(--line)}
-html[data-theme="dark"] .toast .toast,html[data-theme="oled"] .toast{
-  background:var(--glass);color:var(--ink)}
-
-/* AI tool cards */
-html[data-theme="dark"] .ai-card .ai-card,html[data-theme="oled"] .ai-card{
-  background:var(--card);border-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .ai-links .off .ai-links .off,html[data-theme="oled"] .ai-links .off{
-  background:var(--blue-soft);color:var(--primary-link);box-shadow:inset 0 0 0 1.5px var(--line2)}
-html[data-theme="dark"] .ai-links .oss .ai-links .oss,html[data-theme="oled"] .ai-links .oss{
-  background:var(--green-soft);color:var(--green);box-shadow:inset 0 0 0 1.5px var(--line2)}
-html[data-theme="dark"] .ai-desc .ai-desc,html[data-theme="oled"] .ai-desc{color:var(--muted)}
-
-/* misc */
-html[data-theme="dark"] .scard.open .scard.open,html[data-theme="oled"] .scard.open{
-  border-color:var(--primary)}
-html[data-theme="dark"] ::-webkit-scrollbar-thumb ::-webkit-scrollbar-thumb,html[data-theme="oled"] ::-webkit-scrollbar-thumb{
-  background:#2b3552}
-html[data-theme="dark"] .pcard:hover .pcard:hover,html[data-theme="oled"] .pcard:hover{
-  border-color:var(--primary)}
-html[data-theme="dark"] .theme-btn .theme-btn,html[data-theme="oled"] .theme-btn{
-  background:var(--card);border-color:var(--line);color:var(--ink)}
-
-/* drawer link pills and lists had a hard-coded white background */
-html[data-theme="dark"] .d-item .d-item,html[data-theme="oled"] .d-item{
-  background:var(--surface2);border-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .d-item .di .d-item .di,html[data-theme="oled"] .d-item .di{
-  background:var(--card);color:var(--ink)}
-html[data-theme="dark"] .d-label .d-label,html[data-theme="oled"] .d-label{color:var(--muted)}
-html[data-theme="dark"] .d-foot .d-foot,html[data-theme="oled"] .d-foot{color:var(--muted)}
-html[data-theme="dark"] .lang-list button .lang-list button,html[data-theme="oled"] .lang-list button{
-  background:var(--surface2);border-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .greet .greet,html[data-theme="oled"] .greet{color:var(--ink)}
-html[data-theme="dark"] .sec-h .sec-h,html[data-theme="oled"] .sec-h{color:var(--muted)}
-html[data-theme="dark"] .lb .lb,html[data-theme="oled"] .lb{color:var(--muted)}
-html[data-theme="dark"] .pcard .pcard,html[data-theme="oled"] .pcard{
-  background:var(--surface2);border-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .pcard b .pcard b,html[data-theme="oled"] .pcard b{color:var(--ink)}
+}/* app bar,drawer,scrim */
+html[data-theme="dark"] .appbar .appbar{
+  background:var(--bar);border-bottom-color:var(--line)}html[data-theme="dark"] .drawer .drawer{
+  background:var(--card);color:var(--ink);border-left:1px solid var(--line)}html[data-theme="dark"] .avatar .avatar{
+  background:var(--surface2)}html[data-theme="dark"] .drawer .d-head img .drawer .d-head img{
+  background:var(--surface2)}/* generic surfaces */
+html[data-theme="dark"] .scard .scard{background:var(--card);border-color:var(--line)}html[data-theme="dark"] .card .card{background:var(--card);border-color:var(--line)}html[data-theme="dark"] .out .out{background:var(--card);border-color:var(--line)}html[data-theme="dark"] .out-p .out-p{
+  background:var(--bg);color:var(--ink)}html[data-theme="dark"] .hint .hint{
+  background:var(--bg2,#0d1424);color:var(--muted);border-color:var(--line)}html[data-theme="dark"] .note .note{
+  background:var(--blue-soft);color:var(--ink);border-color:var(--line)}html[data-theme="dark"] .tpl-panel .tpl-panel{
+  background:var(--bg2,#0d1424);border-color:var(--line)}html[data-theme="dark"] .tpl-btn .tpl-btn{
+  background:var(--surface2);border-color:var(--line);color:var(--ink)}html[data-theme="dark"] .tpl-cnt .tpl-cnt{
+  background:var(--tint);color:var(--muted)}html[data-theme="dark"] .lang-seg .lang-seg{
+  background:var(--surface2);border-color:var(--line)}html[data-theme="dark"] .lang-seg button.active .lang-seg button.active{
+  background:var(--card);color:var(--ink)}html[data-theme="dark"] .lang-list button.active .lang-list button.active{
+  background:var(--blue-soft);border-color:var(--primary)}/* form controls */
+html[data-theme="dark"] input input,html[data-theme="dark"] textarea textarea,html[data-theme="dark"] select select{
+  background:var(--bg2,#0d1424);color:var(--ink);border-color:var(--line)}html[data-theme="dark"] input:focus input:focus,html[data-theme="dark"] textarea:focus textarea:focus,html[data-theme="dark"] select:focus select:focus{
+  background:var(--card);border-color:var(--primary)}html[data-theme="dark"] input::placeholder input::placeholder,html[data-theme="dark"] textarea::placeholder textarea::placeholder{
+  color:var(--muted)}/* chips,toggles,checkboxes */
+html[data-theme="dark"] .chips label .chips label{
+  background:var(--surface2);border-color:var(--line);color:var(--ink)}html[data-theme="dark"] .chips label:hover .chips label:hover{
+  border-color:var(--primary)}html[data-theme="dark"] .tg .sw .tg .sw{background:#2a3350}html[data-theme="dark"] .tg.on .tg.on{
+  background:var(--card);border-color:var(--primary)}html[data-theme="dark"] .s-chip .s-chip{
+  background:var(--surface2);border-color:var(--line);color:var(--muted)}html[data-theme="dark"] .s-done .s-done{
+  background:var(--green-soft);color:var(--green)}html[data-theme="dark"] .s-chev .s-chev{color:var(--muted)}/* buttons */
+html[data-theme="dark"] .btn.ghost .btn.ghost{
+  background:var(--surface2);color:var(--primary);box-shadow:inset 0 0 0 1.5px var(--line2)}html[data-theme="dark"] .btn.small.ghost .btn.small.ghost{
+  background:var(--surface2);color:var(--muted);box-shadow:inset 0 0 0 1.5px var(--line2)}/* quality ring,panels,popups */
+html[data-theme="dark"] .ring .ring{background:#1b2440}html[data-theme="dark"] .ring .inner .ring .inner{background:var(--card)}html[data-theme="dark"] .score-tip .score-tip{color:var(--muted)}html[data-theme="dark"] .sheet .sheet{
+  background:var(--glass);color:var(--ink);border-color:var(--line)}html[data-theme="dark"] .toast .toast{
+  background:var(--glass);color:var(--ink)}/* AI tool cards */
+html[data-theme="dark"] .ai-card .ai-card{
+  background:var(--card);border-color:var(--line);color:var(--ink)}html[data-theme="dark"] .ai-links .off .ai-links .off{
+  background:var(--blue-soft);color:var(--primary-link);box-shadow:inset 0 0 0 1.5px var(--line2)}html[data-theme="dark"] .ai-links .oss .ai-links .oss{
+  background:var(--green-soft);color:var(--green);box-shadow:inset 0 0 0 1.5px var(--line2)}html[data-theme="dark"] .ai-desc .ai-desc{color:var(--muted)}/* misc */
+html[data-theme="dark"] .scard.open .scard.open{
+  border-color:var(--primary)}html[data-theme="dark"] ::-webkit-scrollbar-thumb ::-webkit-scrollbar-thumb{
+  background:#2b3552}html[data-theme="dark"] .pcard:hover .pcard:hover{
+  border-color:var(--primary)}html[data-theme="dark"] .theme-btn .theme-btn{
+  background:var(--card);border-color:var(--line);color:var(--ink)}/* drawer link pills and lists had a hard-coded white background */
+html[data-theme="dark"] .d-item .d-item{
+  background:var(--surface2);border-color:var(--line);color:var(--ink)}html[data-theme="dark"] .d-item .di .d-item .di{
+  background:var(--card);color:var(--ink)}html[data-theme="dark"] .d-label .d-label{color:var(--muted)}html[data-theme="dark"] .d-foot .d-foot{color:var(--muted)}html[data-theme="dark"] .lang-list button .lang-list button{
+  background:var(--surface2);border-color:var(--line);color:var(--ink)}html[data-theme="dark"] .greet .greet{color:var(--ink)}html[data-theme="dark"] .sec-h .sec-h{color:var(--muted)}html[data-theme="dark"] .lb .lb{color:var(--muted)}html[data-theme="dark"] .pcard .pcard{
+  background:var(--surface2);border-color:var(--line);color:var(--ink)}html[data-theme="dark"] .pcard b .pcard b{color:var(--ink)}
 
 /* ---------------- Target model picker ---------------- */
 .modelpick{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 12px;padding:10px 12px;
@@ -685,31 +587,13 @@ html[data-theme="dark"] .pcard b .pcard b,html[data-theme="oled"] .pcard b{color
 .gap-t{flex:1;color:var(--ink)}
 .gap-fix{background:var(--amber);color:#241800;border:0;border-radius:9px;padding:5px 11px;font-size:12px;font-weight:800}
 .gap-ok{padding:10px 11px;border-radius:12px;background:rgba(21,128,61,.10);border:1px solid rgba(21,128,61,.28);
-  font-size:12.5px;color:var(--green);font-weight:700}
-
-/* ---------------- Home tab in the dark themes ---------------- */
-html[data-theme="dark"] .greet .greet,html[data-theme="oled"] .greet{
-  color:var(--ink);letter-spacing:-.2px}
-html[data-theme="dark"] .sec-h b .sec-h b,html[data-theme="oled"] .sec-h b{color:var(--ink)}
-html[data-theme="dark"] .sec-h span .sec-h span,html[data-theme="oled"] .sec-h span{color:var(--muted)}
-html[data-theme="dark"] .qa .qa-t .qa .qa-t,html[data-theme="oled"] .qa .qa-t{color:var(--muted)}
-html[data-theme="dark"] .out-h .out-h,html[data-theme="oled"] .out-h{color:var(--ink)}
-html[data-theme="dark"] .out-btns .out-btns,html[data-theme="oled"] .out-btns{color:var(--ink)}
-html[data-theme="dark"] .hint .hint,html[data-theme="oled"] .hint{color:var(--muted);background:var(--bg2,#0d1424)}
-html[data-theme="dark"] .note .note,html[data-theme="oled"] .note{color:var(--ink);border-color:var(--line)}
-html[data-theme="dark"] .s-title b .s-title b,html[data-theme="oled"] .s-title b{color:var(--ink)}
-html[data-theme="dark"] .s-title span .s-title span,html[data-theme="oled"] .s-title span{color:var(--muted)}
-html[data-theme="dark"] .s-done .s-done,html[data-theme="oled"] .s-done{color:var(--muted)}
-
-/* ---------------- Bottom navigation in the dark themes ---------------- */
-html[data-theme="dark"] .bnav .bnav,html[data-theme="oled"] .bnav{
-  border-top-color:var(--line);color:var(--ink)}
-html[data-theme="dark"] .bnav .bn-ic .bnav .bn-ic,html[data-theme="oled"] .bnav .bn-ic{
-  background:var(--surface2);color:var(--muted)}
-html[data-theme="dark"] .bnav button.active .bn-ic .bnav button.active .bn-ic,html[data-theme="oled"] .bnav button.active .bn-ic{
-  background:var(--blue-soft);color:var(--primary)}
-html[data-theme="dark"] .bnav .bn-t .bnav .bn-t,html[data-theme="oled"] .bnav .bn-t{color:var(--muted)}
-html[data-theme="dark"] .bnav button.active .bn-t .bnav button.active .bn-t,html[data-theme="oled"] .bnav button.active .bn-t{
+  font-size:12.5px;color:var(--green);font-weight:700}/* ---------------- Home tab in the dark themes ---------------- */
+html[data-theme="dark"] .greet .greet{
+  color:var(--ink);letter-spacing:-.2px}html[data-theme="dark"] .sec-h b .sec-h b{color:var(--ink)}html[data-theme="dark"] .sec-h span .sec-h span{color:var(--muted)}html[data-theme="dark"] .qa .qa-t .qa .qa-t{color:var(--muted)}html[data-theme="dark"] .out-h .out-h{color:var(--ink)}html[data-theme="dark"] .out-btns .out-btns{color:var(--ink)}html[data-theme="dark"] .hint .hint{color:var(--muted);background:var(--bg2,#0d1424)}html[data-theme="dark"] .note .note{color:var(--ink);border-color:var(--line)}html[data-theme="dark"] .s-title b .s-title b{color:var(--ink)}html[data-theme="dark"] .s-title span .s-title span{color:var(--muted)}html[data-theme="dark"] .s-done .s-done{color:var(--muted)}/* ---------------- Bottom navigation in the dark themes ---------------- */
+html[data-theme="dark"] .bnav .bnav{
+  border-top-color:var(--line);color:var(--ink)}html[data-theme="dark"] .bnav .bn-ic .bnav .bn-ic{
+  background:var(--surface2);color:var(--muted)}html[data-theme="dark"] .bnav button.active .bn-ic .bnav button.active .bn-ic{
+  background:var(--blue-soft);color:var(--primary)}html[data-theme="dark"] .bnav .bn-t .bnav .bn-t{color:var(--muted)}html[data-theme="dark"] .bnav button.active .bn-t .bnav button.active .bn-t{
   color:var(--primary)}
 
 /* the stage text box */
