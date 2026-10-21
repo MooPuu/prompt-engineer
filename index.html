@@ -298,16 +298,46 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
       <button class="tbtn tbtn-anim" id="btnThemeAnim" type="button" aria-pressed="false" title="Night / Day">
         <span class="em"><span class="theme-anim" id="themeAnim" aria-hidden="true"></span></span>
         <span class="tx" data-i18n="theme.toggle">تبديل</span>
-      </button>
-        <button class="tbtn" data-theme="oled" title="OLED"><span class="em"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.42857 9.75L2.25 12L6.42857 14.25M6.42857 9.75L12 12.75L17.5714 9.75M6.42857 9.75L2.25 7.5L12 2.25L21.75 7.5L17.5714 9.75M17.5714 9.75L21.75 12L17.5714 14.25M17.5714 14.25L21.75 16.5L12 21.75L2.25 16.5L6.42857 14.25M17.5714 14.25L12 17.25L6.42857 14.25"/></svg></span><span class="tx" data-i18n="theme.oled">أسود</span></button>
+      </button>
     </div>
 
     <button class="btn ghost" id="btnAuto"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.8132 15.9038L9 18.75L8.1868 15.9038C7.75968 14.4089 6.59112 13.2403 5.09619 12.8132L2.25 12L5.09619 11.1868C6.59113 10.7597 7.75968 9.59112 8.1868 8.09619L9 5.25L9.8132 8.09619C10.2403 9.59113 11.4089 10.7597 12.9038 11.1868L15.75 12L12.9038 12.8132C11.4089 13.2403 10.2403 14.4089 9.8132 15.9038Z"/><path d="M18.2589 8.71454L18 9.75L17.7411 8.71454C17.4388 7.50533 16.4947 6.56117 15.2855 6.25887L14.25 6L15.2855 5.74113C16.4947 5.43883 17.4388 4.49467 17.7411 3.28546L18 2.25L18.2589 3.28546C18.5612 4.49467 19.5053 5.43883 20.7145 5.74113L21.75 6L20.7145 6.25887C19.5053 6.56117 18.5612 7.50533 18.2589 8.71454Z"/><path d="M16.8942 20.5673L16.5 21.75L16.1058 20.5673C15.8818 19.8954 15.3546 19.3682 14.6827 19.1442L13.5 18.75L14.6827 18.3558C15.3546 18.1318 15.8818 17.6046 16.1058 16.9327L16.5 15.75L16.8942 16.9327C17.1182 17.6046 17.6454 18.1318 17.6454 18.3558L19.5 18.75L18.3173 19.1442C17.6454 19.3682 17.1182 19.8954 16.8942 20.5673Z"/></svg> <span data-i18n="act.auto">أكمل تلقائيًا</span></button>
     <button class="btn ghost" id="btnReset"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.0228 9.34841H21.0154V9.34663M2.98413 19.6444V14.6517M2.98413 14.6517L7.97677 14.6517M2.98413 14.6517L6.16502 17.8347C7.15555 18.8271 8.41261 19.58 9.86436 19.969C14.2654 21.1483 18.7892 18.5364 19.9685 14.1353M4.03073 9.86484C5.21 5.46374 9.73377 2.85194 14.1349 4.03121C15.5866 4.4202 16.8437 5.17312 17.8342 6.1655L21.0154 9.34663M21.0154 4.3558V9.34663"/></svg> <span data-i18n="act.clear">مسح</span></button>
-        <button class="btn primary" id="btnCopyTop"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.25 7.5V6.10822C8.25 4.97324 9.09499 4.01015 10.2261 3.91627C10.5994 3.88529 10.9739 3.85858 11.3495 3.83619M15.75 18H18C19.2426 18 20.25 16.9926 20.25 15.75V6.10822C20.25 4.97324 19.405 4.01015 18.2739 3.91627C17.9006 3.88529 17.5261 3.85858 17.1505 3.83619M15.75 18.75V16.875C15.75 15.011 14.239 13.5 12.375 13.5H10.875C10.2537 13.5 9.75 12.9963 9.75 12.375V10.875C9.75 9.01104 8.23896 7.5 6.375 7.5H5.25M17.1505 3.83619C16.8672 2.91757 16.0116 2.25 15 2.25H13.5C12.4884 2.25 11.6328 2.91757 11.3495 3.83619M17.1505 3.83619C17.2152 4.04602 17.25 4.26894 17.25 4.5V5.25H11.25V4.5C11.25 4.26894 11.2848 4.04602 11.3495 3.83619M6.75 7.5H4.875C4.25368 7.5 3.75 8.00368 3.75 8.625V20.625C3.75 21.2463 4.25368 21.75 4.875 21.75H14.625C15.2463 21.75 15.75 21.2463 15.75 20.625V16.5C15.75 11.5294 11.7206 7.5 6.75 7.5Z"/></svg> <span data-i18n="act.copy">نسخ البرومبت</span></button>
+        <button class="btn ghost" id="btnSkills" type="button" aria-expanded="false" aria-controls="skillsPanel"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 18V12.75M12 12.75C12.5179 12.75 13.0206 12.6844 13.5 12.561M12 12.75C11.4821 12.75 10.9794 12.6844 10.5 12.561M14.25 20.0394C13.5212 20.1777 12.769 20.25 12 20.25C11.231 20.25 10.4788 20.1777 9.75 20.0394M13.5 22.422C13.007 22.4736 12.5066 22.5 12 22.5C11.4934 22.5 10.993 22.4736 10.5 22.422M14.25 18V17.8083C14.25 16.8254 14.9083 15.985 15.7585 15.4917C17.9955 14.1938 19.5 11.7726 19.5 9C19.5 4.85786 16.1421 1.5 12 1.5C7.85786 1.5 4.5 4.85786 4.5 9C4.5 11.7726 6.00446 14.1938 8.24155 15.4917C9.09173 15.985 9.75 16.8254 9.75 17.8083V18"/></svg> <span data-i18n="skills.title">المهارات</span></button>
+    <button class="btn primary" id="btnCopyTop"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.25 7.5V6.10822C8.25 4.97324 9.09499 4.01015 10.2261 3.91627C10.5994 3.88529 10.9739 3.85858 11.3495 3.83619M15.75 18H18C19.2426 18 20.25 16.9926 20.25 15.75V6.10822C20.25 4.97324 19.405 4.01015 18.2739 3.91627C17.9006 3.88529 17.5261 3.85858 17.1505 3.83619M15.75 18.75V16.875C15.75 15.011 14.239 13.5 12.375 13.5H10.875C10.2537 13.5 9.75 12.9963 9.75 12.375V10.875C9.75 9.01104 8.23896 7.5 6.375 7.5H5.25M17.1505 3.83619C16.8672 2.91757 16.0116 2.25 15 2.25H13.5C12.4884 2.25 11.6328 2.91757 11.3495 3.83619M17.1505 3.83619C17.2152 4.04602 17.25 4.26894 17.25 4.5V5.25H11.25V4.5C11.25 4.26894 11.2848 4.04602 11.3495 3.83619M6.75 7.5H4.875C4.25368 7.5 3.75 8.00368 3.75 8.625V20.625C3.75 21.2463 4.25368 21.75 4.875 21.75H14.625C15.2463 21.75 15.75 21.2463 15.75 20.625V16.5C15.75 11.5294 11.7206 7.5 6.75 7.5Z"/></svg> <span data-i18n="act.copy">نسخ البرومبت</span></button>
   </div>
   </div><!-- /.tb-main -->
 </header>
+
+<!-- the skills and commands panel -->
+<div class="skills-panel" id="skillsPanel" hidden>
+  <div class="skills-head">
+    <b data-i18n="skills.title">المهارات</b>
+    <span class="skills-hint" data-i18n="skills.hint">أضف المهارات المناسبة، وستدخل البرومبت تلقائيًا</span>
+    <button class="skills-x" id="skillsClose" type="button" aria-label="close">&times;</button>
+  </div>
+  <div class="skills-tabs">
+    <button class="sk-tab active" type="button" data-sktab="skills" data-i18n="skills.tabSkills">المهارات</button>
+    <button class="sk-tab" type="button" data-sktab="commands" data-i18n="skills.tabCommands">الأوامر /</button>
+  </div>
+
+  <div id="skSkills">
+    <div class="skills-cats" id="skillsCats"></div>
+    <div class="skills-sub" data-i18n="skills.suggested">مقترحة حسب المهمة</div>
+    <div class="skills-list" id="skillsList"></div>
+    <div class="skills-sub" id="skillsAddedHead" data-i18n="skills.added">المهارات المضافة</div>
+    <div class="skills-list" id="skillsAdded"></div>
+  </div>
+
+  <div id="skCommands" hidden>
+    <div class="skills-sub" data-i18n="cmd.tools">البرنامج</div>
+    <div class="cmd-tools" id="cmdTools"></div>
+    <div class="skills-sub" id="cmdSuggestHead" data-i18n="cmd.suggested">أمر مقترح لبرومبتك</div>
+    <div class="skills-list" id="cmdSuggest"></div>
+    <div class="skills-sub" data-i18n="cmd.list">كل الأوامر</div>
+    <div class="skills-list" id="cmdList"></div>
+  </div>
+</div>
 
 <div class="wrap">
 
@@ -841,9 +871,11 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
   </div>
 </footer>
 
-<script src="i18n.js?v=36f4e58a"></script>
+<script src="i18n.js?v=f9167dda"></script>
 <script src="lottie.min.js"></script>
 <script src="anim.js"></script>
+<script src="skills.js"></script>
+<script src="commands.js"></script>
 <script>
 /* ================= i18n ================= */
 /* I18N + LANGS now live in the shared i18n.js file */
@@ -1940,6 +1972,12 @@ function buildText(v){
     s.push('- '+v.tone.map(k=>TONE[k]?TONE[k][i]:k).join('\n- '));
   }
 
+  if(ADDED_SKILLS.size && window.PE_SKILLS){
+    s.push('\n'+H('المهارات','SKILLS'));
+    s.push(Array.from(ADDED_SKILLS)
+      .map(id=>{ const sk=window.PE_SKILLS.byId[id]; return sk?sk.s[i]:''; })
+      .filter(Boolean).join('\n'));
+  }
   if(v.constraints){
     s.push('\n'+H('القيود والمتطلبات','CONSTRAINTS'));
     s.push(lines(v.constraints).map((x,n)=>(n+1)+'. '+x).join('\n'));
@@ -2051,6 +2089,10 @@ function render(){
   renderVarBar();
   if(typeof renderPhases==='function') renderPhases();
   if(typeof renderGaps==='function') renderGaps();
+  if(typeof renderSkills==='function' && $('skillsPanel') && !$('skillsPanel').hidden){
+    renderSkills();
+    if(SK_TAB==='commands') renderCommands();
+  }
   if(typeof fillModelSelect==='function') fillModelSelect();
   if(typeof modelTune==='function') modelTune();
   $('stWords').textContent = words;
@@ -2358,6 +2400,130 @@ function costEstimate(tokens){
   }));
 }
 
+/* ================= Skills and commands ================= */
+const ADDED_SKILLS = new Set();
+let SKILL_CAT = 'all';
+let CMD_TOOL = 'chatgpt';
+let SK_TAB = 'skills';
+function skillsSourceText(){
+  return ['task','context','role','audience']
+    .map(id=>{ const el=$(id); return el?el.value:''; }).join(' ');
+}
+function skillName(s){ return s.n[L()===1?1:0]; }
+function renderSkills(){
+  const list=$('skillsList'), added=$('skillsAdded');
+  if(!list || !window.PE_SKILLS) return;
+  const S=window.PE_SKILLS;
+  const found=S.find(skillsSourceText(), 12);
+  list.innerHTML='';
+  if(!found.length){
+    list.innerHTML='<div class="skills-empty" data-i18n="skills.empty">اكتب المهمة أولًا لتظهر الاقتراحات</div>';
+  } else {
+    found.forEach(f=>{
+      const s=S.byId[f.id]; if(!s) return;
+      const on=ADDED_SKILLS.has(f.id);
+      const row=document.createElement('div');
+      row.className='skill'+(on?' on':'');
+      row.innerHTML='<div class="skill-t"><b></b><span></span></div><button class="skill-btn" type="button"></button>';
+      row.querySelector('.skill-t b').textContent=skillName(s);
+      row.querySelector('.skill-t span').textContent=s.s[L()===1?1:0];
+      const b=row.querySelector('.skill-btn');
+      b.textContent=on ? t('skills.remove') : t('skills.add');
+      b.onclick=()=>toggleSkill(f.id);
+      list.appendChild(row);
+    });
+  }
+  added.innerHTML='';
+  ADDED_SKILLS.forEach(id=>{
+    const s=S.byId[id]; if(!s) return;
+    const row=document.createElement('div');
+    row.className='skill on';
+    row.innerHTML='<div class="skill-t"><b></b><span></span></div><button class="skill-btn on" type="button"></button>';
+    row.querySelector('.skill-t b').textContent=skillName(s);
+    row.querySelector('.skill-t span').textContent=s.s[L()===1?1:0];
+    const b=row.querySelector('.skill-btn');
+    b.textContent=t('skills.remove');
+    b.onclick=()=>toggleSkill(id);
+    added.appendChild(row);
+  });
+  const head=$('skillsAddedHead'); if(head) head.hidden = ADDED_SKILLS.size===0;
+}
+function renderSkillCats(){
+  const box=$('skillsCats');
+  if(!box || !window.PE_SKILLS) return;
+  const C=window.PE_SKILLS.cats;
+  box.innerHTML='';
+  const mk=(code,label)=>{
+    const b=document.createElement('button');
+    b.type='button'; b.className='sk-cat'+(SKILL_CAT===code?' active':'');
+    b.textContent=label;
+    b.onclick=()=>{ SKILL_CAT=code; renderSkillCats(); renderSkills(); };
+    box.appendChild(b);
+  };
+  mk('all', t('skills.all'));
+  Object.keys(C).forEach(k=>mk(k, C[k].n[L()===1?1:0]));
+}
+function commandRow(c, big){
+  const C=window.PE_COMMANDS;
+  const row=document.createElement('div');
+  row.className='skill cmd'+(big?' big':'');
+  const inv=C.invocation(c, CMD_TOOL, L()===1?1:0);
+  row.innerHTML='<div class="skill-t"><b></b><span></span><code></code></div><button class="skill-btn" type="button"></button>';
+  row.querySelector('.skill-t b').textContent=c.c+' · '+c.n[L()===1?1:0];
+  row.querySelector('.skill-t span').textContent=c.d[L()===1?1:0];
+  row.querySelector('code').textContent=inv;
+  const b=row.querySelector('.skill-btn');
+  b.textContent=t('cmd.copy');
+  b.onclick=()=>{
+    const task=$('task')?$('task').value:'';
+    copy(inv+task);
+    toast(t('cmd.copied'));
+  };
+  return row;
+}
+function renderCommands(){
+  const box=$('cmdList');
+  if(!box || !window.PE_COMMANDS) return;
+  const C=window.PE_COMMANDS;
+  const tb=$('cmdTools');
+  tb.innerHTML='';
+  Object.keys(C.tools).forEach(code=>{
+    const b=document.createElement('button');
+    b.type='button'; b.className='cmd-tool'+(CMD_TOOL===code?' active':'');
+    b.textContent=C.tools[code].n[0];
+    b.onclick=()=>{ CMD_TOOL=code; renderCommands(); };
+    tb.appendChild(b);
+  });
+  const sug=$('cmdSuggest');
+  sug.innerHTML='';
+  const found=C.find(skillsSourceText(), 1);
+  const head=$('cmdSuggestHead');
+  if(found.length && C.byId[found[0].id]){
+    head.hidden=false;
+    sug.appendChild(commandRow(C.byId[found[0].id], true));
+  } else head.hidden=true;
+  box.innerHTML='';
+  C.list.forEach(c=>box.appendChild(commandRow(c, false)));
+}
+function toggleSkill(id){
+  if(ADDED_SKILLS.has(id)) ADDED_SKILLS.delete(id); else ADDED_SKILLS.add(id);
+  renderSkills();
+  render();
+}
+function openSkills(){
+  const p=$('skillsPanel'); if(!p) return;
+  p.hidden=false;
+  $('btnSkills').setAttribute('aria-expanded','true');
+  renderSkillCats();
+  renderSkills();
+  renderCommands();
+}
+function closeSkills(){
+  const p=$('skillsPanel'); if(!p) return;
+  p.hidden=true;
+  $('btnSkills').setAttribute('aria-expanded','false');
+}
+
 /* ================= Dynamic variables ================= */
 /* [اسم_العميل] and [client_name] in any field become inputs that are
    substituted into the prompt at render time. */
@@ -2491,6 +2657,7 @@ $('btnClearHist').onclick=()=>{ try{localStorage.removeItem('pe_hist');}catch(e)
 /* ================= Themes ================= */
 const THEME_META = {midnight:'#0b0f1a', light:'#eef1f8', oled:'#000000'};
 function setTheme(name, fromSwitch){
+  if(name==='oled') name='midnight';
   if(!THEME_META[name]) name='midnight';
   document.documentElement.setAttribute('data-theme', name);
   const m=document.querySelector('meta[name="theme-color"]'); if(m) m.content=THEME_META[name];
@@ -2517,6 +2684,7 @@ document.querySelectorAll('#themes .tbtn[data-theme]').forEach(b=>{
    Frame 200 = the moon on the left, the night theme               */
 const THEME_FRAMES = {day: 30, night: 200};
 let themeAnim=null;
+let themeAnimBusy=false;
 function themeIsDay(){ return document.documentElement.getAttribute('data-theme')==='light'; }
 function initThemeAnim(){
   const box=$('themeAnim');
@@ -2533,18 +2701,64 @@ function syncThemeAnim(){
   if(!themeAnim) return;
   try{ themeAnim.goToAndStop(themeIsDay()?THEME_FRAMES.day:THEME_FRAMES.night, true); }catch(e){}
 }
-function playThemeAnim(toDark){
-  if(!themeAnim) return;
+function playThemeAnim(toDark, done){
+  if(!themeAnim){ if(done) done(); return; }
+  const from = toDark ? THEME_FRAMES.day : THEME_FRAMES.night;
+  const to   = toDark ? THEME_FRAMES.night : THEME_FRAMES.day;
+  let finished = false;
+  const finish = ()=>{ if(finished) return; finished = true; if(done) done(); };
+  const onComplete = ()=>{
+    try{ themeAnim.removeEventListener('complete', onComplete); }catch(e){}
+    finish();
+  };
   try{
-    if(toDark) themeAnim.playSegments([THEME_FRAMES.day, THEME_FRAMES.night], true);
-    else themeAnim.playSegments([THEME_FRAMES.night, THEME_FRAMES.day], true);
-  }catch(e){}
+    themeAnim.addEventListener('complete', onComplete);
+    themeAnim.playSegments([from, to], true);
+  }catch(e){ finish(); return; }
+  /* the fallback: the length of the segment over the frame rate */
+  const len = Math.abs(to - from);
+  const dur = (len / (themeAnim.frameRate || 60)) * 1000 + 500;
+  setTimeout(finish, dur);
 }
+$('btnSkills').addEventListener('click',e=>{
+  e.stopPropagation();
+  const p=$('skillsPanel');
+  if(p && !p.hidden) closeSkills(); else openSkills();
+});
+$('skillsClose').addEventListener('click',closeSkills);
+document.querySelectorAll('#skillsPanel .sk-tab').forEach(b=>{
+  b.addEventListener('click',()=>{
+    SK_TAB=b.dataset.sktab;
+    document.querySelectorAll('#skillsPanel .sk-tab').forEach(x=>x.classList.toggle('active', x===b));
+    $('skSkills').hidden = SK_TAB!=='skills';
+    $('skCommands').hidden = SK_TAB!=='commands';
+    if(SK_TAB==='commands') renderCommands(); else renderSkills();
+  });
+});
+document.querySelectorAll('#skillsPanel .sk-tab').forEach(b=>{
+  b.addEventListener('click',()=>{
+    SK_TAB=b.dataset.sktab;
+    document.querySelectorAll('#skillsPanel .sk-tab').forEach(x=>x.classList.toggle('active', x===b));
+    $('skSkills').hidden = SK_TAB!=='skills';
+    $('skCommands').hidden = SK_TAB!=='commands';
+    if(SK_TAB==='commands') renderCommands(); else renderSkills();
+  });
+});
+document.addEventListener('click',e=>{
+  const p=$('skillsPanel');
+  if(p && !p.hidden && !p.contains(e.target) && !($('btnSkills')&&$('btnSkills').contains(e.target))) closeSkills();
+});
 $('btnThemeAnim').addEventListener('click',()=>{
+  if(themeAnimBusy) return;
   const toDark = themeIsDay();
-  setTheme(toDark?'midnight':'light', true);
-  playThemeAnim(toDark);
-  toast(t('msg.theme'));
+  themeAnimBusy = true;
+  $('btnThemeAnim').disabled = true;
+  playThemeAnim(toDark, ()=>{
+    themeAnimBusy = false;
+    $('btnThemeAnim').disabled = false;
+    setTheme(toDark?'midnight':'light', true);
+    toast(t('msg.theme'));
+  });
 });
 
 /* ================= History ================= */

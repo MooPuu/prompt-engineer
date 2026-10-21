@@ -23,7 +23,7 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="mobile.css?v=b945470a">
+<link rel="stylesheet" href="mobile.css?v=9423007e">
 </head>
 <body>
 
@@ -461,6 +461,34 @@
     <div class="d-foot d-foot-gap" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v2.2.0</div>
   </section>
 
+  <!-- ================= TAB 6: SKILLS AND COMMANDS ================= -->
+  <section class="panel" id="m-skills">
+    <div class="greet" data-i18n="skills.title">المهارات</div>
+    <div class="note" data-i18n="skills.hint">أضف المهارات المناسبة، وستدخل البرومبت تلقائيًا</div>
+
+    <div class="skills-tabs">
+      <button class="sk-tab active" type="button" data-sktab="skills" data-i18n="skills.tabSkills">المهارات</button>
+      <button class="sk-tab" type="button" data-sktab="commands" data-i18n="skills.tabCommands">الأوامر /</button>
+    </div>
+
+    <div id="skSkills">
+      <div class="skills-cats" id="skillsCats"></div>
+      <div class="skills-sub" data-i18n="skills.suggested">مقترحة حسب المهمة</div>
+      <div class="skills-list" id="skillsList"></div>
+      <div class="skills-sub" id="skillsAddedHead" data-i18n="skills.added">المهارات المضافة</div>
+      <div class="skills-list" id="skillsAdded"></div>
+    </div>
+
+    <div id="skCommands" hidden>
+      <div class="skills-sub" data-i18n="cmd.tools">البرنامج</div>
+      <div class="cmd-tools" id="cmdTools"></div>
+      <div class="skills-sub" id="cmdSuggestHead" data-i18n="cmd.suggested">أمر مقترح لبرومبتك</div>
+      <div class="skills-list" id="cmdSuggest"></div>
+      <div class="skills-sub" data-i18n="cmd.list">كل الأوامر</div>
+      <div class="skills-list" id="cmdList"></div>
+    </div>
+  </section>
+
 </div><!-- /.app -->
 
 <!-- ================= Bottom navigation ================= -->
@@ -469,6 +497,7 @@
   <button type="button" data-tab="m-quality"><span class="bn-ic"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.0001 3C14.7548 3 17.4552 3.23205 20.0831 3.67767C20.6159 3.76803 21 4.23355 21 4.77402V5.81802C21 6.41476 20.7629 6.98705 20.341 7.40901L14.909 12.841C14.4871 13.2629 14.25 13.8352 14.25 14.432V17.3594C14.25 18.2117 13.7685 18.9908 13.0062 19.3719L9.75 21V14.432C9.75 13.8352 9.51295 13.2629 9.09099 12.841L3.65901 7.40901C3.23705 6.98705 3 6.41476 3 5.81802V4.77404C3 4.23357 3.38408 3.76805 3.91694 3.67769C6.54479 3.23206 9.24533 3 12.0001 3Z"/></svg></span><span class="bn-t" data-i18n="nav.quality">الجودة</span></button>
   <button type="button" data-tab="m-presets"><span class="bn-ic"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.75 6C3.75 4.75736 4.75736 3.75 6 3.75H8.25C9.49264 3.75 10.5 4.75736 10.5 6V8.25C10.5 9.49264 9.49264 10.5 8.25 10.5H6C4.75736 10.5 3.75 9.49264 3.75 8.25V6Z"/><path d="M3.75 15.75C3.75 14.5074 4.75736 13.5 6 13.5H8.25C10.5 13.5 10.5 14.5074 10.5 15.75V18C10.5 19.2426 9.49264 20.25 8.25 20.25H6C4.75736 20.25 3.75 19.2426 3.75 18V15.75Z"/><path d="M13.5 6C13.5 4.75736 14.5074 3.75 15.75 3.75H18C19.2426 3.75 20.25 4.75736 20.25 6V8.25C20.25 9.49264 19.2426 10.5 18 10.5H15.75C14.5074 10.5 13.5 9.49264 13.5 8.25V6Z"/><path d="M13.5 15.75C13.5 14.5074 14.5074 13.5 15.75 13.5H18C19.2426 13.5 20.25 14.5074 20.25 15.75V18C20.25 19.2426 19.2426 20.25 18 20.25H15.75C14.5074 20.25 13.5 19.2426 13.5 18V15.75Z"/></svg></span><span class="bn-t" data-i18n="nav.presets">القوالب</span></button>
   <button type="button" data-tab="m-image"><span class="bn-ic"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2.25 15.75L7.40901 10.591C8.28769 9.71231 9.71231 9.71231 10.591 10.591L15.75 15.75M14.25 14.25L15.659 12.841C16.5377 11.9623 17.9623 11.9623 18.841 12.841L21.75 15.75M3.75 19.5H20.25C21.0784 19.5 21.75 18.8284 21.75 18V6C21.75 5.17157 21.0784 4.5 20.25 4.5H3.75C2.92157 4.5 2.25 5.17157 2.25 6V18C2.25 18.8284 2.92157 19.5 3.75 19.5ZM14.25 8.25H14.2575V8.2575H14.25V8.25ZM14.625 8.25C14.625 8.45711 14.4571 8.625 14.25 8.625C14.0429 8.625 13.875 8.45711 13.875 8.25C13.875 8.04289 14.0429 7.875 14.25 7.875C14.4571 7.875 14.625 8.04289 14.625 8.25Z"/></svg></span><span class="bn-t" data-i18n="nav.image">الصورة</span></button>
+  <button type="button" data-tab="m-skills"><span class="bn-ic"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.8132 15.9038L9 18.75L8.1868 15.9038C7.75968 14.4089 6.59112 13.2403 5.09619 12.8132L2.25 12L5.09619 11.1868C6.59113 10.7597 7.75968 9.59112 8.1868 8.09619L9 5.25L9.8132 8.09619C10.2403 9.59113 11.4089 10.7597 12.9038 11.1868L15.75 12L12.9038 12.8132C11.4089 13.2403 10.2403 14.4089 9.8132 15.9038Z M18.2589 8.71454L18 9.75L17.7411 8.71454C17.4388 7.50533 16.4947 6.56117 15.2855 6.25887L14.25 6L15.2855 5.74113C16.4947 5.43883 17.4388 4.49467 17.7411 3.28546L18 2.25L18.2589 3.28546C18.5612 4.49467 19.5053 5.43883 20.7145 5.74113L21.75 6L20.7145 6.25887C19.5053 6.56117 18.5612 7.50533 18.2589 8.71454Z"/></svg></span><span class="bn-t" data-i18n="skills.tabSkills">المهارات</span></button>
   <button type="button" data-tab="m-tools"><span class="bn-ic"><svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.59356 3.94014C9.68397 3.39768 10.1533 3.00009 10.7033 3.00009H13.2972C13.8472 3.00009 14.3165 3.39768 14.4069 3.94014L14.6204 5.22119C14.6828 5.59523 14.9327 5.9068 15.2645 6.09045C15.3387 6.13151 15.412 6.17393 15.4844 6.21766C15.8095 6.41393 16.2048 6.47495 16.5604 6.34175L17.7772 5.88587C18.2922 5.69293 18.8712 5.9006 19.1462 6.37687L20.4432 8.6233C20.7181 9.09957 20.6085 9.70482 20.1839 10.0544L19.1795 10.8812C18.887 11.122 18.742 11.4938 18.7491 11.8726C18.7498 11.915 18.7502 11.9575 18.7502 12.0001C18.7502 12.0427 18.7498 12.0852 18.7491 12.1275C18.742 12.5064 18.887 12.8782 19.1795 13.119L20.1839 13.9458C20.6085 14.2953 20.7181 14.9006 20.4432 15.3769L19.1462 17.6233C18.8712 18.0996 18.2922 18.3072 17.7772 18.1143L16.5604 17.6584C16.2048 17.5252 15.8095 17.5862 15.4844 17.7825C15.412 17.8263 15.3387 17.8687 15.2645 17.9097C14.9327 18.0934 14.6828 18.4049 14.6204 18.779L14.4069 20.06C14.3165 20.6025 13.8472 21.0001 13.2972 21.0001H10.7033C10.1533 21.0001 9.68397 20.6025 9.59356 20.06L9.38005 18.779C9.31771 18.4049 9.06774 18.0934 8.73597 17.9097C8.66179 17.8687 8.58847 17.8263 8.51604 17.7825C8.19101 17.5863 7.79568 17.5252 7.44011 17.6584L6.22325 18.1143C5.70826 18.3072 5.12926 18.0996 4.85429 17.6233L3.55731 15.3769C3.28234 14.9006 3.39199 14.2954 3.81657 13.9458L4.82092 13.119C5.11343 12.8782 5.25843 12.5064 5.25141 12.1276C5.25063 12.0852 5.25023 12.0427 5.25023 12.0001C5.25023 11.9575 5.25063 11.915 5.25141 11.8726C5.25843 11.4938 5.11343 11.122 4.82092 10.8812L3.81657 10.0544C3.39199 9.70484 3.28234 9.09958 3.55731 8.62332L4.85429 6.37688C5.12926 5.90061 5.70825 5.69295 6.22325 5.88588L7.4401 6.34176C7.79566 6.47496 8.19099 6.41394 8.51603 6.21767C8.58846 6.17393 8.66179 6.13151 8.73597 6.09045C9.06774 5.9068 9.31771 5.59523 9.38005 5.22119L9.59356 3.94014Z"/><path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3432 10.3431 9.00001 12 9.00001C13.6569 9.00001 15 10.3432 15 12Z"/></svg></span><span class="bn-t" data-i18n="nav.tools">الأدوات</span></button>
 </nav>
 
@@ -499,10 +528,12 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="i18n.js?v=36f4e58a"></script>
+<script src="i18n.js?v=f9167dda"></script>
 <script src="lottie.min.js?v=0b26510b"></script>
 <script src="anim.js?v=caf2c3b3"></script>
+<script src="skills.js?v=3cf7575b"></script>
+<script src="commands.js?v=f6e1da5c"></script>
 <script src="data.js?v=9ec1560d"></script>
-<script src="app.js?v=b13b207d"></script>
+<script src="app.js?v=3087c0ff"></script>
 </body>
 </html>

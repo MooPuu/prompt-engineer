@@ -591,3 +591,64 @@ html[data-theme="oled"] ::selection{background:rgba(125,155,255,.32)}
 }
 .theme-anim svg{display:block;width:100%;height:100%}
 .tbtn-anim.active .em{border-color:var(--acc)}
+
+/* ---------------- the skills panel ---------------- */
+.skills-panel{
+  position:fixed;top:70px;inset-inline-end:22px;z-index:60;width:min(430px,calc(100vw - 32px));
+  max-height:min(70vh,620px);overflow:auto;
+  background:var(--panel);border:1px solid var(--stroke);border-radius:18px;
+  box-shadow:0 22px 60px rgba(0,0,0,.42);padding:14px;
+}
+.skills-head{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+.skills-head b{font-size:15px;font-weight:800;color:var(--head)}
+.skills-hint{flex:1;font-size:11.5px;color:var(--muted);line-height:1.4}
+.skills-x{
+  border:0;background:var(--hover);color:var(--muted);width:26px;height:26px;border-radius:8px;
+  font-size:17px;line-height:1;cursor:pointer;flex:0 0 26px
+}
+.skills-x:hover{color:var(--txt)}
+.skills-sub{font-size:11.5px;font-weight:800;color:var(--muted);margin:12px 0 7px;
+  text-transform:uppercase;letter-spacing:.4px}
+.skills-list{display:flex;flex-direction:column;gap:7px}
+.skills-empty{font-size:12.5px;color:var(--muted);padding:14px;text-align:center;
+  border:1px dashed var(--stroke);border-radius:12px}
+.skill{
+  display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;
+  background:var(--surface2);border:1px solid var(--stroke)
+}
+.skill.on{border-color:var(--acc);background:var(--acc-soft)}
+.skill-t{flex:1;min-width:0}
+.skill-t b{display:block;font-size:12.8px;font-weight:800;color:var(--txt)}
+.skill-t span{display:block;font-size:11.4px;color:var(--muted);line-height:1.5;margin-top:2px}
+.skill-btn{
+  flex:0 0 auto;border:1px solid var(--stroke);background:var(--hover);color:var(--txt);
+  font-size:11.5px;font-weight:800;padding:6px 11px;border-radius:9px;cursor:pointer
+}
+.skill-btn:hover{border-color:var(--acc)}
+.skill-btn.on{background:var(--accent-grad);color:var(--on-grad,#fff);border-color:transparent}
+
+/* ---------------- the skills tabs, the categories and the commands ---------------- */
+.skills-tabs{display:flex;gap:6px;margin:4px 0 10px}
+.sk-tab{
+  flex:1;border:1px solid var(--stroke);background:var(--surface2);color:var(--muted);
+  font-size:12.5px;font-weight:800;padding:8px 10px;border-radius:11px;cursor:pointer
+}
+.sk-tab.active{background:var(--accent-grad);color:var(--on-grad,#fff);border-color:transparent}
+.skills-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.sk-cat{
+  border:1px solid var(--stroke);background:var(--surface2);color:var(--muted);
+  font-size:11.5px;font-weight:800;padding:5px 10px;border-radius:99px;cursor:pointer
+}
+.sk-cat.active{background:var(--acc-soft);color:var(--acc);border-color:var(--acc)}
+.cmd-tools{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.cmd-tool{
+  border:1px solid var(--stroke);background:var(--surface2);color:var(--muted);
+  font-size:11.5px;font-weight:800;padding:5px 10px;border-radius:99px;cursor:pointer
+}
+.cmd-tool.active{background:var(--acc-soft);color:var(--acc);border-color:var(--acc)}
+.skill.cmd .skill-t code{
+  display:block;margin-top:5px;font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10.8px;color:var(--acc);background:var(--acc-soft);
+  border-radius:7px;padding:4px 7px;word-break:break-word;direction:ltr;text-align:left
+}
+.skill.cmd.big{border-color:var(--acc);background:var(--acc-soft)}

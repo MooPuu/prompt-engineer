@@ -37,6 +37,8 @@
       "themes.css",
       "lottie.min.js",
       "anim.js",
+      "skills.js",
+      "commands.js",
       "main.js",
       "prompt-engineer-icon.png",
       "package.json",

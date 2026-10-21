@@ -262,6 +262,12 @@ function buildText(v){
     s.push('\n'+H('النبرة والأسلوب','TONE'));
     s.push('- '+v.tone.map(k=>TONE[k]?TONE[k][i]:k).join('\n- '));
   }
+  if(ADDED_SKILLS.size && window.PE_SKILLS){
+    s.push('\n'+H('المهارات','SKILLS'));
+    s.push(Array.from(ADDED_SKILLS)
+      .map(id=>{ const sk=window.PE_SKILLS.byId[id]; return sk?sk.s[i]:''; })
+      .filter(Boolean).join('\n'));
+  }
   if(v.constraints){
     s.push('\n'+H('القيود والمتطلبات','CONSTRAINTS'));
     s.push(lines(v.constraints).map((x,n)=>(n+1)+'. '+x).join('\n'));
@@ -370,6 +376,10 @@ function render(){
   $('heroTech').textContent = tech+'/'+TECH_MAX;
 
   if(typeof renderGaps==='function') renderGaps();
+  if(typeof renderSkills==='function' && $('m-skills') && $('m-skills').classList.contains('active')){
+    renderSkills();
+    if(typeof renderCommands==='function') renderCommands();
+  }
   if(typeof renderPhases==='function') renderPhases();
   if(typeof fillModelSelect==='function') fillModelSelect();
   if(typeof modelTune==='function') modelTune();
@@ -675,6 +685,7 @@ const MOBILE_THEMES = [
   {code:'oled',  label:'أسود',  icon:'⬛', bg:'#000000'}
 ];
 function setTheme(code, fromSwitch){
+  if(code==='oled') code='dark';
   if(!MOBILE_THEMES.some(x=>x.code===code)) code='light';
   document.documentElement.setAttribute('data-theme', code);
   const m=document.querySelector('meta[name="theme-color"]');
@@ -709,15 +720,6 @@ function renderThemeRow(){
   sw.addEventListener('click',()=>toggleDayNight());
   box.appendChild(sw);
 
-  /* the black OLED theme */
-  MOBILE_THEMES.filter(th=>th.code==='oled').forEach(th=>{
-    const b=document.createElement('button');
-    b.type='button'; b.className='theme-btn'; b.dataset.theme=th.code;
-    b.setAttribute('role','radio'); b.setAttribute('aria-checked','false');
-    b.innerHTML='<span class="th-ic" style="background:'+th.bg+'">'+th.icon+'</span><span class="th-t">'+th.label+'</span>';
-    b.addEventListener('click',()=>setTheme(th.code));
-    box.appendChild(b);
-  });
 }
 
 /* ---------------- the animated night / day switch ----------------
@@ -727,6 +729,7 @@ function renderThemeRow(){
    Frame 200 = the moon on the left, the night theme               */
 const THEME_FRAMES = {day: 30, night: 200};
 let themeAnim=null;
+let themeAnimBusy=false;
 function themeIsDay(){ return document.documentElement.getAttribute('data-theme')==='light'; }
 function initThemeAnim(){
   const box=document.getElementById('themeAnim');
@@ -743,17 +746,35 @@ function syncThemeAnim(){
   if(!themeAnim) return;
   try{ themeAnim.goToAndStop(themeIsDay()?THEME_FRAMES.day:THEME_FRAMES.night, true); }catch(e){}
 }
-function playThemeAnim(toDark){
-  if(!themeAnim) return;
+function playThemeAnim(toDark, done){
+  if(!themeAnim){ if(done) done(); return; }
+  const from = toDark ? THEME_FRAMES.day : THEME_FRAMES.night;
+  const to   = toDark ? THEME_FRAMES.night : THEME_FRAMES.day;
+  let finished = false;
+  const finish = ()=>{ if(finished) return; finished = true; if(done) done(); };
+  const onComplete = ()=>{
+    try{ themeAnim.removeEventListener('complete', onComplete); }catch(e){}
+    finish();
+  };
   try{
-    if(toDark) themeAnim.playSegments([THEME_FRAMES.day, THEME_FRAMES.night], true);
-    else themeAnim.playSegments([THEME_FRAMES.night, THEME_FRAMES.day], true);
-  }catch(e){}
+    themeAnim.addEventListener('complete', onComplete);
+    themeAnim.playSegments([from, to], true);
+  }catch(e){ finish(); return; }
+  /* the fallback: the length of the segment over the frame rate */
+  const len = Math.abs(to - from);
+  const dur = (len / (themeAnim.frameRate || 60)) * 1000 + 500;
+  setTimeout(finish, dur);
 }
 function toggleDayNight(){
+  if(themeAnimBusy) return;
   const toDark = themeIsDay();
-  setTheme(toDark?'dark':'light', true);
-  playThemeAnim(toDark);
+  themeAnimBusy = true;
+  const sw=document.getElementById('btnThemeAnim'); if(sw) sw.disabled=true;
+  playThemeAnim(toDark, ()=>{
+    themeAnimBusy = false;
+    if(sw) sw.disabled=false;
+    setTheme(toDark?'dark':'light', true);
+  });
 }
 
 /* ---------------- the paper plane above the progress bar ---------------- */
@@ -787,6 +808,134 @@ function goTab(id){
 }
 function closeDrawer(){ $('drawer').classList.remove('open'); $('scrim').classList.remove('open'); $('drawer').setAttribute('hidden',''); $('btnMenu').setAttribute('aria-expanded','false'); }
 function openDrawer(){ $('drawer').classList.add('open'); $('scrim').classList.add('open'); $('drawer').removeAttribute('hidden'); $('btnMenu').setAttribute('aria-expanded','true'); }
+
+/* ================= Skills and commands ================= */
+const ADDED_SKILLS = new Set();
+let SKILL_CAT = 'all';
+let CMD_TOOL = 'chatgpt';
+let SK_TAB = 'skills';
+
+function skillsSourceText(){
+  return ['task','context','role','audience']
+    .map(id=>{ const el=$(id); return el?el.value:''; }).join(' ');
+}
+function renderSkillCats(){
+  const box=$('skillsCats');
+  if(!box || !window.PE_SKILLS) return;
+  const C=window.PE_SKILLS.cats;
+  box.innerHTML='';
+  const mk=(code,label)=>{
+    const b=document.createElement('button');
+    b.type='button'; b.className='sk-cat'+(SKILL_CAT===code?' active':'');
+    b.textContent=label;
+    b.onclick=()=>{ SKILL_CAT=code; renderSkillCats(); renderSkills(); };
+    box.appendChild(b);
+  };
+  mk('all', t('skills.all'));
+  Object.keys(C).forEach(k=>mk(k, tx(C[k].n)));
+}
+function renderSkills(){
+  const list=$('skillsList'), added=$('skillsAdded');
+  if(!list || !window.PE_SKILLS) return;
+  const S=window.PE_SKILLS;
+  const found=S.find(skillsSourceText(), 12);
+  list.innerHTML='';
+  if(!found.length){
+    list.innerHTML='<div class="skills-empty" data-i18n="skills.empty">اكتب المهمة أولًا لتظهر الاقتراحات</div>';
+  } else {
+    found.forEach(f=>{
+      const s=S.byId[f.id]; if(!s) return;
+      const on=ADDED_SKILLS.has(f.id);
+      const row=document.createElement('div');
+      row.className='skill'+(on?' on':'');
+      row.innerHTML='<div class="skill-t"><b></b><span></span></div><button class="skill-btn" type="button"></button>';
+      row.querySelector('.skill-t b').textContent=tx(s.n);
+      row.querySelector('.skill-t span').textContent=tx(s.s);
+      const b=row.querySelector('.skill-btn');
+      b.textContent=on ? t('skills.remove') : t('skills.add');
+      b.onclick=()=>toggleSkill(f.id);
+      list.appendChild(row);
+    });
+  }
+  added.innerHTML='';
+  ADDED_SKILLS.forEach(id=>{
+    const s=S.byId[id]; if(!s) return;
+    const row=document.createElement('div');
+    row.className='skill on';
+    row.innerHTML='<div class="skill-t"><b></b><span></span></div><button class="skill-btn on" type="button"></button>';
+    row.querySelector('.skill-t b').textContent=tx(s.n);
+    row.querySelector('.skill-t span').textContent=tx(s.s);
+    const b=row.querySelector('.skill-btn');
+    b.textContent=t('skills.remove');
+    b.onclick=()=>toggleSkill(id);
+    added.appendChild(row);
+  });
+  const head=$('skillsAddedHead'); if(head) head.hidden = ADDED_SKILLS.size===0;
+}
+function toggleSkill(id){
+  if(ADDED_SKILLS.has(id)) ADDED_SKILLS.delete(id); else ADDED_SKILLS.add(id);
+  renderSkills();
+  render();
+}
+function commandRow(c, big){
+  const C=window.PE_COMMANDS;
+  const row=document.createElement('div');
+  row.className='skill cmd'+(big?' big':'');
+  const inv=C.invocation(c, CMD_TOOL, LANG==='ar'?0:1);
+  row.innerHTML='<div class="skill-t"><b></b><span></span><code></code></div><button class="skill-btn" type="button"></button>';
+  row.querySelector('.skill-t b').textContent=c.c+' · '+tx(c.n);
+  row.querySelector('.skill-t span').textContent=tx(c.d);
+  row.querySelector('code').textContent=inv;
+  const b=row.querySelector('.skill-btn');
+  b.textContent=t('cmd.copy');
+  b.onclick=()=>{
+    const task=$('task')?$('task').value:'';
+    copy(inv+task);
+    toast(t('cmd.copied'));
+  };
+  return row;
+}
+function renderCommands(){
+  const box=$('cmdList');
+  if(!box || !window.PE_COMMANDS) return;
+  const C=window.PE_COMMANDS;
+  const tb=$('cmdTools');
+  tb.innerHTML='';
+  Object.keys(C.tools).forEach(code=>{
+    const b=document.createElement('button');
+    b.type='button'; b.className='cmd-tool'+(CMD_TOOL===code?' active':'');
+    b.textContent=C.tools[code].n[0];
+    b.onclick=()=>{ CMD_TOOL=code; renderCommands(); };
+    tb.appendChild(b);
+  });
+  const sug=$('cmdSuggest');
+  sug.innerHTML='';
+  const found=C.find(skillsSourceText(), 1);
+  const head=$('cmdSuggestHead');
+  if(found.length && C.byId[found[0].id]){
+    head.hidden=false;
+    sug.appendChild(commandRow(C.byId[found[0].id], true));
+  } else head.hidden=true;
+  box.innerHTML='';
+  C.list.forEach(c=>box.appendChild(commandRow(c, false)));
+}
+function initSkills(){
+  renderSkillCats();
+  renderSkills();
+  renderCommands();
+  document.querySelectorAll('#skSkills ~ * .sk-tab, .skills-tabs .sk-tab').forEach(()=>{});
+  document.querySelectorAll('.skills-tabs .sk-tab').forEach(b=>{
+    if(b.dataset.bound) return;
+    b.dataset.bound='1';
+    b.addEventListener('click',()=>{
+      SK_TAB=b.dataset.sktab;
+      document.querySelectorAll('.skills-tabs .sk-tab').forEach(x=>x.classList.toggle('active', x===b));
+      $('skSkills').hidden = SK_TAB!=='skills';
+      $('skCommands').hidden = SK_TAB!=='commands';
+      if(SK_TAB==='commands') renderCommands(); else renderSkills();
+    });
+  });
+}
 
 /* ================= Presets ================= */
 function renderPresets(){
@@ -1053,6 +1202,7 @@ function wire(){
   let lg='ar'; try{ lg=localStorage.getItem('pe_lang')||'ar'; }catch(e){}
   wire();
   renderThemeRow();
+  initSkills();
   const mSel=$('targetModel');
   if(mSel){
     fillModelSelect();

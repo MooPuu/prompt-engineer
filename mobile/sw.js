@@ -1,11 +1,13 @@
 /* Prompt Engineer — mobile service worker (offline support) */
-const CACHE = 'pe-mobile-36f4e58a';
+const CACHE = 'pe-mobile-f9167dda';
 const ASSETS = [
   './',
   './index.html',
   './mobile.css',
   './app.js',
   './lottie.min.js',
+  './skills.js',
+  './commands.js',
   './anim.js',
   './i18n.js',
   './data.js',

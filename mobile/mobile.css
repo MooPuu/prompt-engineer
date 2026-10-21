@@ -493,7 +493,7 @@ pre.out-p{
 /* ---------------- Bottom navigation ---------------- */
 .bnav{
   position:fixed;bottom:0;left:50%;transform:translateX(-50%);
-  width:min(480px,100%);z-index:35;display:grid;grid-template-columns:repeat(5,1fr);
+  width:min(480px,100%);z-index:35;display:grid;grid-template-columns:repeat(6,1fr);
   background:var(--nav-bg);backdrop-filter:blur(14px);
   border-top:1px solid var(--line);border-radius:20px 20px 0 0;
   box-shadow:0 -8px 30px rgba(23,32,84,.10);
@@ -758,8 +758,8 @@ html[data-theme="dark"] .bnav button.active .bn-t .bnav button.active .bn-t,html
 
 /* ---------------- the paper plane behind the hero card ---------------- */
 .hero .hero-anim{
-  position:absolute;left:50%;transform:translateX(-50%);bottom:70px;
-  width:158px;height:118px;
+  position:absolute;left:30%;transform:translateX(-50%);bottom:70px;
+  width:150px;height:112px;
   pointer-events:none;user-select:none;opacity:1;z-index:0;
   /* the paper plane is drawn for a white page, so it needs a light halo to
      read against the blue card */
@@ -767,3 +767,41 @@ html[data-theme="dark"] .bnav button.active .bn-t .bnav button.active .bn-t,html
 }
 .hero .hero-anim svg{display:block;width:100%;height:100%}
 @media (max-width:360px){ .hero .hero-anim{width:124px;height:94px} }
+
+/* ---------------- the skills and commands ---------------- */
+.skills-tabs{display:flex;gap:6px;margin:10px 0}
+.sk-tab{
+  flex:1;border:1px solid var(--line);background:var(--card);color:var(--muted);
+  font-size:12.5px;font-weight:800;padding:9px 8px;border-radius:12px
+}
+.sk-tab.active{background:var(--primary);color:#fff;border-color:transparent}
+.skills-cats{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 4px}
+.sk-cat,.cmd-tool{
+  border:1px solid var(--line);background:var(--card);color:var(--muted);
+  font-size:11.5px;font-weight:800;padding:6px 11px;border-radius:99px
+}
+.sk-cat.active,.cmd-tool.active{background:var(--blue-soft);color:var(--primary);border-color:var(--primary)}
+.cmd-tools{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 4px}
+.skills-sub{font-size:11.5px;font-weight:800;color:var(--muted);margin:14px 0 7px;letter-spacing:.3px}
+.skills-list{display:flex;flex-direction:column;gap:8px}
+.skills-empty{font-size:12.5px;color:var(--muted);padding:16px;text-align:center;
+  border:1px dashed var(--line);border-radius:14px}
+.skill{
+  display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:14px;
+  background:var(--card);border:1px solid var(--line)
+}
+.skill.on{border-color:var(--primary);background:var(--blue-soft)}
+.skill-t{flex:1;min-width:0}
+.skill-t b{display:block;font-size:12.8px;font-weight:800;color:var(--ink)}
+.skill-t span{display:block;font-size:11.4px;color:var(--muted);line-height:1.55;margin-top:3px}
+.skill-btn{
+  flex:0 0 auto;border:1px solid var(--line);background:var(--blue-soft);color:var(--primary);
+  font-size:11.5px;font-weight:800;padding:7px 12px;border-radius:10px
+}
+.skill-btn.on{background:var(--primary);color:#fff;border-color:transparent}
+.skill.cmd .skill-t code{
+  display:block;margin-top:6px;font-family:'JetBrains Mono',ui-monospace,monospace;
+  font-size:10.8px;color:var(--primary);background:var(--blue-soft);
+  border-radius:8px;padding:5px 8px;word-break:break-word;direction:ltr;text-align:left
+}
+.skill.cmd.big{border-color:var(--primary);background:var(--blue-soft)}
