@@ -11,43 +11,37 @@ window.PE_SKILLS = (function () {
   const CATS = {
   "design": {
     "n": [
-      "تصميم وواجهات",
-      "Design & UI"
+      "🎨 تصميم وواجهات", "🎨 Design & UI"
     ],
     "icon": "design"
   },
   "writing": {
     "n": [
-      "كتابة وتوثيق",
-      "Writing & Docs"
+      "✍️ كتابة وتوثيق", "✍️ Writing & Docs"
     ],
     "icon": "writing"
   },
   "marketing": {
     "n": [
-      "تسويق وSEO",
-      "Marketing & SEO"
+      "📈 تسويق وSEO", "📈 Marketing & SEO"
     ],
     "icon": "marketing"
   },
   "media": {
     "n": [
-      "صور وفيديو",
-      "Images & Video"
+      "🖼️ صور وفيديو", "🖼️ Images & Video"
     ],
     "icon": "media"
   },
   "planning": {
     "n": [
-      "تخطيط وبيانات",
-      "Planning & Data & Analytics"
+      "📊 تخطيط وبيانات", "📊 Planning & Data & Analytics"
     ],
     "icon": "data"
   },
   "productivity": {
     "n": [
-      "إنتاجية وسير عمل",
-      "Productivity"
+      "⚡️ إنتاجية وسير عمل", "⚡️ Productivity"
     ],
     "icon": "productivity"
   }

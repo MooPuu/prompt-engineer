@@ -463,7 +463,7 @@ function toast(msg){
   clearTimeout(window.__tt); window.__tt=setTimeout(()=>el.classList.remove('show'), 2200);
 }
 function copy(text){
-  const done=()=>toast(t('msg.copy'));
+  const done=()=>{ toast(t('msg.copy')); saveHistory(); };
   if(navigator.clipboard && navigator.clipboard.writeText){
     navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,done));
   } else fallbackCopy(text,done);
@@ -725,7 +725,10 @@ function renderThemeRow(){
    theme and back to the right for the day theme.
    Frame 30  = the sun on the right, the day theme
    Frame 200 = the moon on the left, the night theme               */
-const THEME_FRAMES = {day: 30, night: 200};
+const THEME_FRAMES = {day: 30, night: 115};
+/* the handle slides from the right to the left between frames 30 and 115:
+   playing only that part keeps the switch snappy */
+const THEME_SPEED = 2.2;
 let themeAnim=null;
 let themeAnimBusy=false;
 function themeIsDay(){ return document.documentElement.getAttribute('data-theme')==='light'; }
@@ -737,6 +740,7 @@ function initThemeAnim(){
       container:box, renderer:'svg', loop:false, autoplay:false,
       animationData:window.PE_ANIM.darkmode
     });
+    themeAnim.setSpeed(1);
     themeAnim.goToAndStop(themeIsDay()?THEME_FRAMES.day:THEME_FRAMES.night, true);
   }catch(e){ console.warn('the theme animation failed to load', e); }
 }
@@ -755,12 +759,13 @@ function playThemeAnim(toDark, done){
     finish();
   };
   try{
+    themeAnim.setSpeed(THEME_SPEED);
     themeAnim.addEventListener('complete', onComplete);
     themeAnim.playSegments([from, to], true);
   }catch(e){ finish(); return; }
   /* the fallback: the length of the segment over the frame rate */
   const len = Math.abs(to - from);
-  const dur = (len / (themeAnim.frameRate || 60)) * 1000 + 500;
+  const dur = (len / (themeAnim.frameRate || 60)) * 1000 / THEME_SPEED + 450;
   setTimeout(finish, dur);
 }
 function toggleDayNight(){
@@ -802,10 +807,69 @@ function initHeroAnim(){
 function goTab(id){
   document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id===id));
   document.querySelectorAll('#bnav button').forEach(b=>b.classList.toggle('active', b.dataset.tab===id));
+  if(id==='m-history' && typeof renderHistory==='function') renderHistory();
+  if(id==='m-presets' && typeof renderPresets==='function') renderPresets();
   window.scrollTo({top:0, behavior:'smooth'});
 }
 function closeDrawer(){ $('drawer').classList.remove('open'); $('scrim').classList.remove('open'); $('drawer').setAttribute('hidden',''); $('btnMenu').setAttribute('aria-expanded','false'); }
 function openDrawer(){ $('drawer').classList.add('open'); $('scrim').classList.add('open'); $('drawer').removeAttribute('hidden'); $('btnMenu').setAttribute('aria-expanded','true'); }
+
+/* ================= The prompt history ================= */
+function readHistory(){
+  try{ return JSON.parse(localStorage.getItem('pe_hist')||'[]'); }catch(e){ return []; }
+}
+function saveHistory(){
+  const v=readV();
+  const list=readHistory();
+  const title=(v.task||t('msg.noTitle')).slice(0,80);
+  if(!CURRENT) return;
+  list.unshift({ t:Date.now(), task:title, p:CURRENT });
+  try{ localStorage.setItem('pe_hist', JSON.stringify(list.slice(0,60))); }catch(e){}
+}
+function clearHistory(){
+  try{ localStorage.removeItem('pe_hist'); }catch(e){}
+  renderHistory();
+}
+function renderHistory(){
+  const box=$('histList');
+  if(!box) return;
+  const all=readHistory();
+  const q=($('histSearch')?$('histSearch').value:'').trim().toLowerCase();
+  const list = q ? all.filter(it=>((it.task||'')+' '+(it.p||'')).toLowerCase().includes(q)) : all;
+  box.innerHTML='';
+  if(!all.length){
+    box.innerHTML='<div class="empty">'+t('h.empty')+'</div>';
+    return;
+  }
+  if(!list.length){
+    box.innerHTML='<div class="empty">'+t('h.none')+'</div>';
+    return;
+  }
+  list.forEach(it=>{
+    const d=new Date(it.t);
+    const el=document.createElement('div'); el.className='hitem';
+    const head=document.createElement('div'); head.className='hhead';
+    const txt=document.createElement('div'); txt.className='ht'; txt.textContent=it.task||t('msg.noTitle');
+    const hm=document.createElement('span'); hm.className='hm';
+    hm.textContent=d.toLocaleDateString(LANG==='ar'?'ar-EG':'en-GB')+' '+d.toLocaleTimeString(LANG==='ar'?'ar-EG':'en-GB',{hour:'2-digit',minute:'2-digit'});
+    head.appendChild(txt); head.appendChild(hm);
+    const body=document.createElement('div'); body.className='hbody'; body.textContent=it.p||'';
+    const acts=document.createElement('div'); acts.className='hacts';
+    const bView=document.createElement('button'); bView.className='btn small ghost'; bView.textContent=t('h.view');
+    bView.onclick=()=>{ body.classList.toggle('open'); };
+    const bCopy=document.createElement('button'); bCopy.className='btn small primary'; bCopy.textContent=t('h.copy');
+    bCopy.onclick=()=>copy(it.p);
+    const bDel=document.createElement('button'); bDel.className='btn small ghost'; bDel.textContent=t('h.delete');
+    bDel.onclick=()=>{
+      const keep=readHistory().filter(x=>x.t!==it.t);
+      try{ localStorage.setItem('pe_hist', JSON.stringify(keep)); }catch(e){}
+      renderHistory();
+    };
+    acts.appendChild(bView); acts.appendChild(bCopy); acts.appendChild(bDel);
+    el.appendChild(head); el.appendChild(body); el.appendChild(acts);
+    box.appendChild(el);
+  });
+}
 
 /* ================= Skills and commands ================= */
 const ADDED_SKILLS = new Set();
@@ -940,9 +1004,26 @@ function initSkills(){
 }
 
 /* ================= Presets ================= */
+let PRESET_CAT='all';
+function renderPresetCats(){
+  const box=$('presetCats');
+  if(!box || !window.PE_SKILLS) return;
+  const C=window.PE_SKILLS.cats;
+  box.innerHTML='';
+  const mk=(code,label)=>{
+    const b=document.createElement('button');
+    b.type='button'; b.className='sk-cat'+(PRESET_CAT===code?' active':'');
+    b.textContent=label;
+    b.onclick=()=>{ PRESET_CAT=code; renderPresetCats(); renderPresets(); };
+    box.appendChild(b);
+  };
+  mk('all', t('skills.all'));
+  Object.keys(C).forEach(k=>mk(k, tx(C[k].n)));
+}
 function renderPresets(){
   const box=$('presets'); box.innerHTML='';
   PRESETS.forEach((p,i)=>{
+    if(PRESET_CAT!=='all' && p.cat!==PRESET_CAT) return;
     const b=document.createElement('button');
     b.className='pcard'; b.type='button'; b.dataset.i=i;
     b.innerHTML='<b></b>'; b.querySelector('b').textContent=pname(p,i);
@@ -1188,6 +1269,10 @@ function wire(){
   $('btnTxt').onclick=()=>download('prompt.txt',CURRENT);
   $('btnImgCopy').onclick=()=>copy(CURRENT_IMG);
   $('btnImgTxt').onclick=()=>download('image-prompt.txt',CURRENT_IMG);
+  const hs=$('histSearch');
+  if(hs) hs.addEventListener('input',renderHistory);
+  const hc=$('btnHistClear');
+  if(hc) hc.onclick=clearHistory;
   $('qReset').onclick=()=>{
     if(!confirm(t('ask.reset'))) return;
     ['task','role','context','audience','constraints','avoid','in1','out1','in2','out2','imgNeg','imgArCustom'].forEach(k=>$(k).value='');
@@ -1204,6 +1289,7 @@ function wire(){
   let lg='ar'; try{ lg=localStorage.getItem('pe_lang')||'ar'; }catch(e){}
   wire();
   renderThemeRow();
+  renderPresetCats();
   initSkills();
   const mSel=$('targetModel');
   if(mSel){
