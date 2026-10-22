@@ -90,7 +90,7 @@ const LEN_AR={short:'100–150 كلمة (مختصر دون حشو)',medium:'300�
 const LEN_EN={short:'100–150 words, concise with no filler',medium:'300–500 words',long:'600–1000 words',deep:'comprehensive and detailed with no length cap'};
 
 const PRESETS = [
-{name:['✍️ مقال/محتوى','✍️ Article / Content'],cat:'writing', set:{
+{name:['مقال/محتوى','Article / Content'],cat:'writing', set:{
   task:['اكتب لي محتوى [الموضوع] وجعل القارئ لا يستطيع التوقف قبل النهاية','Write me content about [topic] that the reader cannot stop before the end'],
   role:['كاتب محتوى خبير ومحرر لغوي','Expert content writer and copy editor'],
   audience:['قراء مهتمون بموضوع المقال','Readers interested in this topic'],
@@ -100,7 +100,7 @@ const PRESETS = [
   avoid:['لا تستخدم مقدمات مكررة مثل "في عالم اليوم"\nلا تختلق إحصاءات أو مصادر\nلا تطنب في المديح',
          'No clichéd intros like "In today\'s world"\nNever invent statistics or sources\nNo empty praise'],
   flags:{ask:true,self:true}}},
-{name:['💻 برمجة','💻 Coding'],cat:'productivity', set:{
+{name:['برمجة','Coding'],cat:'productivity', set:{
   task:['اكتب دالة [المهمة] في [اللغة] مع معالجة الأخطاء والاختبارات','Write a function for [task] in [language] with error handling and tests'],
   role:['مهندس برمجيات خبير يكتب كودًا نظيفًا وموثوقًا','Senior software engineer writing clean, reliable code'],
   audience:['مطوّرون يصونون الكود','Developers who will maintain the code'],
@@ -110,7 +110,7 @@ const PRESETS = [
   avoid:['لا تعطِ كودًا غير مُختبَر نظريًا\nلا تتجاهل معالجة الأخطاء\nلا تستخدم مكتبات متوقفة عن الدعم',
          'Do not return theoretically untested code\nDo not skip error handling\nNo deprecated libraries'],
   flags:{ask:true,cot:true,self:true}}},
-{name:['📊 تحليل بيانات','📊 Data Analysis'],cat:'planning', set:{
+{name:['تحليل بيانات','Data Analysis'],cat:'planning', set:{
   task:['حلّل هذه البيانات [الوصف] واستخرج أهم ثلاث رؤى مع توصيات','Analyze this dataset [description] and extract the top three insights with recommendations'],
   role:['محلل بيانات استشاري يستخرج الرؤى من الأرقام','Consulting data analyst who extracts insights from numbers'],
   audience:['فريق الإدارة وصناع القرار','Leadership and decision makers'],
@@ -120,7 +120,7 @@ const PRESETS = [
   avoid:['لا تخلط بين المتوسط والوسيط\nلا تقدم استنتاجات بلا دليل',
          'Do not confuse mean with median\nNo conclusions without evidence'],
   flags:{ask:true,cot:true,self:true}}},
-{name:['🎯 تسويق وإعلان','🎯 Marketing'],cat:'marketing', set:{
+{name:['تسويق وإعلان','Marketing'],cat:'marketing', set:{
   task:['اكتب نصًا إعلانيًا لمنتج [المنتج] يخاطب [الجمهور] من نقطة ألمه الحقيقية','Write ad copy for [product] targeting [audience] starting from their real pain point'],
   role:['مدير تسويق رقمي يكتب نصوصًا إعلانية فائقة الإقناع','Digital marketing manager writing highly persuasive ad copy'],
   audience:['عملاء محتملون لا يعرفون المنتج','Potential customers who do not know the product'],
@@ -130,7 +130,7 @@ const PRESETS = [
   avoid:['لا تستخدم وعودًا مبالغًا فيها\nلا تستخدم عبارات فارغة مثل "جودة عالية"',
          'No exaggerated promises\nNo empty phrases like "high quality"'],
   flags:{self:true,few:true}}},
-{name:['📚 تلخيص','📚 Summarize'],cat:'writing', set:{
+{name:['تلخيص','Summarize'],cat:'writing', set:{
   task:['لخّص النص التالي في خمس نقاط واضحة مع سطر خلاصة واحد في الأعلى','Summarize the following text into five clear bullets plus a one-line takeaway at the top'],
   role:['محضر ملخصات دقيق يلتقط الأفكار الجوهرية فقط','Precise summarizer capturing only the core ideas'],
   audience:['قارئ يريد الفكرة خلال دقيقة','A reader who wants the idea in one minute'],
@@ -140,7 +140,7 @@ const PRESETS = [
   avoid:['لا تضف آراءك الشخصية\nلا تكرر نفس الفكرة بصياغات مختلفة',
          'Do not add personal opinions\nDo not repeat the same idea in different words'],
   flags:{ask:true,self:true}}},
-{name:['🗺️ خطة ودراسة','🗺️ Study Plan'],cat:'planning', set:{
+{name:['خطة ودراسة','Study Plan'],cat:'planning', set:{
   task:['صمّم خطة تعلّم [المهارة] لمبتدئ خلال [المدة] مع مخرج واضح لكل مرحلة','Design a learning plan for [skill] for a beginner over [duration] with a clear output per phase'],
   role:['مدرّب وخبير في تخطيط المسارات والتعلم المُحكَم','Coach and expert in planning structured learning paths'],
   audience:['مبتدئ يريد خطة واقعية قابلة للتنفيذ','A beginner wanting a realistic, doable plan'],
@@ -150,7 +150,7 @@ const PRESETS = [
   avoid:['لا تعطِ جدولًا غير واقعي\nلا تترك مرحلة بلا مخرج ملموس',
          'No unrealistic schedule\nNo phase without a tangible output'],
   flags:{ask:true,cot:true,self:true}}},
-{name:['🌐 ترجمة احترافية','🌐 Translation'],cat:'writing', set:{
+{name:['ترجمة احترافية','Translation'],cat:'writing', set:{
   task:['ترجم النص التالي ترجمة تحريرية تحافظ على المعنى والنبرة لا الحرفية','Translate the following text as transcreation: meaning and tone first, not literal words'],
   role:['مترجم محترف متمرس في الترجمة التحريرية لا الحرفية','Professional translator specialized in transcreation, not literal translation'],
   audience:['قارئ أصلي في اللغة الهدف','A native reader of the target language'],
@@ -160,7 +160,7 @@ const PRESETS = [
   avoid:['لا تترجم الأسماء والعلامات التجارية\nلا تضف معلومات غير موجودة',
          'Do not translate proper names or brands\nDo not add missing information'],
   flags:{ask:true,self:true}}},
-{name:['📧 كتابة إيميل', '📧 Email writing'],cat:'writing', set:{
+{name:['كتابة إيميل','Email writing'],cat:'writing', set:{
   task:['اكتب إيميلًا إلى [الجهة] بخصوص [الموضوع] يوضّح المطلوب وخطوة تالية واضحة','Write an email to [recipient] about [subject] stating the ask and one clear next step'],
   role:['خبير تواصل أعمال يكتب رسائل واضحة وموجزة','Business communication expert writing clear, concise messages'],
   audience:['زميل أو عميل مشغول يريد الخلاصة أولًا','A busy colleague or client who wants the point first'],
@@ -169,7 +169,7 @@ const PRESETS = [
                'Open with the purpose in the first line\nPut your asks in numbered bullets\nEnd with one clear next step\nKeep it under 150 words'],
   avoid:['لا تطبل بلا داعٍ\nلا تكتب فقرات طويلة','No flattery without reason\nNo long paragraphs'],
   flags:{ask:true,self:true,direct:true}}},
-{name:['📱 منشور سوشيال ميديا','📱 Social media post'],cat:'marketing', set:{
+{name:['منشور سوشيال ميديا','Social media post'],cat:'marketing', set:{
   task:['اكتب منشورًا لمنصة [المنصة] عن [الموضوع] بخطاف قوي وهاشتاقات مناسبة','Write a post for [platform] about [topic] with a strong hook and relevant hashtags'],
   role:['صانع محتوى سوشيال يعرف خوارزميات المنصات','Social content creator who knows platform algorithms'],
   audience:['متابعون يمرّون بسرعة في الخلاصة','Followers scrolling fast in the feed'],
@@ -178,7 +178,7 @@ const PRESETS = [
                'Write 3 variants: long, medium, short\nAdd 5–8 relevant hashtags\nHook the reader in line one\nAdd a clear CTA'],
   avoid:['لا تستخدم أكثر من 8 هاشتاقات\nلا تشتّت الرسالة','No more than 8 hashtags\nNo mixed message'],
   flags:{self:true,alts:true}}},
-{name:['🎬 سكربت فيديو','🎬 Video script'],cat:'media', set:{
+{name:['سكربت فيديو','Video script'],cat:'media', set:{
   task:['اكتب سكربت فيديو مدته [المدة] عن [الموضوع] بصيغة خطاف ثم محتوى ثم دعوة لإجراء','Write a [duration] video script about [topic] structured as hook, content, call to action'],
   role:['كاتب سكربتات فيديو يحفظ المشاهد من التشتّت','Video scriptwriter who keeps viewers hooked'],
   audience:['مشاهد لا يتجاوز الثواني الأولى','A viewer who does not survive the first seconds'],
@@ -187,7 +187,7 @@ const PRESETS = [
                'Format: hook / content / CTA\nPut stage directions in brackets\nShort sentences suited for voice-over\nAdd approximate timing per section'],
   avoid:['لا تبدأ بمقدمة طويلة\nلا تكتب نصًا يصعب نطقه','No long intro\nNo tongue-twisting lines'],
   flags:{ask:true,cot:false,self:true}}},
-{name:['💡 توليد أفكار','💡 Brainstorm'],cat:'productivity', set:{
+{name:['توليد أفكار','Brainstorm'],cat:'productivity', set:{
   task:['ولّد عشر أفكار لـ[الموضوع] مع تقييم جدوى لكل فكرة واختيار الأفضل منها','Generate ten ideas for [topic], rate each one for feasibility and pick the best three'],
   role:['ميسّر ورش تفكير ينتج أفكارًا غير مكرّرة','Workshop facilitator producing non-repetitive ideas'],
   audience:['فريق يحتاج قرارات لا قوائم طويلة','A team that needs decisions, not long lists'],
@@ -196,7 +196,7 @@ const PRESETS = [
                'Generate at least 10 ideas rated 1–5 for feasibility\nGroup them: quick / medium / long-term\nPick the best 3 and justify'],
   avoid:['لا تكرر الفكرة نفسها بصياغات\nلا تبالغ في التقييم','No rephrased duplicates\nNo inflated ratings'],
   flags:{cot:true,balanced:true,self:true}}},
-{name:['🔍 تحليل منافسين','🔍 Competitor analysis'],cat:'marketing', set:{
+{name:['تحليل منافسين','Competitor analysis'],cat:'marketing', set:{
   task:['قارن بين [المنتج] و[المنافس] من حيث السعر والمزايا والجمهور واستخرج الفجوات','Compare [product] with [competitor] on price, features and audience, then extract the gaps'],
   role:['محلل استراتيجي يقارن بإنصاف ويستخلص الفرص','Strategy analyst comparing fairly and extracting opportunities'],
   audience:['صاحب عمل يريد قرارًا لا تقريرًا','A business owner who wants a decision, not a report'],
@@ -205,7 +205,7 @@ const PRESETS = [
                'Compare in a table: pricing, strengths, audience, weaknesses\nExtract 3 gaps you can exploit\nEnd with an executable differentiator plan'],
   avoid:['لا تفترض أرقامًا غير مؤكدة\nلا تتحيز لطرف','No unverified numbers\nNo bias toward one side'],
   flags:{ask:true,sources:true,alts:true}}},
-{name:['🛍️ أوصاف منتجات SEO','🛍️ Product descriptions'],cat:'marketing', set:{
+{name:['أوصاف منتجات SEO','Product descriptions'],cat:'marketing', set:{
   task:['اكتب وصفًا لمنتج [المنتج] يبرز الفائدة الأساسية ويحسّن الظهور في البحث','Write a product description for [product] that highlights its core benefit and is search friendly'],
   role:['كاتب أوصاف تجارة إلكترونية يبيع بأسلوب نظيف','E-commerce copywriter who sells without sounding spammy'],
   audience:['متسوّق متردد يقارن قبل الشراء','A hesitant shopper comparing before buying'],
@@ -214,7 +214,7 @@ const PRESETS = [
                'Subheadline + paragraph + 4 benefit bullets + CTA line\nWork keywords in naturally\nSell the benefit, not the feature'],
   avoid:['لا تبالغ في الوعود\nلا تكرر الكلمة المفتاحية','No exaggerated promises\nNo keyword stuffing'],
   flags:{self:true,direct:true}}},
-{name:['👨‍🏫 شرح مفهوم معقد','👨‍🏫 Explain a concept'],cat:'writing', set:{
+{name:['شرح مفهوم معقد','Explain a concept'],cat:'writing', set:{
   task:['اشرح لي مفهوم [المفهوم] بأمثلة من الحياة اليومية وبأبسط طريقة ممكنة','Explain the concept of [concept] to me with everyday examples in the simplest possible way'],
   role:['مدرّب يشفّر المفاهيم الصعبة إلى صور بسيطة','Teacher who decodes hard concepts into simple pictures'],
   audience:['مبتدئ بلا خلفية في الموضوع','A beginner with no background in the topic'],
@@ -223,7 +223,7 @@ const PRESETS = [
                'Start with an everyday analogy\nGive a concrete example, then the rule\nCheck understanding with two questions'],
   avoid:['لا تقفز فوق الأساسيات\nلا تستخدم مصطلحات بلا شرح','No skipping the basics\nNo unexplained terms'],
   flags:{simple:true,cot:true,self:true}}},
-{name:['💬 رد على عميل','💬 Customer reply'],cat:'writing', set:{
+{name:['رد على عميل','Customer reply'],cat:'writing', set:{
   task:['اكتب ردًا مهذبًا على عميل [المشكلة] اعترف فيها ثم اقترح حلًا وخطوة تالية','Write a polite reply to a customer about [issue]: acknowledge it, then propose a fix and a next step'],
   role:['أخصائي دعم يحول الشكوى إلى ولاء','Support agent turning complaints into loyalty'],
   audience:['عميل غاضب يريد حلًا لا أعذارًا','An upset customer who wants a fix, not excuses'],
@@ -233,7 +233,7 @@ const PRESETS = [
   avoid:['لا تلقِ اللوم على العميل\nلا تعتذر أكثر من مرة واحدة','Do not blame the customer\nDo not apologize more than once'],
   flags:{ask:true,self:true,direct:true}}}
 ,
-{name:['📰 كتابة مقالات','📰 Article writing'],cat:'writing', set:{
+{name:['كتابة مقالات','Article writing'],cat:'writing', set:{
   task:['اكتب مقالًا عن [الموضوع] بعناوين فرعية وأمثلة واقعية ودعوة واضحة لاتخاذ إجراء','Write an article about [topic] with subheadings, real examples and a clear call to action'],
   role:['صحفي وكاتب مقالات يحوّل الفكرة إلى نص مقروء ومقنع','Journalist who turns an idea into a readable, persuasive piece'],
   audience:['قارئ عادي يتصفح بسرعة ولا يملك وقتًا طويلًا','A casual reader who skims fast and has little time'],
@@ -243,7 +243,7 @@ const PRESETS = [
   avoid:['لا تبدأ بمقدمة عامة مكرّرة\nلا تخترع إحصاءات أو مصادر\nلا تطلّ بلا معلومة جديدة',
          'No generic repeated intro\nNever invent statistics or sources\nNo long stretches without new information'],
   flags:{ask:true,self:true}}},
-{name:['🎓 دراسات عليا / بحوث أكاديمية','🎓 Postgraduate / academic research'],cat:'writing', set:{
+{name:['دراسات عليا / بحوث أكاديمية','Postgraduate / academic research'],cat:'writing', set:{
   task:['اقترح عنوانًا بحثيًا حول [الموضوع] مع إشكالية وفجوة بحثية ومنهج مناسب','Suggest a research title on [topic] with a problem statement, research gap and suitable methodology'],
   role:['باحث دراسات عليا يتقن صياغة الإشكالية والمنهج والتوثيق','Postgraduate researcher skilled in problem statement, methodology and citation'],
   audience:['لجنة مناقشة ومشرف أكاديمي','A defence committee and an academic supervisor'],
@@ -253,7 +253,7 @@ const PRESETS = [
   avoid:['لا تعتمد على مراجع بلا سنة نشر\nلا تعمّم نتائج استكشافية على كل المجتمع\nلا تخترع بيانات ميدانية',
          'No references without a publication year\nDo not generalise exploratory findings to the whole population\nNever invent field data'],
   flags:{ask:true,sources:true,cot:true,self:true}}},
-{name:['🖋️ شعر فصيح / عام','🖋️ Classical / general poetry'],cat:'writing', set:{
+{name:['شعر فصيح / عام','Classical / general poetry'],cat:'writing', set:{
   task:['اكتب قصيدة على الوزن [الوزن] عن [الموضوع] بقافية [القافية]','Write a poem on the [meter] metre about [topic] with a [rhyme] rhyme'],
   role:['شاعر متمكن من الموسيقى والوزن والتصوير','Poet with a strong command of rhythm, meter and imagery'],
   audience:['قارئ شعر يبحث عن معنى يشبه حاله','A poetry reader looking for lines that mirror their own state'],
@@ -263,7 +263,7 @@ const PRESETS = [
   avoid:['لا تكسر الوزن في وسط البيت\nلا تشرح القصيدة بعد كتابتها\nلا تستخدم مبالغات لغوية متكلفة',
          'Do not break the meter mid-line\nNo explanation after the poem\nNo forced or overblown phrasing'],
   flags:{ask:true,cot:false,self:true}}},
-{name:['🗂️ إعداد خطط','🗂️ Plan preparation'],cat:'planning', set:{
+{name:['إعداد خطط','Plan preparation'],cat:'planning', set:{
   task:['حوّل الهدف [الهدف] إلى خطة تنفيذية بمراحل ومسؤوليات ومؤشر نجاح','Turn the goal [goal] into an execution plan with phases, owners and a success metric'],
   role:['مخطّط تنفيذ يحوّل هدفًا واحدًا إلى خطوات قابلة للتنفيذ','Planner who turns one goal into executable steps'],
   audience:['فريق أو فرد يريد خطة واضحة بمالك لكل خطوة','A team or individual who needs a clear plan with an owner per step'],
@@ -273,7 +273,7 @@ const PRESETS = [
   avoid:['لا تضع مراحل بلا مخرج\nلا تترك مهمة بلا مسؤول محدد\nلا تهمل الموارد المطلوبة',
          'No phase without a deliverable\nNo task without a named owner\nDo not skip the required resources'],
   flags:{ask:true,plan:true,self:true}}},
-{name:['🏟️ خطط إدارة الحشود بالملايين','🏟️ Mass crowd management plans'],cat:'planning', set:{
+{name:['خطط إدارة الحشود بالملايين','Mass crowd management plans'],cat:'planning', set:{
   task:['صمّم خطة إدارة حشد يقدّر بـ[العدد] شخصًا في موقع [الموقع] مع مناطق سعة ومسارات إخلاء','Design a crowd management plan for [count] people at [venue] with zones, capacities and evacuation routes'],
   role:['خبير عمليات وأمن يخطّط لتدفّق آمن لعشرات الآلاف','Operations and crowd-safety expert planning safe flow for tens of thousands'],
   audience:['منظّم فعالية يواجه حضورًا هائلًا','An event organizer facing a huge turnout'],
@@ -283,7 +283,7 @@ const PRESETS = [
   avoid:['لا تفترض توزيعًا متساويًا للحضور\nلا تعتمد على تقدير واحد بلا هامش أمان\nلا تترك مسارًا واحدًا للإخلاء',
          'Do not assume an even crowd distribution\nDo not rely on a single estimate with no safety margin\nNever leave a single evacuation route'],
   flags:{ask:true,plan:true,cot:true,sources:true,self:true}}},
-{name:['🔤 مدقق لغوي','🔤 Language auditor'],cat:'writing', set:{
+{name:['مدقق لغوي','Language auditor'],cat:'writing', set:{
   task:['دقّق النص التالي إملائيًا ونحويًا واذكر سبب كل تصحيح في جدول','Proofread the following text for spelling and grammar and explain every correction in a table'],
   role:['مدقّق لغوي يفحص النص إملائيًا ونحويًا ومعجميًا','Language auditor checking spelling, grammar and diction'],
   audience:['كاتب يحتاج نصًا خاليًا من الأخطاء قبل النشر','A writer who needs error-free copy before publishing'],
@@ -293,7 +293,7 @@ const PRESETS = [
   avoid:['لا تغيّر المعنى أثناء التدقيق\nلا تفرض أسلوبًا خاصًا بك\nلا تتجاهل علامات الترقيم',
          'Do not change the meaning while proofreading\nDo not impose your own style\nDo not ignore punctuation'],
   flags:{ask:true,self:true}}},
-{name:['✅ مصحح إملائي','✅ Spell checker'],cat:'writing', set:{
+{name:['مصحح إملائي','Spell checker'],cat:'writing', set:{
   task:['صحّح الأخطاء الإملائية في النص التالي كلمة بكلمة واشرح سبب كل خطأ','Fix the spelling mistakes in the following text word by word and explain each mistake'],
   role:['مصحح إملائي يكتشف الخطأ ويشرح تصحيحه','Spell checker that finds the mistake and explains the fix'],
   audience:['طالب أو موظف يكتب نصًا يحتاج دقة لغوية','A student or employee who needs accurate writing'],
@@ -303,7 +303,7 @@ const PRESETS = [
   avoid:['لا تصحّح ما ليس خطأً\nلا تتجاهل الأخطاء المتكررة\nلا تشرح القواعد',
          'Do not correct what is not wrong\nDo not skip repeated mistakes\nNo grammar lecture'],
   flags:{ask:true,direct:true}}},
-{name:['📗 تحليل إيجابي','📗 Positive analysis'],cat:'planning', set:{
+{name:['تحليل إيجابي','Positive analysis'],cat:'planning', set:{
   task:['حلّل [الموضوع] من كل النواحي الإيجابية مع أدلة ومؤشر لقياس النجاح','Analyze [topic] from every positive angle with evidence and a metric to measure success'],
   role:['محلل يبرز الجوانب الإيجابية بأدلة قابلة للقياس','Analyst who highlights strengths with measurable evidence'],
   audience:['صاحب قرار يبحث عن فرص لا عن مخاوف','A decision maker looking for opportunities, not fears'],
@@ -313,7 +313,7 @@ const PRESETS = [
   avoid:['لا تخفي المخاطر مقابل المديح\nلا تختلق أرقامًا تدعم موقفك\nلا تكتفِ بالوصف دون بيانات',
          'Do not hide risks just to praise\nNo invented numbers to support your case\nDo not stop at description without data'],
   flags:{ask:true,sources:true,self:true}}},
-{name:['📕 تحليل سلبي','📕 Negative analysis'],cat:'planning', set:{
+{name:['تحليل سلبي','Negative analysis'],cat:'planning', set:{
   task:['حلّل [الموضوع] من كل النواحي السلبية ورتّب المخاطر حسب الشدة مع إجراءات تصحيحية','Analyze [topic] from every negative angle, rank the risks by severity and propose corrective actions'],
   role:['محلل نقدي يكشف نقاط الضعف والمخاطر بصراحة','Critical analyst who exposes weaknesses and risks plainly'],
   audience:['صاحب قرار يريد رؤية المخاطر قبل الالتزام','A decision maker who wants risks before committing'],
@@ -323,7 +323,7 @@ const PRESETS = [
   avoid:['لا تكن سطحيًا في النقد\nلا تخفّف الوقائع\nلا تهاجم الأشخاص بل الأفكار',
          'Do not stay surface-level in the critique\nDo not soften the findings\nAttack ideas, not people'],
   flags:{ask:true,balanced:true,alts:true,self:true}}},
-{name:['🚨 خطط إدارة الأزمات','🚨 Crisis management plans'],cat:'planning', set:{
+{name:['خطط إدارة الأزمات','Crisis management plans'],cat:'planning', set:{
   task:['اكتب خطة استجابة لأزمة [النوع] في [المنشأة أو الجهة] مع جهة اتصال بديلة','Write a response plan for a [type] crisis at [site or organization] with a backup contact'],
   role:['خبير إدارة أزمات يصمّم خطط استجابة سريعة للأحداث الحرجة','Crisis management expert designing fast response plans for critical incidents'],
   audience:['فريق القيادة وغرفة إدارة الأزمات','The leadership team and the crisis management room'],
@@ -333,7 +333,7 @@ const PRESETS = [
   avoid:['لا تكتب ردود فعل غير مخطط لها\nلا تنشر معلومات غير مؤكدة\nلا تخلط بين الوقائع والتقديرات',
          'No unplanned reactions\nNever publish unconfirmed information\nDo not mix facts with assumptions'],
   flags:{ask:true,plan:true,sources:true,self:true}}},
-{name:['🎪 خطط إدارة المناسبات','🎪 Event management plans'],cat:'planning', set:{
+{name:['خطط إدارة المناسبات','Event management plans'],cat:'planning', set:{
   task:['اكتب خطة تشغيل لمناسبة [نوع المناسبة] لـ[عدد الحضور] في [الموقع]','Write an operations plan for a [event type] with [attendance] guests at [venue]'],
   role:['منظّم مناسبات متخصص في تخطيط الفعاليات وتشغيلها','Event organizer specialized in planning and running events'],
   audience:['اللجنة التنظيمية وفريق التشغيل','The organizing committee and the operations team'],
@@ -343,7 +343,7 @@ const PRESETS = [
   avoid:['لا تترك مهمة بلا مسؤول أو وقت\nلا تتجاهل خطة الطوارئ\nلا تهمل مرحلة ما بعد المناسبة',
          'No task without an owner or a time\nNever skip the contingency plan\nDo not forget the post-event phase'],
   flags:{ask:true,plan:true,self:true}}},
-{name:['🛡️ خطط إدارة المخاطر','🛡️ Risk management plans'],cat:'planning', set:{
+{name:['خطط إدارة المخاطر','Risk management plans'],cat:'planning', set:{
   task:['اكتب سجل مخاطر وخطة إدارة ل[المشروع] مع تقدير الاحتمال والأثر','Write a risk register and management plan for [project] with likelihood and impact ratings'],
   role:['محلل مخاطر يقيّم التهديدات ويضع ضوابط الوقاية والتخفيف','Risk analyst assessing threats and defining prevention and mitigation controls'],
   audience:['لجنة الإدارة والجهات الممولة','The steering committee and the funding bodies'],
@@ -353,7 +353,7 @@ const PRESETS = [
   avoid:['لا تخفّض تصنيف المخاطر الحرجة\nلا تذكر خطرًا دون إجراء مقابل\nلا تتجاهل المخاطر المتبقية بعد التخفيف',
          'Never rate down critical risks\nNever list a risk without a countermeasure\nDo not ignore residual risk after mitigation'],
   flags:{ask:true,plan:true,sources:true,self:true}}},
-{name:['🚒 خطط الطوارئ والإخلاء','🚒 Emergency & evacuation plans'],cat:'planning', set:{
+{name:['خطط الطوارئ والإخلاء','Emergency & evacuation plans'],cat:'planning', set:{
   task:['اكتب خطة طوارئ وإخلاء لـ[المبنى] وسعة [العدد] مع مسارات بديلة','Write an emergency and evacuation plan for [building] with [capacity] occupants and alternative routes'],
   role:['مسؤول السلامة المهنية الذي يصمّم خطط الطوارئ والإخلاء','Safety officer who designs emergency and evacuation plans'],
   audience:['العاملون والزوار ولجنة السلامة','Staff, visitors and the safety committee'],
@@ -363,7 +363,7 @@ const PRESETS = [
   avoid:['لا تترك مخرجًا واحدًا للإخلاء\nلا تهمل ذوي الإعاقة أو الأطفال\nلا تتجاهل مخاطر الكهرباء ومخارج الحريق',
          'Never leave a single evacuation route\nDo not forget people with reduced mobility or children\nNever ignore electrical risks and blocked fire exits'],
   flags:{ask:true,plan:true,sources:true,self:true}}},
-{name:['📋 تقارير تقييم الأزمات بعد حدوثها','📋 Post-incident assessment reports'],cat:'planning', set:{
+{name:['تقارير تقييم الأزمات بعد حدوثها','Post-incident assessment reports'],cat:'planning', set:{
   task:['اكتب تقرير تقييم لما حدث في [الأزمة] مع تحليل الأسباب والدروس المستفادة','Write an after-action report on the [incident] with root-cause analysis and lessons learned'],
   role:['محلل أزمات يكتب تقارير ما بعد الحدث بأمانة وحياد','Crisis analyst writing unbiased after-action reports'],
   audience:['الإدارة العليا ولجنة التدقيق','Senior management and the audit committee'],
@@ -373,8 +373,7 @@ const PRESETS = [
   avoid:['لا تلوم أفرادًا علنًا\nلا تخفّف حجم الخسائر\nلا تقدّم توصية بلا مسؤول وموعد',
          'Never blame individuals publicly\nDo not downplay the damage\nNo recommendation without an owner and a date'],
   flags:{ask:true,sources:true,self:true}}},
-{name:['📄 نصوص قانونية',
-'📄 Legal drafting'],cat:'writing', set:{
+{name:['نصوص قانونية','Legal drafting'],cat:'writing', set:{
   task:['صُغ نصًا قانونيًا حول [الموضوع] وفق الصياغة المعتمدة في [البلد]',
   'Draft a legal text on [subject] following the drafting conventions of [jurisdiction]'],
   role:['محامٍ وصائغ نصوص قانونية',
@@ -387,8 +386,7 @@ const PRESETS = [
   avoid:['لا تكتب بندًا غير قابل للتنفيذ\nلا تخلط بين الالتزام والنية\nلا تتجاهل القانون الواجب التطبيق',
           'No unenforceable clause without a criterion\nDo not mix obligation with intent\nDo not ignore the governing law'],
   flags:{ask:true,sources:true,self:true}}},
-{name:['📨 رسائل ومخاطبات رسمية (مذكرة)',
-'📨 Memos & official correspondence'],cat:'writing', set:{
+{name:['رسائل ومخاطبات رسمية (مذكرة)','Memos & official correspondence'],cat:'writing', set:{
   task:['اكتب مذكرة داخلية إلى [الجهة] بخصوص [الموضوع] مع التوصية والإجراء المطلوب',
   'Write an internal memo to [department] about [subject] with the recommendation and the requested action'],
   role:['مسؤول إداري يكتب المراسلات الرسمية',
@@ -401,8 +399,7 @@ const PRESETS = [
   avoid:['لا تكتب بلغة غامضة\nلا تكرر ما هو معروف للجميع\nلا تتجاوز حدود صلاحية المرسل',
           'No vague wording\nDo not repeat what everyone already knows\nDo not exceed the sender authority'],
   flags:{ask:true,direct:true}}},
-{name:['📑 صياغة عقود واتفاقيات',
-'📑 Contracts & agreements'],cat:'writing', set:{
+{name:['صياغة عقود واتفاقيات','Contracts & agreements'],cat:'writing', set:{
   task:['صُغ بنود عقد بين [الطرف الأول] و[الطرف الثاني] بشأن [الموضوع]',
   'Draft the clauses of an agreement between [party A] and [party B] about [subject]'],
   role:['محامٍ يصوغ العقود والاتفاقيات',
@@ -415,8 +412,7 @@ const PRESETS = [
   avoid:['لا تكتب بندًا غامضًا\nلا تترك التزامًا بلا مقابل\nلا تهمل مدة العقد وآلية الخروج',
           'No vague clauses\nNever leave an obligation without a counterpart\nDo not omit the term and the exit route'],
   flags:{ask:true,sources:true,self:true}}},
-{name:['🧩 صياغة مشكلة وفرضيات',
-'🧩 Problem statement & hypotheses'],cat:'writing', set:{
+{name:['صياغة مشكلة وفرضيات','Problem statement & hypotheses'],cat:'writing', set:{
   task:['صُغ مشكلة بحثية وفرضياتها في [المجال] مع تعريف المتغيرات',
   'Frame a research problem and its hypotheses in [field] with variable definitions'],
   role:['باحث يصوغ المشكلة البحثية والفرضيات',
@@ -429,8 +425,7 @@ const PRESETS = [
   avoid:['لا تكتب فرضيات غير قابلة للدحض\nلا تخلط بين المشكلة والسؤال\nلا تهمل تعريف المصطلحات',
           'No unfalsifiable hypotheses\nDo not confuse the problem with the question\nDo not skip term definitions'],
   flags:{ask:true,cot:true,sources:true}}},
-{name:['📚 نقد الدراسات السابقة',
-'📚 Literature critique'],cat:'writing', set:{
+{name:['نقد الدراسات السابقة','Literature critique'],cat:'writing', set:{
   task:['انقد الدراسات السابقة في [المجال] وحدّد الفجوة البحثية',
   'Critique the previous studies in [field] and identify the research gap'],
   role:['باحث ناقد يحلل الدراسات السابقة بموضوعية',
@@ -443,8 +438,7 @@ const PRESETS = [
   avoid:['لا تحكم على المؤلف شخصيًا\nلا تختزل الدراسة في حكم واحد\nلا تتجاهل الدراسات المؤرخة',
           'Never judge the author personally\nDo not reduce a study to a single verdict\nDo not ignore dated studies'],
   flags:{ask:true,sources:true,cot:true}}},
-{name:['📋 تصميم استبيان بحثي',
-'📋 Survey design'],cat:'planning', set:{
+{name:['تصميم استبيان بحثي','Survey design'],cat:'planning', set:{
   task:['صمّم استبيانًا حول [الموضوع] لأربعة شرائح من المستجيبين',
   'Design a survey on [topic] for four respondent segments'],
   role:['باحث ميداني يصمم أدوات جمع البيانات',
@@ -457,8 +451,7 @@ const PRESETS = [
   avoid:['لا تستخدم مصطلحات غير مفهومة\nلا تكرر السؤال نفسه بصياغتين\nلا تطوّل الاستبيان بلا داعٍ',
           'No unexplained terminology\nNever repeat the same question in two wordings\nDo not make the survey longer than needed'],
   flags:{ask:true,sources:true}}},
-{name:['📊 تفسير نتائج إحصائية',
-'📊 Statistical interpretation'],cat:'planning', set:{
+{name:['تفسير نتائج إحصائية','Statistical interpretation'],cat:'planning', set:{
   task:['فسّر النتائج الإحصائية في [الدراسة] واذكر ما لا تثبته',
   'Interpret the statistical results of [study] and state what they do not prove'],
   role:['إحصائي يفسّر النتائج دون مبالغة',
@@ -471,8 +464,7 @@ const PRESETS = [
   avoid:['لا تستنتج السببية من الارتباط\nلا تخفي النتائج غير الدالة\nلا تعامل معامل الارتباط كدقة',
           'Never infer causation from correlation\nDo not hide non-significant results\nDo not treat a correlation coefficient as accuracy'],
   flags:{ask:true,sources:true,cot:true}}},
-{name:['✍️ إعادة صياغة أكاديمية',
-'✍️ Academic rewriting'],cat:'writing', set:{
+{name:['إعادة صياغة أكاديمية','Academic rewriting'],cat:'writing', set:{
   task:['أعد صياغة الفقرة الأكاديمية بصياغة أرصن وأوضح',
   'Rewrite the academic paragraph in a more formal and clearer style'],
   role:['محرر أكاديمي يحسّن الصياغة دون تغيير المعنى',
@@ -485,8 +477,7 @@ const PRESETS = [
   avoid:['لا تضف استنتاجات جديدة\nلا تحذف معلومات من النص\nلا تتجاوز أسلوب المجلة المطلوب',
           'Do not add new conclusions\nDo not remove information from the text\nDo not override the required journal style'],
   flags:{ask:true,self:true}}},
-{name:['⚖️ تحكيم ورقة علمية',
-'⚖️ Peer review'],cat:'writing', set:{
+{name:['تحكيم ورقة علمية','Peer review'],cat:'writing', set:{
   task:['اكتب تقرير تحكيم لورقة علمية في [المجال] مع قرار النشر',
   'Write a peer review for a paper in [field] with a publication decision'],
   role:['محكّم علمي يكتب تقريرًا نزيهًا وبنّاءً',
@@ -499,8 +490,7 @@ const PRESETS = [
   avoid:['لا تحكم على المؤلفين شخصيًا\nلا ترفض دون مبرر مفصّل',
           'Never judge the authors personally\nDo not reject without detailed reasons'],
   flags:{ask:true,balanced:true,sources:true}}},
-{name:['📚 توثيق برمجي',
-'📚 Technical documentation'],cat:'writing', set:{
+{name:['توثيق برمجي','Technical documentation'],cat:'writing', set:{
   task:['وثّق وحدة [الوحدة] البرمجية مع أمثلة استخدام',
   'Document the [module] with usage examples'],
   role:['كاتب توثيق تقني يشرح للمستخدمين',
@@ -513,8 +503,7 @@ const PRESETS = [
   avoid:['لا تكرّر ما هو واضح من التسمية\nلا توثّق معامل غير موجود',
           'Do not repeat what the names already say\nNever document a parameter that does not exist'],
   flags:{ask:true,self:true}}},
-{name:['🧱 هيكلة وتوصيف وظيفي',
-'🧱 Job description'],cat:'writing', set:{
+{name:['هيكلة وتوصيف وظيفي','Job description'],cat:'writing', set:{
   task:['اكتب وصفًا وظيفيًا لوظيفة [المسمى] في [الجهة]',
   'Write a job description for the [title] role at [company]'],
   role:['أخصائي موارد بشرية يكتب وصفًا وظيفيًا دقيقًا',
@@ -527,8 +516,7 @@ const PRESETS = [
   avoid:['لا تكتب صفات عامة بلا فعل\nلا تستخدم لغة تمييزية\nلا تكرّر ما لا يهم المرشح',
           'No vague adjectives without actions\nNo discriminatory wording\nDo not repeat what does not matter to the candidate'],
   flags:{ask:true}}},
-{name:['📰 بيان إعلامي',
-'📰 Press statement'],cat:'marketing', set:{
+{name:['بيان إعلامي','Press statement'],cat:'marketing', set:{
   task:['اكتب بيانًا إعلاميًا عن [الموضوع] بلغة رسمية موجزة',
   'Write a press statement about [subject] in a formal and concise style'],
   role:['مسؤول إعلام يكتب بيانات دقيقة وموزونة',
@@ -541,8 +529,7 @@ const PRESETS = [
   avoid:['لا تستخدم مبالغات أو لغة إنشائية\nلا تنشر معلومات غير مؤكدة',
           'No exaggeration or flowery language\nNever publish unconfirmed information'],
   flags:{ask:true,self:true}}},
-{name:['🚨 بيان إعلامي للأزمات',
-'🚨 Crisis press statement'],cat:'marketing', set:{
+{name:['بيان إعلامي للأزمات','Crisis press statement'],cat:'marketing', set:{
   task:['اكتب بيانًا إعلاميًا أثناء أزمة [الأزمة] يحفظ الثقة',
   'Write a crisis press statement during the [incident] that preserves trust'],
   role:['متحدث إعلامي للأزمات يحافظ على الثقة والمصداقية',
@@ -555,8 +542,7 @@ const PRESETS = [
   avoid:['لا تخمّن سببًا غير مؤكد\nلا تنكر المشكلة',
           'Do not speculate about unverified causes\nDo not deny the problem'],
   flags:{ask:true,sources:true,self:true}}},
-{name:['🌳 تخطيط السيناريوهات',
-'🌳 Scenario planning'],cat:'planning', set:{
+{name:['تخطيط السيناريوهات','Scenario planning'],cat:'planning', set:{
   task:['خطّط ثلاثة سيناريوهات لـ[المشروع] مع مؤشرات إنذار لكل منها',
   'Plan three scenarios for [project] with early-warning indicators for each'],
   role:['مخطط استراتيجي يبني سيناريوهات بديلة',
@@ -569,8 +555,7 @@ const PRESETS = [
   avoid:['لا تعتبر أي سيناريو محسومًا مسبقًا\nلا تخلط بين الاحتمال والأهمية',
           'Do not treat any scenario as already decided\nDo not confuse likelihood with importance'],
   flags:{ask:true,plan:true,alts:true,sources:true}}},
-{name:['💹 دراسة جدوى اقتصادية',
-'💹 Economic feasibility study'],cat:'planning', set:{
+{name:['دراسة جدوى اقتصادية','Economic feasibility study'],cat:'planning', set:{
   task:['اختبر الجدوى الاقتصادية لمشروع [المشروع] بأرقام واقعية',
   'Test the economic feasibility of [project] with realistic numbers'],
   role:['محلل اقتصادي يدرس الجدوى بأرقام قابلة للتحقق',
@@ -583,8 +568,7 @@ const PRESETS = [
   avoid:['لا تُخفِ الافتراضات الجوهرية\nلا تُقرّب الأرقام لتبدو جميلة',
           'Do not hide the core assumptions\nDo not round the numbers to look better'],
   flags:{ask:true,sources:true,cot:true}}},
-{name:['💼 أسئلة مقابلات التوظيف',
-'💼 Hiring interview questions'],cat:'productivity', set:{
+{name:['أسئلة مقابلات التوظيف','Hiring interview questions'],cat:'productivity', set:{
   task:['اكتب أسئلة مقابلة لوظيفة [المسمى] مع معايير تقييم',
   'Write interview questions for a [title] role with scoring criteria'],
   role:['مختص توظيف يصمم مقابلات مبنية على المهارات',
@@ -597,8 +581,7 @@ const PRESETS = [
   avoid:['لا تسأل عن العمر أو الحالة الاجتماعية\nلا تكتب أسئلة لا يجيب عنها الجميع',
           'Never ask about age or marital status\nNo questions that not everyone can answer fairly'],
   flags:{ask:true,balanced:true}}},
-{name:['🤝 سيناريو تفاوض ذكي',
-'🤝 Smart negotiation scenario'],cat:'productivity', set:{
+{name:['سيناريو تفاوض ذكي','Smart negotiation scenario'],cat:'productivity', set:{
   task:['اكتب سيناريو تفاوض بين [طرف] و[طرف] حول [الموضوع]',
   'Write a negotiation scenario between [party A] and [party B] over [subject]'],
   role:['مفاوض محترف يحضّر موقفًا متكاملًا',
@@ -609,8 +592,7 @@ const PRESETS = [
   constraints:['حدّد الأهداف الكبرى والمصالح الخفية لكل طرف بوضوح قبل صياغة الحوار.\nضع خطة البدائل (BATNA) ونقاط القوة والضعف لكل جانب.\nرتّب مجرى التفاوض في مراحل: الافتتاح، تقديم العروض، تبادل التنازلات، والوصول إلى منطقة الاتفاق المشترك (ZOPA).\nأدمِج تكتيكات تفاوضية واقعية (مثل: التنازل المشروط، المقايضة، أو كسر الجمود).','State each side\'s headline goals and hidden interests clearly before writing any dialogue.\nLay out the BATNA, the strengths and the weaknesses of every party.\nStructure the negotiation into phases: opening, proposals, concession trading, and arrival at the zone of possible agreement (ZOPA).\nInclude realistic negotiating tactics (conditional concessions, trade-offs, or breaking a deadlock).'],
   avoid:['لا تكتب حوارًا بلا توتر واقعي أو صراع مصالح حقيقي.\nلا تجعل أي طرف يتنازل بسهولة دون مقابل استراتيجي.\nلا تهمل لغة الجسد والإشارات غير اللفظية المؤثرة في مجرى التفاوض.','Do not write a dialogue with no real tension or genuine conflict of interests.\nNever let a party concede easily without a strategic trade-off.\nDo not overlook body language and the non-verbal signals that steer the negotiation.'],
   flags:{ask:true,alts:true,plan:true}}},
-{name:['💰 عرض للمستثمرين',
-'💰 Investor pitch'],cat:'marketing', set:{
+{name:['عرض للمستثمرين','Investor pitch'],cat:'marketing', set:{
   task:['اكتب عرضًا تقديميًا للمستثمرين عن [الفكرة] في عشر شرائح',
   'Write a ten-slide investor pitch about [idea]'],
   role:['مؤسس الشركة يعرض الفكرة على المستثمرين',
@@ -621,8 +603,7 @@ const PRESETS = [
   constraints:['قسّم العرض إلى 10 شرائح أساسية: المشكلة، الحل، حجم السوق، نموذج العمل، الميزة التنافسية، الفريق، والأرقام المالية المطلوبة.\nابدأ بخطاف قوي يبرز حجم الألم أو الفرصة في السوق.\nاستند إلى أرقام واقعية وقابلية نمو منطقية (Scalability).\nاختم بدعوة واضحة للاستثمار (Call to Action) وتحديد العائد المتوقع.','Split the deck into 10 core slides: problem, solution, market size, business model, competitive advantage, team, and the financials being asked for.\nOpen with a strong hook that sizes the pain or the market opportunity.\nGround the numbers in realistic figures and a credible path to scale.\nClose with a clear call to action and the return investors should expect.'],
   avoid:['لا تضخّم الأرقام أو تقدم توقعات مالية وهمية لا يمكن إثباتها.\nلا تترك تفاصيل الفريق المؤسس وعلاقته بالمشروع غامضة.\nلا تغفل عن ذكر المنافسين الحقيقيين وفجوة السوق التي تستغلها.','Do not inflate the numbers or present financial projections that cannot be substantiated.\nDo not leave the founding team and its relationship to the venture vague.\nDo not omit the real competitors and the market gap you are exploiting.'],
   flags:{ask:true,sources:true,alts:true}}},
-{name:['📄 تحسين السيرة الذاتية للوظائف',
-'📄 Resume optimization for ATS'],cat:'writing', set:{
+{name:['تحسين السيرة الذاتية للوظائف','Resume optimization for ATS'],cat:'writing', set:{
   task:['حسّن سيرتي الذاتية لتجاوز أنظمة الفرز الآلي في [المجال]',
   'Improve my resume to pass automated screening in [field]'],
   role:['خبير توظيف يعرف كيف تقرأ أنظمة الفرز الآلي',
@@ -633,8 +614,7 @@ const PRESETS = [
   constraints:['وزّع الكلمات المفتاحية الخاصة بالوظيفة بشكل طبيعي لتُجيز السيرة الذاتية أنظمة الفرز الآلي (ATS).\nقسّم السيرة إلى أقسام واضحة: الملخص المهني، الخبرات، المهارات التقنية والشخصية، والتعليم.\nصِغ الإنجازات المهنية بصيغة قابلة للقياس: الأثر والأرقام بدل سرد المهام التقليدي.\nالتزم بتصميم نظيف وموجز وخالٍ من الجداول المعقدة التي تعيق قراءة الأنظمة الآلية.','Distribute the role\'s keywords naturally so the résumé passes applicant tracking systems (ATS).\nSplit the résumé into clear sections: professional summary, experience, technical and soft skills, and education.\nPhrase achievements in measurable terms — impact and numbers instead of a list of duties.\nKeep the layout clean, concise and free of complex tables that break machine parsing.'],
   avoid:['لا تختلق خبرات أو مهارات غير حقيقية أو غير قابلة للإثبات.\nلا تستخدم فقرات إنشائية طويلة ومعقدة في الملخص المهني.\nلا تهمل إبراز الشهادات الاحترافية والأدوات التقنية ذات الصلة المباشرة بالدور.','Never invent experience or skills you cannot substantiate.\nDo not use long, flowery paragraphs in the professional summary.\nDo not overlook the professional certifications and tools directly relevant to the role.'],
   flags:{ask:true,direct:true,self:true}}},
-{name:['🐛 إصلاح أخطاء الكود',
-'🐛 Bug fixing'],cat:'productivity', set:{
+{name:['إصلاح أخطاء الكود','Bug fixing'],cat:'productivity', set:{
   task:['صحّح الخطأ في الدالة [الوظيفة] واشرح السبب الجذري',
   'Fix the bug in [function] and explain the root cause'],
   role:['مهندس برمجيات يشخّص الأخطاء ويصلحها',
@@ -645,8 +625,7 @@ const PRESETS = [
   constraints:['ابدأ بتشخيص السبب الجذري (Root Cause) للخطأ قبل عرض الحل البرمجي.\nقدّم الكود المُصحَّح نظيفًا، موثّقًا بالتعليقات، وخاليًا من الثغرات الأمنية.\nاشرح التغييرات التي أُجريت ولماذا تمنع تكرار المشكلة.\nاقترح اختبار وحدة (Unit Test) للتأكد من سلامة المعالجة.','Start by diagnosing the root cause of the defect before showing the fix.\nDeliver the corrected code clean, commented and free of security holes.\nExplain what changed and why it stops the problem recurring.\nPropose a unit test that proves the handling is correct.'],
   avoid:['لا تخفّف من قيمة الاختبار أو تتجاهل معالجة الحالات الحدية (Edge Cases).\nلا تستخدم حلولًا ترقيعية مؤقتة (Workarounds) تضر ببنية الكود الأساسية.\nلا تهمل تأثير التعديل على باقي وحدات النظام المرتبطة.','Do not underplay testing or skip the edge cases.\nDo not reach for temporary workarounds that damage the underlying architecture.\nDo not ignore the impact of the change on the rest of the coupled system.'],
   flags:{ask:true,cot:true,self:true}}},
-{name:['🗄️ تصميم قواعد البيانات',
-'🗄️ Database design'],cat:'productivity', set:{
+{name:['تصميم قواعد البيانات','Database design'],cat:'productivity', set:{
   task:['صمّم قاعدة بيانات لـ[النظام] مع الجداول والعلاقات',
   'Design a database for [system] with the tables and relationships'],
   role:['مهندس قواعد بيانات يصمم مخططات علائقية',
@@ -657,8 +636,7 @@ const PRESETS = [
   constraints:['صمّم المخطط العلائقي (Relational Schema) بدقة مع تحديد الجداول والمفاتيح الأساسية (PK) والأجنبية (FK).\nوضّح نوع العلاقات بدقة: واحد لواحد، واحد لمتعدد، متعدد لمتعدد.\nالتزم بمستويات التطبيع المناسبة (Normalization) لتقليل تكرار البيانات وضمان سلامتها.\nاقترح الفهارس (Indexes) اللازمة لتحسين أداء الاستعلامات الكبرى.','Design the relational schema precisely, naming the tables and the primary (PK) and foreign (FK) keys.\nState the cardinality of every relationship: one-to-one, one-to-many, many-to-many.\nApply the appropriate normal forms to remove redundancy and protect data integrity.\nPropose the indexes the heavy queries need.'],
   avoid:['لا تخزّن بيانات مشتقة أو محسوبة يمكن استخراجها عبر الاستعلامات.\nلا تهمل قواعد سلامة البيانات والقيود المرجعية (Constraints).\nلا تصمّم بنية صلبة تعيق التوسع المستقبلي وسهولة التحديث (Scalability).','Do not store derived values that a query can compute.\nDo not skip integrity rules and referential constraints.\nDo not design a rigid schema that blocks future growth and easy change.'],
   flags:{ask:true,cot:true,self:true}}},
-{name:['🔍 مراجعة وتجويد الكود',
-'🔍 Code review'],cat:'productivity', set:{
+{name:['مراجعة وتجويد الكود','Code review'],cat:'productivity', set:{
   task:['راجع الكود في [الملف] واقترح تحسينات مرتبة حسب الأولوية',
   'Review the code in [file] and suggest improvements ranked by priority'],
   role:['مهندس مراجعة كود يقيس الجودة والوضوح',
@@ -669,8 +647,7 @@ const PRESETS = [
   constraints:['ابدأ بملخص تقييمي للحالة العامة للكود من حيث الأداء والأمان وسهولة القراءة.\nصنّف الملاحظات والمقترحات بترتيب دقيق حسب الأولوية: حرجة، تحسينية، تنسيقية.\nقدّم مقتطفات برمجية بديلة ومحسّنة لكل ملاحظة نقدية.\nراعِ معايير Clean Code ومبادئ التصميم النظيف (SOLID).','Open with an overall assessment of the code on performance, security and readability.\nOrder every finding by priority: critical, improvement, style.\nProvide an improved alternative snippet for each critical finding.\nRespect clean-code standards and the SOLID principles.'],
   avoid:['لا تركز على تفاصيل التنسيق الشكلية وتتجاهل المشاكل المنطقية والأمنية.\nلا تقدم ملاحظات مبهمة بلا تبرير تقني أو بديل مقترح.\nلا تغفل عن تقييم كفاءة الذاكرة واستهلاك الموارد.','Do not fixate on cosmetic formatting while ignoring logic and security problems.\nDo not raise vague findings with no technical justification or suggested alternative.\nDo not skip the memory-efficiency and resource-consumption assessment.'],
   flags:{ask:true,self:true}}},
-{name:['🔐 فحص ثغرات أمنية',
-'🔐 Security audit'],cat:'productivity', set:{
+{name:['فحص ثغرات أمنية','Security audit'],cat:'productivity', set:{
   task:['افحص أمن [النظام] وحدّد الثغرات وخطة الإصلاح',
   'Security-audit [system], identify the vulnerabilities and propose fixes'],
   role:['محلل أمن سيبراني يفحص الأنظمة ويقترح الإصلاحات',
@@ -681,8 +658,7 @@ const PRESETS = [
   constraints:['حدّد نطاق الفحص الأمني بوضوح (Scope) وما شملته عملية المراجعة.\nصنّف الثغرات المكتشفة وفق معيار الخطورة: حرجة، عالية، متوسطة، منخفضة.\nقدّم سيناريو استغلال مبسّط لكل ثغرة (Proof of Concept) لبيان الأثر.\nاقترح خطط المعالجة التصحيحية الفورية والوقائية طويلة المدى لكل ثغرة.','Define the scope of the audit explicitly, and what the review covered.\nClassify every finding by severity: critical, high, medium, low.\nProvide a minimal proof of concept for each vulnerability to show the impact.\nPropose both immediate remediation and longer-term preventive fixes for each one.'],
   avoid:['لا تُبلِغ عن ثغرة أو نقطة ضعف دون دليل تقني قاطع.\nلا تقتصر على سرد الثغرات دون تقديم كود المعالجة الآمن.\nلا تتجاهل معايير الحماية القياسية (مثل OWASP Top 10).','Never report a vulnerability without conclusive technical evidence.\nDo not merely list the findings without the safe remediation code.\nDo not ignore standard protection baselines such as the OWASP Top 10.'],
   flags:{ask:true,sources:true,balanced:true,self:true}}},
-{name:['🎨 تصميم واجهات المستخدم',
-'🎨 UI/UX design'],cat:'design', set:{
+{name:['تصميم واجهات المستخدم','UI/UX design'],cat:'design', set:{
   task:['صمّم واجهة [المنتج] مع مواصفة بصرية ونصية كاملة',
   'Design the [product] interface with a full visual and written specification'],
   role:['مصمم واجهات يجمع بين الجمال وسهولة الاستخدام',
@@ -693,8 +669,7 @@ const PRESETS = [
   constraints:['ابدأ بتحديد تدفق المستخدم (User Flow) في خطوات واضحة ومبسّطة.\nحدّد المواصفات البصرية: التدرجات اللونية، التسلسل الهرمي للخطوط، ومسافات التباعد.\nراعِ معايير سهولة الوصول وإمكانية الاستخدام (Accessibility & UX Heuristics).\nصِف سلوك العناصر التفاعلية في حالات التحميل والخطأ والنجاح.','Open with the user flow as a short, explicit sequence of steps.\nSpecify the visual language: colour palette, typographic hierarchy and spacing rhythm.\nRespect accessibility and usability heuristics.\nDescribe the behaviour of interactive elements in their loading, error and success states.'],
   avoid:['لا تقترح تباينًا لونيًا ضعيفًا يقل عن المعايير المقبولة (WCAG).\nلا تضحّي بسهولة الاستخدام ووضوح التنقل لصالح الزخرفة البصرية المفرطة.\nلا تهمل تجربة الاستجابة على الشاشات المختلفة (Responsive Design).','Do not propose colour contrast below the accepted WCAG thresholds.\nDo not trade usability and clear navigation for excessive ornament.\nDo not ignore the responsive experience across screen sizes.'],
   flags:{ask:true,self:true}}},
-{name:['🎮 وثيقة تصميم لعبة',
-'🎮 Game design document'],cat:'design', set:{
+{name:['وثيقة تصميم لعبة','Game design document'],cat:'design', set:{
   task:['اكتب وثيقة تصميم لعبة حول [الفكرة]',
   'Write a game design document for the [concept]'],
   role:['مصمم ألعاب يوثّق التصميم بلغة الفريق',
@@ -705,8 +680,7 @@ const PRESETS = [
   constraints:['عرّف اللعبة في سطر جوهري واحد: من يلعب، ماذا يفعل، ولماذا يستمتع؟\nفصّل ميكانيكيات اللعب الأساسية وحلقة اللعب (Core Loop) وقواعد التقدّم.\nحدّد التوجّه البصري والصوتي والقصصي للعبة.\nصِف شروط الفوز والخسارة واقتصاديات اللعبة الداخلية (Game Economy) إن وُجدت.','Define the game in one essential line: who plays, what they do, and why it is fun.\nDetail the core mechanics, the core loop and the progression rules.\nSet the visual, audio and narrative direction of the game.\nDescribe the win and loss conditions and the in-game economy where one exists.'],
   avoid:['لا تصف ميزات معقدة تعجز إمكانيات التطوير والوقت عن بنائها.\nلا تترك تفاصيل التحكم وتفاعل اللاعب مع العالم مبهمة.\nلا تهمل دوافع اللاعب واستمرارية تفاعله مع التجربة.','Do not describe features the development team and schedule cannot build.\nDo not leave the controls and the player\'s interaction with the world vague.\nDo not overlook player motivation and the reasons they keep coming back.'],
   flags:{ask:true,alts:true,plan:true,self:true}}},
-{name:['🧊 وصف مجسمات ثلاثية الأبعاد',
-'🧊 3D model description'],cat:'design', set:{
+{name:['وصف مجسمات ثلاثية الأبعاد','3D model description'],cat:'design', set:{
   task:['اكتب وصفًا دقيقًا لمجسم ثلاثي الأبعاد لـ[الكائن]',
   'Write a precise 3D model description of a [subject]'],
   role:['فنان ثلاثي الأبعاد يصمم ويصف المجسم',
@@ -717,8 +691,7 @@ const PRESETS = [
   constraints:['صف الهيكل العام للمجسم والأبعاد والنسب التشريحية بدقة.\nحدّد خصائص الخامات والسطح (Materials, Roughness, Metalness, Textures).\nوضّح تفاصيل الإضاءة وزوايا العرض المثالية لإبراز المجسم.\nصِف تفاصيل التزوير الهيكلي (Rigging) أو نقاط الحركة إن كانت مخصصة للتحريك.','Describe the model\'s overall structure, dimensions and anatomical proportions precisely.\nSpecify the material and surface properties: materials, roughness, metalness and textures.\nDetail the lighting and the camera angles that show the model at its best.\nDescribe the rigging or pivot points if the asset is meant to be animated.'],
   avoid:['لا تدمج سمات بصرية متناقضة أو غير متسقة مع الطابع العام.\nلا تهمل كثافة الشبكة المضلعة (Topology) وكفاءة تحسين الأداء (Optimization).\nلا تترك تفاصيل الألوان وتأثير البيئة المحيطة غامضة.','Do not mix visual traits that contradict the overall art direction.\nDo not overlook mesh topology and performance optimisation.\nDo not leave the colour details and the surrounding environment ambiguous.'],
   flags:{ask:true,self:true}}},
-{name:['🎵 هندسة أغان وموسيقى',
-'🎵 Song & music engineering'],cat:'media', set:{
+{name:['هندسة أغان وموسيقى','Song & music engineering'],cat:'media', set:{
   task:['صمّم أغنية عن [الموضوع] مع اللحن والإيقاع والبنية',
   'Design a song about [topic] with melody, rhythm and structure'],
   role:['منتج موسيقي يصمم الأغاني ويكتب كلماتها',
@@ -729,8 +702,7 @@ const PRESETS = [
   constraints:['حدّد بدقة: المزاج العام، الإيقاع (Tempo)، المفتاح الموسيقي، والآلات المستخدمة.\nصمّم هيكل الأغنية بوضوح: المقدمة، المقاطع، الكورال/القرار، الجسر، الخاتمة.\nاكتب كلمات متناسقة وزنًا وقافية تخدم الحالة العاطفية والموضوع.\nوجّه الجانب الإنتاجي والمكس الصوتي (Mix & Master) بدقة.','Set precisely: the overall mood, the tempo, the musical key and the instruments used.\nStructure the song clearly: intro, verses, chorus/hook, bridge, outro.\nWrite lyrics that fit the metre and rhyme while serving the emotional arc and the subject.\nDirect the production side and the mix and master with precision.'],
   avoid:['لا تكتب كلمات خشنة الوزن يصعب تلحينها أو أداؤها صوتيًا.\nلا تجمع بين أزمنة موسيقية أو إيقاعات متضاربة بلا مسوّغ فني.\nلا تغفل عن التناغم بين نبرة الصوت وطبيعة التوزيع الموسيقي.','Do not write lyrics with a metre that is hard to set to music or to sing.\nDo not combine clashing time signatures or rhythms without an artistic reason.\nDo not overlook how the vocal timbre sits against the arrangement.'],
   flags:{ask:true,self:true}}},
-{name:['🎬 برومبت تحريك فيديو',
-'🎬 Video animation prompt'],cat:'media', set:{
+{name:['برومبت تحريك فيديو','Video animation prompt'],cat:'media', set:{
   task:['اكتب برومبت تحريك لفيديو عن [المشهد] بأسلوب [الأسلوب]',
   'Write an animation prompt for a video about [scene] in [style]'],
   role:['مخرج موشن جرافيك يكتب برومبتات دقيقة',
@@ -741,8 +713,7 @@ const PRESETS = [
   constraints:['صف الكاميرا وزوايا التصوير وحركة المشاهد بالترتيب الزمني الدقيق.\nحدّد سرعة الحركة والانتقالات والتدفق البصري لكل لقطة.\nحافظ على ثبات الهوية البصرية والإضاءة والألوان طوال التسلسل.\nاستخدم مصطلحات تقنية بصرية دقيقة تفهمها أدوات توليد الفيديو بالذكاء الاصطناعي.','Describe the camera, the shot angles and the motion of every scene in strict temporal order.\nSet the speed of movement, the transitions and the visual flow of each shot.\nKeep the visual identity, lighting and palette consistent across the whole sequence.\nUse precise cinematic terms that AI video generators actually understand.'],
   avoid:['لا تدمج توجيهين بصريين متضاربين في لقطة حركية واحدة.\nلا تترك مسار انتقال الكاميرا عشوائيًا بلا هدف سردي.\nلا تهمل ضبط جودة الحفاظ على تفاصيل الشخصيات بين إطار وآخر.','Do not merge two conflicting visual directions inside a single moving shot.\nDo not leave the camera move arbitrary with no narrative purpose.\nDo not ignore the consistency of character detail from one frame to the next.'],
   flags:{ask:true,self:true}}},
-{name:['🎙️ إعداد حلقات بودكاست',
-'🎙️ Podcast episode planning'],cat:'media', set:{
+{name:['إعداد حلقات بودكاست','Podcast episode planning'],cat:'media', set:{
   task:['خطّط حلقة بودكاست عن [الموضوع] مع الضيوف والزمن',
   'Plan a podcast episode on [topic] with the guests and the timing'],
   role:['منتج بودكاست يخطط الحلقات ويكتب المحاور',
@@ -753,8 +724,7 @@ const PRESETS = [
   constraints:['صمّم عنوانًا جذّابًا وافتتاحية خطّافة تضمن بقاء المستمع من الثواني الأولى.\nابنِ جدولًا زمنيًا دقيقًا لمحاور الحلقة: التقديم، النقاش العميق، الأسئلة السريعة، الختام.\nحضّر أسئلة استراتيجية ومفتوحة للضيف تُخرج أعمق قيمة للمستمع.\nأدمِج نقاط الانتقال السلسة ومواضع الفواصل الإعلانية المحتملة.','Design an engaging title and a hook-driven cold open that keeps the listener from the first seconds.\nBuild an exact run of show: intro, deep discussion, rapid questions, outro.\nPrepare strategic, open questions for the guest that draw out the most value for the listener.\nWeave in smooth transitions and the likely ad-break positions.'],
   avoid:['لا تبدأ بمقدمة طويلة ومملة لا تحمل معلومة أو قيمة فورية.\nلا تطرح أسئلة مغلقة تتطلب إجابات بنعم أو لا فقط.\nلا تفقد إيقاع الحلقة أو تخرج عن الهدف الأساسي للموضوع.','Do not open with a long, dull intro that carries no immediate information or value.\nDo not ask closed questions that can only be answered yes or no.\nDo not lose the episode\'s rhythm or drift from the core purpose of the topic.'],
   flags:{ask:true,plan:true,self:true}}},
-{name:['📖 قصصي سردي',
-'📖 Narrative storytelling'],cat:'writing', set:{
+{name:['قصصي سردي','Narrative storytelling'],cat:'writing', set:{
   task:['اكتب قصة قصيرة عن [الموضوع] بصوت سردي متصل الأحداث',
   'Write a short story about [topic] in a connected narrative voice'],
   role:['كاتب سردي يبني أحداثًا مترابطة',
@@ -765,12 +735,12 @@ const PRESETS = [
   constraints:['ابدأ بمشهد درامي نابض بالحياة يشدّ الانتباه فورًا (In Media Res).\nابنِ شخصيات عميقة ذات دوافع واضحة وصراع حقيقي متصاعد.\nوظّف التفاصيل الحسية والبيئة المكانية لخلق تجربة غامرة للقارئ.\nتدرّج في الحبكة وصولًا إلى ذروة الأحداث ثم خاتمة مؤثرة ومُرضية.','Open on a vivid dramatic scene that grabs attention immediately (in medias res).\nBuild deep characters with clear motivations and a genuinely escalating conflict.\nUse sensory detail and place to make the reading experience immersive.\nRide the plot up to the climax, then land an affecting, satisfying ending.'],
   avoid:['لا تشرح المغزى أو العبرة بصورة مباشرة في النهاية بل دع القارئ يكتشفها.\nلا تقع في فخ التمهيد الطويل والممل للبيئة دون أحداث.\nلا تجعل الحوارات مصطنعة أو بعيدة عن طبيعة الشخصيات.','Do not spell out the moral at the end — let the reader discover it.\nDo not fall into the trap of a long, dull world-building preamble with no events.\nDo not make the dialogue stilted or out of character.'],
   flags:{ask:true,self:true}}},
-{name:['🖼️ توليد صورة','🖼️ Image Generation'],cat:'media', set:{
+{name:['توليد صورة','Image Generation'],cat:'media', set:{
   task:['صورة لـ[الموضوع] بأسلوب [الأسلوب] وإضاءة [الإضاءة] وتكوين [التكوين]','A photo of [subject] in [style] style with [lighting] lighting and [composition] composition'],
   role:['مصوّر يحوّل الوصف إلى برومبت صورة دقيق','Prompt engineer turning a description into a precise image prompt'],
   audience:['',''],tone:[],fmt:[],length:'',constraints:['',''],avoid:['',''],
   flags:{ask:false,cot:false,self:false,few:false}, img:true}},
- {name:['🤲 دعاء','🤲 Dua / Supplication'],cat:'writing', set:{
+ {name:['دعاء','Dua / Supplication'],cat:'writing', set:{
   task:['اكتب دعاءً في [الموضوع] بأسلوب موجز وأدب نبوي، مقسّمًا إلى: تمهيد بحمد الله، ثم الاستغفار، ثم الدعاء المطلوب، ثم الختام','Write a supplication about [topic] in a concise style with the prophetic etiquette — structured as: an opening with praise, seeking forgiveness, the supplication itself, then a closing'],
   role:['عالمة دين متقنة لأدب الدعاء وأدب أهل القرآن','Islamic scholar well-versed in the etiquette of supplication and of the people of the Qur\'an'],
   audience:['مؤمنون يقرؤون في صلاة الليل أو بعد الصلوات المفروضة','Believers reciting at night or after the obligatory prayers'],
@@ -778,7 +748,7 @@ const PRESETS = [
   constraints:['ابدأ بحمد الله والصلاة على النبي صلى الله عليه وسلم\nاستعمل لفظًا قرآنيًا أو حديثًا صحيحًا في كل مقطع\nخاطب الله مباشرة بصيغة: اللهم\nاجعل كل جملة مفهومة بذاتها دون حاجة إلى ما قبلها','Start by praising Allah and sending salutations on the Prophet ﷺ\nUse a Qur\'anic phrase or an authentic hadith in every section\nAddress Allah directly with the words: Allahumma\nKeep every sentence meaningful on its own, without depending on what came before'],
   avoid:['لا تخترع آية ولا حديثًا ولا سندًا — إن لم تتأكد فاحذف\nلا تخلط الفصحى بالعامية أو بعبارات غير مفهومة\nلا تنسب دعاءً إلى مصدر لم يُنقل عنه','Never invent an ayah, a hadith or a chain of narration — if unsure, leave it out\nDo not mix Modern Standard Arabic with dialect or with unclear wording\nDo not attribute a supplication to a source it was not transmitted from'],
   flags:{self:true}}},
-{name:['📖 قرآن كريم','📖 Qur\'an'],cat:'writing', set:{
+{name:['قرآن كريم','Qur\'an'],cat:'writing', set:{
   task:['اكتب [نوع العمل] عن سورة [اسم السورة] أو الآية [رقم الآية]، متضمنًا التفسير والمعاني','Write a [type of work] about surah [surah name] or ayah [ayah number], including tafsir and word meanings'],
   role:['مفسر للقرآن معتمد، متخصص في علوم التفسير والبلاغة','Qur\'an exegete grounded in the classical sciences of tafsir and rhetoric'],
   audience:['طلاب حلقات القرآن الكريم وبرامج الحفظ','Students in Qur\'an circles and memorisation programmes'],
@@ -789,49 +759,49 @@ const PRESETS = [
 ];
 
 const AI_TOOLS = [
- {e:'💬', n:['ChatGPT','ChatGPT'],
+ {e:'chat-bubble-left-right', n:['ChatGPT','ChatGPT'],
   d:['أشهر مساعد ذكي من OpenAI للنصوص والصور والتحليل.','The most popular AI assistant from OpenAI for text, images and analysis.'],
   u:'https://chatgpt.com/',
   an:['Open WebUI','Open WebUI'],
   ad:['واجهة مفتوحة المصدر تشغّل النماذج محليًا أو عبر أي مزوّد.','Open-source UI that runs models locally or through any provider.'],
   au:'https://github.com/open-webui/open-webui'},
- {e:'✳️', n:['Claude','Claude'],
+ {e:'sparkles', n:['Claude','Claude'],
   d:['نماذج Anthropic القوية للكتابة والبرمجة والمستندات الطويلة.','Powerful Anthropic models for writing, coding and long documents.'],
   u:'https://claude.ai/',
   an:['LibreChat','LibreChat'],
   ad:['منصّة مفتوحة المصدر تجمع عدة نماذج في واجهة واحدة.','Open-source platform gathering several models in one interface.'],
   au:'https://github.com/danny-avila/LibreChat'},
- {e:'♊', n:['Gemini','Gemini'],
+ {e:'star', n:['Gemini','Gemini'],
   d:['نماذج Google متعددة الوسائط مدمجة مع خدماتها.','Google multimodal models integrated with its services.'],
   u:'https://gemini.google.com/',
   an:['Jan','Jan'],
   ad:['مساعد مفتوح المصدر يعمل دون إنترنت على جهازك.','Open-source assistant that runs offline on your machine.'],
   au:'https://github.com/janhq/jan'},
- {e:'🎨', n:['Midjourney','Midjourney'],
+ {e:'photo', n:['Midjourney','Midjourney'],
   d:['أشهر أداة لتوليد الصور الفنية من الوصف النصي.','The most famous tool for generating art from text.'],
   u:'https://www.midjourney.com/',
   an:['Stable Diffusion WebUI','Stable Diffusion WebUI'],
   ad:['توليد صور مجاني مفتوح المصدر يعمل على كرت الشاشة لديك.','Free open-source image generation running on your GPU.'],
   au:'https://github.com/AUTOMATIC1111/stable-diffusion-webui'},
- {e:'💻', n:['GitHub Copilot','GitHub Copilot'],
+ {e:'code-bracket-square', n:['GitHub Copilot','GitHub Copilot'],
   d:['مساعد برمجة داخل المحرر يكمل الكود ويقترح الحلول.','An in-editor coding assistant that completes and suggests code.'],
   u:'https://github.com/features/copilot',
   an:['Aider','Aider'],
   ad:['زميل برمجي مجاني مفتوح المصدر يعمل من الطرفية.','Free open-source AI pair programmer that runs in the terminal.'],
   au:'https://github.com/Aider-AI/aider'},
- {e:'🔎', n:['Perplexity','Perplexity'],
+ {e:'magnifying-glass', n:['Perplexity','Perplexity'],
   d:['محرك بحث يعطي إجابات مدعومة بالمصادر.','A search engine that answers with cited sources.'],
   u:'https://www.perplexity.ai/',
   an:['Khoj','Khoj'],
   ad:['مساعد شخصي مفتوح المصدر يبحث ويجيب من مصادرك.','Open-source personal assistant that answers from your sources.'],
   au:'https://github.com/khoj-ai/khoj'},
- {e:'🎙️', n:['ElevenLabs','ElevenLabs'],
+ {e:'microphone', n:['ElevenLabs','ElevenLabs'],
   d:['تحويل النص إلى كلام واقعي بلهجات متعددة.','Realistic text-to-speech with many voices and accents.'],
   u:'https://elevenlabs.io/',
   an:['Coqui TTS','Coqui TTS'],
   ad:['توليد صوت مجاني مفتوح المصدر يعمل محليًا.','Free open-source speech synthesis running locally.'],
   au:'https://github.com/coqui-ai/TTS'},
- {e:'🎬', n:['Sora','Sora'],
+ {e:'film', n:['Sora','Sora'],
   d:['توليد فيديو قصير من وصف نصي.','Short video generation from a text description.'],
   u:'https://sora.com/',
   an:['LTX-Video','LTX-Video'],

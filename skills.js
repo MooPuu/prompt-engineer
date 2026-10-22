@@ -11,37 +11,37 @@ window.PE_SKILLS = (function () {
   const CATS = {
   "design": {
     "n": [
-      "🎨 تصميم وواجهات", "🎨 Design & UI"
+      "تصميم وواجهات", "Design & UI"
     ],
     "icon": "design"
   },
   "writing": {
     "n": [
-      "✍️ كتابة وتوثيق", "✍️ Writing & Docs"
+      "كتابة وتوثيق", "Writing & Docs"
     ],
     "icon": "writing"
   },
   "marketing": {
     "n": [
-      "📈 تسويق وSEO", "📈 Marketing & SEO"
+      "تسويق وSEO", "Marketing & SEO"
     ],
     "icon": "marketing"
   },
   "media": {
     "n": [
-      "🖼️ صور وفيديو", "🖼️ Images & Video"
+      "صور وفيديو", "Images & Video"
     ],
     "icon": "media"
   },
   "planning": {
     "n": [
-      "📊 تخطيط وبيانات", "📊 Planning & Data & Analytics"
+      "تخطيط وبيانات", "Planning & Data & Analytics"
     ],
     "icon": "data"
   },
   "productivity": {
     "n": [
-      "⚡️ إنتاجية وسير عمل", "⚡️ Productivity"
+      "إنتاجية وسير عمل", "Productivity"
     ],
     "icon": "productivity"
   }
@@ -50,8 +50,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "seo",
     "n": [
-      "تحسين محركات البحث",
-      "SEO optimization"
+      "تحسين محركات البحث", "SEO optimization"
     ],
     "k": [
       "seo",
@@ -82,8 +81,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "content",
     "n": [
-      "كتابة محتوى",
-      "Content writing"
+      "كتابة محتوى", "Content writing"
     ],
     "k": [
       "محتوى",
@@ -109,8 +107,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "social",
     "n": [
-      "منشورات سوشيال ميديا",
-      "Social media posts"
+      "منشورات سوشيال ميديا", "Social media posts"
     ],
     "k": [
       "انستغرام",
@@ -142,8 +139,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "email",
     "n": [
-      "كتابة إيميل",
-      "Email writing"
+      "كتابة إيميل", "Email writing"
     ],
     "k": [
       "ايميل",
@@ -169,8 +165,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "ads",
     "n": [
-      "نصوص إعلانية",
-      "Ad copy"
+      "نصوص إعلانية", "Ad copy"
     ],
     "k": [
       "اعلان",
@@ -195,8 +190,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "product",
     "n": [
-      "وصف منتج",
-      "Product description"
+      "وصف منتج", "Product description"
     ],
     "k": [
       "منتج",
@@ -221,8 +215,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "video",
     "n": [
-      "سكربت فيديو",
-      "Video script"
+      "سكربت فيديو", "Video script"
     ],
     "k": [
       "فيديو",
@@ -251,8 +244,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "story",
     "n": [
-      "السرد القصصي",
-      "Storytelling"
+      "السرد القصصي", "Storytelling"
     ],
     "k": [
       "قصة",
@@ -277,8 +269,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "teach",
     "n": [
-      "خطة شرح وتعليم",
-      "Teaching plan"
+      "خطة شرح وتعليم", "Teaching plan"
     ],
     "k": [
       "شرح",
@@ -305,8 +296,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "code",
     "n": [
-      "كتابة برمجية",
-      "Coding"
+      "كتابة برمجية", "Coding"
     ],
     "k": [
       "كود",
@@ -333,8 +323,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "review",
     "n": [
-      "مراجعة كود",
-      "Code review"
+      "مراجعة كود", "Code review"
     ],
     "k": [
       "مراجعة",
@@ -357,8 +346,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "debug",
     "n": [
-      "تصحيح الأخطاء",
-      "Debugging"
+      "تصحيح الأخطاء", "Debugging"
     ],
     "k": [
       "خطا",
@@ -386,8 +374,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "test",
     "n": [
-      "كتابة الاختبارات",
-      "Writing tests"
+      "كتابة الاختبارات", "Writing tests"
     ],
     "k": [
       "اختبار",
@@ -411,8 +398,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "docs",
     "n": [
-      "التوثيق",
-      "Documentation"
+      "التوثيق", "Documentation"
     ],
     "k": [
       "توثيق",
@@ -435,8 +421,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "translate",
     "n": [
-      "الترجمة والتعريب",
-      "Translation and localization"
+      "الترجمة والتعريب", "Translation and localization"
     ],
     "k": [
       "ترجم",
@@ -459,8 +444,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "summary",
     "n": [
-      "التلخيص",
-      "Summarization"
+      "التلخيص", "Summarization"
     ],
     "k": [
       "تلخيص",
@@ -482,8 +466,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "data",
     "n": [
-      "تحليل البيانات",
-      "Data analysis"
+      "تحليل البيانات", "Data analysis"
     ],
     "k": [
       "بيانات",
@@ -510,8 +493,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "compare",
     "n": [
-      "المقارنة",
-      "Comparison"
+      "المقارنة", "Comparison"
     ],
     "k": [
       "مقارنه",
@@ -537,8 +519,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "brainstorm",
     "n": [
-      "العصف الذهني",
-      "Brainstorming"
+      "العصف الذهني", "Brainstorming"
     ],
     "k": [
       "افكار",
@@ -563,8 +544,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "persuade",
     "n": [
-      "الكتابة الإقناعية",
-      "Persuasive writing"
+      "الكتابة الإقناعية", "Persuasive writing"
     ],
     "k": [
       "اقناع",
@@ -587,8 +567,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "interview",
     "n": [
-      "أسئلة المقابلات",
-      "Interview questions"
+      "أسئلة المقابلات", "Interview questions"
     ],
     "k": [
       "مقابله",
@@ -611,8 +590,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "ux",
     "n": [
-      "تجربة المستخدم",
-      "UX research"
+      "تجربة المستخدم", "UX research"
     ],
     "k": [
       "تجربة",
@@ -636,8 +614,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "slides",
     "n": [
-      "عرض تقديمي",
-      "Presentation slides"
+      "عرض تقديمي", "Presentation slides"
     ],
     "k": [
       "عرض",
@@ -660,8 +637,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "risk",
     "n": [
-      "تحليل المخاطر",
-      "Risk analysis"
+      "تحليل المخاطر", "Risk analysis"
     ],
     "k": [
       "مخاطر",
@@ -684,8 +660,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "steps",
     "n": [
-      "خطوات إجرائية",
-      "Step-by-step procedure"
+      "خطوات إجرائية", "Step-by-step procedure"
     ],
     "k": [
       "خطوات",
@@ -709,8 +684,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "roleplay",
     "n": [
-      "تمثيل دور",
-      "Role play"
+      "تمثيل دور", "Role play"
     ],
     "k": [
       "لعب دور",
@@ -733,8 +707,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "critique",
     "n": [
-      "النقدconstructive",
-      "Constructive critique"
+      "النقدconstructive", "Constructive critique"
     ],
     "k": [
       "نقد",
@@ -757,8 +730,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "checklist",
     "n": [
-      "قائمة تحقق",
-      "Checklist"
+      "قائمة تحقق", "Checklist"
     ],
     "k": [
       "قائمة",
@@ -781,8 +753,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "explain",
     "n": [
-      "الشرح المبسّط",
-      "Simple explanation"
+      "الشرح المبسّط", "Simple explanation"
     ],
     "k": [
       "اشرح",
@@ -805,8 +776,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "counter",
     "n": [
-      "الرد على الاعتراضات",
-      "Handling objections"
+      "الرد على الاعتراضات", "Handling objections"
     ],
     "k": [
       "اعتراض",
@@ -828,8 +798,7 @@ window.PE_SKILLS = (function () {
   {
     "id": "research",
     "n": [
-      "البحث وتوثيق المصادر",
-      "Research and sources"
+      "البحث وتوثيق المصادر", "Research and sources"
     ],
     "k": [
       "بحث",
@@ -854,8 +823,7 @@ window.PE_SKILLS = (function () {
     "id": "brainstorming",
     "cat": "productivity",
     "n": [
-      "العصف الذهني قبل العمل الإبداعي",
-      "brainstorming"
+      "العصف الذهني قبل العمل الإبداعي", "brainstorming"
     ],
     "k": [
       "brainstorming",
@@ -880,8 +848,7 @@ window.PE_SKILLS = (function () {
     "id": "seo-audit",
     "cat": "marketing",
     "n": [
-      "تدقيق SEO",
-      "seo audit"
+      "تدقيق SEO", "seo audit"
     ],
     "k": [
       "seo-audit",
@@ -907,8 +874,7 @@ window.PE_SKILLS = (function () {
     "id": "seo-geo",
     "cat": "marketing",
     "n": [
-      "تحسين محركات البحث والتوليد",
-      "seo geo"
+      "تحسين محركات البحث والتوليد", "seo geo"
     ],
     "k": [
       "seo-geo",
@@ -931,8 +897,7 @@ window.PE_SKILLS = (function () {
     "id": "social-content",
     "cat": "marketing",
     "n": [
-      "محتوى وسائل التواصل",
-      "social content"
+      "محتوى وسائل التواصل", "social content"
     ],
     "k": [
       "social-content",
@@ -959,8 +924,7 @@ window.PE_SKILLS = (function () {
     "id": "social-media-marketing",
     "cat": "marketing",
     "n": [
-      "تسويق عبر السوشيال ميديا",
-      "social media marketing"
+      "تسويق عبر السوشيال ميديا", "social media marketing"
     ],
     "k": [
       "social-media-marketing",
@@ -981,8 +945,7 @@ window.PE_SKILLS = (function () {
     "id": "pricing-strategy",
     "cat": "marketing",
     "n": [
-      "استراتيجية التسعير",
-      "pricing strategy"
+      "استراتيجية التسعير", "pricing strategy"
     ],
     "k": [
       "pricing-strategy",
@@ -1006,8 +969,7 @@ window.PE_SKILLS = (function () {
     "id": "email-sequence",
     "cat": "marketing",
     "n": [
-      "سلسلة إيميلات",
-      "email sequence"
+      "سلسلة إيميلات", "email sequence"
     ],
     "k": [
       "email-sequence",
@@ -1031,8 +993,7 @@ window.PE_SKILLS = (function () {
     "id": "email-design",
     "cat": "marketing",
     "n": [
-      "تصميم الإيميل",
-      "email design"
+      "تصميم الإيميل", "email design"
     ],
     "k": [
       "email-design",
@@ -1056,8 +1017,7 @@ window.PE_SKILLS = (function () {
     "id": "cold-email",
     "cat": "marketing",
     "n": [
-      "إيميل التواصل البارد",
-      "cold email"
+      "إيميل التواصل البارد", "cold email"
     ],
     "k": [
       "cold-email",
@@ -1080,8 +1040,7 @@ window.PE_SKILLS = (function () {
     "id": "content-creator",
     "cat": "marketing",
     "n": [
-      "صانع المحتوى التسويقي",
-      "content creator"
+      "صانع المحتوى التسويقي", "content creator"
     ],
     "k": [
       "content-creator",
@@ -1105,8 +1064,7 @@ window.PE_SKILLS = (function () {
     "id": "copywriting",
     "cat": "marketing",
     "n": [
-      "كتابة نصوص البيع",
-      "copywriting"
+      "كتابة نصوص البيع", "copywriting"
     ],
     "k": [
       "copywriting",
@@ -1131,8 +1089,7 @@ window.PE_SKILLS = (function () {
     "id": "canvas-design",
     "cat": "design",
     "n": [
-      "تصميم بصري فني",
-      "canvas design"
+      "تصميم بصري فني", "canvas design"
     ],
     "k": [
       "canvas-design",
@@ -1155,8 +1112,7 @@ window.PE_SKILLS = (function () {
     "id": "algorithmic-art",
     "cat": "design",
     "n": [
-      "الفن الخوارزمي",
-      "algorithmic art"
+      "الفن الخوارزمي", "algorithmic art"
     ],
     "k": [
       "algorithmic-art",
@@ -1180,8 +1136,7 @@ window.PE_SKILLS = (function () {
     "id": "ai-image-generation",
     "cat": "media",
     "n": [
-      "توليد الصور",
-      "ai image generation"
+      "توليد الصور", "ai image generation"
     ],
     "k": [
       "ai-image-generation",
@@ -1206,8 +1161,7 @@ window.PE_SKILLS = (function () {
     "id": "ai-video-generation",
     "cat": "media",
     "n": [
-      "توليد الفيديو",
-      "ai video generation"
+      "توليد الفيديو", "ai video generation"
     ],
     "k": [
       "ai-video-generation",
@@ -1231,8 +1185,7 @@ window.PE_SKILLS = (function () {
     "id": "doc-coauthoring",
     "cat": "writing",
     "n": [
-      "الكتابة التعاونية",
-      "doc coauthoring"
+      "الكتابة التعاونية", "doc coauthoring"
     ],
     "k": [
       "doc-coauthoring",
@@ -1256,8 +1209,7 @@ window.PE_SKILLS = (function () {
     "id": "documentation-writer",
     "cat": "writing",
     "n": [
-      "كاتب التوثيق",
-      "documentation writer"
+      "كاتب التوثيق", "documentation writer"
     ],
     "k": [
       "documentation-writer",
@@ -1278,8 +1230,7 @@ window.PE_SKILLS = (function () {
     "id": "writing-clearly-and-concisely",
     "cat": "writing",
     "n": [
-      "الكتابة الواضحة الموجزة",
-      "writing clearly and concisely"
+      "الكتابة الواضحة الموجزة", "writing clearly and concisely"
     ],
     "k": [
       "use",
@@ -1303,8 +1254,7 @@ window.PE_SKILLS = (function () {
     "id": "data-storytelling",
     "cat": "planning",
     "n": [
-      "سرد البيانات",
-      "data storytelling"
+      "سرد البيانات", "data storytelling"
     ],
     "k": [
       "data-storytelling",
@@ -1328,8 +1278,7 @@ window.PE_SKILLS = (function () {
     "id": "postmortem-writing",
     "cat": "planning",
     "n": [
-      "تحليل ما بعد الحادث",
-      "postmortem writing"
+      "تحليل ما بعد الحادث", "postmortem writing"
     ],
     "k": [
       "postmortem-writing",
@@ -1354,8 +1303,7 @@ window.PE_SKILLS = (function () {
     "id": "incident-runbook-templates",
     "cat": "planning",
     "n": [
-      "دليل الاستجابة للحوادث",
-      "incident runbook templates"
+      "دليل الاستجابة للحوادث", "incident runbook templates"
     ],
     "k": [
       "incident-runbook-templates",
@@ -1378,8 +1326,7 @@ window.PE_SKILLS = (function () {
     "id": "product-manager-toolkit",
     "cat": "marketing",
     "n": [
-      "حقيبة أدوات مدير المنتج",
-      "product manager toolkit"
+      "حقيبة أدوات مدير المنتج", "product manager toolkit"
     ],
     "k": [
       "product-manager-toolkit",
@@ -1402,8 +1349,7 @@ window.PE_SKILLS = (function () {
     "id": "market-sizing-analysis",
     "cat": "marketing",
     "n": [
-      "قياس حجم السوق",
-      "market sizing analysis"
+      "قياس حجم السوق", "market sizing analysis"
     ],
     "k": [
       "market-sizing-analysis",
@@ -1429,8 +1375,7 @@ window.PE_SKILLS = (function () {
     "id": "competitive-landscape",
     "cat": "marketing",
     "n": [
-      "تحليل المنافسين",
-      "competitive landscape"
+      "تحليل المنافسين", "competitive landscape"
     ],
     "k": [
       "competitive-landscape",
@@ -1454,8 +1399,7 @@ window.PE_SKILLS = (function () {
     "id": "startup-metrics-framework",
     "cat": "marketing",
     "n": [
-      "مؤشرات الشركات الناشئة",
-      "startup metrics framework"
+      "مؤشرات الشركات الناشئة", "startup metrics framework"
     ],
     "k": [
       "startup-metrics-framework",
@@ -1481,8 +1425,7 @@ window.PE_SKILLS = (function () {
     "id": "launch-strategy",
     "cat": "marketing",
     "n": [
-      "استراتيجية الإطلاق",
-      "launch strategy"
+      "استراتيجية الإطلاق", "launch strategy"
     ],
     "k": [
       "launch-strategy",
@@ -1506,8 +1449,7 @@ window.PE_SKILLS = (function () {
     "id": "kpi-dashboard-design",
     "cat": "marketing",
     "n": [
-      "تصميم لوحة المؤشرات",
-      "kpi dashboard design"
+      "تصميم لوحة المؤشرات", "kpi dashboard design"
     ],
     "k": [
       "kpi-dashboard-design",
@@ -1530,8 +1472,7 @@ window.PE_SKILLS = (function () {
     "id": "free-tool-strategy",
     "cat": "marketing",
     "n": [
-      "استراتيجية الأداة المجانية",
-      "free tool strategy"
+      "استراتيجية الأداة المجانية", "free tool strategy"
     ],
     "k": [
       "free-tool-strategy",
@@ -1557,8 +1498,7 @@ window.PE_SKILLS = (function () {
     "id": "enhance-prompt",
     "cat": "productivity",
     "n": [
-      "تحسين البرومبت",
-      "enhance prompt"
+      "تحسين البرومبت", "enhance prompt"
     ],
     "k": [
       "enhance-prompt",
@@ -1582,8 +1522,7 @@ window.PE_SKILLS = (function () {
     "id": "frontend-design",
     "cat": "design",
     "n": [
-      "تصميم الواجهات",
-      "frontend design"
+      "تصميم الواجهات", "frontend design"
     ],
     "k": [
       "frontend-design",
@@ -1607,8 +1546,7 @@ window.PE_SKILLS = (function () {
     "id": "web-design-guidelines",
     "cat": "design",
     "n": [
-      "مراجعة إرشادات تصميم الويب",
-      "web design guidelines"
+      "مراجعة إرشادات تصميم الويب", "web design guidelines"
     ],
     "k": [
       "web-design-guidelines",
@@ -1631,8 +1569,7 @@ window.PE_SKILLS = (function () {
     "id": "ui-ux-pro-max",
     "cat": "design",
     "n": [
-      "خبرة تصميم UI/UX",
-      "ui ux pro max"
+      "خبرة تصميم UI/UX", "ui ux pro max"
     ],
     "k": [
       "ui-ux-pro-max",
@@ -1654,8 +1591,7 @@ window.PE_SKILLS = (function () {
     "id": "accessibility-compliance",
     "cat": "design",
     "n": [
-      "الوصولية WCAG",
-      "accessibility compliance"
+      "الوصولية WCAG", "accessibility compliance"
     ],
     "k": [
       "accessibility-compliance",
@@ -1678,8 +1614,7 @@ window.PE_SKILLS = (function () {
     "id": "fixing-accessibility",
     "cat": "design",
     "n": [
-      "إصلاح مشاكل الوصولية",
-      "fixing accessibility"
+      "إصلاح مشاكل الوصولية", "fixing accessibility"
     ],
     "k": [
       "fixing-accessibility",
@@ -1703,8 +1638,7 @@ window.PE_SKILLS = (function () {
     "id": "fixing-motion-performance",
     "cat": "design",
     "n": [
-      "أداء الحركات",
-      "fixing motion performance"
+      "أداء الحركات", "fixing motion performance"
     ],
     "k": [
       "fixing-motion-performance",
@@ -1726,8 +1660,7 @@ window.PE_SKILLS = (function () {
     "id": "performance-optimization",
     "cat": "design",
     "n": [
-      "تحسين الأداء",
-      "performance optimization"
+      "تحسين الأداء", "performance optimization"
     ],
     "k": [
       "performance-optimization",
@@ -1749,8 +1682,7 @@ window.PE_SKILLS = (function () {
     "id": "web-performance-optimization",
     "cat": "design",
     "n": [
-      "أداء الويب",
-      "web performance optimization"
+      "أداء الويب", "web performance optimization"
     ],
     "k": [
       "web-performance-optimization",
@@ -1773,8 +1705,7 @@ window.PE_SKILLS = (function () {
     "id": "security-requirement-extraction",
     "cat": "planning",
     "n": [
-      "استخراج المتطلبات الأمنية",
-      "security requirement extraction"
+      "استخراج المتطلبات الأمنية", "security requirement extraction"
     ],
     "k": [
       "security-requirement-extraction",
@@ -1796,8 +1727,7 @@ window.PE_SKILLS = (function () {
     "id": "api-design-principles",
     "cat": "design",
     "n": [
-      "مبادئ تصميم الـ API",
-      "api design principles"
+      "مبادئ تصميم الـ API", "api design principles"
     ],
     "k": [
       "api-design-principles",
@@ -1818,8 +1748,7 @@ window.PE_SKILLS = (function () {
     "id": "rest-api-design",
     "cat": "design",
     "n": [
-      "تصميم REST API",
-      "rest api design"
+      "تصميم REST API", "rest api design"
     ],
     "k": [
       "rest-api-design",
@@ -1843,8 +1772,7 @@ window.PE_SKILLS = (function () {
     "id": "api-security-best-practices",
     "cat": "design",
     "n": [
-      "أمان الـ API",
-      "api security best practices"
+      "أمان الـ API", "api security best practices"
     ],
     "k": [
       "api-security-best-practices",
@@ -1869,8 +1797,7 @@ window.PE_SKILLS = (function () {
     "id": "auth-implementation-patterns",
     "cat": "design",
     "n": [
-      "أنماط المصادقة",
-      "auth implementation patterns"
+      "أنماط المصادقة", "auth implementation patterns"
     ],
     "k": [
       "auth-implementation-patterns",
@@ -1894,8 +1821,7 @@ window.PE_SKILLS = (function () {
     "id": "database-schema-designer",
     "cat": "design",
     "n": [
-      "تصميم مخطط قاعدة البيانات",
-      "database schema designer"
+      "تصميم مخطط قاعدة البيانات", "database schema designer"
     ],
     "k": [
       "database-schema-designer",
@@ -1919,8 +1845,7 @@ window.PE_SKILLS = (function () {
     "id": "database-migration",
     "cat": "design",
     "n": [
-      "ترحيل قواعد البيانات",
-      "database migration"
+      "ترحيل قواعد البيانات", "database migration"
     ],
     "k": [
       "database-migration",
@@ -1943,8 +1868,7 @@ window.PE_SKILLS = (function () {
     "id": "deployment-pipeline-design",
     "cat": "design",
     "n": [
-      "تصميم خط النشر",
-      "deployment pipeline design"
+      "تصميم خط النشر", "deployment pipeline design"
     ],
     "k": [
       "deployment-pipeline-design",
@@ -1969,8 +1893,7 @@ window.PE_SKILLS = (function () {
     "id": "devops-rollout-plan",
     "cat": "design",
     "n": [
-      "خطة النشر التدريجي",
-      "devops rollout plan"
+      "خطة النشر التدريجي", "devops rollout plan"
     ],
     "k": [
       "devops-rollout-plan",
@@ -1994,8 +1917,7 @@ window.PE_SKILLS = (function () {
     "id": "ci-cd-best-practices",
     "cat": "design",
     "n": [
-      "ممارسات CI/CD",
-      "ci cd best practices"
+      "ممارسات CI/CD", "ci cd best practices"
     ],
     "k": [
       "ci-cd-best-practices",
@@ -2019,8 +1941,7 @@ window.PE_SKILLS = (function () {
     "id": "monitoring-expert",
     "cat": "design",
     "n": [
-      "المراقبة والإنذارات",
-      "monitoring expert"
+      "المراقبة والإنذارات", "monitoring expert"
     ],
     "k": [
       "monitoring-expert",
@@ -2043,8 +1964,7 @@ window.PE_SKILLS = (function () {
     "id": "logging-best-practices",
     "cat": "design",
     "n": [
-      "ممارسات السجلات",
-      "logging best practices"
+      "ممارسات السجلات", "logging best practices"
     ],
     "k": [
       "logging-best-practices",
@@ -2067,8 +1987,7 @@ window.PE_SKILLS = (function () {
     "id": "ship-learn-next",
     "cat": "planning",
     "n": [
-      "من التعلّم إلى التنفيذ",
-      "ship learn next"
+      "من التعلّم إلى التنفيذ", "ship learn next"
     ],
     "k": [
       "ship-learn-next",
@@ -2093,8 +2012,7 @@ window.PE_SKILLS = (function () {
     "id": "i18n-localization",
     "cat": "productivity",
     "n": [
-      "التدويل والتعريب",
-      "i18n localization"
+      "التدويل والتعريب", "i18n localization"
     ],
     "k": [
       "i18n-localization",
@@ -2115,8 +2033,7 @@ window.PE_SKILLS = (function () {
     "id": "twitter-thread-creation",
     "cat": "marketing",
     "n": [
-      "سلسلة تغريدات",
-      "twitter thread creation"
+      "سلسلة تغريدات", "twitter thread creation"
     ],
     "k": [
       "twitter-thread-creation",
@@ -2138,8 +2055,7 @@ window.PE_SKILLS = (function () {
     "id": "internal-comms-anthropic",
     "cat": "marketing",
     "n": [
-      "التواصل الداخلي",
-      "internal comms anthropic"
+      "التواصل الداخلي", "internal comms anthropic"
     ],
     "k": [
       "internal-comms-anthropic",
@@ -2163,8 +2079,7 @@ window.PE_SKILLS = (function () {
     "id": "onboarding-cro",
     "cat": "marketing",
     "n": [
-      "تحسين تجربة البدء",
-      "onboarding cro"
+      "تحسين تجربة البدء", "onboarding cro"
     ],
     "k": [
       "onboarding-cro",
@@ -2188,8 +2103,7 @@ window.PE_SKILLS = (function () {
     "id": "threat-modeling-expert",
     "cat": "planning",
     "n": [
-      "نمذجة التهديدات",
-      "threat modeling expert"
+      "نمذجة التهديدات", "threat modeling expert"
     ],
     "k": [
       "threat-modeling-expert",
@@ -2212,8 +2126,7 @@ window.PE_SKILLS = (function () {
     "id": "stride-analysis-patterns",
     "cat": "planning",
     "n": [
-      "تحليل STRIDE",
-      "stride analysis patterns"
+      "تحليل STRIDE", "stride analysis patterns"
     ],
     "k": [
       "stride-analysis-patterns",
@@ -2236,8 +2149,7 @@ window.PE_SKILLS = (function () {
     "id": "systematic-debugging",
     "cat": "planning",
     "n": [
-      "التصحيح المنهجي",
-      "systematic debugging"
+      "التصحيح المنهجي", "systematic debugging"
     ],
     "k": [
       "systematic-debugging",
@@ -2261,8 +2173,7 @@ window.PE_SKILLS = (function () {
     "id": "test-driven-development",
     "cat": "planning",
     "n": [
-      "التطوير بالاختبارات أولًا",
-      "test driven development"
+      "التطوير بالاختبارات أولًا", "test driven development"
     ],
     "k": [
       "test-driven-development",
@@ -2287,8 +2198,7 @@ window.PE_SKILLS = (function () {
     "id": "requesting-code-review",
     "cat": "planning",
     "n": [
-      "طلب مراجعة الكود",
-      "requesting code review"
+      "طلب مراجعة الكود", "requesting code review"
     ],
     "k": [
       "requesting-code-review",
@@ -2312,8 +2222,7 @@ window.PE_SKILLS = (function () {
     "id": "receiving-code-review",
     "cat": "planning",
     "n": [
-      "استقبال مراجعة الكود",
-      "receiving code review"
+      "استقبال مراجعة الكود", "receiving code review"
     ],
     "k": [
       "receiving-code-review",
@@ -2335,8 +2244,7 @@ window.PE_SKILLS = (function () {
     "id": "verification-before-completion",
     "cat": "planning",
     "n": [
-      "التحقق قبل الإنجاز",
-      "verification before completion"
+      "التحقق قبل الإنجاز", "verification before completion"
     ],
     "k": [
       "verification-before-completion",
@@ -2360,8 +2268,7 @@ window.PE_SKILLS = (function () {
     "id": "executing-plans",
     "cat": "planning",
     "n": [
-      "تنفيذ خطة",
-      "executing plans"
+      "تنفيذ خطة", "executing plans"
     ],
     "k": [
       "executing-plans",
@@ -2384,8 +2291,7 @@ window.PE_SKILLS = (function () {
     "id": "writing-plans",
     "cat": "planning",
     "n": [
-      "كتابة الخطة",
-      "writing plans"
+      "كتابة الخطة", "writing plans"
     ],
     "k": [
       "writing-plans",
@@ -2410,8 +2316,7 @@ window.PE_SKILLS = (function () {
     "id": "subagent-driven-development",
     "cat": "planning",
     "n": [
-      "التنفيذ بوكالات فرعية",
-      "subagent driven development"
+      "التنفيذ بوكالات فرعية", "subagent driven development"
     ],
     "k": [
       "subagent-driven-development",
@@ -2435,8 +2340,7 @@ window.PE_SKILLS = (function () {
     "id": "dispatching-parallel-agents",
     "cat": "planning",
     "n": [
-      "إرسال وكلاء متوازيين",
-      "dispatching parallel agents"
+      "إرسال وكلاء متوازيين", "dispatching parallel agents"
     ],
     "k": [
       "dispatching-parallel-agents",
@@ -2459,8 +2363,7 @@ window.PE_SKILLS = (function () {
     "id": "finishing-a-development-branch",
     "cat": "planning",
     "n": [
-      "إنهاء فرع التطوير",
-      "finishing a development branch"
+      "إنهاء فرع التطوير", "finishing a development branch"
     ],
     "k": [
       "finishing-a-development-branch",
@@ -2484,8 +2387,7 @@ window.PE_SKILLS = (function () {
     "id": "using-git-worktrees",
     "cat": "planning",
     "n": [
-      "أشجار عمل Git",
-      "using git worktrees"
+      "أشجار عمل Git", "using git worktrees"
     ],
     "k": [
       "use",
@@ -2508,8 +2410,7 @@ window.PE_SKILLS = (function () {
     "id": "webapp-testing",
     "cat": "design",
     "n": [
-      "اختبار تطبيقات الويب",
-      "webapp testing"
+      "اختبار تطبيقات الويب", "webapp testing"
     ],
     "k": [
       "webapp-testing",
@@ -2532,8 +2433,7 @@ window.PE_SKILLS = (function () {
     "id": "api-documentation-generator",
     "cat": "writing",
     "n": [
-      "توليد توثيق الـ API",
-      "api documentation generator"
+      "توليد توثيق الـ API", "api documentation generator"
     ],
     "k": [
       "api-documentation-generator",
@@ -2555,8 +2455,7 @@ window.PE_SKILLS = (function () {
     "id": "documentation-templates",
     "cat": "writing",
     "n": [
-      "قوالب التوثيق",
-      "documentation templates"
+      "قوالب التوثيق", "documentation templates"
     ],
     "k": [
       "documentation-templates",
@@ -2577,8 +2476,7 @@ window.PE_SKILLS = (function () {
     "id": "api-documentation",
     "cat": "writing",
     "n": [
-      "توثيق الـ API",
-      "api documentation"
+      "توثيق الـ API", "api documentation"
     ],
     "k": [
       "api-documentation",
@@ -2600,8 +2498,7 @@ window.PE_SKILLS = (function () {
     "id": "marp-slide",
     "cat": "writing",
     "n": [
-      "شرائح Marp",
-      "marp slide"
+      "شرائح Marp", "marp slide"
     ],
     "k": [
       "marp-slide",
@@ -2623,8 +2520,7 @@ window.PE_SKILLS = (function () {
     "id": "frontend-slides",
     "cat": "writing",
     "n": [
-      "عرض تقديمي متحرك",
-      "frontend slides"
+      "عرض تقديمي متحرك", "frontend slides"
     ],
     "k": [
       "frontend-slides",
@@ -2647,8 +2543,7 @@ window.PE_SKILLS = (function () {
     "id": "office-productivity",
     "cat": "writing",
     "n": [
-      "إنتاجية المكتب",
-      "office productivity"
+      "إنتاجية المكتب", "office productivity"
     ],
     "k": [
       "office-productivity",
