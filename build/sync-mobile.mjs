@@ -6,7 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const SHARED = ['i18n.js', 'anim.js', 'lottie.min.js', 'skills.js', 'commands.js', 'bests.js'];
+const SHARED = ['i18n.js', 'anim.js', 'lottie.min.js', 'skills.js', 'commands.js', 'bests.js', 'icons.js'];
 
 let copied = 0, same = 0;
 for (const f of SHARED) {

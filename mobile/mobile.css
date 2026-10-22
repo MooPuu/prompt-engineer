@@ -802,3 +802,8 @@ html[dir="ltr"] .hero .hero-anim{left:30%;right:auto}
 
 .ai-links a,.ai-links button{display:inline-flex;align-items:center;gap:5px}
 .ai-links .hi{width:1.05em;height:1.05em;flex:0 0 auto}
+
+/* the duotone icons of SVG Repo */
+.di{width:1.05em;height:1.05em;flex:0 0 auto}
+.chips label .di{width:1.15em;height:1.15em}
+.tpl-item .di{width:1.2em;height:1.2em}

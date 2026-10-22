@@ -1147,6 +1147,16 @@ function skillsSourceText(){
     .map(id=>{ const el=$(id); return el?el.value:''; }).join(' ');
 }
 const CAT_ICONS={all:'squares-2x2',design:'paint-brush',writing:'pencil-square',marketing:'megaphone',media:'photo',planning:'chart-bar',productivity:'bolt'};
+
+/* the duotone icons of SVG Repo for the chips, the presets and the templates */
+function paintDuotone(){
+  document.querySelectorAll('.chips label').forEach(lab=>{
+    const sp=lab.querySelector('[data-i18n]'); if(!sp) return;
+    const svg=di(sp.dataset.i18n); if(!svg) return;
+    const old=lab.querySelector('svg'); if(old) old.remove();
+    lab.insertAdjacentHTML('afterbegin', svg);
+  });
+}
 function renderSkillCats(){
   const box=$('skillsCats');
   if(!box || !window.PE_SKILLS) return;
@@ -1299,8 +1309,11 @@ function renderCommands(){
 }
 function initSkills(){
   renderSkillCats();
+  if(typeof paintDuotone==='function') paintDuotone();
+  if(typeof paintDuotone==='function') paintDuotone();
   renderSkills();
   renderCommands();
+  paintDuotone();
   document.querySelectorAll('.skills-tabs .sk-tab').forEach(b=>{
     if(b.dataset.bound) return;
     b.dataset.bound='1';
@@ -1341,7 +1354,7 @@ function renderPresets(){
     if(PRESET_CAT!=='all' && p.cat!==PRESET_CAT) return;
     const b=document.createElement('button');
     b.className='pcard'; b.type='button'; b.dataset.i=i;
-    b.innerHTML='<b></b>'; b.querySelector('b').textContent=pname(p,i);
+    b.innerHTML=di('preset.'+i)+'<b></b>'; b.querySelector('b').textContent=pname(p,i);
     b.onclick=()=>applyPreset(i);
     box.appendChild(b);
   });
@@ -1385,7 +1398,7 @@ function renderTaskTemplates(){
       const txt=tplValue(p,kind); if(!txt) return;
       const b=document.createElement('button');
       b.className='tpl-item'; b.type='button'; b.dataset.i=i; b.dataset.kind=kind;
-      b.innerHTML='<b></b><span></span>';
+      b.innerHTML=di('preset.'+i)+'<b></b><span></span>';
       b.querySelector('b').textContent=tplTitle(p,kind);
       b.querySelector('span').textContent= kind==='task' ? tx(txt) : tx(p.name);
       b.onclick=()=>useTemplate(kind,i);

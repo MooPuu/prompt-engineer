@@ -720,3 +720,8 @@ textarea::placeholder,input::placeholder,select::placeholder{color:var(--muted2)
 
 .ai-btn{display:inline-flex;align-items:center;gap:6px}
 .ai-btn .hi{width:1.05em;height:1.05em;flex:0 0 auto}
+
+/* the duotone icons of SVG Repo */
+.di{width:1.05em;height:1.05em;flex:0 0 auto}
+.chips label .di,.chip .di{width:1.15em;height:1.15em}
+.tpl-item .di{width:1.2em;height:1.2em}

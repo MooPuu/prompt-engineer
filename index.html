@@ -906,6 +906,7 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
 <script src="skills.js"></script>
 <script src="commands.js"></script>
 <script src="bests.js"></script>
+<script src="icons.js"></script>
 <script>
 /* ================= i18n ================= */
 /* I18N + LANGS now live in the shared i18n.js file */
@@ -964,6 +965,8 @@ function setLang(lg, silent){
   if(typeof renderSkillCats==='function') renderSkillCats();
   if(typeof renderCommands==='function') renderCommands();
   if(typeof renderBests==='function') renderBests();
+  if(typeof paintDuotone==='function') paintDuotone();
+  if(typeof paintDuotone==='function') paintDuotone();
   if(qEl && qEl.value) filterUI(qEl.value);
   markActive();
   if(!silent) toast(t('msg.lang'));
@@ -1057,7 +1060,6 @@ const LEN_AR={short:'100–150 كلمة (مختصر دون حشو)',medium:'300�
 const LEN_EN={short:'100–150 words, concise with no filler',medium:'300–500 words',long:'600–1000 words',deep:'comprehensive and detailed with no length cap'};
 
 /* ================= Presets ================= */
-const PRESET_ICONS={writing:'pencil-square',productivity:'code-bracket-square',planning:'map',marketing:'megaphone',media:'film',design:'paint-brush'};
 const PRESETS = [
 {name:['مقال/محتوى','Article / Content'],cat:'writing', set:{
   task:['اكتب لي محتوى [الموضوع] وجعل القارئ لا يستطيع التوقف قبل النهاية','Write me content about [topic] that the reader cannot stop before the end'],
@@ -1751,7 +1753,7 @@ function renderPresets(){
     shown++;
     const b=document.createElement('button');
     b.className='chip';
-  b.innerHTML=hi(PRESET_ICONS[p.cat]||'sparkles')+'<span>'+pname(p,i)+'</span>'; b.dataset.i=i;
+  b.innerHTML=di('preset.'+i)+'<span>'+pname(p,i)+'</span>'; b.dataset.i=i;
     b.onclick=()=>applyPreset(i);
     box.appendChild(b);
   });
@@ -1773,7 +1775,7 @@ function renderTaskTemplates(){
       const txt=tplValue(p,kind); if(!txt) return;
       const b=document.createElement('button');
       b.type='button'; b.className='tpl-item'; b.dataset.i=i; b.dataset.kind=kind;
-      b.innerHTML='<b></b><span></span>';
+      b.innerHTML=di('preset.'+i)+'<b></b><span></span>';
       b.querySelector('b').textContent=tplTitle(p,kind);
       b.querySelector('span').textContent= kind==='task' ? tx(txt) : tx(p.name);
       b.onclick=()=>useTemplate(kind,i);
@@ -2676,6 +2678,16 @@ function renderSkills(){
   const head=$('skillsAddedHead'); if(head) head.hidden = ADDED_SKILLS.size===0;
 }
 const CAT_ICONS={all:'squares-2x2',design:'paint-brush',writing:'pencil-square',marketing:'megaphone',media:'photo',planning:'chart-bar',productivity:'bolt'};
+
+/* the duotone icons of SVG Repo for the chips, the presets and the templates */
+function paintDuotone(){
+  document.querySelectorAll('.chips label').forEach(lab=>{
+    const sp=lab.querySelector('[data-i18n]'); if(!sp) return;
+    const svg=di(sp.dataset.i18n); if(!svg) return;
+    const old=lab.querySelector('svg'); if(old) old.remove();
+    lab.insertAdjacentHTML('afterbegin', svg);
+  });
+}
 function renderSkillCats(){
   const box=$('skillsCats');
   if(!box || !window.PE_SKILLS) return;
@@ -2782,7 +2794,8 @@ function openSkills(){
   renderSkillCats();
   renderSkills();
   renderCommands();
-  renderBests();
+  renderBests()
+  paintDuotone();;
 }
 function closeSkills(){
   const p=$('skillsPanel'); if(!p) return;
