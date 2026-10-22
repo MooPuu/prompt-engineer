@@ -751,7 +751,8 @@ html[dir="ltr"] .hero .hero-anim{left:30%;right:auto}
 .sug-empty{font-size:12.5px;color:var(--muted);padding:14px;text-align:center;border:1px dashed var(--stroke);border-radius:12px}
 
 /* ---------------- the dynamic variables ---------------- */
-.varbar{position:sticky;top:70px;margin:0 0 14px;padding:12px 14px;border:1px dashed var(--line);border-radius:16px;background:var(--card);z-index:20}
+.varbar{position:sticky;top:70px;margin:0 0 14px;padding:12px 14px;border:1px dashed var(--line);border-radius:16px;background:var(--card);box-shadow:var(--shadow);z-index:20;backdrop-filter:blur(10px)}
+.varbar-h{position:relative}
 .varbar-h{display:flex;align-items:center;gap:8px;font-weight:800;font-size:13px;margin-bottom:9px;color:var(--ink)}
 .varbar-n{background:var(--blue-soft);color:var(--primary);border-radius:99px;padding:1px 9px;font-size:11.5px;font-weight:700}
 .varbar-f{display:flex;flex-wrap:wrap;gap:9px}

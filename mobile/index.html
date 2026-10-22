@@ -23,7 +23,7 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="mobile.css?v=ae400c7a">
+<link rel="stylesheet" href="mobile.css?v=566de3fe">
 </head>
 <body>
 
@@ -474,9 +474,23 @@
 
   <!-- ================= TAB 5: AI TOOLS ================= -->
   <section class="panel" id="m-tools">
-    <div class="greet" data-i18n="ai.title">🤖 برامج مقترحة</div>
-    <div class="note" data-i18n="ai.sub">اضغط أي بطاقة لفتح الموقع الرسمي + البديل المجاني مفتوح المصدر.</div>
-    <div id="aiGrid"></div>
+    <div class="greet" data-i18n="nav.tools">🧰 الأدوات</div>
+    <div class="skills-tabs" id="toolsTabs">
+      <button class="sk-tab active" type="button" data-subtab="best" data-i18n="best.title">أفضل الأدوات</button>
+      <button class="sk-tab" type="button" data-subtab="ai" data-i18n="ai.title">برامج مقترحة</button>
+    </div>
+
+    <div data-subpanel="best" id="toolBest">
+      <div class="note" data-i18n="best.hint">الأفضل في كل مهمة حسب التصنيفات الحيّة</div>
+      <div class="best-list" id="bestList"></div>
+      <div class="best-foot" id="bestUpdated"></div>
+    </div>
+
+    <div data-subpanel="ai" id="toolAI" hidden>
+      <div class="note" data-i18n="ai.sub">اضغط أي بطاقة لفتح الموقع الرسمي + البديل المجاني مفتوح المصدر.</div>
+      <div id="aiGrid"></div>
+    </div>
+
     <div class="d-foot d-foot-gap" data-i18n="ft.note">مهندس البرومبت | Prompt Engineer v3.0.0</div>
   </section>
 
@@ -497,12 +511,11 @@
     <div class="note" data-i18n="skills.hint">أضف المهارات المناسبة، وستدخل البرومبت تلقائيًا</div>
 
     <div class="skills-tabs">
-      <button class="sk-tab active" type="button" data-sktab="skills" data-i18n="skills.tabSkills">المهارات</button>
-      <button class="sk-tab" type="button" data-sktab="commands" data-i18n="skills.tabCommands">الأوامر /</button>
-      <button class="sk-tab" type="button" data-sktab="best" data-i18n="best.title">أفضل الأدوات</button>
+      <button class="sk-tab active" type="button" data-subtab="skills" data-i18n="skills.tabSkills">المهارات</button>
+      <button class="sk-tab" type="button" data-subtab="commands" data-i18n="skills.tabCommands">الأوامر /</button>
     </div>
 
-    <div id="skSkills">
+    <div data-subpanel="skills" id="skSkills">
       <div class="skills-cats" id="skillsCats"></div>
       <div class="skills-sub" id="skillsCount"></div>
       <div class="skills-list" id="skillsList"></div>
@@ -510,7 +523,7 @@
       <div class="skills-list" id="skillsAdded"></div>
     </div>
 
-    <div id="skCommands" hidden>
+    <div data-subpanel="commands" id="skCommands" hidden>
       <div class="skills-sub" data-i18n="cmd.tools">البرنامج</div>
       <div class="cmd-tools" id="cmdTools"></div>
       <div class="skills-sub" id="cmdSuggestHead" data-i18n="cmd.suggested">أمر مقترح لبرومبتك</div>
@@ -519,11 +532,6 @@
       <div class="skills-list" id="cmdList"></div>
     </div>
 
-    <div id="skBest" hidden>
-      <div class="note" data-i18n="best.hint">الأفضل في كل مهمة حسب التصنيفات الحيّة</div>
-      <div class="best-list" id="bestList"></div>
-      <div class="best-foot" id="bestUpdated"></div>
-    </div>
   </section>
 
 </div><!-- /.app -->
@@ -566,13 +574,13 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="i18n.js?v=727c4a38"></script>
+<script src="i18n.js?v=386587e1"></script>
 <script src="lottie.min.js?v=0b26510b"></script>
 <script src="anim.js?v=caf2c3b3"></script>
 <script src="skills.js?v=3e1671e3"></script>
 <script src="commands.js?v=6d5da6e8"></script>
 <script src="bests.js?v=eed71c29"></script>
 <script src="data.js?v=f88ec5a1"></script>
-<script src="app.js?v=c2855fde"></script>
+<script src="app.js?v=14ce0c36"></script>
 </body>
 </html>

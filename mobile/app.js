@@ -847,6 +847,8 @@ function goTab(id){
   if(id==='m-history' && typeof renderHistory==='function') renderHistory();
   if(id==='m-presets' && typeof renderPresets==='function') renderPresets();
   if(id==='m-skills' && typeof renderSkills==='function') renderSkills();
+  if(id==='m-tools' && typeof renderBests==='function') renderBests();
+  if(id==='m-tools' && typeof renderAi==='function') renderAi();
   window.scrollTo({top:0, behavior:'smooth'});
 }
 function closeDrawer(){ $('drawer').classList.remove('open'); $('scrim').classList.remove('open'); $('drawer').setAttribute('hidden',''); $('btnMenu').setAttribute('aria-expanded','false'); }
@@ -1096,7 +1098,6 @@ function renderTokens(){
 const ADDED_SKILLS = new Set();
 let SKILL_CAT = 'all';
 let CMD_TOOL = 'chatgpt';
-let SK_TAB = 'skills';
 
 function skillsSourceText(){
   return ['task','context','role','audience']
@@ -1256,18 +1257,18 @@ function initSkills(){
   renderSkillCats();
   renderSkills();
   renderCommands();
-  document.querySelectorAll('#skSkills ~ * .sk-tab, .skills-tabs .sk-tab').forEach(()=>{});
   document.querySelectorAll('.skills-tabs .sk-tab').forEach(b=>{
     if(b.dataset.bound) return;
     b.dataset.bound='1';
     b.addEventListener('click',()=>{
-      SK_TAB=b.dataset.sktab;
-      document.querySelectorAll('.skills-tabs .sk-tab').forEach(x=>x.classList.toggle('active', x===b));
-      $('skSkills').hidden = SK_TAB!=='skills';
-      $('skCommands').hidden = SK_TAB!=='commands';
-      $('skBest').hidden = SK_TAB!=='best';
-      if(SK_TAB==='commands') renderCommands();
-      else if(SK_TAB==='best') renderBests();
+      const key=b.dataset.subtab;
+      const group=b.closest('.skills-tabs');
+      const scope=group ? group.parentElement : document;
+      group.querySelectorAll('.sk-tab').forEach(x=>x.classList.toggle('active', x===b));
+      scope.querySelectorAll('[data-subpanel]').forEach(p=>{ p.hidden = p.dataset.subpanel!==key; });
+      if(key==='commands') renderCommands();
+      else if(key==='best') renderBests();
+      else if(key==='ai') renderAi();
       else renderSkills();
     });
   });
