@@ -353,13 +353,19 @@ function buildText(v){
 /* ================= Render ================= */
 /* ================= Dynamic variables ================= */
 const VAR_RE = /\[([^\]\n]{1,60})\]/g;
+const VAR_FIELDS = ['task','role','context','audience','constraints','avoid','in1','out1','in2','out2','imgTask','imgNeg','imgArCustom'];
+/* the variables the user adds by hand — they stay in the bar even when the
+   text no longer carries the placeholder */
+let MANUAL_VARS=[];
+try{ const m=JSON.parse(localStorage.getItem('pe_vars')||'[]'); if(Array.isArray(m)) MANUAL_VARS=m; }catch(e){}
+function saveManualVars(){ try{ localStorage.setItem('pe_vars', JSON.stringify(MANUAL_VARS)); }catch(e){} }
 function collectVars(){
   const seen = new Map();
-  ['task','role','context','audience','constraints','avoid','in1','out1','in2','out2','imgTask','imgNeg','imgArCustom']
-    .forEach(id=>{
-      const el=$(id); if(!el) return;
-      for(const m of (el.value||'').matchAll(VAR_RE)) if(!seen.has(m[1])) seen.set(m[1],'');
-    });
+  VAR_FIELDS.forEach(id=>{
+    const el=$(id); if(!el) return;
+    for(const m of (el.value||'').matchAll(VAR_RE)) if(!seen.has(m[1])) seen.set(m[1],'');
+  });
+  MANUAL_VARS.forEach(n=>{ if(n && !seen.has(n)) seen.set(n,''); });
   return [...seen.keys()];
 }
 function renderVarBar(){
@@ -367,17 +373,51 @@ function renderVarBar(){
   const names=collectVars();
   const prev={};
   document.querySelectorAll('#varFields input').forEach(i=>prev[i.dataset.var]=i.value);
-  bar.hidden = names.length===0;
-  const cnt=$('varCount'); if(cnt) cnt.textContent = names.length;
+  /* the bar never goes away: the user adds a variable whenever the task needs one */
+  bar.hidden=false;
+  $('varCount').textContent = names.length;
   const box=$('varFields'); box.innerHTML='';
-  names.forEach(name=>{
-    const wrap=document.createElement('label'); wrap.className='varf';
-    const sp=document.createElement('span'); sp.className='varf-n'; sp.textContent='['+name+']';
+  names.forEach((name,idx)=>{
+    const wrap=document.createElement('div'); wrap.className='varf';
     const inp=document.createElement('input'); inp.type='text'; inp.dataset.var=name;
-    inp.placeholder=name; inp.value=prev[name]||'';
+    inp.id='varf'+idx; inp.placeholder=name; inp.value=prev[name]||'';
     inp.addEventListener('input',()=>render());
-    wrap.appendChild(sp); wrap.appendChild(inp); box.appendChild(wrap);
+    const sp=document.createElement('label'); sp.className='varf-n'; sp.htmlFor=inp.id;
+    sp.textContent='['+name+']';
+    const del=document.createElement('button'); del.type='button'; del.className='varf-x';
+    del.title=t('vars.remove'); del.setAttribute('aria-label',t('vars.remove'));
+    del.innerHTML='<svg class="hi" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 18L18 6M6 6l12 12"/></svg>';
+    del.onclick=()=>removeVar(name);
+    wrap.appendChild(sp); wrap.appendChild(inp); wrap.appendChild(del);
+    box.appendChild(wrap);
   });
+}
+function addVar(raw){
+  const name=(raw||'').trim().replace(/^\[/,'').replace(/\]$/,'').trim();
+  if(!name) return false;
+  if(MANUAL_VARS.indexOf(name)<0){ MANUAL_VARS.push(name); saveManualVars(); }
+  /* the new variable takes effect at once: it is placed in the task */
+  const el=$('task');
+  if(el && el.value.indexOf('['+name+']')<0){
+    el.value = el.value ? el.value+' ['+name+']' : '['+name+']';
+    el.dispatchEvent(new Event('input',{bubbles:true}));
+  }
+  render();
+  return true;
+}
+function removeVar(name){
+  MANUAL_VARS=MANUAL_VARS.filter(n=>n!==name);
+  saveManualVars();
+  /* the placeholder leaves the text as well */
+  VAR_FIELDS.forEach(id=>{
+    const el=$(id); if(!el) return;
+    const v=el.value||'';
+    if(v.indexOf('['+name+']')>=0){
+      el.value=v.split('['+name+']').join('');
+      el.dispatchEvent(new Event('input',{bubbles:true}));
+    }
+  });
+  render();
 }
 function substituteVars(text){
   if(!text) return text;
@@ -388,10 +428,9 @@ function substituteVars(text){
 
 function render(){
   /* the [placeholders] are filled in before the prompt is assembled */
-  ['task','role','context','audience','constraints','avoid','in1','out1','in2','out2','imgTask','imgNeg','imgArCustom']
-    .forEach(id=>{ const el=$(id); if(el) el.value = substituteVars(el.value); });
+  /* the [placeholders] stay in the fields — they are resolved when the prompt is built */
   const v=readV();
-  CURRENT = buildText(v);
+  CURRENT = substituteVars(buildText(v));
   const empty = !v.task && !v.role && !v.context && !v.audience && !v.constraints && !v.avoid &&
                 !v.tone.length && !v.fmt.length && !v.length && !FLAGS.few;
   $('preview').textContent = empty ? t('preview.start') : CURRENT;
@@ -402,7 +441,7 @@ function render(){
   $('stSecs').textContent = (CURRENT.match(/^## /gm)||[]).length;
 
   /* image prompt (always available on its tab) */
-  CURRENT_IMG = buildImage(v);
+  CURRENT_IMG = substituteVars(buildImage(v));
   $('imgPrev').textContent = v.task ? CURRENT_IMG : t('img.start');
   $('imgPrev').style.direction = 'ltr';
 
@@ -1506,6 +1545,18 @@ function wire(){
       if(b){ if(isOpen) b.removeAttribute('hidden'); else b.setAttribute('hidden',''); }
     });
   });
+
+  /* the variable bar: add and remove */
+  const varAddEl=$('varAdd');
+  function commitVar(){
+    const inp=$('varAdd'); if(!inp) return;
+    if(addVar(inp.value)){ inp.value=''; toast(t('vars.added')); }
+  }
+  if(varAddEl){
+    varAddEl.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); commitVar(); } });
+  }
+  const btnVarAddEl=$('btnVarAdd');
+  if(btnVarAddEl) btnVarAddEl.onclick=commitVar;
 
   /* bottom nav */
   document.querySelectorAll('#bnav button').forEach(b=>{
