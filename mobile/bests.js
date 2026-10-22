@@ -25,6 +25,7 @@ window.PE_BEST = (function () {
   const S = 'https://llm-stats.com';
   const LIST = [
     { id: 'coding', ic: 'code-bracket',
+      k: ["code","coding","program","programming","script","function","api","bug","debug","software","app","website","front end","frontend","backend","python","javascript","typescript","react","كود","برمجة","دالة","تطبيق","موقع","تطوير","خطأ"],
       n: ['توليد الكود والبرمجة', 'Coding & programming'],
       d: ['الأقوى في توليد الكود وتصحيحه وهندسة البرمجيات', 'The strongest at code generation, debugging and software engineering'],
       best: 'Claude Opus 5.5', org: 'Anthropic',
@@ -32,6 +33,7 @@ window.PE_BEST = (function () {
       link: S + '/leaderboards/best-ai-for-coding' },
 
     { id: 'writing', ic: 'document-text',
+      k: ["write","writing","article","essay","copy","copywriting","blog","post","draft","newsletter","email","letter","book","story","script","كتابة","مقال","نص","مدونة","بريد","كتاب","قصة","خطة محتوى"],
       n: ['الكتابة والمقالات', 'Writing & articles'],
       d: ['المتصدّر في الكتابة التوليدية بـ 88.3% في WritingBench', 'The best-ranked generative writer at 88.3% on WritingBench'],
       best: 'Qwen3-235B-A22B-Thinking-2507', org: 'Alibaba',
@@ -39,6 +41,7 @@ window.PE_BEST = (function () {
       link: S + '/leaderboards/best-ai-for-writing' },
 
     { id: 'reasoning', ic: 'light-bulb',
+      k: ["reason","reasoning","plan","planning","strategy","logic","solve","think","decision","trade off","خيار","تفكير","تخطيط","استراتيجية","منطق","حل","قرار"],
       n: ['التفكير والتخطيط', 'Reasoning & planning'],
       d: ['الأقوى في التفكير الممتد وحل المشكلات', 'The frontier on extended-thinking reasoning and problem solving'],
       best: 'Claude Opus 5.5', org: 'Anthropic',
@@ -46,6 +49,7 @@ window.PE_BEST = (function () {
       link: S + '/leaderboards/best-ai-for-reasoning' },
 
     { id: 'research', ic: 'magnifying-glass',
+      k: ["research","study","analyze","analyse","compare","source","paper","academic","literature","بحث","دراسة","تحليل","مصادر","ورقة","أكاديمي","مراجعة","مقارنة"],
       n: ['البحث والتحليل', 'Research & analysis'],
       d: ['المتصدّر في البحث الأكاديمي والويب', 'Ranks first for web and academic research'],
       best: 'Kimi K3', org: 'Moonshot AI',
@@ -53,6 +57,7 @@ window.PE_BEST = (function () {
       link: S + '/leaderboards/best-ai-for-research' },
 
     { id: 'math', ic: 'calculator',
+      k: ["math","mathematics","calculate","formula","equation","statistic","probability","رياضيات","حساب","معادلة","إحصاء","احتمال","دالة رياضية"],
       n: ['الرياضيات والمنطق', 'Math & logic'],
       d: ['الأقوى في المسائل الرياضية مت��ددة الخطوات', 'The strongest on multi-step mathematical problems'],
       best: 'Claude Opus 5.5', org: 'Anthropic',
@@ -60,6 +65,7 @@ window.PE_BEST = (function () {
       link: S + '/leaderboards/best-ai-for-math' },
 
     { id: 'image', ic: 'photo',
+      k: ["image","photo","picture","illustrat","logo","thumbnail","poster","drawing","visual","صورة","تصميم","رسم","شعار","ملصق","لوحة","مصور"],
       n: ['توليد الصور وتعديلها', 'Image generation & editing'],
       d: ['الأفضل في كتابة النص داخل الصورة واتباع التعليمات', 'The best at prompt adherence and rendering text inside images'],
       best: 'GPT Image 2', org: 'OpenAI',
@@ -67,6 +73,7 @@ window.PE_BEST = (function () {
       link: S + '/leaderboards/best-ai-for-image-generation' },
 
     { id: 'video', ic: 'film',
+      k: ["video","clip","animation","movie","motion","فيديو","مقطع","أنيميشن","حركة","فيلم","مؤثر"],
       n: ['توليد الفيديو', 'Video creation'],
       d: ['الأفضل في فيزياء الحركة وبقاء الأجسام', 'The strongest motion physics and object permanence'],
       best: 'Kling v3', org: 'Kuaishou',
@@ -74,6 +81,7 @@ window.PE_BEST = (function () {
       link: S + '/leaderboards/best-ai-for-video-creation' },
 
     { id: 'web', ic: 'squares-2x2',
+      k: ["web","website","frontend","landing","page","html","css","ويب","موقع","صفحة","واجهة أمامية","قالب"],
       n: ['تطوير الويب', 'Web development'],
       d: ['المتصدّر في مؤشر البرمجة لمهام الويب', 'Ranks first in the coding index for web work'],
       best: 'Claude Opus 5.5', org: 'Anthropic',
@@ -81,6 +89,7 @@ window.PE_BEST = (function () {
       link: S + '/best-ai-for-web-development' },
 
     { id: 'ui', ic: 'adjustments-horizontal',
+      k: ["ui","ux","interface","wireframe","mockup","layout","تصميم","واجهة","نموذج","شكل","مظهر"],
       n: ['تصميم واجهات المستخدم', 'UI design'],
       d: ['أعلى نتيجة في تصميم الواجهات — 1415 نقطة', 'The top UI design score — 1,415 points'],
       best: 'GPT-5.6 Sol', org: 'OpenAI',
@@ -88,6 +97,7 @@ window.PE_BEST = (function () {
       link: S + '/best-ai-for-ui-design' },
 
     { id: 'data', ic: 'table-cells',
+      k: ["data","excel","sheet","csv","table","chart","dashboard","spreadsheet","بيانات","جدول","مخطط","تقارير","حساب","احصاء"],
       n: ['تحليل البيانات و Excel', 'Data analysis & Excel'],
       d: ['الأفضل لتحليل ملفات Excel وتحريرها', 'The best pick for analysing and editing workbooks'],
       best: 'ChatGPT for Excel', org: 'OpenAI',
@@ -95,6 +105,7 @@ window.PE_BEST = (function () {
       link: S + '/best-ai-for-excel-data-analysis' },
 
     { id: 'context', ic: 'clipboard-document',
+      k: ["document","long","book","pdf","report","transcript","contract","مستند","كتاب","تقرير","سياق","عقد","نص طويل"],
       n: ['السياق الطويل والمستندات', 'Long context & documents'],
       d: ['نافذة سياق مليون رمز مع طبقة مجانية', 'A million-token window with a free tier'],
       best: 'Gemini 3.7 Flash', org: 'Google',
@@ -102,6 +113,7 @@ window.PE_BEST = (function () {
       link: S + '/leaderboards/best-ai-for-long-context' },
 
     { id: 'tools', ic: 'wrench-screwdriver',
+      k: ["tool","api","integration","mcp","function calling","automation","أداة","ادوات","تكامل","وظيفة","أتمتة","ربط"],
       n: ['استدعاء الأدوات والتكامل', 'Tool calling & integration'],
       d: ['الأدق في استدعاء الأدوات وربط الـ API', 'The most accurate at tool use and API integration'],
       best: 'Claude Sonnet 5.5', org: 'Anthropic',
@@ -109,12 +121,14 @@ window.PE_BEST = (function () {
       link: S + '/leaderboards/best-ai-for-tool-calling' },
 
     { id: 'speed', ic: 'bolt',
+      k: ["fast","quick","instant","real time","latency","سريع","فوري","آني","سرعة","استجابة"],
       n: ['السرعة', 'Speed'],
       d: ['أسرع إخراج — 410 رمز في الثانية', 'The fastest output — 410 tokens per second'],
       best: 'Gemini 3.7 Flash', org: 'Google',
       alt: [], link: S + '/' },
 
     { id: 'cheap', ic: 'circle-stack',
+      k: ["cheap","free","budget","cost","price","save money","رخيص","مجاني","ميزانية","تكلفة","سعر","اقتصاد"],
       n: ['السعر الأقل', 'Best value'],
       d: ['الأرخص بين أفضل عشرة — 2.00$ لكل مليون رمز', 'The cheapest of the top ten — $2.00 per million tokens'],
       best: 'Gemini 3.1 Pro', org: 'Google',
@@ -122,6 +136,7 @@ window.PE_BEST = (function () {
       link: S + '/' },
 
     { id: 'open', ic: 'rocket-launch',
+      k: ["open","open source","self host","local","offline","privacy","مفتوح","محلي","استضافة","خصوصية","بدون إنترنت"],
       n: ['الأوزان المفتوحة', 'Open weights'],
       d: ['أفضل نموذج مفتوح — 93.5% في GPQA', 'The best open-weights model — 93.5% on GPQA'],
       best: 'Kimi K3', org: 'Moonshot AI',
@@ -129,11 +144,56 @@ window.PE_BEST = (function () {
       link: S + '/' },
 
     { id: 'slides', ic: 'presentation-chart-bar',
+      k: ["youtube","presentation","deck","slide","speech","podcast","script for","يوتيوب","عرض تقديمي","شرائح","خطاب","بودكاست","سكربت"],
       n: ['سكربتات يوتيوب والعروض', 'YouTube scripts & decks'],
       d: ['الأفضل لكتابة سكربت بخطاف قوي', 'The best starting point for scripts with a strong hook'],
       best: 'Qwen3-235B-A22B-Thinking-2507', org: 'Alibaba',
       alt: ['GPT Image 2 لتصميم الصور المصغّرة', 'GPT Image 2 for the thumbnail designs'],
       link: S + '/best-ai-for-youtube-script-writing' }
+  ];
+
+  /* which capability fits the text the user typed */
+  function find(text){
+    const t = String(text || '').toLowerCase();
+    if (!t.trim()) return null;
+    let best = null, bestScore = 0;
+    for (const x of LIST) {
+      let score = 0;
+      for (const k of (x.k || [])) {
+        if (k.length < 3) continue;
+        if (t.includes(k)) score += k.length >= 6 ? 3 : 2;
+      }
+      if (score > bestScore) { bestScore = score; best = x; }
+    }
+    return bestScore > 0 ? best : null;
+  }
+
+  /* the free and open-source models, so the answer is never a dead end */
+  const OPEN = [
+    { n: 'DeepSeek', o: 'DeepSeek',
+      d: ['مفتوح الأوزان ورخيص جدًا', 'Open weights and very cheap'],
+      u: 'https://chat.deepseek.com/', w: 'https://huggingface.co/deepseek-ai' },
+    { n: 'Qwen', o: 'Alibaba',
+      d: ['مجاني بالكامل مع تغطية واسعة', 'Free to use with wide language coverage'],
+      u: 'https://chat.qwen.ai/', w: 'https://huggingface.co/Qwen' },
+    { n: 'Kimi K3', o: 'Moonshot AI',
+      d: ['مفتوح الأوزان والأول في البحث', 'Open weights and the top of the research ranking'],
+      u: 'https://www.kimi.com/', w: 'https://huggingface.co/moonshotai' },
+    { n: 'Llama 4', o: 'Meta',
+      d: ['نموذج Meta المفتوح، يعمل محليًا', 'The open Meta model, runs on your own machine'],
+      u: 'https://www.llama.com/', w: 'https://huggingface.co/meta-llama' },
+    { n: 'Gemma 3', o: 'Google',
+      d: ['مفتوح وخفيف للمهام اليومية', 'Open and light for everyday work'],
+      u: 'https://aistudio.google.com/', w: 'https://huggingface.co/google' },
+    { n: 'Mistral', o: 'Mistral AI',
+      d: ['أوروبي مفتوح وقوي في الكود', 'The open European model, strong at code'],
+      u: 'https://chat.mistral.ai/', w: 'https://huggingface.co/mistralai' },
+    { n: 'Ollama', o: 'On your machine',
+      d: ['نزّل أي نموذج مفتوح وشغّله محليًا', 'Download any open model and run it locally'],
+      u: 'https://ollama.com/library', w: 'https://ollama.com/download' },
+    { n: 'LM Studio', o: 'On your machine',
+      d: ['نزّل النماذج وادمجها في أي تطبيق', 'Download the models and use them inside any app'],
+      u: 'https://lmstudio.ai/models', w: 'https://lmstudio.ai/download' }
   ];
 
   const svg = ic => {
@@ -142,5 +202,5 @@ window.PE_BEST = (function () {
       paths.map(d => '<path d="' + d + '"/>').join('') + '</svg>';
   };
 
-  return { list: LIST, icons: ICONS, svg, source: 'llm-stats.com', updated: '2026-10-22' };
+  return { list: LIST, icons: ICONS, svg, find, open: OPEN, source: 'llm-stats.com', updated: '2026-10-22' };
 })();

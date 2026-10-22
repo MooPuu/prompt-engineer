@@ -351,7 +351,45 @@ function buildText(v){
 }
 
 /* ================= Render ================= */
+/* ================= Dynamic variables ================= */
+const VAR_RE = /\[([^\]\n]{1,60})\]/g;
+function collectVars(){
+  const seen = new Map();
+  ['task','role','context','audience','constraints','avoid','in1','out1','in2','out2','imgTask','imgNeg','imgArCustom']
+    .forEach(id=>{
+      const el=$(id); if(!el) return;
+      for(const m of (el.value||'').matchAll(VAR_RE)) if(!seen.has(m[1])) seen.set(m[1],'');
+    });
+  return [...seen.keys()];
+}
+function renderVarBar(){
+  const bar=$('varBar'); if(!bar) return;
+  const names=collectVars();
+  const prev={};
+  document.querySelectorAll('#varFields input').forEach(i=>prev[i.dataset.var]=i.value);
+  bar.hidden = names.length===0;
+  const cnt=$('varCount'); if(cnt) cnt.textContent = names.length;
+  const box=$('varFields'); box.innerHTML='';
+  names.forEach(name=>{
+    const wrap=document.createElement('label'); wrap.className='varf';
+    const sp=document.createElement('span'); sp.className='varf-n'; sp.textContent='['+name+']';
+    const inp=document.createElement('input'); inp.type='text'; inp.dataset.var=name;
+    inp.placeholder=name; inp.value=prev[name]||'';
+    inp.addEventListener('input',()=>render());
+    wrap.appendChild(sp); wrap.appendChild(inp); box.appendChild(wrap);
+  });
+}
+function substituteVars(text){
+  if(!text) return text;
+  const vals={};
+  document.querySelectorAll('#varFields input').forEach(i=>vals[i.dataset.var]=i.value);
+  return text.replace(VAR_RE,(all,name)=> (vals[name] && vals[name].trim()) ? vals[name].trim() : all);
+}
+
 function render(){
+  /* the [placeholders] are filled in before the prompt is assembled */
+  ['task','role','context','audience','constraints','avoid','in1','out1','in2','out2','imgTask','imgNeg','imgArCustom']
+    .forEach(id=>{ const el=$(id); if(el) el.value = substituteVars(el.value); });
   const v=readV();
   CURRENT = buildText(v);
   const empty = !v.task && !v.role && !v.context && !v.audience && !v.constraints && !v.avoid &&
@@ -376,6 +414,10 @@ function render(){
   $('heroTech').textContent = tech+'/'+TECH_MAX;
 
   if(typeof renderGaps==='function') renderGaps();
+  if(typeof renderTokens==='function') renderTokens();
+  if(typeof renderVarBar==='function') renderVarBar();
+  if(typeof renderSkills==='function' && $('m-skills') && $('m-skills').classList.contains('active')) renderSkills();
+  if(typeof renderSuggestions==='function') renderSuggestions();
   if(typeof renderSkills==='function' && $('m-skills') && $('m-skills').classList.contains('active')){
     renderSkills();
     if(typeof renderCommands==='function') renderCommands();
@@ -481,10 +523,7 @@ function download(name,content){
   setTimeout(()=>URL.revokeObjectURL(a.href),1500);
   toast(t('msg.dl'));
 }
-function openLink(u){
-  const a=document.createElement('a'); a.href=u; a.target='_blank'; a.rel='noopener';
-  document.body.appendChild(a); a.click(); document.body.removeChild(a);
-}
+
 
 /* ================= Target model tuning ================= */
 const MODEL_TUNE = {
@@ -806,7 +845,8 @@ function goTab(id){
   document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id===id));
   document.querySelectorAll('#bnav button').forEach(b=>b.classList.toggle('active', b.dataset.tab===id));
   if(id==='m-history' && typeof renderHistory==='function') renderHistory();
-  if(id==='m-presets' && typeof renderPresets==='function') renderPresets();
+  if(id==='m-presets' && typeof renderPresets==='function') renderPresets();
+  if(id==='m-skills' && typeof renderSkills==='function') renderSkills();
   window.scrollTo({top:0, behavior:'smooth'});
 }
 function closeDrawer(){ $('drawer').classList.remove('open'); $('scrim').classList.remove('open'); $('drawer').setAttribute('hidden',''); $('btnMenu').setAttribute('aria-expanded','false'); }
@@ -869,6 +909,189 @@ function renderHistory(){
   });
 }
 
+/* ================= Suggestions ================= */
+function suggestionSource(){
+  const v=readV();
+  return [v.task,v.context,v.role,v.audience,v.constraints].filter(Boolean).join(' ');
+}
+function buildSuggestions(){
+  const out=[];
+  const src=suggestionSource();
+  if(!src.trim()) return out;
+
+  /* 1. a skill that fits */
+  if(window.PE_SKILLS){
+    const f=window.PE_SKILLS.find(src,1);
+    if(f.length){
+      const s=window.PE_SKILLS.byId[f[0].id];
+      if(s) out.push({ kind:'skill', id:s.id, title:s.n, text:s.s, action:'skill' });
+    }
+  }
+  /* 2. the commands that fit */
+  if(window.PE_COMMANDS){
+    const f=window.PE_COMMANDS.find(src,3);
+    f.forEach(x=>{
+      const c=window.PE_COMMANDS.byId[x.id];
+      if(c) out.push({ kind:'cmd', id:c.c, title:c.c+' · '+c.n, text:c.d, action:'cmd' });
+    });
+  }
+  /* 3. the gaps in the prompt */
+  try{
+    findGaps().slice(0,3).forEach(g=>{
+      out.push({ kind:'fix', id:g.id, title:g.fixText, text:g, action:'fix', fix:g.fix });
+    });
+  }catch(e){}
+  /* 4. the tool that fits best */
+  if(window.PE_BEST){
+    const b=window.PE_BEST.find(src);
+    if(b) out.push({ kind:'tool', id:b.id, title:b.best, text:b.d, action:'tool', link:b.link });
+  }
+  return out;
+}
+function renderSuggestions(){
+  const box=$('sugList');
+  if(!box) return;
+  const pick = a => (typeof L === 'function') ? (L()===1 ? a[1] : a[0]) : tx(a);
+  const list=buildSuggestions();
+  box.innerHTML='';
+  if(!list.length){
+    const e=document.createElement('div');
+    e.className='sug-empty';
+    e.textContent=t('sug.empty');
+    box.appendChild(e);
+    return;
+  }
+  list.forEach(x=>{
+    const el=document.createElement('div');
+    el.className='sug-item sug-'+x.kind;
+    const badge=document.createElement('span');
+    badge.className='sug-badge';
+    badge.textContent=t('sug.'+(x.kind==='cmd'?'cmd':x.kind));
+    const body=document.createElement('div');
+    body.className='sug-body';
+    const title=document.createElement('div');
+    title.className='sug-t';
+    title.textContent=(typeof x.title==='string') ? x.title : pick(x.title);
+    const text=document.createElement('div');
+    text.className='sug-d';
+    text.textContent=(typeof x.text==='string') ? x.text : pick(x.text);
+    body.appendChild(title); body.appendChild(text);
+
+    if(x.action==='skill'){
+      /* copy it, or drop it straight into the prompt */
+      const bCopy=document.createElement('button');
+      bCopy.type='button'; bCopy.className='sug-btn';
+      bCopy.textContent=t('sug.copy');
+      bCopy.onclick=()=>{ copy(x.text); toast(t('msg.copy')); };
+      const bAdd=document.createElement('button');
+      bAdd.type='button'; bAdd.className='sug-btn primary';
+      bAdd.textContent=t('sug.addto');
+      bAdd.onclick=()=>{ addSkillToPrompt(x.id); renderSuggestions(); };
+      const acts=document.createElement('div'); acts.className='sug-acts';
+      acts.appendChild(bCopy); acts.appendChild(bAdd);
+      body.appendChild(acts);
+      el.appendChild(badge); el.appendChild(body);
+    } else if(x.action==='cmd'){
+      const C=window.PE_COMMANDS;
+      const c=C.byId[x.id];
+      const inv=C.invocation(c, CMD_TOOL, (typeof L==='function') ? (L()===1?1:0) : (LANG==='ar'?0:1));
+      const bCopy=document.createElement('button');
+      bCopy.type='button'; bCopy.className='sug-btn';
+      bCopy.textContent=t('sug.copy');
+      bCopy.onclick=()=>{ copy(inv + (($('task')&&$('task').value)||'')); toast(t('cmd.copied')); };
+      const bAdd=document.createElement('button');
+      bAdd.type='button'; bAdd.className='sug-btn primary';
+      bAdd.textContent=t('sug.addto');
+      bAdd.onclick=()=>{ addCommandToPrompt(x.id); renderSuggestions(); };
+      const acts=document.createElement('div'); acts.className='sug-acts';
+      acts.appendChild(bCopy); acts.appendChild(bAdd);
+      body.appendChild(acts);
+      el.appendChild(badge); el.appendChild(body);
+    } else if(x.action==='fix'){
+      const b=document.createElement('button');
+      b.type='button'; b.className='sug-btn primary';
+      b.textContent=t('sug.apply');
+      b.onclick=()=>{ applyGap(x.fix); renderSuggestions(); };
+      const acts=document.createElement('div'); acts.className='sug-acts';
+      acts.appendChild(b);
+      body.appendChild(acts);
+      el.appendChild(badge); el.appendChild(body);
+    } else {
+      /* the tool: open it, then the free open-source alternatives */
+      const a=document.createElement('a');
+      a.className='sug-btn primary';
+      a.href=x.link; a.target='_blank'; a.rel='noopener';
+      a.textContent=t('sug.open');
+      const acts=document.createElement('div'); acts.className='sug-acts';
+      acts.appendChild(a);
+      body.appendChild(acts);
+      const open=document.createElement('div');
+      open.className='sug-open';
+      const oh=document.createElement('div');
+      oh.className='sug-open-h';
+      oh.textContent=t('sug.openmodels');
+      open.appendChild(oh);
+      const OPEN=(window.PE_BEST&&window.PE_BEST.open)||[];
+      OPEN.forEach(m=>{
+        const row=document.createElement('div');
+        row.className='sug-open-row';
+        const nm=document.createElement('b'); nm.textContent=m.n+' · '+m.o;
+        const ds=document.createElement('span'); ds.textContent=pick(m.d);
+        const links=document.createElement('span'); links.className='sug-open-links';
+        const l1=document.createElement('a'); l1.href=m.u; l1.target='_blank'; l1.rel='noopener'; l1.textContent=t('sug.open');
+        const l2=document.createElement('a'); l2.href=m.w; l2.target='_blank'; l2.rel='noopener'; l2.textContent=t('sug.download');
+        links.appendChild(l1); links.appendChild(l2);
+        row.appendChild(nm); row.appendChild(ds); row.appendChild(links);
+        open.appendChild(row);
+      });
+      body.appendChild(open);
+      el.appendChild(badge); el.appendChild(body);
+    }
+    box.appendChild(el);
+  });
+}
+/* the skill instruction goes into the constraints, so it lands in the prompt */
+function addSkillToPrompt(id){
+  const s=window.PE_SKILLS && window.PE_SKILLS.byId[id];
+  if(!s) return;
+  const i=(typeof L==='function') ? (L()===1?1:0) : (LANG==='ar'?0:1);
+  const el=$('constraints');
+  if(el){
+    const line=s.s[i];
+    if(String(el.value).indexOf(line)<0)
+      el.value=(el.value? String(el.value).replace(/\s+$/,'') + '\n' : '') + line;
+    el.dispatchEvent(new Event('input',{bubbles:true}));
+  }
+  render();
+}
+/* the slash command goes in front of the task */
+function addCommandToPrompt(id){
+  const c=window.PE_COMMANDS && window.PE_COMMANDS.byId[id];
+  if(!c) return;
+  const el=$('task');
+  if(el){
+    if(String(el.value).indexOf(c.c)<0) el.value=c.c+' '+el.value;
+    el.dispatchEvent(new Event('input',{bubbles:true}));
+  }
+  render();
+}
+/* the token banner under the generated prompt */
+function tokenEstimate(text){
+  if(!text) return 0;
+  const cjk=(text.match(/[\u3000-\u9fff\u3040-\u30ff\uac00-\ud7af]/g)||[]).length;
+  const rest=text.length-cjk;
+  return Math.round(cjk+rest/4);
+}
+function renderTokens(){
+  const v=readV();
+  const input=[v.task,v.role,v.context,v.audience,v.constraints,v.avoid,v.in1,v.out1,v.in2,v.out2,v.imgTask,v.imgNeg].filter(Boolean).join(' ');
+  const inTok=tokenEstimate(input);
+  const promptTok=tokenEstimate(CURRENT);
+  const outTok=Math.round(promptTok*1.8);
+  const a=$('tokIn'), b=$('tokOut');
+  if(a) a.textContent=inTok.toLocaleString('en-US');
+  if(b) b.textContent=outTok.toLocaleString('en-US');
+}
 /* ================= Skills and commands ================= */
 const ADDED_SKILLS = new Set();
 let SKILL_CAT = 'all';
@@ -898,37 +1121,46 @@ function renderSkills(){
   const list=$('skillsList'), added=$('skillsAdded');
   if(!list || !window.PE_SKILLS) return;
   const S=window.PE_SKILLS;
-  const found=S.find(skillsSourceText(), 12);
+  const pick = a => (typeof L === 'function') ? (L()===1 ? a[1] : a[0]) : tx(a);
+  const src=skillsSourceText();
+  const found=S.find(src, 60);
+  const score={}; found.forEach(f=>{ score[f.id]=f.score; });
+  /* the skills that fit the prompt come first, the rest keeps its order */
+  const ordered=S.list.slice().sort((a,b)=>{
+    const ha=score[a.id]||0, hb=score[b.id]||0;
+    return hb-ha;
+  });
+  const hits=Object.keys(score).length;
   list.innerHTML='';
-  if(!found.length){
-    const empty=document.createElement('div');
-    empty.className='skills-empty';
-    empty.textContent = skillsSourceText().trim() ? t('skills.none') : t('skills.empty');
-    list.innerHTML='';
-    list.appendChild(empty);
-  } else {
-    found.forEach(f=>{
-      const s=S.byId[f.id]; if(!s) return;
-      const on=ADDED_SKILLS.has(f.id);
-      const row=document.createElement('div');
-      row.className='skill'+(on?' on':'');
-      row.innerHTML='<div class="skill-t"><b></b><span></span></div><button class="skill-btn" type="button"></button>';
-      row.querySelector('.skill-t b').textContent=tx(s.n);
-      row.querySelector('.skill-t span').textContent=tx(s.s);
-      const b=row.querySelector('.skill-btn');
-      b.textContent=on ? t('skills.remove') : t('skills.add');
-      b.onclick=()=>toggleSkill(f.id);
-      list.appendChild(row);
-    });
-  }
+  ordered.forEach(s=>{
+    const on=ADDED_SKILLS.has(s.id);
+    const hit=!!score[s.id];
+    const row=document.createElement('div');
+    row.className='skill'+(on?' on':'')+(hit?' hit':'');
+    row.innerHTML='<div class="skill-t"><b></b><span></span></div><button class="skill-btn" type="button"></button>';
+    row.querySelector('.skill-t b').textContent=pick(s.n);
+    row.querySelector('.skill-t span').textContent=pick(s.s);
+    if(hit){
+      const star=document.createElement('em');
+      star.className='skill-star';
+      star.textContent='★';
+      row.querySelector('.skill-t').insertBefore(star, row.querySelector('.skill-t b'));
+    }
+    const b=row.querySelector('.skill-btn');
+    b.textContent=on ? t('skills.remove') : t('skills.add');
+    b.onclick=()=>toggleSkill(s.id);
+    list.appendChild(row);
+  });
+  const cnt=$('skillsCount');
+  if(cnt) cnt.textContent = S.list.length + ' · ' + hits + ' ' + t('skills.fit');
   added.innerHTML='';
   ADDED_SKILLS.forEach(id=>{
     const s=S.byId[id]; if(!s) return;
     const row=document.createElement('div');
     row.className='skill on';
     row.innerHTML='<div class="skill-t"><b></b><span></span></div><button class="skill-btn on" type="button"></button>';
-    row.querySelector('.skill-t b').textContent=tx(s.n);
-    row.querySelector('.skill-t span').textContent=tx(s.s);
+    row.querySelector('.skill-t b').textContent=pick(s.n);
+    row.querySelector('.skill-t span').textContent=pick(s.s);
     const b=row.querySelector('.skill-btn');
     b.textContent=t('skills.remove');
     b.onclick=()=>toggleSkill(id);
@@ -1310,6 +1542,8 @@ function wire(){
   $('btnTxt').onclick=()=>download('prompt.txt',CURRENT);
   $('btnImgCopy').onclick=()=>copy(CURRENT_IMG);
   $('btnImgTxt').onclick=()=>download('image-prompt.txt',CURRENT_IMG);
+  const vc=$('btnVarsClear');
+  if(vc) vc.onclick=()=>{ document.querySelectorAll('#varFields input').forEach(i=>i.value=''); render(); };
   const hs=$('histSearch');
   if(hs) hs.addEventListener('input',renderHistory);
   const hc=$('btnHistClear');

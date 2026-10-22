@@ -1,8 +1,8 @@
-/* Prompt Engineer — the slash-command library.
+/* Prompt Engineer -- the slash-command library.
    Every command is a short, direct instruction that does one useful job.
    The list comes from the public ChatGPT command guides; each entry keeps the
-   command name, what it is good for, and the plain-text equivalent for the
-   models that have no slash-command support.
+   command name, what it is good for, the plain-text equivalent for the models
+   that have no slash-command support, and the words that point at it.
    The names and the wording stay bilingual AR/EN by design. */
 window.PE_COMMANDS = (function () {
   const TOOLS = {
@@ -80,14 +80,14 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "eli5",
-      "يشرح",
-      "الفكرة",
-      "بلغة",
-      "يفهمها",
-      "Simplify",
-      "following",
-      "plain",
-      "language:"
+      "explain like",
+      "simple explanation",
+      "beginner",
+      "شرح",
+      "مبسط",
+      "بسيط",
+      "explain",
+      "simply"
     ]
   },
   {
@@ -106,14 +106,14 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "simplify",
-      "يختصر",
-      "النص",
-      "يفقد",
-      "معناه",
-      "Simplify",
-      "following",
-      "while",
-      "keeping"
+      "shorten",
+      "concise",
+      "condense",
+      "تبسيط",
+      "اختصار",
+      "مختصر",
+      "difficult",
+      "content"
     ]
   },
   {
@@ -132,13 +132,15 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "explain",
-      "يشرح",
-      "مفهوم",
-      "خطوة",
-      "بخطوة",
-      "Explain",
-      "following",
-      "step:"
+      "how does",
+      "what is",
+      "why does",
+      "شرح",
+      "وض��ح",
+      "ما هو",
+      "explains",
+      "concept",
+      "step"
     ]
   },
   {
@@ -157,14 +159,13 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "summarize",
-      "يلخّص",
-      "النص",
-      "نقاط",
-      "أساسية",
-      "Summarize",
-      "following",
-      "clear",
-      "bullet"
+      "summary",
+      "tldr",
+      "digest",
+      "ملخص",
+      "تلخيص",
+      "لخّص",
+      "content"
     ]
   },
   {
@@ -183,14 +184,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "analogy",
-      "يضرب",
-      "مثالًا",
-      "الحياة",
-      "اليومية",
-      "Explain",
-      "following",
-      "everyday",
-      "analogy:"
+      "like a",
+      "compare to",
+      "تشبيه",
+      "مثال",
+      "explain"
     ]
   },
   {
@@ -209,13 +207,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "socratic",
-      "يشرح",
+      "guided question",
       "أسئلة",
-      "موجّهة",
-      "Explain",
-      "following",
-      "through",
-      "guided"
+      "سقراط",
+      "teach",
+      "questions"
     ]
   },
   {
@@ -234,14 +230,15 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "teachme",
-      "يقسّم",
-      "الشرح",
-      "دروس",
-      "متدرجة",
-      "Teach",
-      "following",
-      "progressive",
-      "lessons:"
+      "teach",
+      "tutorial",
+      "lesson",
+      "course for",
+      "شرح",
+      "تعليم",
+      "درس",
+      "structured",
+      "tutoring"
     ]
   },
   {
@@ -260,13 +257,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "cheatsheet",
-      "يلخّص",
-      "صفحة",
-      "واحدة",
-      "following",
-      "one-page",
+      "cheat sheet",
+      "quick reference",
+      "مرجع سريع",
+      "ورقة مرجعية",
       "quick-reference",
-      "sheet:"
+      "notes"
     ]
   },
   {
@@ -285,12 +281,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "flashcards",
-      "ينشئ",
+      "flashcard",
+      "memorize",
       "بطاقات",
-      "تعليمية",
-      "للمراجعة",
-      "Create",
-      "following:"
+      "حفظ",
+      "study"
     ]
   },
   {
@@ -309,13 +304,9 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "quiz",
-      "يولّد",
-      "اختبارًا",
-      "الإجابات",
-      "النموذجية",
-      "Create",
-      "following",
-      "answers:"
+      "test me",
+      "امتحان",
+      "اختبرني"
     ]
   },
   {
@@ -334,14 +325,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "viva",
-      "يجهّز",
-      "أسئلة",
-      "مناقشة",
-      "شفهية",
-      "Prepare",
       "defence",
-      "questions",
-      "about"
+      "defense",
+      "oral exam",
+      "مناقشة",
+      "دفاع",
+      "preparation"
     ]
   },
   {
@@ -360,14 +349,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "interview",
-      "يسمّي",
-      "دورك",
-      "ويطرح",
-      "أسئلة",
+      "mock interview",
+      "practice",
       "مقابلة",
-      "interviewer",
-      "questions",
-      "about:"
+      "مقابلات",
+      "mock"
     ]
   },
   {
@@ -386,14 +372,15 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "devilsadvocate",
-      "ينقض",
-      "الافتراضات",
-      "ويكشف",
-      "الثغرات",
-      "Challenge",
-      "every",
-      "assumption",
-      "following"
+      "devil",
+      "challenge my",
+      "attack my",
+      "critical review",
+      "محامي الشيطان",
+      "انتقض",
+      "نقد",
+      "challenge",
+      "assumptions"
     ]
   },
   {
@@ -412,14 +399,13 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "premortem",
-      "يفترض",
-      "الفشل",
-      "ويحدد",
-      "أسبابه",
-      "Assume",
-      "following",
-      "project",
-      "failed,"
+      "assume it failed",
+      "why did it fail",
+      "تحليل مسبق",
+      "فشل",
+      "assume",
+      "failure",
+      "analyze"
     ]
   },
   {
@@ -438,14 +424,13 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "redteam",
-      "يختبر",
-      "الخطة",
-      "بأسلوب",
-      "محترف",
-      "Stress-test",
-      "following",
+      "red team",
       "hostile",
-      "rival"
+      "adversarial",
+      "فريق هجوم",
+      "هجوم",
+      "stress-test",
+      "plan"
     ]
   },
   {
@@ -464,14 +449,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "factcheck",
-      "يفحص",
-      "ادعاء",
-      "ويصنّف",
-      "صحته",
-      "Fact-check",
-      "claims",
-      "following",
-      "separate"
+      "fact check",
+      "verify",
+      "true or false",
+      "تحقق",
+      "حقيقة",
+      "claims"
     ]
   },
   {
@@ -490,13 +473,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "mythvsfact",
-      "يفصل",
-      "الخرافة",
-      "الحقيقة",
-      "Separate",
+      "myth",
+      "خرافة",
+      "حقيقة",
+      "separate",
       "myths",
-      "facts",
-      "about"
+      "facts"
     ]
   },
   {
@@ -515,12 +497,14 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "proscons",
-      "الخيارات",
-      "جدول",
-      "واضح",
-      "every",
-      "option",
-      "table:"
+      "pros and cons",
+      "advantages and disadvantages",
+      "trade off",
+      "مزايا",
+      "عيوب",
+      "إيجابيات",
+      "advantages",
+      "disadvantages"
     ]
   },
   {
@@ -539,13 +523,13 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "swot",
-      "يفحص",
-      "القوة",
-      "والضعف",
-      "والفرص",
-      "والمخاطر",
-      "analysis",
-      "following:"
+      "strengths",
+      "weaknesses",
+      "opportunities",
+      "قوة",
+      "ضعف",
+      "فرص",
+      "analysis"
     ]
   },
   {
@@ -564,14 +548,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "pestle",
-      "يحلل",
-      "البيئة",
-      "السياسية",
-      "والاقتصادية",
-      "Analyse",
-      "following",
-      "PESTLE",
-      "lens:"
+      "political",
+      "macro environment",
+      "سياسة",
+      "اقتصاد",
+      "بيئة",
+      "analysis"
     ]
   },
   {
@@ -590,13 +572,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "fiveforces",
-      "يقيس",
-      "المنافسة",
-      "السوق",
-      "Assess",
-      "competition",
-      "following",
-      "market"
+      "porter",
+      "five forces",
+      "قوى بورتر",
+      "قوى",
+      "five",
+      "forces"
     ]
   },
   {
@@ -615,13 +596,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "fivewhys",
-      "السبب",
-      "الجذري",
-      "بأسئلة",
-      "متتابعة",
-      "times",
-      "reach",
-      "cause"
+      "five whys",
+      "لماذا خمس",
+      "خمسة لماذا",
+      "analysis"
     ]
   },
   {
@@ -640,13 +618,13 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "rootcause",
-      "يحلّل",
-      "السبب",
-      "الحقيقي",
-      "للمشكلة",
+      "root cause",
+      "why did it happen",
       "cause",
-      "following",
-      "problem:"
+      "السبب الجذري",
+      "سبب",
+      "find",
+      "root"
     ]
   },
   {
@@ -665,10 +643,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "decisionmatrix",
-      "الخيارات",
-      "بمعيارات",
-      "مرجّحة",
-      "Build",
+      "decision matrix",
+      "weighted criteria",
+      "مصفوفة قرار",
+      "معايير",
       "weighted",
       "decision",
       "matrix"
@@ -690,13 +668,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "strategy",
-      "يبني",
+      "strategic plan",
       "استراتيجية",
-      "قابلة",
-      "للتنفيذ",
-      "Build",
-      "actionable",
-      "around:"
+      "خطة استراتيجية",
+      "strategic",
+      "planning"
     ]
   },
   {
@@ -715,12 +691,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "marketmap",
-      "يرسم",
-      "خريطة赛场",
-      "واللاعبين",
-      "والفجوات",
-      "market",
-      "around:"
+      "market map",
+      "market landscape",
+      "competitive landscape",
+      "خريطة السوق",
+      "industry",
+      "landscape"
     ]
   },
   {
@@ -739,14 +715,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "benchmark",
-      "يقارن",
-      "الأداء",
-      "بأفضل",
-      "الممارسات",
-      "Compare",
-      "following",
-      "against",
-      "practice"
+      "best in class",
+      "compare against",
+      "مرجع",
+      "مقارنة مع",
+      "comparison"
     ]
   },
   {
@@ -765,13 +738,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "insights",
-      "يستخرج",
-      "الأفكار",
-      "الفعلية",
-      "البيانات",
-      "Extract",
-      "important",
-      "following"
+      "insight",
+      "what does the data say",
+      "رؤى",
+      "استنتاجات",
+      "دلالات",
+      "extract"
     ]
   },
   {
@@ -790,13 +762,13 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "recommendations",
-      "يعطي",
+      "recommend",
+      "what should i",
+      "suggestions",
       "توصيات",
-      "مرتبة",
-      "الأولوية",
-      "ranked",
-      "priority",
-      "about:"
+      "نصح",
+      "اقترح",
+      "provide"
     ]
   },
   {
@@ -815,13 +787,13 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "prioritize",
-      "يرتّب",
-      "الأعمال",
-      "الأثر",
-      "Prioritise",
-      "following",
-      "impact",
-      "first:"
+      "what first",
+      "rank these",
+      "أولويات",
+      "ترتيب",
+      "الأهم",
+      "rank",
+      "priority"
     ]
   },
   {
@@ -840,14 +812,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "executivebrief",
-      "يختصر",
-      "الموضوع",
-      "لصفحة",
-      "واحدة",
-      "Write",
-      "one-page",
+      "executive summary",
+      "one page",
+      "brief me",
+      "ملخص تنفيذي",
       "executive",
-      "brief"
+      "summary"
     ]
   },
   {
@@ -866,13 +836,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "consultant",
-      "يعطيك",
-      "نصيحة",
-      "استشارية",
-      "عملية",
-      "Advise",
-      "senior",
-      "about:"
+      "advise me",
+      "consult",
+      "استشارة",
+      "استشرني",
+      "consulting-style",
+      "advice"
     ]
   },
   {
@@ -891,10 +860,15 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "roleplay",
-      "يتقمّص",
-      "دورًا",
-      "ويبدأ",
-      "الحوار"
+      "act as",
+      "pretend",
+      "simulate a",
+      "تمثيل",
+      "تقمّص",
+      "ت playing",
+      "assume",
+      "expert",
+      "role"
     ]
   },
   {
@@ -913,13 +887,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "brainstorm",
-      "يولّد",
-      "أفكارًا",
-      "كثيرة",
-      "ومتنوعة",
-      "Brainstorm",
-      "widely",
-      "about:"
+      "ideas",
+      "give me ideas",
+      "عصف",
+      "أفكار",
+      "أفكارا",
+      "lots"
     ]
   },
   {
@@ -938,11 +911,14 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "compare",
-      "يقارن",
-      "خيارات",
-      "نسختين",
-      "Compare",
-      "between:"
+      "versus",
+      "difference between",
+      "مقارنة",
+      "الفرق",
+      "compares",
+      "two",
+      "options",
+      "versions"
     ]
   },
   {
@@ -961,13 +937,14 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "plan",
-      "يبني",
+      "steps to",
+      "how to achieve",
+      "خطة",
       "خطوات",
-      "مرتبة",
-      "Write",
-      "detailed",
-      "step-by-step",
-      "execute:"
+      "مخطط",
+      "builds",
+      "ordered",
+      "step-by-step"
     ]
   },
   {
@@ -986,15 +963,14 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "actionplan",
-      "يحوّل",
-      "الهدف",
-      "خطوات",
-      "بمالك",
-      "ومدة",
-      "following",
+      "action plan",
+      "who does what",
+      "deadline",
+      "خطة عمل",
+      "مهام",
+      "step-by-step",
       "action",
-      "owners",
-      "deadlines:"
+      "plan"
     ]
   },
   {
@@ -1013,12 +989,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "table",
-      "يحوّل",
-      "المحتوى",
+      "convert to a table",
+      "tabulate",
       "جدول",
-      "منظم",
-      "following",
-      "table:"
+      "جدولة",
+      "convert"
     ]
   },
   {
@@ -1037,12 +1012,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "extract",
-      "يستخرج",
-      "المعلومات",
-      "المهمة",
-      "Extract",
-      "information",
-      "following:"
+      "pull out",
+      "key points from",
+      "استخراج",
+      "استخرج",
+      "key",
+      "information"
     ]
   },
   {
@@ -1061,11 +1036,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "research",
-      "يبحث",
-      "ويجمع",
-      "مصادر",
-      "موثوقة",
-      "Research:"
+      "look up",
+      "find sources",
+      "بحث",
+      "ابحث",
+      "أبحث",
+      "structured"
     ]
   },
   {
@@ -1084,13 +1060,13 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "sources",
-      "يقترح",
+      "citations",
+      "references",
+      "where to find",
+      "مراجع",
       "مصادر",
-      "وروابط",
-      "للتحقق",
-      "Suggest",
-      "reliable",
-      "about:"
+      "find",
+      "reliable"
     ]
   },
   {
@@ -1109,14 +1085,13 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "audit",
-      "يفحص",
-      "العمل",
-      "ويكشف",
-      "الفجوات",
-      "Audit",
-      "following",
-      "expose",
-      "gaps:"
+      "review my",
+      "check for errors",
+      "تدقيق",
+      "مراجعة",
+      "افحص",
+      "perform",
+      "comprehensive"
     ]
   },
   {
@@ -1135,13 +1110,14 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "analyze",
-      "يحلّل",
-      "المحتوى",
-      "ويستخلص",
-      "النتائج",
-      "Analyse",
-      "following",
-      "conclusions:"
+      "analyse",
+      "break down",
+      "تحليل",
+      "حلل",
+      "takes",
+      "document",
+      "dataset",
+      "piece"
     ]
   },
   {
@@ -1159,12 +1135,15 @@ window.PE_COMMANDS = (function () {
       "Do a deep multi-source research on: "
     ],
     "k": [
-      "deep_research",
-      "متعدد",
-      "المصادر",
-      "تقاطع",
-      "multi-source",
-      "research"
+      "deep",
+      "research",
+      "deep research",
+      "thorough research",
+      "بحث معمّق",
+      "بحث عميق",
+      "most",
+      "thorough",
+      "command."
     ]
   },
   {
@@ -1182,11 +1161,16 @@ window.PE_COMMANDS = (function () {
       "Write for me: "
     ],
     "k": [
-      "يكتب",
-      "نصًا",
-      "كاملًا",
-      "متقنًا",
-      "Write"
+      "write",
+      "draft",
+      "compose",
+      "اكتب",
+      "صياغة",
+      "اكتب لي",
+      "opens",
+      "blank",
+      "document",
+      "chatgpt"
     ]
   },
   {
@@ -1205,14 +1189,13 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "rewrite",
-      "يعيد",
-      "الصياغة",
-      "بأسلوب",
-      "أفضل",
-      "Rewrite",
-      "following",
-      "better",
-      "voice:"
+      "rephrase",
+      "better wording",
+      "أعد صياغة",
+      "صياغة أفضل",
+      "while",
+      "preserving",
+      "meaning"
     ]
   },
   {
@@ -1231,11 +1214,14 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "edit",
-      "يحسّن",
-      "الصياغة",
-      "ويحذف",
-      "الحشو",
-      "following:"
+      "proofread",
+      "polish",
+      "تحرير",
+      "مراجعة لغوية",
+      "most",
+      "granular",
+      "writing",
+      "commands."
     ]
   },
   {
@@ -1254,14 +1240,13 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "translate",
-      "ينقل",
-      "المعنى",
-      "بلغة",
-      "أخرى",
-      "بسلاسة",
-      "Translate",
-      "following",
-      "into:"
+      "in english",
+      "in spanish",
+      "in german",
+      "ترجم",
+      "ترجمة",
+      "multi-lingual",
+      "translation"
     ]
   },
   {
@@ -1280,12 +1265,16 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "code",
-      "يكتب",
-      "كودًا",
-      "جاهزًا",
-      "للتشغيل",
-      "Write",
-      "that:"
+      "function",
+      "script in",
+      "bug in",
+      "كود",
+      "برمجة",
+      "دالة",
+      "خطأ برمجي",
+      "auto-generates",
+      "logic",
+      "snippets"
     ]
   },
   {
@@ -1304,12 +1293,16 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "image",
-      "يولّد",
+      "picture",
+      "illustration",
+      "logo",
+      "draw me",
       "صورة",
-      "مفصّل",
-      "Write",
-      "detailed",
-      "prompt"
+      "رسم",
+      "تصميم",
+      "direct",
+      "generation",
+      "commands"
     ]
   },
   {
@@ -1327,12 +1320,15 @@ window.PE_COMMANDS = (function () {
       "Edit the image so that: "
     ],
     "k": [
-      "image_edit",
-      "تعديلًا",
-      "صورة",
-      "موجودة",
       "image",
-      "that:"
+      "edit",
+      "edit the image",
+      "change the image",
+      "modify the image",
+      "تعديل صورة",
+      "takes",
+      "existing",
+      "modification"
     ]
   },
   {
@@ -1351,11 +1347,13 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "canvas",
-      "يبني",
+      "workspace",
+      "shared board",
       "لوحة",
-      "تعاونية",
-      "Create",
-      "about:"
+      "مساحة عمل",
+      "multi-user",
+      "code",
+      "editor"
     ]
   },
   {
@@ -1374,10 +1372,14 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "study",
-      "يبني",
-      "تعلّم",
-      "متدرجة",
-      "Build"
+      "learn",
+      "revision",
+      "exam prep",
+      "دراسة",
+      "أتعلم",
+      "مذاكرة",
+      "activates",
+      "mode"
     ]
   },
   {
@@ -1396,12 +1398,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "notes",
-      "ينظّم",
-      "الملاحظات",
-      "بعناوين",
-      "Organise",
-      "following",
-      "clear"
+      "organise my notes",
+      "organize my notes",
+      "ملاحظات",
+      "نظم ملاحظاتي",
+      "study"
     ]
   },
   {
@@ -1420,11 +1421,14 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "search",
-      "يبحث",
-      "الويب",
-      "بمصادر",
-      "موثقة",
-      "Search"
+      "look up online",
+      "web search",
+      "find online",
+      "بحث",
+      "ابحث في الويب",
+      "triggers",
+      "live",
+      "web"
     ]
   },
   {
@@ -1443,12 +1447,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "presentation",
-      "يبني",
-      "هيكل",
+      "slides",
+      "deck",
+      "عرض تقديمي",
       "شرائح",
-      "Build",
-      "outline",
-      "about:"
+      "عرض",
+      "outline"
     ]
   },
   {
@@ -1467,11 +1471,15 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "spreadsheet",
-      "يبني",
-      "أعمدة",
-      "جدول",
-      "Create",
-      "columns:"
+      "excel",
+      "csv",
+      "sheet",
+      "جدول بيانات",
+      "إكسل",
+      "builds",
+      "table",
+      "columns",
+      "formulas"
     ]
   },
   {
@@ -1490,14 +1498,13 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "pdf",
-      "يهيّئ",
-      "تقريرًا",
-      "جاهزًا",
-      "للطباعة",
-      "Prepare",
+      "print ready",
+      "paginate",
+      "تقرير",
+      "ملف pdf",
+      "prepares",
       "print-ready",
-      "report",
-      "about:"
+      "report"
     ]
   },
   {
@@ -1516,12 +1523,14 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "email",
-      "يكتب",
-      "رسالة",
+      "mail",
+      "reply to",
+      "e-mail",
       "بريد",
-      "احترافية",
-      "Write",
-      "about:"
+      "إيميل",
+      "رسالة",
+      "formats",
+      "emails"
     ]
   },
   {
@@ -1540,11 +1549,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "resume",
-      "يكتب",
+      "cv",
+      "job application",
+      "سيرة ذاتية",
       "سيرة",
-      "ذاتية",
-      "مركّزة",
-      "Write"
+      "writes",
+      "focused"
     ]
   },
   {
@@ -1563,12 +1573,15 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "math",
-      "المسألة",
-      "خطوة",
-      "بخطوة",
-      "Solve",
-      "following",
-      "step:"
+      "calculate",
+      "formula",
+      "solve",
+      "رياضيات",
+      "حساب",
+      "معادلة",
+      "solves",
+      "problem",
+      "step"
     ]
   },
   {
@@ -1587,13 +1600,14 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "visualize",
-      "يشرح",
-      "الفكرة",
-      "برسم",
-      "مخطط",
-      "Visualise",
-      "following",
-      "diagram:"
+      "visualise",
+      "visual explanation",
+      "رسم توضيحي",
+      "وضح بصري",
+      "turn",
+      "ideas",
+      "visual",
+      "explanations"
     ]
   },
   {
@@ -1612,13 +1626,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "mindmap",
-      "يرتب",
-      "الأفكار",
-      "خريطة",
-      "ذهنية",
-      "Connect",
-      "following",
-      "ideas"
+      "mind map",
+      "خريطة ذهنية",
+      "mind",
+      "map"
     ]
   },
   {
@@ -1637,10 +1648,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "diagram",
-      "يرسم",
-      "مخططًا",
-      "توضيحيًا",
-      "shows:"
+      "explain with a picture",
+      "مخطط",
+      "رسم بياني",
+      "draw",
+      "concept"
     ]
   },
   {
@@ -1659,10 +1671,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "flowchart",
-      "يرسم",
-      "خطوات",
-      "العملية",
-      "process"
+      "flow chart",
+      "process diagram",
+      "مخطط تدفق",
+      "step-by-step"
     ]
   },
   {
@@ -1681,11 +1693,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "roadmap",
-      "يبني",
-      "خارطة",
-      "مراحل",
-      "مرتبة",
-      "Build"
+      "milestones",
+      "خارطة طريق",
+      "learning",
+      "execution"
     ]
   },
   {
@@ -1704,11 +1715,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "dashboard",
-      "يصمم",
-      "لوحة",
+      "kpi",
+      "metrics board",
+      "لوحة مؤشرات",
       "مؤشرات",
-      "ومقاييس",
-      "Design"
+      "kpis"
     ]
   },
   {
@@ -1727,13 +1738,9 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "timeline",
-      "يرتب",
-      "الأحداث",
-      "زمنيًا",
-      "Arrange",
-      "following",
-      "events",
-      "timeline:"
+      "chronological",
+      "خط زمني",
+      "تسلسل زمني"
     ]
   },
   {
@@ -1752,10 +1759,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "process",
-      "يشرح",
-      "الخطوات",
-      "كاملة",
-      "Explain"
+      "how it works",
+      "explain the process",
+      "عملية",
+      "كيف يعمل",
+      "explain",
+      "complete"
     ]
   },
   {
@@ -1774,11 +1783,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "journey",
-      "يرسم",
+      "user flow",
+      "customer journey",
       "رحلة",
-      "المستخدم",
-      "ونقاط",
-      "الألم"
+      "رحلة المستخدم",
+      "end-to-end"
     ]
   },
   {
@@ -1797,10 +1806,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "ecosystem",
-      "يحدد",
-      "اللاعبين",
-      "والعلاقات",
-      "بينهم"
+      "the players",
+      "منظومة",
+      "all",
+      "connected",
+      "players"
     ]
   },
   {
@@ -1819,10 +1829,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "architecture",
-      "بنية",
-      "النظام",
-      "ومكوناته",
-      "Design"
+      "system design",
+      "معمارية",
+      "تصميم النظام",
+      "software",
+      "system"
     ]
   },
   {
@@ -1841,11 +1852,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "wireframe",
-      "يرسم",
+      "layout sketch",
+      "نموذج أولي",
       "تخطيط",
-      "الشاشة",
-      "Sketch",
-      "screen",
+      "website",
+      "app",
       "layout"
     ]
   },
@@ -1865,11 +1876,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "mockup",
-      "تصميمًا",
-      "بصريًا",
-      "واقعيًا",
-      "Design",
-      "realistic"
+      "realistic preview",
+      "نموذج واقعي",
+      "realistic",
+      "product",
+      "preview"
     ]
   },
   {
@@ -1888,11 +1899,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "poster",
-      "يملأ",
-      "تصميم",
+      "flyer",
       "ملصق",
-      "Design",
-      "about:"
+      "إعلان مطبوع",
+      "design"
     ]
   },
   {
@@ -1911,11 +1921,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "cover",
-      "يصمم",
+      "book cover",
+      "report cover",
       "غلاف",
-      "تقرير",
-      "كتاب",
-      "Design"
+      "book",
+      "report"
     ]
   },
   {
@@ -1934,12 +1944,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "infographic",
-      "يربط",
-      "البيانات",
-      "صورة",
-      "بصرية",
-      "following",
-      "infographic:"
+      "visualise data",
+      "إنفوجرافيك",
+      "مخطط بيانات",
+      "layout"
     ]
   },
   {
@@ -1958,13 +1966,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "handwritten",
-      "ينسّق",
-      "المحتوى",
-      "كملاحظات",
-      "اليد",
-      "Format",
-      "following",
-      "notes:"
+      "note style",
+      "بخط اليد",
+      "notebook-style",
+      "notes"
     ]
   },
   {
@@ -1983,13 +1988,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "storyboard",
-      "يقسّم",
-      "الفيديو",
-      "مشاهد",
-      "Split",
-      "following",
-      "video",
-      "scenes:"
+      "scenes",
+      "ستوري بورد",
+      "لوحة مشاهد",
+      "scene-by-scene"
     ]
   },
   {
@@ -2008,12 +2010,9 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "comic",
-      "يشرح",
-      "الموضوع",
-      "لوحات",
-      "مصورة",
-      "Explain",
-      "following",
+      "panels",
+      "قصة مصورة",
+      "explain",
       "through"
     ]
   },
@@ -2033,12 +2032,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "carousel",
-      "يبني",
-      "منشورًا",
-      "متعدد",
-      "الصور",
-      "Prepare",
-      "about:"
+      "slides post",
+      "منشور متسلسل",
+      "instagram",
+      "linkedin"
     ]
   },
   {
@@ -2057,14 +2054,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "socialvisual",
-      "يصمم",
-      "منشورًا",
-      "بصريًا",
-      "للمنصات",
-      "Design",
+      "social post",
+      "instagram graphic",
+      "منشور بصري",
       "social",
-      "visual",
-      "about:"
+      "media",
+      "graphic"
     ]
   },
   {
@@ -2083,11 +2078,9 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "adcreative",
-      "يبدع",
-      "فكرة",
-      "إعلانية",
-      "متكاملة",
-      "Create",
+      "ad concept",
+      "advertising idea",
+      "فكرة إعلانية",
       "advertising",
       "concept"
     ]
@@ -2108,11 +2101,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "thumbnail",
-      "يصمم",
-      "صورة",
-      "مصغّرة",
-      "جذابة",
-      "Design"
+      "youtube thumb",
+      "صورة مصغّرة",
+      "youtube",
+      "concept"
     ]
   },
   {
@@ -2131,12 +2123,12 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "viralhook",
-      "يكتب",
-      "خطافًا",
-      "يوقف",
-      "التمرير",
-      "Write",
-      "scroll-stopping"
+      "scroll stopping",
+      "viral hook",
+      "خطاف",
+      "جذب الانتباه",
+      "scroll-stopping",
+      "hook"
     ]
   },
   {
@@ -2155,11 +2147,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "hook",
-      "يقترح",
-      "خطوط",
-      "افتتاحية",
-      "Suggest",
-      "strong",
+      "opening line",
+      "first line",
+      "خطاف",
+      "سطر افتتاحي",
       "opening",
       "lines"
     ]
@@ -2180,13 +2171,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "retention",
-      "يحسّن",
-      "لحظات",
-      "إبقاء",
-      "المشاهد",
-      "Improve",
-      "audience-retention",
-      "moments"
+      "keep the audience",
+      "إبقاء المشاهد",
+      "الاحتفاظ",
+      "improve",
+      "audience"
     ]
   },
   {
@@ -2205,12 +2194,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "storytelling",
-      "يبني",
-      "متكاملة",
-      "بإيقاع",
-      "Write",
       "story",
-      "about:"
+      "narrative",
+      "قصة",
+      "سرد"
     ]
   },
   {
@@ -2229,11 +2216,9 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "script",
-      "يكتب",
-      "سكربتًا",
-      "كاملاً",
-      "Write",
-      "about:"
+      "full script",
+      "سكربت",
+      "نص"
     ]
   },
   {
@@ -2252,13 +2237,11 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "script30",
-      "يكتب",
-      "سكربتًا",
-      "دقيقة",
-      "Write",
-      "30-second",
-      "script",
-      "about:"
+      "30 second",
+      "short script",
+      "ثلاثين ثانية",
+      "second",
+      "script"
     ]
   },
   {
@@ -2277,12 +2260,9 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "narration",
-      "يكتب",
-      "تعليق",
-      "صوتي",
-      "Write",
-      "voice-over",
-      "about:"
+      "voice over",
+      "تعليق صوتي",
+      "script"
     ]
   },
   {
@@ -2301,13 +2281,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "podcast",
-      "يبني",
-      "حلقة",
-      "بودكاست",
-      "كاملة",
-      "Prepare",
       "episode",
-      "about:"
+      "بودكاست",
+      "حلقات",
+      "outline"
     ]
   },
   {
@@ -2326,14 +2303,10 @@ window.PE_COMMANDS = (function () {
     ],
     "k": [
       "youtube",
-      "يبني",
-      "فيديو",
+      "long form video",
       "يوتيوب",
-      "طويلًا",
-      "Write",
-      "YouTube",
-      "video",
-      "script"
+      "long-form",
+      "format"
     ]
   }
 ];
@@ -2356,7 +2329,7 @@ window.PE_COMMANDS = (function () {
     return (lang === 1 ? cmd.x[1] : cmd.x[0]);
   }
 
-  /* which command fits the prompt the user is writing right now */
+  /* which commands fit the prompt the user is writing right now */
   function find(text, limit) {
     const t = norm(text);
     if (!t.trim()) return [];
@@ -2365,7 +2338,7 @@ window.PE_COMMANDS = (function () {
       let score = 0;
       for (const k of (s.k || [])) {
         const nk = norm(k);
-        if (nk.length < 4) continue;
+        if (nk.length < 3) continue;
         if (t.includes(nk)) score += nk.length >= 7 ? 3 : 2;
       }
       if (score > 0) out.push({ id: s.c, score });

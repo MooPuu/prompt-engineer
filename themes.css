@@ -143,21 +143,6 @@ label.lb{color:var(--muted)}
 /* مبدّل الثيم (شرائح) */
 .themes{display:flex;gap:4px;padding:4px;background:var(--panel2);
   border:1px solid var(--line2);border-radius:13px}
-.tbtn{
-  border:0;background:transparent;color:var(--muted);cursor:pointer;
-  padding:6px 11px;border-radius:9px;font-size:13px;font-weight:700;
-  display:flex;align-items:center;gap:6px;transition:.18s;white-space:nowrap
-}
-.tbtn:hover{color:var(--txt);background:var(--focus)}
-.tbtn.active{background:var(--accent-grad);color:var(--on-grad,#fff);box-shadow:0 6px 16px rgba(0,0,0,.28)}
-.tbtn .em{font-size:14px;line-height:1}
-/* أيقونة اللغة العربية: حرف "ع" داخل مربع أبيض بحدود سوداء */
-.tbtn .em.ar-box{
-  width:19px;height:19px;display:inline-flex;align-items:center;justify-content:center;
-  background:#ffffff;color:#0a0a0a;border:1.6px solid #000000;border-radius:5px;
-  font-size:12px;font-weight:800;line-height:1;
-}
-.tbtn:active .em.ar-box{background:#f0f0f0}
 @media(max-width:640px){.tbtn span.tx{display:none}.tbtn{padding:7px 9px}}
 
 /* شريط علوي أنعم */
@@ -376,13 +361,13 @@ section.fsec,#presets,#preview,#ring,#aiGrid,.divider{scroll-margin-top:96px}
 .welcome p{margin:6px 0 0;font-size:13.2px;color:var(--muted);line-height:1.65}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:10px;margin-bottom:16px}
 .tile{
+.tile:active{transform:translateY(-1px)}
+.tile:hover{transform:translateY(-3px);border-color:var(--acc);box-shadow:0 14px 28px var(--glow-card)}
   display:flex;align-items:center;gap:10px;text-align:start;cursor:pointer;
   background:var(--surface2);border:1px solid var(--stroke);border-radius:16px;
   padding:12px;font-weight:700;font-size:13.3px;color:var(--txt);
   box-shadow:0 6px 16px var(--glow-card);transition:.18s
 }
-.tile:hover{transform:translateY(-3px);border-color:var(--acc);box-shadow:0 14px 28px var(--glow-card)}
-.tile:active{transform:translateY(-1px)}
 .ti{width:36px;height:36px;flex:0 0 36px;border-radius:13px;background:var(--c);
   display:grid;place-items:center;font-size:16px;color:#fff;box-shadow:0 6px 14px rgba(0,0,0,.28)}
 
@@ -537,28 +522,22 @@ textarea::placeholder,input::placeholder,select::placeholder{color:var(--muted2)
   stroke:currentColor;fill:none;stroke-width:1.6;
   stroke-linecap:round;stroke-linejoin:round;
   display:inline-block;vertical-align:-.22em;
-}
+}.tbtn:hover{color:var(--txt);background:var(--focus)}
+.tbtn.active{background:var(--accent-grad);color:var(--on-grad,#fff);box-shadow:0 6px 16px rgba(0,0,0,.28)}
+.tbtn .em{font-size:14px;line-height:1}
 .btn .hi,.tbtn .hi{opacity:.92}
-.tile .ti .hi{width:1.25em;height:1.25em}
-.ti{display:inline-flex;align-items:center;justify-content:center}
-
-/* the theme swatch keeps its colour while the icon is a stroke */
+.tile .ti .hi{width:1.3em;height:1.3em}
 .tbtn .em .hi{stroke:currentColor;stroke-width:1.6}
-.tbtn[data-theme="midnight"] .em{color:#cfd6ee}
-.tbtn[data-theme="light"] .em{color:#f0a63a}
+.tbtn .em .hi{width:1.15em;height:1.15em}
+.btn .hi{opacity:.92}
+.ti{display:inline-flex;align-items:center;justify-content:center}
 
 /* ---------------- icon sizing per context ---------------- */
 .hi{width:1.15em;height:1.15em;flex:0 0 auto;stroke:currentColor;fill:none;stroke-width:1.6;
-  stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:-.22em}
-
-/* the round icon chips */
-.si .hi,.ms-ic .hi,.fi .hi,.s-ic .hi,.tpl-ic .hi,.di .hi,.mi .hi,.pcard .hi{
+  stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:-.22em}/* the round icon chips */
+.si .hi,.ms-ic .hi,.fi .hi,.tpl-ic .hi,.mi .hi{
   width:1.25em;height:1.25em;stroke-width:1.7;vertical-align:-.28em}
-.qa-ic .hi{width:1.3em;height:1.3em;stroke-width:1.7}
-.bn-ic .hi{width:1.25em;height:1.25em;stroke-width:1.7}
-.tile .ti .hi{width:1.3em;height:1.3em}
-.tbtn .em .hi{width:1.15em;height:1.15em}
-.ti,.s-ic,.ms-ic,.fi,.di,.mi{display:inline-flex;align-items:center;justify-content:center}
+.ti,.ms-ic,.fi,.mi{display:inline-flex;align-items:center;justify-content:center}
 
 /* ---------------- the animated night / day switch ---------------- */
 .tbtn-anim{padding-left:6px;padding-right:6px}
@@ -592,8 +571,7 @@ textarea::placeholder,input::placeholder,select::placeholder{color:var(--muted2)
 .skills-sub{font-size:11.5px;font-weight:800;color:var(--muted);margin:12px 0 7px;
   text-transform:uppercase;letter-spacing:.4px}
 .skills-list{display:flex;flex-direction:column;gap:7px}
-.skills-empty{font-size:12.5px;color:var(--muted);padding:14px;text-align:center;
-  border:1px dashed var(--stroke);border-radius:12px}
+
 .skill{
   display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;
   background:var(--surface2);border:1px solid var(--stroke)
@@ -662,3 +640,92 @@ textarea::placeholder,input::placeholder,select::placeholder{color:var(--muted2)
   text-decoration:none;border:1px solid var(--line);border-radius:9px;padding:5px 9px
 }
 .best-foot{font-size:10.6px;color:var(--muted);text-align:center;margin-top:12px}
+
+/* the skills that fit the prompt */
+.skill.hit{border-color:var(--acc);background:var(--acc-soft)}
+.skill-star{font-style:normal;color:var(--acc);font-size:12px;margin-inline-end:6px;vertical-align:-1px}
+
+/* the token banner under the generated prompt */
+.tok-banner{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:9px 12px;margin-bottom:8px;border-radius:12px;
+  background:var(--surface2);border:1px solid var(--stroke);font-size:12px;color:var(--muted)
+}
+.tok-banner .tok-i b{color:var(--txt);font-weight:800;font-size:12.5px}
+.tok-banner .tok-note{margin-inline-start:auto;font-size:10.8px;opacity:.85}
+
+/* the suggestions */
+.sug-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.sug-item{
+  display:flex;align-items:flex-start;gap:10px;padding:10px 11px;border-radius:13px;
+  background:var(--surface2);border:1px solid var(--stroke)
+}
+.sug-badge{
+  flex:0 0 auto;font-size:9.4px;font-weight:900;letter-spacing:.3px;padding:3px 8px;border-radius:99px;
+  background:var(--blue-soft);color:var(--primary);text-transform:uppercase;margin-top:1px
+}
+.sug-cmd .sug-badge{background:rgba(16,185,129,.14);color:#0e9f6e}
+.sug-fix .sug-badge{background:rgba(245,158,11,.16);color:#b45309}
+.sug-tool .sug-badge{background:rgba(192,38,211,.14);color:#a21caf}
+.sug-body{flex:1;min-width:0}
+.sug-t{font-size:12.8px;font-weight:800;color:var(--txt)}
+.sug-d{font-size:11.4px;color:var(--muted);line-height:1.55;margin-top:2px}
+.sug-btn{
+  flex:0 0 auto;align-self:center;border:1px solid var(--stroke);background:var(--hover);color:var(--txt);
+  font-size:11.3px;font-weight:800;padding:6px 11px;border-radius:9px;cursor:pointer;text-decoration:none
+}
+.sug-btn:hover{border-color:var(--acc);color:var(--acc)}
+.sug-empty{font-size:12.5px;color:var(--muted);padding:14px;text-align:center;border:1px dashed var(--stroke);border-radius:12px}
+
+.sug-acts{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+.sug-btn.primary{background:var(--primary);color:#fff;border-color:transparent}
+.sug-btn.primary:hover{color:#fff;filter:brightness(1.06)}
+.sug-open{margin-top:12px;padding-top:10px;border-top:1px dashed var(--stroke)}
+.sug-open-h{font-size:10.6px;font-weight:900;color:var(--muted);letter-spacing:.4px;margin-bottom:7px;text-transform:uppercase}
+.sug-open-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:7px 0;border-bottom:1px solid var(--stroke)}
+.sug-open-row:last-child{border-bottom:0}
+.sug-open-row b{font-size:12.2px;font-weight:800;color:var(--txt)}
+.sug-open-row>span:not(.sug-open-links){font-size:11px;color:var(--muted);flex:1;min-width:140px}
+.sug-open-links{display:flex;gap:6px;margin-inline-start:auto}
+.sug-open-links a{
+  font-size:10.6px;font-weight:800;color:var(--primary);text-decoration:none;
+  border:1px solid var(--line);border-radius:8px;padding:3px 8px
+}
+.sug-open-links a:hover{border-color:var(--primary)}
+
+/* ---------------- the buttons preview and maintenance ---------------- */
+.btns-panel{
+  position:fixed;top:70px;inset-inline-end:22px;z-index:62;width:min(560px,calc(100vw - 32px));
+  max-height:min(76vh,700px);overflow:auto;
+  background:var(--panel);border:1px solid var(--stroke);border-radius:18px;
+  box-shadow:0 22px 60px rgba(0,0,0,.42);padding:14px
+}
+.btns-tools{display:flex;gap:8px;align-items:center;margin:10px 0 8px}
+.btns-tools input{
+  flex:1;min-width:0;border:1px solid var(--stroke);background:var(--input);color:var(--txt);
+  border-radius:11px;padding:9px 11px;font-size:13px;font-family:inherit
+}
+.btns-sum{font-size:11.6px;color:var(--muted);margin-bottom:9px;font-weight:700}
+.btns-list{display:flex;flex-direction:column;gap:8px}
+.bi{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:13px;
+  background:var(--surface2);border:1px solid var(--stroke)}
+.bi-prev{flex:0 0 auto;min-width:52px;display:grid;place-items:center;
+  background:var(--card);border:1px solid var(--line);border-radius:10px;padding:5px}
+.bi-prev .btn{pointer-events:none;transform:scale(.82);transform-origin:center}
+.bi-meta{flex:1;min-width:0}
+.bi-label{font-size:12.4px;font-weight:800;color:var(--txt);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bi-sel{font-family:'JetBrains Mono',monospace;font-size:10.6px;color:var(--muted);margin-top:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bi-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.bi-tag{font-size:9.4px;font-weight:800;padding:2px 7px;border-radius:99px;
+  background:var(--hover);color:var(--muted)}
+.bi-tag.ok{background:rgba(22,163,74,.15);color:#16a34a}
+.bi-tag.warn{background:rgba(245,158,11,.18);color:#b45309}
+.bi-acts{display:flex;gap:5px;flex:0 0 auto;flex-wrap:wrap;justify-content:flex-end;max-width:190px}
+.bi-a{
+  border:1px solid var(--line);background:var(--card);color:var(--muted);
+  font-size:10.4px;font-weight:800;padding:4px 8px;border-radius:8px;cursor:pointer
+}
+.bi-a:hover{border-color:var(--acc);color:var(--acc)}
+.bi-flash{outline:2px solid var(--acc)!important;outline-offset:2px}

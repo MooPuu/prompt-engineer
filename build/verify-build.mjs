@@ -1,7 +1,9 @@
 import asar from '@electron/asar';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const root = 'C:/Users/asus/Documents/Default Project/prompt-engineer/';
-const asarPath = root + 'dist/win-unpacked/resources/app.asar';
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const asarPath = path.join(root, 'dist', 'win-unpacked', 'resources', 'app.asar');
 
 const html = asar.extractFile(asarPath, 'index.html').toString('utf8');
 const i18nRaw = asar.extractFile(asarPath, 'i18n.js').toString('utf8');

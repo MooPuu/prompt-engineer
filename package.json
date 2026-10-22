@@ -16,7 +16,10 @@
     "build:portable": "electron-builder --win portable",
     "build:nsis": "electron-builder --win nsis",
     "build:msi": "electron-builder --win msi",
-    "build:icons": "node build/make-icon.mjs"
+    "build:icons": "node build/make-icon.mjs",
+    "sync": "node build/sync-mobile.mjs",
+    "verify": "node build/verify-build.mjs",
+    "smoke": "node build/smoke-test.mjs"
   },
   "devDependencies": {
     "electron": "^33.4.11",

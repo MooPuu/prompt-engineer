@@ -1,13 +1,16 @@
 /* Launches the freshly built desktop app and inspects it over the Chrome DevTools Protocol. */
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const root = 'C:/Users/asus/Documents/Default Project/prompt-engineer/';
-const exe = root + 'dist/win-unpacked/Prompt Engineer.exe';
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const unpacked = path.join(root, 'dist', 'win-unpacked');
+const exe = path.join(unpacked, 'Prompt Engineer.exe');
 const PORT = 9229;
 
 const child = spawn(exe, ['--remote-debugging-port=' + PORT], {
-  cwd: root + 'dist/win-unpacked',
+  cwd: unpacked,
   stdio: 'ignore',
   detached: false
 });
