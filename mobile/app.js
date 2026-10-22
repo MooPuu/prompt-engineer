@@ -959,6 +959,43 @@ function commandRow(c, big){
   };
   return row;
 }
+function renderBests(){
+  const box=$('bestList');
+  if(!box || !window.PE_BEST) return;
+  const B=window.PE_BEST;
+  /* the desktop picks with L(), the mobile with tx() */
+  const pick = a => (typeof L === 'function') ? (L()===1 ? a[1] : a[0]) : tx(a);
+  box.innerHTML='';
+  B.list.forEach(x=>{
+    const el=document.createElement('div');
+    el.className='best';
+    const ic=document.createElement('span'); ic.className='best-ic'; ic.innerHTML=B.svg(x.ic);
+    const body=document.createElement('div'); body.className='best-t';
+    const title=document.createElement('div'); title.className='best-n';
+    title.textContent = pick(x.n);
+    const desc=document.createElement('div'); desc.className='best-d';
+    desc.textContent = pick(x.d);
+    const win=document.createElement('div'); win.className='best-w';
+    const badge=document.createElement('span'); badge.className='best-badge';
+    badge.textContent=t('best.winner');
+    const model=document.createElement('b'); model.textContent=x.best;
+    const org=document.createElement('i'); org.textContent=x.org;
+    win.appendChild(badge); win.appendChild(model); win.appendChild(org);
+    body.appendChild(title); body.appendChild(desc); body.appendChild(win);
+    if(x.alt && x.alt.length){
+      const alts=document.createElement('div'); alts.className='best-alt';
+      alts.textContent = t('best.alt') + ': ' + pick(x.alt);
+      body.appendChild(alts);
+    }
+    const link=document.createElement('a'); link.className='best-link';
+    link.href=x.link; link.target='_blank'; link.rel='noopener';
+    link.textContent=t('best.open');
+    el.appendChild(ic); el.appendChild(body); el.appendChild(link);
+    box.appendChild(el);
+  });
+  const upd=$('bestUpdated');
+  if(upd) upd.textContent = t('best.updated') + ' ' + B.updated + ' · ' + B.source;
+}
 function renderCommands(){
   const box=$('cmdList');
   if(!box || !window.PE_COMMANDS) return;
@@ -996,7 +1033,10 @@ function initSkills(){
       document.querySelectorAll('.skills-tabs .sk-tab').forEach(x=>x.classList.toggle('active', x===b));
       $('skSkills').hidden = SK_TAB!=='skills';
       $('skCommands').hidden = SK_TAB!=='commands';
-      if(SK_TAB==='commands') renderCommands(); else renderSkills();
+      $('skBest').hidden = SK_TAB!=='best';
+      if(SK_TAB==='commands') renderCommands();
+      else if(SK_TAB==='best') renderBests();
+      else renderSkills();
     });
   });
 }
@@ -1195,6 +1235,7 @@ function setLang(lg, silent){
   renderLangList(); renderPresetCats(); renderPresets(); renderTaskTemplates(); renderAi(); render();
   if(typeof renderSkillCats==='function') renderSkillCats();
   if(typeof renderCommands==='function') renderCommands();
+  if(typeof renderBests==='function') renderBests();
   fillAnswerLangs();
   if(!silent) toast(t('msg.lang'));
 }
@@ -1291,6 +1332,7 @@ function wire(){
   renderThemeRow();
   renderPresetCats();
   initSkills();
+  renderBests();
   const mSel=$('targetModel');
   if(mSel){
     fillModelSelect();

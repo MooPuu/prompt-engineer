@@ -39,6 +39,7 @@
       "anim.js",
       "skills.js",
       "commands.js",
+      "bests.js",
       "main.js",
       "prompt-engineer-icon.png",
       "package.json",
