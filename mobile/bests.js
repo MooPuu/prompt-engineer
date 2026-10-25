@@ -59,7 +59,7 @@ window.PE_BEST = (function () {
     { id: 'math', ic: 'calculator',
       k: ["math","mathematics","calculate","formula","equation","statistic","probability","رياضيات","حساب","معادلة","إحصاء","احتمال","دالة رياضية"],
       n: ['الرياضيات والمنطق', 'Math & logic'],
-      d: ['الأقوى في المسائل الرياضية مت��ددة الخطوات', 'The strongest on multi-step mathematical problems'],
+      d: ['الأقوى في المسائل الرياضية متعددة الخطوات', 'The strongest on multi-step mathematical problems'],
       best: 'Claude Opus 5.5', org: 'Anthropic',
       alt: ['Gemini 3.1 Pro · Qwen3.7 Max', 'Gemini 3.1 Pro · Qwen3.7 Max'],
       link: S + '/leaderboards/best-ai-for-math' },

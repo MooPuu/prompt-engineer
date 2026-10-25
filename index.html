@@ -70,6 +70,15 @@ button,input,textarea,select{font-family:inherit;font-size:inherit;color:inherit
 .btn.small{padding:6px 11px;font-size:13px;border-radius:9px}
 .btn.ok{background:linear-gradient(135deg,#18b97b,#0e9e6a);border-color:transparent;color:#04140d}
 
+/* the small top bar buttons — the same shape as the rest */
+.tbtn{
+  border:1px solid var(--line2);background:var(--panel2);color:var(--muted);
+  padding:6px 13px;border-radius:999px;cursor:pointer;
+  font-weight:700;font-size:13px;transition:.16s;display:inline-flex;align-items:center;gap:7px
+}
+.tbtn:hover{border-color:var(--acc);color:var(--txt);background:var(--focus)}
+.tbtn .chev{font-size:10px;opacity:.7;line-height:1}
+
 /* ===== Layout ===== */
 .wrap{max-width:1500px;margin:0 auto;padding:18px 20px 40px;
   display:grid;grid-template-columns:minmax(360px,470px) 1fr;gap:18px;align-items:start}
@@ -900,7 +909,7 @@ html[dir="ltr"] .lang-menu{inset-inline-end:0}
   </div>
 </footer>
 
-<script src="i18n.js?v=eb9f8135"></script>
+<script src="i18n.js?v=f5ffe1f9"></script>
 <script src="lottie.min.js"></script>
 <script src="anim.js"></script>
 <script src="skills.js"></script>
@@ -3213,7 +3222,7 @@ function buildSideMenu(){
     const fi=sec.querySelector('.fi');
     const a=document.createElement('a');
     a.className='mi'; a.href='#'+sec.id; a.dataset.sec=i;
-    a.innerHTML='<span class="mi-ic" style="--c:'+(fi?fi.style.getPropertyValue('--c'):'#6c8cff')+'">'+(fi?fi.textContent:'•')+'</span>'+
+    a.innerHTML='<span class="mi-ic" style="--c:'+(fi?fi.style.getPropertyValue('--c'):'#6c8cff')+'">'+(fi?fi.innerHTML:'•')+'</span>'+
                 '<span class="mi-t"'+(lab?' data-i18n="'+lab.dataset.i18n+'"':'')+'>'+(lab?lab.textContent:'')+'</span>'+
                 '<span class="mi-n">'+(i+1)+'</span>';
     nav.appendChild(a);

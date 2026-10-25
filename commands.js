@@ -136,7 +136,7 @@ window.PE_COMMANDS = (function () {
       "what is",
       "why does",
       "شرح",
-      "وض��ح",
+      "واضح",
       "ما هو",
       "explains",
       "concept",

@@ -24,7 +24,7 @@ let CURRENT='', CURRENT_IMG='';
 
 /* ================= Image style / size data (same values as desktop) ================= */
 const IMG_STYLES = [
- {n:['📷 تصوير','📷 Photography'], i:[
+ {n:['تصوير','Photography'], i:[
   ['photorealistic, ultra detailed, 8k, sharp focus','واقعي فوتوغرافي','Photorealistic'],
   ['portrait photography, 85mm lens, f/1.8, bokeh background, soft natural light','بورتريه احترافي','Portrait'],
   ['product photography, studio lighting, soft shadows, seamless background, commercial','تصوير منتجات','Product shot'],
@@ -38,7 +38,7 @@ const IMG_STYLES = [
   ['black and white photography, high contrast monochrome, dramatic shadows, timeless','أبيض وأسود درامي','Black & white'],
   ['food photography, overhead flat lay, appetizing styling, natural window light','تصوير طعام شهي','Food photography'],
   ['underwater photography, caustic light, blue tones, wide angle, marine life','تصوير تحت الماء','Underwater']]},
- {n:['🖌️ فنون','🖌️ Fine art'], i:[
+ {n:['فنون','Fine art'], i:[
   ['oil painting, visible brush strokes, canvas texture, classical','لوحة زيتية','Oil painting'],
   ['watercolor painting, soft edges, paper texture, gentle washes','ألوان مائية','Watercolor'],
   ['ink drawing, cross-hatching, high contrast black and white, sketchbook','رسم بالحبر','Ink drawing'],
@@ -50,7 +50,7 @@ const IMG_STYLES = [
   ['ukiyo-e japanese woodblock print, flat colors, flowing waves, elegant linework','الأوكييو-ي الياباني (Ukiyo-e)','Ukiyo-e'],
   ['charcoal drawing, soft shading, textured paper, expressive strokes','رسم بالفحم','Charcoal'],
   ['street graffiti, spray paint, vibrant mural, bold lettering, urban wall','جرافيتي جداري','Graffiti']]},
- {n:['💻 رقمي وتصيير','💻 Digital & 3D'], i:[
+ {n:['رقمي وتصيير','Digital & 3D'], i:[
   ['digital illustration, vibrant colors, clean shapes, modern','رسم رقمي','Digital illustration'],
   ['3D render, octane render, cinematic lighting, physically based materials','ثلاثي الأبعاد (3D)','3D render'],
   ['anime style, clean line art, cel shading, studio quality','أنمي','Anime'],
@@ -67,7 +67,7 @@ const IMG_STYLES = [
   ['voxel art, blocky 3d cubes, minecraft-like, clean isometric pixels','فوكسل آرت (Voxel)','Voxel art'],
   ['layered papercraft, cut paper art, soft drop shadows, craft texture, pastel layers','فن الورق المقصوص (Papercraft)','Papercraft'],
   ['holographic iridescent gradients, chrome reflections, glossy futuristic surfaces','هولوغرامي/كروم','Holographic']]},
- {n:['🎨 رسوميات وتصميم','🎨 Graphics & design'], i:[
+ {n:['رسوميات وتصميم','Graphics & design'], i:[
   ['minimal logo design, vector, symmetrical mark, clean geometry, white background','تصميم شعار (Logo)','Logo design'],
   ['clean infographic, flat icons, data visualization, organized layout, brand colors','إنفوجرافيك منظم','Infographic'],
   ['comic book panel, bold ink outlines, ben-day dots, dynamic action, vibrant colors','قصص مصورة (كوميكس)','Comic panel'],
@@ -76,7 +76,7 @@ const IMG_STYLES = [
   ['retro travel poster, screen print texture, limited palette, bold typography shapes','بوستر سفر ريترو','Retro poster']]}
 ];
 const IMG_SIZES = [
- {n:['🖥️ أفقي','🖥️ Landscape'], i:[
+ {n:['أفقي','Landscape'], i:[
   ['21:9','21:9 — ألترا واسع سينمائي','21:9 — Ultra-wide cinematic'],
   ['16:9','16:9 — عريض (يوتيوب/شاشة)','16:9 — Widescreen'],
   ['16:10','16:10 — خلفية سطح مكتب','16:10 — Desktop wallpaper'],
@@ -90,7 +90,7 @@ const IMG_SIZES = [
   ['5:3','5:3 — عريض معتدل','5:3 — Moderate wide'],
   ['14:9','14:9 — عريض متعدد الشاشات','14:9 — Multi-screen wide'],
   ['17:9','17:9 — DCI سينمائي','17:9 — DCI cinematic']]},
- {n:['📱 مربع وعمودي','📱 Square & portrait'], i:[
+ {n:['مربع وعمودي','Square & portrait'], i:[
   ['1:1','1:1 — مربع (إنستغرام)','1:1 — Square (Instagram)'],
   ['4:5','4:5 — بوست سوشيال ميديا','4:5 — Social post'],
   ['3:4','3:4 — بورتريه رأسي','3:4 — Portrait'],
@@ -99,7 +99,7 @@ const IMG_SIZES = [
   ['5:6','5:6 — بوست عمودي مضغوط','5:6 — Compact vertical'],
   ['7:10','7:10 — غلاف كتاب/مانغا','7:10 — Book / manga cover'],
   ['1:2','1:2 — عمودي طويل (إنفوجرافيك)','1:2 — Tall vertical']]},
- {n:['📐 مقاسات بكسل','📐 Exact pixels'], i:[
+ {n:['مقاسات بكسل','Exact pixels'], i:[
   ['1080x1080','1080×1080 — بوست مربع HD','1080×1080 — HD square'],
   ['1080x1350','1080×1350 — بوست 4:5 رأسي','1080×1350 — 4:5 portrait post'],
   ['1080x1920','1080×1920 — ستوري Full HD','1080×1920 — Full HD story'],
@@ -650,12 +650,12 @@ function renderGaps(){
   const ar=LANG==='ar';
   box.innerHTML='';
   if(!gaps.length){
-    box.innerHTML='<div class="gap-ok">'+(ar?'✓ لا ثغرات ظاهرة في المواصفات':'✓ No gaps detected in the spec')+'</div>';
+    box.innerHTML='<div class="gap-ok">'+(ar?'لا ثغرات ظاهرة في المواصفات':'No gaps detected in the spec')+'</div>';
     return;
   }
   gaps.forEach(g=>{
     const row=document.createElement('div'); row.className='gap';
-    const ic=document.createElement('span'); ic.className='gap-ic'; ic.textContent='⚠';
+    const ic=document.createElement('span'); ic.className='gap-ic'; ic.innerHTML=hi('exclamation-triangle');
     const tx=document.createElement('span'); tx.className='gap-t'; tx.textContent=(ar?g.ar:g.en);
     const btn=document.createElement('button'); btn.className='gap-fix'; btn.type='button';
     btn.textContent=(ar?'أضف':'Add');
@@ -762,8 +762,8 @@ function renderPhases(){
 
 /* ================= Themes ================= */
 const MOBILE_THEMES = [
-  {code:'light', label:'فاتح',  icon:'☀️', bg:'#EFF1F9'},
-  {code:'dark',  label:'داكن',  icon:'🌙', bg:'#0b0f1a'},
+  {code:'light', label:'فاتح',  icon:'sun', bg:'#EFF1F9'},
+  {code:'dark',  label:'داكن',  icon:'moon', bg:'#0b0f1a'},
 ];
 function setTheme(code, fromSwitch){
   if(!MOBILE_THEMES.some(x=>x.code===code)) code='light';
@@ -1198,7 +1198,7 @@ function renderSkills(){
     if(hit){
       const star=document.createElement('em');
       star.className='skill-star';
-      star.textContent='★';
+      star.innerHTML=hi('star');
       row.querySelector('.skill-t').insertBefore(star, row.querySelector('.skill-t b'));
     }
     const b=row.querySelector('.skill-btn');

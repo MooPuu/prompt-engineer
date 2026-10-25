@@ -564,7 +564,7 @@ html[data-theme="dark"] .d-item{
 .gap-list{display:flex;flex-direction:column;gap:7px;margin:12px 0 0}
 .gap{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:12px;
   background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.34);font-size:12.5px;line-height:1.5}
-.gap-ic{color:var(--amber);font-weight:800}
+.gap-ic{color:var(--amber);font-weight:800;display:inline-flex;align-items:center}
 .gap-t{flex:1;color:var(--ink)}
 .gap-fix{background:var(--amber);color:#241800;border:0;border-radius:9px;padding:5px 11px;font-size:12px;font-weight:800}
 .gap-ok{padding:10px 11px;border-radius:12px;background:rgba(21,128,61,.10);border:1px solid rgba(21,128,61,.28);
